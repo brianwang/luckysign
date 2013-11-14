@@ -935,8 +935,8 @@ namespace PPLive.ZiWei
                 case 6:
                     mod.Xing[(int)PublicValue.ZiWeiStar.taiyang].Hua = PublicValue.ZiWeiSihua.lu;
                     mod.Xing[(int)PublicValue.ZiWeiStar.wuqu].Hua = PublicValue.ZiWeiSihua.quan;
-                    mod.Xing[(int)PublicValue.ZiWeiStar.tianfu].Hua = PublicValue.ZiWeiSihua.ke;
-                    mod.Xing[(int)PublicValue.ZiWeiStar.taiyin].Hua = PublicValue.ZiWeiSihua.ji;
+                    mod.Xing[(int)PublicValue.ZiWeiStar.taiyin].Hua = PublicValue.ZiWeiSihua.ke;
+                    mod.Xing[(int)PublicValue.ZiWeiStar.tiantong].Hua = PublicValue.ZiWeiSihua.ji;
                     break;
                 case 7:
                     mod.Xing[(int)PublicValue.ZiWeiStar.jvmen].Hua = PublicValue.ZiWeiSihua.lu;
