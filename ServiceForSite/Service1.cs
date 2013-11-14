@@ -34,6 +34,7 @@ namespace ServiceForSite
         {
             try
             {
+
                 ThreadEndQuest.Abort();
 
                 Flag = false;
