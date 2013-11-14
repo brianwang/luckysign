@@ -503,6 +503,17 @@ namespace AppBll.QA
             return m_dt;
         }
 
+        public DataTable GetToEndList()
+        {
+            DataTable m_dt = new DataTable();
+            string sqlstr = "select * from QA_Question where EndTime is null and TS < '" + DateTime.Now.AddDays(-10).ToString("yyyy-MM-dd HH:mm:ss") + "' and ReplyCount>0";
+            using (SQLData m_data = new SQLData())
+            {
+                m_dt = m_data.CmdtoDataTable(sqlstr);
+            }
+            return m_dt;
+        }
+
 
         /// <summary>
         /// 前台发问题

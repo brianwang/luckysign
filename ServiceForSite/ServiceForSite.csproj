@@ -55,6 +55,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppBll\AppBll.csproj">
+      <Project>{b671fec8-b6a7-49af-8ff7-af37e5a5ba23}</Project>
+      <Name>AppBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppCmn\AppCmn.csproj">
+      <Project>{ed3a34e2-e4ce-4849-a555-1186d3536f97}</Project>
+      <Name>AppCmn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppMod\AppMod.csproj">
+      <Project>{1cb96d13-2217-42e5-8159-8561a863a8ce}</Project>
+      <Name>AppMod</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogManagement\WebMonitor\WebMonitor.csproj">
+      <Project>{a31a0f71-d1dd-41a3-a85f-d3729b068cb2}</Project>
+      <Name>WebMonitor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
