@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{12C5A733-AFB7-4874-BAB2-8366FFC82569}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebForMain</RootNamespace>
+    <AssemblyName>WebForMain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.50731.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\TDDOWNLOAD\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="NetDimension.Weibo">
+      <HintPath>..\BaseAssemblies\NetDimension.Weibo.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About\HelpCenter.aspx" />
+    <Content Include="App_Data\ThirdLogin.xml" />
+    <Content Include="Article\Content.aspx" />
+    <Content Include="Celebrity\Detail.aspx" />
+    <Content Include="Celebrity\Search.aspx" />
+    <Content Include="ControlLibrary\AstroForQuest.ascx" />
+    <Content Include="ControlLibrary\ComboShow.ascx" />
+    <Content Include="ControlLibrary\DatePicker.ascx" />
+    <Content Include="ControlLibrary\DistrictPicker.ascx" />
+    <Content Include="ControlLibrary\LoginPannel.ascx" />
+    <Content Include="ControlLibrary\PatnerLogin.ascx" />
+    <Content Include="ControlLibrary\PPPanel.ascx" />
+    <Content Include="ControlLibrary\QinRightPannel.ascx" />
+    <Content Include="ControlLibrary\QinSearch.ascx" />
+    <Content Include="ControlLibrary\QuestRightPanel.ascx" />
+    <Content Include="ControlLibrary\ShowAdv.ascx" />
+    <Content Include="ControlLibrary\ShowPhoto.aspx" />
+    <Content Include="ControlLibrary\VerifyCode.aspx" />
+    <Content Include="ControlLibrary\ArticleRightPanel.ascx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Passport\Agreement.aspx" />
+    <Content Include="Passport\FindPass.aspx" />
+    <Content Include="Passport\Login.aspx" />
+    <Content Include="Passport\Register.aspx" />
+    <Content Include="Passport\RegisterSucc.aspx" />
+    <Content Include="Passport\ThirdLogin.aspx" />
+    <Content Include="PPLive\Astro.aspx" />
+    <Content Include="PPLive\AstroChart.aspx" />
+    <Content Include="PPLive\AstroDice.aspx" />
+    <Content Include="PPLive\BaZi.aspx" />
+    <Content Include="PPLive\ZiWei.aspx" />
+    <Content Include="PPLive\BaZiChart.aspx" />
+    <Content Include="Qin\AddBlog.aspx" />
+    <Content Include="Qin\Article.aspx" />
+    <Content Include="Qin\Index.aspx" />
+    <Content Include="Qin\MsgDetail.aspx" />
+    <Content Include="Qin\MyCollection.aspx" />
+    <Content Include="Qin\MyComment.aspx" />
+    <Content Include="Qin\MyMessage.aspx" />
+    <Content Include="Qin\MyNotice.aspx" />
+    <Content Include="Qin\MyQuestion.aspx" />
+    <Content Include="Qin\UserInfo.aspx" />
+    <Content Include="Qin\View.aspx" />
+    <Content Include="Quest\Index.aspx" />
+    <Content Include="Quest\Question.aspx" />
+    <Content Include="Quest\Talk.aspx" />
+    <Content Include="WebResources\AstroDice\astro dice 480 510 1.swf" />
+    <Content Include="WebResources\AstroDice\common.css" />
+    <Content Include="WebResources\AstroDice\DD_belatedPNG.js" />
+    <Content Include="WebResources\AstroDice\flash.jpg" />
+    <Content Include="WebResources\AstroDice\ico.gif" />
+    <Content Include="WebResources\AstroDice\img.jpg" />
+    <Content Include="WebResources\AstroDice\img_01.jpg" />
+    <Content Include="WebResources\AstroDice\img_02.jpg" />
+    <Content Include="WebResources\AstroDice\img_03.jpg" />
+    <Content Include="WebResources\AstroDice\img_04.jpg" />
+    <Content Include="WebResources\AstroDice\img_05.jpg" />
+    <Content Include="WebResources\AstroDice\img_06.jpg" />
+    <Content Include="WebResources\AstroDice\img_07.jpg" />
+    <Content Include="WebResources\AstroDice\img_08.jpg" />
+    <Content Include="WebResources\AstroDice\img_09.jpg" />
+    <Content Include="WebResources\AstroDice\mu.jpg" />
+    <Content Include="WebResources\AstroDice\t.jpg" />
+    <Content Include="WebResources\AstroDice\t_on.png" />
+    <Content Include="WebResources\CSS\new.css" />
+    <Content Include="WebResources\CSS\page.css" />
+    <Content Include="WebResources\CSS\style.css" />
+    <Content Include="WebResources\IMAGES\arr_01.gif" />
+    <Content Include="WebResources\IMAGES\arr_02.gif" />
+    <Content Include="WebResources\IMAGES\banner_01.jpg" />
+    <Content Include="WebResources\IMAGES\banner_touzi.jpg" />
+    <Content Include="WebResources\IMAGES\bg.jpg" />
+    <Content Include="WebResources\IMAGES\btn_01.gif" />
+    <Content Include="WebResources\IMAGES\ddbg.gif" />
+    <Content Include="WebResources\IMAGES\ddbg.jpg" />
+    <Content Include="WebResources\IMAGES\form_bg.gif" />
+    <Content Include="WebResources\IMAGES\gou.png" />
+    <Content Include="WebResources\IMAGES\icons.gif" />
+    <Content Include="WebResources\IMAGES\icon_02.gif" />
+    <Content Include="WebResources\IMAGES\icon_bazi.jpg" />
+    <Content Include="WebResources\IMAGES\icon_paipan_normal.jpg" />
+    <Content Include="WebResources\IMAGES\icon_paipan_up.jpg" />
+    <Content Include="WebResources\IMAGES\icon_qiuce_normal.jpg" />
+    <Content Include="WebResources\IMAGES\icon_qiuce_up.jpg" />
+    <Content Include="WebResources\IMAGES\icon_study_normal.jpg" />
+    <Content Include="WebResources\IMAGES\icon_study_up.jpg" />
+    <Content Include="WebResources\IMAGES\icon_yanjiu_normal.jpg" />
+    <Content Include="WebResources\IMAGES\icon_yanjiu_up.jpg" />
+    <Content Include="WebResources\IMAGES\icon_zhanxing.jpg" />
+    <Content Include="WebResources\IMAGES\icon_ziwei.jpg" />
+    <Content Include="WebResources\IMAGES\logo.gif" />
+    <Content Include="WebResources\IMAGES\logo2.gif" />
+    <Content Include="WebResources\IMAGES\medal\xz1.gif" />
+    <Content Include="WebResources\IMAGES\medal\xz2.gif" />
+    <Content Include="WebResources\IMAGES\medal\xz3.gif" />
+    <Content Include="WebResources\IMAGES\medal\xz4.gif" />
+    <Content Include="WebResources\IMAGES\medal\xz5.gif" />
+    <Content Include="WebResources\IMAGES\menuline.gif" />
+    <Content Include="WebResources\IMAGES\ok.jpg" />
+    <Content Include="WebResources\IMAGES\pic_01.jpg" />
+    <Content Include="WebResources\IMAGES\pic_02.gif" />
+    <Content Include="WebResources\IMAGES\pic_02.jpg" />
+    <Content Include="WebResources\IMAGES\pic_03.jpg" />
+    <Content Include="WebResources\IMAGES\qqlogin.png" />
+    <Content Include="WebResources\IMAGES\searchbg.gif" />
+    <Content Include="WebResources\IMAGES\spans.gif" />
+    <Content Include="WebResources\IMAGES\spans_02.gif" />
+    <Content Include="WebResources\IMAGES\tabs.gif" />
+    <Content Include="WebResources\IMAGES\tabs2.gif" />
+    <Content Include="WebResources\IMAGES\tipbg.gif" />
+    <Content Include="WebResources\IMAGES\tx_03.jpg" />
+    <Content Include="WebResources\IMAGES\weibologin.png" />
+    <Content Include="WebResources\IMAGES\yzm.gif" />
+    <Content Include="WebResources\img\banner1.jpg" />
+    <Content Include="WebResources\img\banner2.jpg" />
+    <Content Include="WebResources\img\banner3.jpg" />
+    <Content Include="WebResources\img\banner_btn.gif" />
+    <Content Include="WebResources\img\banner_btn.png" />
+    <Content Include="WebResources\img\banner_btn_on.gif" />
+    <Content Include="WebResources\img\banner_btn_on.png" />
+    <Content Include="WebResources\img\bg.gif" />
+    <Content Include="WebResources\img\bottom_logo.gif" />
+    <Content Include="WebResources\img\box_bg1.gif" />
+    <Content Include="WebResources\img\c.gif" />
+    <Content Include="WebResources\img\grip.gif" />
+    <Content Include="WebResources\img\h.gif" />
+    <Content Include="WebResources\img\ico.gif" />
+    <Content Include="WebResources\img\ico1.gif" />
+    <Content Include="WebResources\img\index_banner.jpg" />
+    <Content Include="WebResources\img\index_input.gif" />
+    <Content Include="WebResources\img\index_pic.jpg" />
+    <Content Include="WebResources\img\index_pic2.jpg" />
+    <Content Include="WebResources\img\index_pic_ico.gif" />
+    <Content Include="WebResources\img\list.gif" />
+    <Content Include="WebResources\img\man.jpg" />
+    <Content Include="WebResources\img\Medal\1.gif" />
+    <Content Include="WebResources\img\new\down.jpg" />
+    <Content Include="WebResources\img\new\down_arrow.gif" />
+    <Content Include="WebResources\img\new\ico1.jpg" />
+    <Content Include="WebResources\img\new\ico3.gif" />
+    <Content Include="WebResources\img\new\ico4.gif" />
+    <Content Include="WebResources\img\new\ico7.gif" />
+    <Content Include="WebResources\img\new\icon21.gif" />
+    <Content Include="WebResources\img\new\icon29.gif" />
+    <Content Include="WebResources\img\new\icon3.gif" />
+    <Content Include="WebResources\img\new\icon4.gif" />
+    <Content Include="WebResources\img\new\icon7.gif" />
+    <Content Include="WebResources\img\new\icon_bazi.jpg" />
+    <Content Include="WebResources\img\new\list1.gif" />
+    <Content Include="WebResources\img\new\tip_message.gif" />
+    <Content Include="WebResources\img\new\top_tip.gif" />
+    <Content Include="WebResources\img\new\up.jpg" />
+    <Content Include="WebResources\img\new\up_arrow.gif" />
+    <Content Include="WebResources\img\new_boxbg.gif" />
+    <Content Include="WebResources\img\page\ask_list1.gif" />
+    <Content Include="WebResources\img\page\ask_list2.gif" />
+    <Content Include="WebResources\img\page\ask_list3.gif" />
+    <Content Include="WebResources\img\page\button1.jpg" />
+    <Content Include="WebResources\img\page\button1_.jpg" />
+    <Content Include="WebResources\img\page\button2.jpg" />
+    <Content Include="WebResources\img\page\button2_.jpg" />
+    <Content Include="WebResources\img\page\button3.jpg" />
+    <Content Include="WebResources\img\page\button3_.jpg" />
+    <Content Include="WebResources\img\page\button4.jpg" />
+    <Content Include="WebResources\img\page\button4_.jpg" />
+    <Content Include="WebResources\img\page\button5.jpg" />
+    <Content Include="WebResources\img\page\button5_.jpg" />
+    <Content Include="WebResources\img\page\corcon.gif" />
+    <Content Include="WebResources\img\page\corcon_r.gif" />
+    <Content Include="WebResources\img\page\down.gif" />
+    <Content Include="WebResources\img\page\face.gif" />
+    <Content Include="WebResources\img\page\guanzhu_button1.gif" />
+    <Content Include="WebResources\img\page\guanzhu_button2.gif" />
+    <Content Include="WebResources\img\page\guanzhu_button3.gif" />
+    <Content Include="WebResources\img\page\help_list.gif" />
+    <Content Include="WebResources\img\page\ico1.jpg" />
+    <Content Include="WebResources\img\page\ico2.jpg" />
+    <Content Include="WebResources\img\page\ico3.jpg" />
+    <Content Include="WebResources\img\page\ico7.gif" />
+    <Content Include="WebResources\img\page\ico8.gif" />
+    <Content Include="WebResources\img\page\input1.gif" />
+    <Content Include="WebResources\img\page\item_on.gif" />
+    <Content Include="WebResources\img\page\item_on_bg.gif" />
+    <Content Include="WebResources\img\page\letter_textarea.gif" />
+    <Content Include="WebResources\img\page\logo.gif" />
+    <Content Include="WebResources\img\page\man2.jpg" />
+    <Content Include="WebResources\img\page\mingren.jpg" />
+    <Content Include="WebResources\img\page\new_ico.gif" />
+    <Content Include="WebResources\img\page\new_ico1.gif" />
+    <Content Include="WebResources\img\page\new_ico2.gif" />
+    <Content Include="WebResources\img\page\new_ico3.gif" />
+    <Content Include="WebResources\img\page\new_ico4.gif" />
+    <Content Include="WebResources\img\page\new_input.gif" />
+    <Content Include="WebResources\img\page\new_item.gif" />
+    <Content Include="WebResources\img\page\new_item_on.gif" />
+    <Content Include="WebResources\img\page\new_top_bg.gif" />
+    <Content Include="WebResources\img\page\ntip.gif" />
+    <Content Include="WebResources\img\page\page_img1.jpg" />
+    <Content Include="WebResources\img\page\page_img2.jpg" />
+    <Content Include="WebResources\img\page\page_img3.jpg" />
+    <Content Include="WebResources\img\page\page_item.gif" />
+    <Content Include="WebResources\img\page\page_item1.gif" />
+    <Content Include="WebResources\img\page\page_list_b.gif" />
+    <Content Include="WebResources\img\page\page_list_c.gif" />
+    <Content Include="WebResources\img\page\page_list_t.gif" />
+    <Content Include="WebResources\img\page\page_menu.gif" />
+    <Content Include="WebResources\img\page\page_menu_on.gif" />
+    <Content Include="WebResources\img\page\qq.gif" />
+    <Content Include="WebResources\img\page\read.gif" />
+    <Content Include="WebResources\img\page\search_button.gif" />
+    <Content Include="WebResources\img\page\search_input.gif" />
+    <Content Include="WebResources\img\page\sina.gif" />
+    <Content Include="WebResources\img\page\table_bg.gif" />
+    <Content Include="WebResources\img\page\up.gif" />
+    <Content Include="WebResources\img\page_search.gif" />
+    <Content Include="WebResources\img\paipan\Aqu.jpg" />
+    <Content Include="WebResources\img\paipan\Ari.jpg" />
+    <Content Include="WebResources\img\paipan\ASC.jpg" />
+    <Content Include="WebResources\img\paipan\Can.jpg" />
+    <Content Include="WebResources\img\paipan\Cap.jpg" />
+    <Content Include="WebResources\img\paipan\Gem.jpg" />
+    <Content Include="WebResources\img\paipan\Jup.jpg" />
+    <Content Include="WebResources\img\paipan\Leo.jpg" />
+    <Content Include="WebResources\img\paipan\Lib.jpg" />
+    <Content Include="WebResources\img\paipan\Mar.jpg" />
+    <Content Include="WebResources\img\paipan\Mer.jpg" />
+    <Content Include="WebResources\img\paipan\Mid.jpg" />
+    <Content Include="WebResources\img\paipan\Moo.jpg" />
+    <Content Include="WebResources\img\paipan\Nep.jpg" />
+    <Content Include="WebResources\img\paipan\Pis.jpg" />
+    <Content Include="WebResources\img\paipan\Plu.jpg" />
+    <Content Include="WebResources\img\paipan\Sag.jpg" />
+    <Content Include="WebResources\img\paipan\Sat.jpg" />
+    <Content Include="WebResources\img\paipan\Sco.jpg" />
+    <Content Include="WebResources\img\paipan\Sun.jpg" />
+    <Content Include="WebResources\img\paipan\Tau.jpg" />
+    <Content Include="WebResources\img\paipan\Ura.jpg" />
+    <Content Include="WebResources\img\paipan\Ven.jpg" />
+    <Content Include="WebResources\img\paipan\Vir.jpg" />
+    <Content Include="WebResources\img\paipan\xs.gif" />
+    <Content Include="WebResources\img\paipan\xz.gif" />
+    <Content Include="WebResources\img\paipan\xz2.gif" />
+    <Content Include="WebResources\img\pic.jpg" />
+    <Content Include="WebResources\img\pic2.jpg" />
+    <Content Include="WebResources\img\png.png" />
+    <Content Include="WebResources\img\png1.png" />
+    <Content Include="WebResources\img\png2.png" />
+    <Content Include="WebResources\img\png3.png" />
+    <Content Include="WebResources\img\right_img.jpg" />
+    <Content Include="WebResources\img\right_pic.jpg" />
+    <Content Include="WebResources\img\select.gif" />
+    <Content Include="WebResources\img\solid.gif" />
+    <Content Include="WebResources\img\submit_btn1.gif" />
+    <Content Include="WebResources\img\submit_btn2.gif" />
+    <Content Include="WebResources\img\tip_bg.gif" />
+    <Content Include="WebResources\img\track.gif" />
+    <Content Include="WebResources\img\_c.gif" />
+    <Content Include="WebResources\img\_h.gif" />
+    <Content Include="WebResources\JS\addition.js" />
+    <Content Include="WebResources\JS\comm.js" />
+    <Content Include="WebResources\JS\CutPic.js" />
+    <Content Include="WebResources\JS\DateTimeMask.js" />
+    <Content Include="WebResources\JS\formValidator-4.0.1.js" />
+    <Content Include="WebResources\JS\formValidator-4.0.1.min.js" />
+    <Content Include="WebResources\JS\formValidatorRegex.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.4.4.min.js" />
+    <Content Include="WebResources\JS\jquery.pngFix.pack.js" />
+    <Content Include="WebResources\JS\jquery.scrollablecombo.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.8.3.js" />
+    <Content Include="WebResources\JS\jquery\jquery-ui-1.9.2.min.js" />
+    <Content Include="WebResources\JS\jquery\jquery1.2.6.pack.js" />
+    <Content Include="WebResources\JS\new.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.4.1-vsdoc.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.4.1.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.4.1.min.js" />
+    <Content Include="WebResources\JS\jquery\jquery-1.7.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Error.aspx" />
+    <Content Include="WebResources\Xdv\EmailTemplate\FindPassword.htm" />
+    <Content Include="WebResources\Xdv\Help\AccountSafe.htm" />
+    <Content Include="WebResources\Xdv\Help\AnswerGuide.htm" />
+    <Content Include="WebResources\Xdv\Help\AskGuide.htm" />
+    <Content Include="WebResources\Xdv\Help\AskSetChart.htm" />
+    <Content Include="WebResources\Xdv\Help\AstroChart.htm" />
+    <Content Include="WebResources\Xdv\Help\AstroSet.htm" />
+    <Content Include="WebResources\Xdv\Help\BaZiChart.htm" />
+    <Content Include="WebResources\Xdv\Help\BaziSet.htm" />
+    <Content Include="WebResources\Xdv\Help\CollectChart.htm" />
+    <Content Include="WebResources\Xdv\Help\DefaultChartSet.htm" />
+    <Content Include="WebResources\Xdv\Help\EndQuestion.htm" />
+    <Content Include="WebResources\Xdv\Help\FamousResearch.htm" />
+    <Content Include="WebResources\Xdv\Help\FamousSearch.htm" />
+    <Content Include="WebResources\Xdv\Help\GetReward.htm" />
+    <Content Include="WebResources\Xdv\Help\IdentifyAndRecommend.htm" />
+    <Content Include="WebResources\Xdv\Help\Index.htm" />
+    <Content Include="WebResources\Xdv\Help\FAQ.htm" />
+    <Content Include="WebResources\Xdv\Help\OfferReward.htm" />
+    <Content Include="WebResources\Xdv\Help\Payment.htm" />
+    <Content Include="WebResources\Xdv\Help\PointAndCredit.htm" />
+    <Content Include="WebResources\Xdv\Help\ReplyQuest.htm" />
+    <Content Include="WebResources\Xdv\Help\UserGrade.htm" />
+    <Content Include="WebResources\Xdv\Help\UserRegister.htm" />
+    <Content Include="WebResources\Xdv\Help\WikiIntro.htm" />
+    <Content Include="WebResources\Xdv\Help\ZiWeiChart.htm" />
+    <Content Include="WebResources\Xdv\Help\ZiWeiSet.htm" />
+    <Content Include="WebResources\Xdv\Images\banner1.jpg" />
+    <Content Include="WebResources\Xdv\Images\banner2.jpg" />
+    <Content Include="WebResources\Xdv\Images\banner_jinxing.jpg" />
+    <Content Include="WebResources\Xdv\IndexApps.htm" />
+    <Content Include="WebResources\Xdv\IndexCeOl.htm" />
+    <Content Include="WebResources\Xdv\IndexFlash.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About\HelpCenter.aspx.cs">
+      <DependentUpon>HelpCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\HelpCenter.aspx.designer.cs">
+      <DependentUpon>HelpCenter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Article\Content.aspx.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Article\Content.aspx.designer.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Article\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Article\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Celebrity\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Celebrity\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Celebrity\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Celebrity\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\AstroForQuest.ascx.cs">
+      <DependentUpon>AstroForQuest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\AstroForQuest.ascx.designer.cs">
+      <DependentUpon>AstroForQuest.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\BaZiForQuest.ascx.cs">
+      <DependentUpon>BaZiForQuest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\BaZiForQuest.ascx.designer.cs">
+      <DependentUpon>BaZiForQuest.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\ComboShow.ascx.cs">
+      <DependentUpon>ComboShow.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\ComboShow.ascx.designer.cs">
+      <DependentUpon>ComboShow.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\DatePicker.ascx.cs">
+      <DependentUpon>DatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\DatePicker.ascx.designer.cs">
+      <DependentUpon>DatePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\DistrictPicker.ascx.cs">
+      <DependentUpon>DistrictPicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\DistrictPicker.ascx.designer.cs">
+      <DependentUpon>DistrictPicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\LoginPannel.ascx.cs">
+      <DependentUpon>LoginPannel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\LoginPannel.ascx.designer.cs">
+      <DependentUpon>LoginPannel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\Pagination.ascx.cs">
+      <DependentUpon>Pagination.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\Pagination.ascx.designer.cs">
+      <DependentUpon>Pagination.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\PatnerLogin.ascx.cs">
+      <DependentUpon>PatnerLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\PatnerLogin.ascx.designer.cs">
+      <DependentUpon>PatnerLogin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\PPPanel.ascx.cs">
+      <DependentUpon>PPPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\PPPanel.ascx.designer.cs">
+      <DependentUpon>PPPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\QinRightPannel.ascx.cs">
+      <DependentUpon>QinRightPannel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\QinRightPannel.ascx.designer.cs">
+      <DependentUpon>QinRightPannel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\QinSearch.ascx.cs">
+      <DependentUpon>QinSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\QinSearch.ascx.designer.cs">
+      <DependentUpon>QinSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\QuestRightPanel.ascx.cs">
+      <DependentUpon>QuestRightPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\QuestRightPanel.ascx.designer.cs">
+      <DependentUpon>QuestRightPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\ShowAdv.ascx.cs">
+      <DependentUpon>ShowAdv.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\ShowAdv.ascx.designer.cs">
+      <DependentUpon>ShowAdv.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\ShowPhoto.aspx.cs">
+      <DependentUpon>ShowPhoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\ShowPhoto.aspx.designer.cs">
+      <DependentUpon>ShowPhoto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\VerifyCode.aspx.cs">
+      <DependentUpon>VerifyCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\VerifyCode.aspx.designer.cs">
+      <DependentUpon>VerifyCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\ZiWeiForQuest.ascx.cs">
+      <DependentUpon>ZiWeiForQuest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\ZiWeiForQuest.ascx.designer.cs">
+      <DependentUpon>ZiWeiForQuest.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\ArticleRightPanel.ascx.cs">
+      <DependentUpon>ArticleRightPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\ArticleRightPanel.ascx.designer.cs">
+      <DependentUpon>ArticleRightPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Qin.Master.cs">
+      <DependentUpon>Qin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Qin.Master.designer.cs">
+      <DependentUpon>Qin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Passport\Agreement.aspx.cs">
+      <DependentUpon>Agreement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\Agreement.aspx.designer.cs">
+      <DependentUpon>Agreement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Passport\FindPass.aspx.cs">
+      <DependentUpon>FindPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\FindPass.aspx.designer.cs">
+      <DependentUpon>FindPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Passport\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Passport\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Passport\RegisterSucc.aspx.cs">
+      <DependentUpon>RegisterSucc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\RegisterSucc.aspx.designer.cs">
+      <DependentUpon>RegisterSucc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\ThirdLogin.aspx.cs">
+      <DependentUpon>ThirdLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Passport\ThirdLogin.aspx.designer.cs">
+      <DependentUpon>ThirdLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\Astro.aspx.cs">
+      <DependentUpon>Astro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\Astro.aspx.designer.cs">
+      <DependentUpon>Astro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\AstroChart.aspx.cs">
+      <DependentUpon>AstroChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\AstroChart.aspx.designer.cs">
+      <DependentUpon>AstroChart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\AstroDice.aspx.cs">
+      <DependentUpon>AstroDice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\AstroDice.aspx.designer.cs">
+      <DependentUpon>AstroDice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\BaZi.aspx.cs">
+      <DependentUpon>BaZi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\BaZi.aspx.designer.cs">
+      <DependentUpon>BaZi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\ZiWei.aspx.cs">
+      <DependentUpon>ZiWei.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\ZiWei.aspx.designer.cs">
+      <DependentUpon>ZiWei.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\ZiWeiChart.aspx.cs">
+      <DependentUpon>ZiWeiChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\ZiWeiChart.aspx.designer.cs">
+      <DependentUpon>ZiWeiChart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPLive\BaZiChart.aspx.cs">
+      <DependentUpon>BaZiChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PPLive\BaZiChart.aspx.designer.cs">
+      <DependentUpon>BaZiChart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Qin\AddBlog.aspx.cs">
+      <DependentUpon>AddBlog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\AddBlog.aspx.designer.cs">
+      <DependentUpon>AddBlog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\Article.aspx.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\Article.aspx.designer.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MsgDetail.aspx.cs">
+      <DependentUpon>MsgDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MsgDetail.aspx.designer.cs">
+      <DependentUpon>MsgDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyCollection.aspx.cs">
+      <DependentUpon>MyCollection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyCollection.aspx.designer.cs">
+      <DependentUpon>MyCollection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyComment.aspx.cs">
+      <DependentUpon>MyComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyComment.aspx.designer.cs">
+      <DependentUpon>MyComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyMessage.aspx.cs">
+      <DependentUpon>MyMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyMessage.aspx.designer.cs">
+      <DependentUpon>MyMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyNotice.aspx.cs">
+      <DependentUpon>MyNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyNotice.aspx.designer.cs">
+      <DependentUpon>MyNotice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyQuestion.aspx.cs">
+      <DependentUpon>MyQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyQuestion.aspx.designer.cs">
+      <DependentUpon>MyQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\UserInfo.aspx.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\UserInfo.aspx.designer.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Question.aspx.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Question.aspx.designer.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Ask.aspx.cs">
+      <DependentUpon>Ask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Ask.aspx.designer.cs">
+      <DependentUpon>Ask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Talk.aspx.cs">
+      <DependentUpon>Talk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Talk.aspx.designer.cs">
+      <DependentUpon>Talk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionInfo.cs" />
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\astrolog.exe" />
+    <Content Include="Article\Index.aspx" />
+    <Content Include="ControlLibrary\Pagination.ascx" />
+    <Content Include="Master\Main.Master" />
+    <Content Include="PPLive\ZiWeiChart.aspx" />
+    <Content Include="Quest\Ask.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppBll\AppBll.csproj">
+      <Project>{B671FEC8-B6A7-49AF-8FF7-AF37E5A5BA23}</Project>
+      <Name>AppBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppCmn\AppCmn.csproj">
+      <Project>{ED3A34E2-E4CE-4849-A555-1186D3536F97}</Project>
+      <Name>AppCmn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppMod\AppMod.csproj">
+      <Project>{1CB96D13-2217-42E5-8159-8561A863A8CE}</Project>
+      <Name>AppMod</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogManagement\WebMonitor\WebMonitor.csproj">
+      <Project>{A31A0F71-D1DD-41A3-A85F-D3729B068CB2}</Project>
+      <Name>WebMonitor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PPLive\PPLive.csproj">
+      <Project>{D3571AF9-2D1F-4CA7-AE9E-A3C27FCE8C66}</Project>
+      <Name>PPLive</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Master\Qin.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Common.config" />
+    <Content Include="Configuration\Log.Config" />
+    <Content Include="Configuration\Log4.Config" />
+    <Content Include="ControlLibrary\BaZiForQuest.ascx" />
+    <Content Include="ControlLibrary\ZiWeiForQuest.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AstroGraphic\Tmp\" />
+    <Folder Include="WebResources\ArticleImg\" />
+    <Folder Include="WebResources\UpUserFiles\BlogFiles\" />
+    <Folder Include="WebResources\UpUserFiles\BlogImages\" />
+    <Folder Include="WebResources\UpUserFiles\Photos\O\" />
+    <Folder Include="WebResources\UpUserFiles\Photos\Tmp\" />
+    <Folder Include="WebResources\UpUserFiles\Photos\T\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>43045</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

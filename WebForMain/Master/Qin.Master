@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Qin.Master.cs" Inherits="WebForMain.Master.Qin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../WebResources/CSS/new.css" rel="stylesheet" type="text/css" />
+    <link href="../WebResources/CSS/page.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?72cef88fe2d96fc52b022f9fa3702f10";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="page_head">
+            <div class="page_head_box">
+                <div class="page_logo">
+                    <a href="/" title="上上签"></a>
+                </div>
+                <div class="page_head_r" id="manudiv" runat="server">
+                    <div class="page_item">
+                        <a href="/" title="首页">首页</a><span>|</span> <a href="/Quest/Index.aspx" title="煮酒论命">煮酒论命</a><span>|</span> <a href="/Article/Index.aspx" title="象牙塔">象牙塔</a><%--<span>|</span> <a href="#" title="群组">群组</a>--%><span>|</span>
+                        <a href="/PPLive/Astro.aspx" title="在线排盘">在线排盘</a><span>|</span> <a href="/Celebrity/Search.aspx" title="名人库">名人库</a><span>|</span> <a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>
+                    </div>
+                    <div class="page_menu">
+                        <a href="/Qin/View.aspx?id=<%=m_base.GetSession().CustomerEntity.SysNo %>" title="我的首页" class='<%=tab[0] %>'>我的首页</a> <a href="/Qin/MyCollection.aspx"
+                            title="我的收藏" class='<%=tab[1] %>'>我的收藏</a> <a href="/Qin/MyQuestion.aspx" title="我的问答"
+                                class='<%=tab[2] %>'>我的问答</a>
+                        <%--<a href="/Qin/MyGroup.aspx" title="我的群组" class='<%=tab[3] %>'>我的群组</a> --%><a
+                            href="/Qin/MyMessage.aspx" title="我的消息" class='<%=tab[4] %>'> 我的消息</a>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="main">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <div class="clear">
+                </div>
+                <div class="bottom">
+                    <div class="bottom_logo">
+                    </div>
+                    <div class="bottom_item">
+                        <span class="c1"><a href="#">关于上上签</a> <a href="#">加入我们</a> <a href="#">联系方式</a> <a
+                            href="#">免责声明</a> <a href="#">帮助中心</a> </span><span class="c2"><a href="/Quest/Index.aspx">煮酒论命</a>
+                                <a href="/Article/Index.aspx">象牙塔</a> <%--<a href="#">群组</a>--%> <a href="/PPLive/Astro.aspx">在线测算</a> <a href="/Celebrity/Search.aspx">名人案例</a>
+                                <a href="#">我的上上签</a> </span><span class="c3"><a href="#">官方微博</a> <a href="#">官方QQ群</a>
+                                    <a href="#">手机上上签</a> <a href="#">API</a> </span><span class="c4"><a href="/Passport/Login.aspx">登录</a>
+                                        <a href="/Passport/Login.aspx?type=logout">注销</a> </span>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <h1>Copyright 2012-2013 上上签 All right reserved.</h1>
+                </div>
+                <script type="text/javascript" src="../WebResources/js/jquery/jquery-1.8.3.js"></script>
+                <script type="text/javascript" src="../WebResources/JS/jquery.pngFix.pack.js"></script>
+                <script type="text/javascript" src="../WebResources/JS/new.js"></script>
+                <asp:ContentPlaceHolder ID="bottom" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
