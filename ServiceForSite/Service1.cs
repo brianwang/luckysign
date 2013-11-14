@@ -72,22 +72,22 @@ namespace ServiceForSite
 
         private void EndQuest()
         {
-            while (Flag)
-            {
-                localhost.AdvService la = new WindowsService1.localhost.AdvService();
-                try
-                {
-                    string helloname = la.Hello("Andy"); // 调用远程WebService中的方法
-                    writeInLog(helloname, false);   // 把调用返回的数据写入到文件中
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Trace.Write(ex.Message);
-                    throw ex;
-                }
+            //while (Flag)
+            //{
+            //    localhost.AdvService la = new WindowsService1.localhost.AdvService();
+            //    try
+            //    {
+            //        string helloname = la.Hello("Andy"); // 调用远程WebService中的方法
+            //        writeInLog(helloname, false);   // 把调用返回的数据写入到文件中
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        System.Diagnostics.Trace.Write(ex.Message);
+            //        throw ex;
+            //    }
 
-                Thread.Sleep(5000);
-            }
+            //    Thread.Sleep(5000);
+            //}
         }
 
         
