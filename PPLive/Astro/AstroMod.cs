@@ -33,6 +33,9 @@ namespace PPLive.Astro
         private string _composeFile1 = "";
         private string _composeFile2 = "";
 
+        private AppCmn.AppEnum.Gender _gender = AppCmn.AppEnum.Gender.none;
+        private AppCmn.AppEnum.Gender _gender1 = AppCmn.AppEnum.Gender.none;
+
         private Star[] xing = new Star[32]; //紫薇
         #endregion
 
@@ -61,6 +64,16 @@ namespace PPLive.Astro
         {
             get { return _isDaylight; }
             set { _isDaylight = value; }
+        }
+        public AppCmn.AppEnum.Gender Gender
+        {
+            get { return _gender; }
+            set { _gender = value; }
+        }
+        public AppCmn.AppEnum.Gender Gender1
+        {
+            get { return _gender; }
+            set { _gender1 = value; }
         }
         public int houseSystem
         {

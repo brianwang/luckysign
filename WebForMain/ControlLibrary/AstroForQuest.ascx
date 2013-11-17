@@ -98,8 +98,8 @@
                                 Type="5" runat="server"></uc1:DatePicker>
                         </p>
                         <p>
-                            <asp:Button ID="Button1" runat="server" Text="往前5分钟" OnClick="Button1_Click" />
-                            <asp:Button ID="Button2" runat="server" Text="往后5分钟" OnClick="Button2_Click" />
+                            <asp:Button ID="Button1" runat="server"  CssClass="paipan_a" Text="往前5分钟" OnClick="Button1_Click" />
+                            <asp:Button ID="Button2" runat="server" CssClass="paipan_a" Text="往后5分钟" OnClick="Button2_Click" />
                             <asp:LinkButton ID="LinkButton5" CssClass="paipan_a" runat="server" OnClick="LinkButton4_Click">开始排盘</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton6" CssClass="paipan_a" runat="server" OnClick="LinkButton2_Click">返回原盘</asp:LinkButton>
                         </p>

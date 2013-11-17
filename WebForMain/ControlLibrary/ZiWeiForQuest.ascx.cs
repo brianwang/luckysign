@@ -87,7 +87,7 @@ namespace WebForMain.ControlLibrary
             //默认做太阳时修正
             string[] tmplatlng = _input.FirstPoi.ToString().Split(new char[] { '|' });
                 m_ziwei.BirthTime = new DateEntity(_realtime?RealTime(DateTime.Parse(_input.FirstBirth.ToString()),
-                    new LatLng(tmplatlng[1], tmplatlng[0])) : DateTime.Parse(_input.FirstBirth.ToString()));
+                    new LatLng(tmplatlng[1], tmplatlng[0], _input.FirstPoiName)) : DateTime.Parse(_input.FirstBirth.ToString()));
                 m_ziwei.Gender = (AppEnum.Gender)int.Parse(_input.FirstGender.ToString());
             m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
             m_ziwei.TransitTime = new DateEntity(DateTime.Now);
@@ -104,7 +104,7 @@ namespace WebForMain.ControlLibrary
  
                 }
                 m_ziwei.BirthTime = new DateEntity(_realtime?RealTime(DateTime.Parse(_input.SecondBirth.ToString()),
-                    new LatLng(tmplatlng[1], tmplatlng[0])):DateTime.Parse(_input.SecondBirth.ToString()));
+                    new LatLng(tmplatlng[1], tmplatlng[0], _input.SecondPoiName)) : DateTime.Parse(_input.SecondBirth.ToString()));
                 m_ziwei.Gender = (AppEnum.Gender)int.Parse(_input.SecondGender.ToString());
                 m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
                 m_ziwei.TransitTime = new DateEntity(DateTime.Now);

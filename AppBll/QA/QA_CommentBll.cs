@@ -83,6 +83,7 @@ namespace AppBll.QA
         {
             bool ret = false;
             QA_QuestionMod m_qa = QA_QuestionBll.GetInstance().GetModel(questsysno);
+            QA_AnswerMod m_answer = QA_AnswerBll.GetInstance().GetModel(answersysno);
             DataTable m_dt = GetListByAnswer(answersysno);
             for (int i = 0; i < m_dt.Rows.Count;i++ )
             {
@@ -123,7 +124,7 @@ namespace AppBll.QA
                 m_record.Type = 63;
                 User.USR_RecordBll.GetInstance().Add(m_record);
 
-                if (model.CustomerSysNo == m_qa.CustomerSysNo && !IfReplyed(model.AnswerSysNo, model.QuestionSysNo))
+                if (model.CustomerSysNo == m_qa.CustomerSysNo )
                 {
                     User.USR_CustomerBll.GetInstance().AddPoint(AppConst.ReplyPoint, model.CustomerSysNo);
                     User.USR_CustomerBll.GetInstance().AddExp(AppConst.ReplyExp, model.CustomerSysNo);

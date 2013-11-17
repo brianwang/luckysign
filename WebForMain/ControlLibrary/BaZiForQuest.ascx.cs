@@ -79,7 +79,7 @@ namespace WebForMain.ControlLibrary
             #region 设置实体各种参数
             string[] tmplatlng = _input.FirstPoi.ToString().Split(new char[] { '|' });
             m_bazi.BirthTime = new DateEntity(_realtime?RealTime(DateTime.Parse(_input.FirstBirth.ToString()),
-                new LatLng(tmplatlng[1], tmplatlng[0])) : DateTime.Parse(_input.FirstBirth.ToString()));
+                new LatLng(tmplatlng[1], tmplatlng[0], _input.FirstPoiName)) : DateTime.Parse(_input.FirstBirth.ToString()));
             m_bazi.AreaName = _input.FirstPoiName.ToString();
             m_bazi.Longitude = tmplatlng[0];
             SetBenMing();
@@ -88,7 +88,7 @@ namespace WebForMain.ControlLibrary
             {
                 tmplatlng = _input.SecondPoi.ToString().Split(new char[] { '|' });
                 m_bazi.BirthTime = new DateEntity(_realtime?RealTime(DateTime.Parse(_input.SecondBirth.ToString()),
-                    new LatLng(tmplatlng[1], tmplatlng[0])) : DateTime.Parse(_input.SecondBirth.ToString()));
+                    new LatLng(tmplatlng[1], tmplatlng[0], _input.SecondPoiName)) : DateTime.Parse(_input.SecondBirth.ToString()));
                 m_bazi.AreaName = _input.SecondPoiName.ToString();
                 m_bazi.Longitude = tmplatlng[0];
                 SetHePan();
