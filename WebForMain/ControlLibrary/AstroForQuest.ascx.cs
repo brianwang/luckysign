@@ -143,6 +143,8 @@ namespace WebForMain.ControlLibrary
                     所属时区： " + (m_astro.zone1 > 0 ? "西" + m_astro.zone1.ToString() : "东" + m_astro.zone1.ToString()) + @"区<br />
                     夏令时：" + (((int)m_astro.IsDaylight1) == 1 ? "是" : "否") + @"
                     <br />
+                    性别： "+ AppEnum.GetGender(m_astro.Gender1)+@"
+                    <br />
                     出生地： " + m_astro.position1.name + @"
                     <br />
                     (经度" + m_astro.position1.Lng + @"
@@ -159,6 +161,8 @@ namespace WebForMain.ControlLibrary
                     <br />
                     所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
                     夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
+                    <br />
+                    性别： " + AppEnum.GetGender(m_astro.Gender) + @"
                     <br />
                     出生地： " + m_astro.position.name + @"
                     <br />
@@ -200,8 +204,9 @@ namespace WebForMain.ControlLibrary
                 #region 设置实体各种参数
                 m_astro.type = PublicValue.AstroType.benming;
                 m_astro.birth = DateTime.Parse(_input.FirstBirth.ToString());
+                m_astro.Gender = (AppEnum.Gender)_input.FirstGender;
                 string[] tmplatlng = _input.FirstPoi.ToString().Split(new char[] { '|' });
-                m_astro.position = new LatLng(tmplatlng[1],tmplatlng[0]);
+                m_astro.position = new LatLng(tmplatlng[1],tmplatlng[0],_input.FirstPoiName);
                 if (_input.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
                     m_astro.IsDaylight = AppEnum.BOOL.True;
@@ -223,10 +228,11 @@ namespace WebForMain.ControlLibrary
                 #region 设置实体各种参数
                 m_astro.type = PublicValue.AstroType.hepan;
                 m_astro.compose = PublicValue.AstroZuhe.bijiao;
-
+                m_astro.Gender = (AppEnum.Gender)_input.FirstGender;
+                m_astro.Gender1 = (AppEnum.Gender)_input.SecondGender;
                 m_astro.birth = DateTime.Parse(_input.FirstBirth.ToString());
                 string[] tmplatlng = _input.FirstPoi.ToString().Split(new char[] { '|' });
-                m_astro.position = new LatLng(tmplatlng[1], tmplatlng[0]);
+                m_astro.position = new LatLng(tmplatlng[1], tmplatlng[0], _input.FirstPoiName);
                 if (_input.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
                     m_astro.IsDaylight = AppEnum.BOOL.True;
@@ -238,7 +244,7 @@ namespace WebForMain.ControlLibrary
                 m_astro.zone = int.Parse(_input.FirstTimeZone.ToString());
                 m_astro.birth1 = DateTime.Parse(_input.SecondBirth.ToString());
                 tmplatlng = _input.SecondPoi.ToString().Split(new char[] { '|' });
-                m_astro.position1 = new LatLng(tmplatlng[1], tmplatlng[0]);
+                m_astro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], _input.SecondPoiName);
                 if (_input.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
                     m_astro.IsDaylight1 = AppEnum.BOOL.True;

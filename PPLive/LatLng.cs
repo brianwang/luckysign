@@ -66,7 +66,7 @@ namespace PPLive
         //    catch { }
         //}
 
-        public LatLng(string inputLat, string inputLng)
+        public LatLng(string inputLat, string inputLng,string poiname)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace PPLive
                         longitude = decimal.Parse(inputLng.Replace("E", "."));
                     }
                 }
-                name = "";
+                name = poiname;
             }
             catch { }
         }

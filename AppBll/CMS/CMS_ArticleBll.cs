@@ -309,29 +309,39 @@ namespace AppBll.CMS
         public Dictionary<int, string[]> GetNeighbour(int SysNo, int Cate)
         {
             Dictionary<int, string[]> ret = new Dictionary<int, string[]>();
-            DataTable m_dt = new DataTable();
-            string strsql = "select top 1 sysno,ArticleSysno,title,OrderID from CMS_ArticleView where OrderID>(select top 1 oredrid where sysno=" + SysNo + ") or sysno<" + SysNo + " and CateSysNo=" + Cate + " order by orederid asc,sysno desc" +
-                " union select top 1 sysno,ArticleSysno,title,OrderID from CMS_ArticleView where OrderID<(select top 1 oredrid where sysno=" + SysNo + ") or sysno>" + SysNo + " and CateSysNo=" + Cate + " order by orederid desc,sysno asc";
+            DataSet m_dt = new DataSet();
+            string strsql = "select top 1 sysno,ArticleSysno,title,OrderID from CMS_ArticleView where (OrderID>(select OrderID from CMS_ArticleView where sysno=" + SysNo + ") or sysno<" + SysNo + ") and CateSysNo=" + Cate + " order by OrderID asc,sysno desc;" +
+                " select top 1 sysno,ArticleSysno,title,OrderID from CMS_ArticleView where (OrderID<(select OrderID from CMS_ArticleView where sysno=" + SysNo + ") or sysno>" + SysNo + ") and CateSysNo=" + Cate + " order by OrderID desc,sysno asc";
 
             using (SQLData m_data = new SQLData())
             {
                 try
                 {
-                    m_dt = m_data.CmdtoDataTable(strsql);
+                    m_dt = m_data.CmdtoDataSet(strsql);
                 }
                 catch (Exception exception)
                 {
                     throw exception;
                 }
             }
-            for (int i = 0; i < m_dt.Rows.Count; i++)
+            if(m_dt.Tables[0].Rows.Count>0)
             {
-                string[] tmp = new string[2];
-                tmp[0] = m_dt.Rows[i]["SysNo"].ToString();
-                tmp[1] = m_dt.Rows[i]["title"].ToString();
-                tmp[2] = m_dt.Rows[i]["OrderID"].ToString();
-                ret.Add(i, tmp);
+                string[] tmp = new string[3];
+                tmp[0] = m_dt.Tables[0].Rows[0]["SysNo"].ToString();
+                tmp[1] = m_dt.Tables[0].Rows[0]["title"].ToString();
+                tmp[2] = m_dt.Tables[0].Rows[0]["OrderID"].ToString();
+                ret.Add(0, tmp);
             }
+
+            if(m_dt.Tables[1].Rows.Count>0)
+            {
+                string[] tmp = new string[3];
+                tmp[0] = m_dt.Tables[1].Rows[0]["SysNo"].ToString();
+                tmp[1] = m_dt.Tables[1].Rows[0]["title"].ToString();
+                tmp[2] = m_dt.Tables[1].Rows[0]["OrderID"].ToString();
+                ret.Add(1, tmp);
+            }
+
             return ret;
         }
         #endregion

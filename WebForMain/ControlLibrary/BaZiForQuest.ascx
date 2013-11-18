@@ -19,8 +19,8 @@
                 <div class="box_1">
                     <div class="box_c">
                         <%--&nbsp;<strong>命盘时间：</strong><asp:Literal ID="ltrTime1" runat="server"></asp:Literal><br />--%>
-                        <asp:Button ID="Button1" runat="server" Text="往前一时辰" OnClick="Button15_Click" />
-                        <asp:Button ID="Button2" runat="server" Text="往后一时辰" OnClick="Button16_Click" />
+                        <asp:Button ID="Button1" runat="server" CssClass="btn_01" Text="往前一时辰" OnClick="Button15_Click" />
+                        <asp:Button ID="Button2" runat="server" CssClass="btn_01" Text="往后一时辰" OnClick="Button16_Click" />
                         <asp:LinkButton ID="LinkButton5" CssClass="btn_01" runat="server" OnClick="LinkButton5_Click">返回原盘</asp:LinkButton>
                     </div>
                 </div>

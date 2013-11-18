@@ -9,6 +9,8 @@ $(".blocks:even").addClass("even");
         idx = $(this).parent().children("a").index(this);
         $(this).parent().parent().children(".block").removeClass("show");
         $(this).parent().parent().children(".block").eq(idx).addClass("show");
+        $(this).parent().parent().children(".paipan_l_con").children(".block").removeClass("show");
+        $(this).parent().parent().children(".paipan_l_con").children(".block").eq(idx).addClass("show");
         //$(".pp").parent().children(".block").removeClass("show");
         //$(".pp").parent().children(".block").eq(idx).addClass("show");
     });

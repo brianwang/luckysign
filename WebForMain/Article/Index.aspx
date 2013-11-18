@@ -24,7 +24,7 @@
                         <div class="blocks even">
                             <h3>
                                 <a href="Content.aspx?id=<%#Eval("SysNo")%>" target="_blank" title="<%#Eval("Title")%>">
-                                    <%#Eval("Title")%></a></h3><%--&nbsp;[<a href="Index.aspx?cate=<%#Eval("CateSysNo")%>" title="<%#Eval("Name")%>"><%#Eval("Name")%></a>]--%>
+                                    <%#Eval("Title")%></a></h3>&nbsp;[<a href="Index.aspx?cate=<%#Eval("CateSysNo")%>" title="<%#Eval("Name")%>"><%#Eval("Name")%></a>]
                             <div class="txt">
                                 发布时间：<%# DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd")%>| 人气：<%#Eval("ReadCount")%><%#Eval("Power")%></div>
                             <p>

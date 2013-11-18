@@ -45,9 +45,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=4.1.50731.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\TDDOWNLOAD\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\BaseAssemblies\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="NetDimension.Weibo">
       <HintPath>..\BaseAssemblies\NetDimension.Weibo.dll</HintPath>
@@ -775,7 +774,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\astrolog.exe" />
     <Content Include="Article\Index.aspx" />
     <Content Include="ControlLibrary\Pagination.ascx" />
     <Content Include="Master\Main.Master" />

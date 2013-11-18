@@ -62,7 +62,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\astrolog.exe" />
     <Content Include="Default.aspx" />
     <Content Include="PPLive\Astro.aspx" />
     <Content Include="PPLive\AstroChart.aspx" />
@@ -135,6 +134,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="AstroGraphic\Relation\" />
     <Folder Include="AstroGraphic\Single\" />
     <Folder Include="AstroGraphic\TextInfo\" />
