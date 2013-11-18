@@ -91,7 +91,53 @@ namespace ServiceForSite
                         {
                             int sysno = int.Parse(m_dt.Rows[i]["sysno"].ToString());
                             DataTable m_answer = QA_AnswerBll.GetInstance().GetListByQuest(1, 10000, sysno, ref total);
+                            m_answer.Columns.Add("commcount");
+                            m_answer.Columns.Add("score");
+                            int totalcomm=0;
+                            int totallenth = 0;
+                            int totallove = 0;
+                            int[,] tmpresult=new int[3,2];
+                            for (int j = 0; j < m_answer.Rows.Count; j++)
+                            {
+                                totallenth += m_answer.Rows[j]["Context"].ToString().Length;
+                                totallove += int.Parse(m_answer.Rows[j]["Love"].ToString());
+                                DataTable m_comm = QA_CommentBll.GetInstance().GetListByAnswer(int.Parse(m_answer.Rows[j]["SysNo"].ToString()));
+                                totalcomm += m_comm.Rows.Count;
+                                m_answer.Rows[j]["commcount"] = m_comm.Rows.Count.ToString();
+                                m_answer.Rows[j]["score"] = 0;
+                            }
 
+                            for (int j = 0; j < m_answer.Rows.Count; j++)
+                            {
+                                double tmp = Convert.ToDouble(m_answer.Rows[j]["Context"].ToString().Length*m_answer.Rows.Count) / Convert.ToDouble(totallenth) ;
+                                tmp -=1;
+                                if(tmp>0)
+                                {
+                                    m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10)*Math.Floor(tmp * 10)*10;
+                                }
+
+                                tmp = Convert.ToDouble(m_answer.Rows[j]["Love"].ToString()) * Convert.ToDouble(m_answer.Rows.Count) / Convert.ToDouble(totallove);
+                                tmp -= 1;
+                                if (tmp > 0)
+                                {
+                                    m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10) * Math.Floor(tmp * 10) * 5;
+                                }
+
+                                tmp = Convert.ToDouble(m_answer.Rows[j]["commcount"].ToString()) * Convert.ToDouble(m_answer.Rows.Count) / Convert.ToDouble(totalcomm);
+                                tmp -= 1;
+                                if (tmp > 0)
+                                {
+                                    m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10) * Math.Floor(tmp * 10) * 3;
+                                }
+
+                            }
+
+                            m_answer.DefaultView.Sort = "score desc";
+                            DataTable dtTemp = m_answer.DefaultView.ToTable();
+                            if (dtTemp.Rows.Count == 1)
+                            {
+                                QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())));
+                            }
                         }
                     }
                     catch (Exception ex)

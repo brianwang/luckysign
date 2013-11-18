@@ -442,23 +442,7 @@ namespace WebForMain.Quest
             try
             {
                 QA_AnswerMod m_answer = QA_AnswerBll.GetInstance().GetModel(int.Parse(HiddenField1.Value));
-                if (m_answer.Award == AppConst.IntNull)
-                {
-                    m_answer.Award = score;
-                }
-                else
-                {
-                    m_answer.Award += score;
-                }
-                QA_AnswerBll.GetInstance().UpDate(m_answer);
-
-                USR_CustomerBll.GetInstance().AddPoint(score, m_answer.CustomerSysNo);
-                USR_CustomerBll.GetInstance().AddCount(m_answer.CustomerSysNo, 0, 0, 1, 0, 0, 0);
-                if (score == m_quest.Award - usedAward)
-                {
-                    m_quest.EndTime = DateTime.Now;
-                    QA_QuestionBll.GetInstance().UpDate(m_quest);
-                }
+                QA_AnswerBll.GetInstance().SetAward(m_answer, m_quest, score);
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addAward", "alert('悬赏分配成功！');", true);
             }
             catch

@@ -5,6 +5,7 @@ using AppDal.QA;
 using AppCmn;
 using System.Transactions;
 using System.Text;
+using AppBll.User;
 
 namespace AppBll.QA
 {
@@ -337,6 +338,37 @@ namespace AppBll.QA
             }
             return m_dt;
         }
+
+        public void SetAward(QA_AnswerMod m_answer, QA_QuestionMod m_quest, int score)
+        {
+            TransactionOptions options = new TransactionOptions();
+            options.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+            options.Timeout = TransactionManager.DefaultTimeout;
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                if (m_answer.Award == AppConst.IntNull)
+                {
+                    m_answer.Award = score;
+                }
+                else
+                {
+                    m_answer.Award += score;
+                }
+                QA_AnswerBll.GetInstance().UpDate(m_answer);
+
+                USR_CustomerBll.GetInstance().AddPoint(score, m_answer.CustomerSysNo);
+                USR_CustomerBll.GetInstance().AddCount(m_answer.CustomerSysNo, 0, 0, 1, 0, 0, 0);
+                int usedAward = QA_AnswerBll.GetInstance().GetUsedAward(m_quest.SysNo);
+                if (score == m_quest.Award - usedAward)
+                {
+                    m_quest.EndTime = DateTime.Now;
+                    QA_QuestionBll.GetInstance().UpDate(m_quest);
+                }
+                scope.Complete();
+            }
+        }
+
         #endregion 扩展成员方法
     }
 
