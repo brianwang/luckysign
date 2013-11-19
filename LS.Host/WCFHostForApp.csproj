@@ -100,9 +100,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LS.Service\LS.Service.csproj">
+    <ProjectReference Include="..\LS.Service\WCFServiceForApp.csproj">
       <Project>{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}</Project>
-      <Name>LS.Service</Name>
+      <Name>WCFServiceForApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

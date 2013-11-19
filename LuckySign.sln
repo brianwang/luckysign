@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseAssemblies", "BaseAssemblies", "{3102147A-3AA3-4AA1-B2E3-357793ADB4B2}"
 	ProjectSection(SolutionItems) = preProject
 		BaseAssemblies\AjaxControlToolkit.dll = BaseAssemblies\AjaxControlToolkit.dll
@@ -42,9 +42,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForApps", "WebForApps\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceForSite", "ServiceForSite\ServiceForSite.csproj", "{87CDB98C-95D8-4453-89EC-6F7B84C398F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS.Service", "LS.Service\LS.Service.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceForApp", "LS.Service\WCFServiceForApp.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS.Host", "LS.Host\LS.Host.csproj", "{621D5204-12A9-45F4-8052-FE413668C92E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFHostForApp", "LS.Host\WCFHostForApp.csproj", "{621D5204-12A9-45F4-8052-FE413668C92E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
