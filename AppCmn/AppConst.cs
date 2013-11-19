@@ -73,6 +73,9 @@ namespace AppCmn
         public const string FeedbackReport = @"<a target='_blank' href='@url'>“@question”</a>问题的楼主对您的回答做了反馈。";
         //回答被评论时的通知
         public const string CommentReport = @"有人对您的回答发表了评论，<a target='_blank' href='@url'>点击查看</a>";
+
+        //系统自动分配奖励通知
+        public const string AutoSendAward = @"由于您一直未对您发布的问题<a target='_blank' href='@url'>“@question”</a>进行悬赏分配，因此系统自动为您分配了悬赏。";
         #endregion
 
         #region 奖励积分，经验值

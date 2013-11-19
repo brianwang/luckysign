@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Threading;
 using AppMod.QA;
 using AppBll.QA;
+using System.Transactions;
+using AppMod.User;
+using AppBll.User;
+using AppCmn;
 
 namespace ServiceForSite
 {
@@ -93,10 +97,10 @@ namespace ServiceForSite
                             DataTable m_answer = QA_AnswerBll.GetInstance().GetListByQuest(1, 10000, sysno, ref total);
                             m_answer.Columns.Add("commcount");
                             m_answer.Columns.Add("score");
-                            int totalcomm=0;
+                            int totalcomm = 0;
                             int totallenth = 0;
                             int totallove = 0;
-                            int[,] tmpresult=new int[3,2];
+                            int[,] tmpresult = new int[3, 2];
                             for (int j = 0; j < m_answer.Rows.Count; j++)
                             {
                                 totallenth += m_answer.Rows[j]["Context"].ToString().Length;
@@ -109,11 +113,11 @@ namespace ServiceForSite
 
                             for (int j = 0; j < m_answer.Rows.Count; j++)
                             {
-                                double tmp = Convert.ToDouble(m_answer.Rows[j]["Context"].ToString().Length*m_answer.Rows.Count) / Convert.ToDouble(totallenth) ;
-                                tmp -=1;
-                                if(tmp>0)
+                                double tmp = Convert.ToDouble(m_answer.Rows[j]["Context"].ToString().Length * m_answer.Rows.Count) / Convert.ToDouble(totallenth);
+                                tmp -= 1;
+                                if (tmp > 0)
                                 {
-                                    m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10)*Math.Floor(tmp * 10)*10;
+                                    m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10) * Math.Floor(tmp * 10) * 10;
                                 }
 
                                 tmp = Convert.ToDouble(m_answer.Rows[j]["Love"].ToString()) * Convert.ToDouble(m_answer.Rows.Count) / Convert.ToDouble(totallove);
@@ -132,11 +136,40 @@ namespace ServiceForSite
 
                             }
 
-                            m_answer.DefaultView.Sort = "score desc";
-                            DataTable dtTemp = m_answer.DefaultView.ToTable();
-                            if (dtTemp.Rows.Count == 1)
+                            TransactionOptions options = new TransactionOptions();
+                            options.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+                            options.Timeout = TransactionManager.DefaultTimeout;
+
+                            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, options))
                             {
-                                QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())));
+
+                                m_answer.DefaultView.Sort = "award asc, score desc";
+                                DataTable dtTemp = m_answer.DefaultView.ToTable();
+                                if (dtTemp.Rows.Count == 1)
+                                {
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())));
+                                }
+                                else
+                                {
+                                    int awardremain = int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString()));
+                                    int award1 = awardremain * int.Parse(m_dt.Rows[0]["score"].ToString()) / (int.Parse(m_dt.Rows[0]["score"].ToString()) + int.Parse(m_dt.Rows[1]["score"].ToString()));
+                                    int award2 = awardremain - award1;
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award1);
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[1]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award2);
+                                }
+
+                                USR_MessageMod m_notice = new USR_MessageMod();
+                                m_notice.CustomerSysNo = int.Parse(m_dt.Rows[i]["CustomerSysNo"].ToString());
+                                m_notice.Title = AppConst.AutoSendAward.Replace("@url", AppConfig.HomeUrl() + "Quest/Question.aspx?id=" + m_dt.Rows[i]["SysNo"].ToString())
+                                    .Replace("@question", m_dt.Rows[i]["Title"].ToString());
+                                m_notice.DR = 0;
+                                m_notice.IsRead = 0;
+                                m_notice.Context = "";
+                                m_notice.TS = DateTime.Now;
+                                m_notice.Type = (int)AppEnum.MessageType.notice;
+                                USR_MessageBll.GetInstance().AddMessage(m_notice);
+
+                                scope.Complete();
                             }
                         }
                     }
