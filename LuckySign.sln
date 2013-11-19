@@ -40,7 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForAnalyse", "WebForAnal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForApps", "WebForApps\WebForApps.csproj", "{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceForSite", "ServiceForSite\ServiceForSite.csproj", "{87CDB98C-95D8-4453-89EC-6F7B84C398F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinServiceForSite", "ServiceForSite\WinServiceForSite.csproj", "{87CDB98C-95D8-4453-89EC-6F7B84C398F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceForApp", "LS.Service\WCFServiceForApp.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
 EndProject

@@ -11,7 +11,7 @@ using XMS.Core;
 using AppMod.User;
 using AppDal.User;
 
-namespace LS.Service
+namespace WCFServiceForApp
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/ls")]
     public interface ILsService

@@ -8,8 +8,8 @@
     <ProjectGuid>{621D5204-12A9-45F4-8052-FE413668C92E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LS.Host</RootNamespace>
-    <AssemblyName>LS.Host</AssemblyName>
+    <RootNamespace>WCFHostForApp</RootNamespace>
+    <AssemblyName>WCFHostForApp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

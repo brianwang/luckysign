@@ -1,4 +1,4 @@
-﻿namespace LS.Host
+﻿namespace WCFHostForApp
 {
     partial class LSHostService
     {

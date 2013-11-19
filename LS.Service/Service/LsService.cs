@@ -9,7 +9,7 @@ using AppMod.User;
 using AppDal.User;
 using AppBll.User;
 
-namespace LS.Service
+namespace WCFServiceForApp
 {
     public class LsService : ILsService
     {

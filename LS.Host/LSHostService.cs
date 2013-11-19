@@ -10,7 +10,7 @@ using System.Text;
 using XMS.Core;
 using XMS.Core.WCF;
 
-namespace LS.Host
+namespace WCFHostForApp
 {
     public partial class LSHostService : ServiceBase
     {
@@ -19,7 +19,7 @@ namespace LS.Host
             InitializeComponent();
 
             // 向服务管理器中注册服务
-            ManageableServiceHostManager.Instance.RegisterService(typeof(LS.Service.LsService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.LsService));
         }
 
         protected override void OnStart(string[] args)

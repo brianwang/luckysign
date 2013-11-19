@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace LS.Host
+namespace WCFHostForApp
 {
 	public class ServiceConfig
 	{
