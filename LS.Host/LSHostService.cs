@@ -19,7 +19,7 @@ namespace LS.Host
             InitializeComponent();
 
             // 向服务管理器中注册服务
-            //ManageableServiceHostManager.Instance.RegisterService(typeof(RestZPCYService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(LS.Service.LsService));
         }
 
         protected override void OnStart(string[] args)

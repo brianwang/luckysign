@@ -33,14 +33,15 @@
             // 
             // serviceProcessInstaller1
             // 
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = ServiceConfig.ServiceName;
-            this.serviceInstaller1.DisplayName = ServiceConfig.DisplayName;
-            this.serviceInstaller1.Description = ServiceConfig.Description;
+            this.serviceInstaller1.Description = "上上签Rest服务";
+            this.serviceInstaller1.DisplayName = "上上签Rest服务";
+            this.serviceInstaller1.ServiceName = "LS.Host";
             // 
             // ProjectInstaller
             // 
@@ -52,7 +53,7 @@
 
         #endregion
 
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
         private System.ServiceProcess.ServiceInstaller serviceInstaller1;
+        public System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
     }
 }
