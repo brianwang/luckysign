@@ -10,7 +10,7 @@ using System.Text;
 using XMS.Core;
 using XMS.Core.WCF;
 
-namespace WCFHostForApp
+namespace ServiceHost
 {
     public partial class WCFHostService : ServiceBase
     {

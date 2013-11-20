@@ -95,7 +95,7 @@ namespace ServiceForSite
                         for (int i = 0; i < m_dt.Rows.Count; i++)
                         {
                             int sysno = int.Parse(m_dt.Rows[i]["sysno"].ToString());
-                            DataTable m_answer = QA_AnswerBll.GetInstance().GetListByQuest(1, 10000, sysno, ref total);
+                            DataTable m_answer = QA_AnswerBll.GetInstance().GetListByQuest(10000, 1, sysno, ref total);
                             m_answer.Columns.Add("commcount");
                             m_answer.Columns.Add("score");
                             int totalcomm = 0;
@@ -104,13 +104,20 @@ namespace ServiceForSite
                             int[,] tmpresult = new int[3, 2];
                             for (int j = 0; j < m_answer.Rows.Count; j++)
                             {
+                                if (m_answer.Rows[j]["CustomerSysNo"].ToString() == m_dt.Rows[i]["CustomerSysNo"].ToString())
+                                {
+                                    m_answer.Rows.RemoveAt(j);
+                                    j--;
+                                    continue;
+                                }
                                 totallenth += m_answer.Rows[j]["Context"].ToString().Length;
                                 totallove += int.Parse(m_answer.Rows[j]["Love"].ToString());
                                 DataTable m_comm = QA_CommentBll.GetInstance().GetListByAnswer(int.Parse(m_answer.Rows[j]["SysNo"].ToString()));
                                 totalcomm += m_comm.Rows.Count;
                                 m_answer.Rows[j]["commcount"] = m_comm.Rows.Count.ToString();
-                                m_answer.Rows[j]["score"] = 0;
+                                m_answer.Rows[j]["score"] = 5;
                             }
+                            
 
                             for (int j = 0; j < m_answer.Rows.Count; j++)
                             {
@@ -134,7 +141,26 @@ namespace ServiceForSite
                                 {
                                     m_answer.Rows[j]["score"] = int.Parse(m_answer.Rows[j]["score"].ToString()) + Math.Floor(tmp * 10) * Math.Floor(tmp * 10) * 3;
                                 }
+                                //去除重复
+                                int scorepre = 0;
+                                for (int k = 0; k < j; k++)
+                                {
+                                    if (m_answer.Rows[j]["CustomerSysNo"].ToString() == m_answer.Rows[k]["CustomerSysNo"].ToString())
+                                    {
+                                        scorepre = int.Parse(m_answer.Rows[k]["score"].ToString());
+                                        m_answer.Rows[k]["score"] =int.Parse(m_answer.Rows[j]["score"].ToString()) + int.Parse(m_answer.Rows[k]["score"].ToString());
+                                    }
+                                }
+                                if(scorepre!=0)
+                                {
+                                    m_answer.Rows.RemoveAt(j);
+                                    j--;
+                                }
+                            }
 
+                            if (m_answer.Rows.Count == 0)
+                            {
+                                continue;
                             }
 
                             TransactionOptions options = new TransactionOptions();
@@ -145,18 +171,18 @@ namespace ServiceForSite
                             {
 
                                 m_answer.DefaultView.Sort = "award asc, score desc";
-                                DataTable dtTemp = m_answer.DefaultView.ToTable();
-                                if (dtTemp.Rows.Count == 1)
+                                DataView dtTemp = m_answer.DefaultView;
+                                if (dtTemp.Count == 1)
                                 {
-                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())));
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp[0]["SysNo"].ToString())));
                                 }
                                 else
                                 {
-                                    int awardremain = int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(dtTemp.Rows[0]["SysNo"].ToString()));
-                                    int award1 = awardremain * int.Parse(m_dt.Rows[0]["score"].ToString()) / (int.Parse(m_dt.Rows[0]["score"].ToString()) + int.Parse(m_dt.Rows[1]["score"].ToString()));
+                                    int awardremain = int.Parse(m_dt.Rows[i]["Award"].ToString()) - QA_AnswerBll.GetInstance().GetUsedAward(int.Parse(m_dt.Rows[i]["SysNo"].ToString()));
+                                    int award1 = awardremain * int.Parse(dtTemp[0]["score"].ToString()) / (int.Parse(dtTemp[0]["score"].ToString()) + int.Parse(dtTemp[1]["score"].ToString()));
                                     int award2 = awardremain - award1;
-                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award1);
-                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp.Rows[1]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award2);
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp[0]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award1);
+                                    QA_AnswerBll.GetInstance().SetAward(QA_AnswerBll.GetInstance().GetModel(int.Parse(dtTemp[1]["SysNo"].ToString())), QA_QuestionBll.GetInstance().GetModel(int.Parse(m_dt.Rows[i]["SysNo"].ToString())), award2);
                                 }
 
                                 USR_MessageMod m_notice = new USR_MessageMod();
@@ -171,19 +197,19 @@ namespace ServiceForSite
                                 USR_MessageBll.GetInstance().AddMessage(m_notice);
 
                                 scope.Complete();
-                                //EventLog.WriteEntry("Hi,I'm wiseman");
+                                
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Trace.Write(ex.Message);
-                        throw ex;
+                        EventLog.WriteEntry("serviceforsite",ex.Message+"|"+ex.StackTrace);
+                        //throw ex;
                     }
 
                 }
 
-                Thread.Sleep(5000);
+                Thread.Sleep(3600000);
             }
         }
 

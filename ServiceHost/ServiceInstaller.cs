@@ -6,7 +6,7 @@ using System.Configuration.Install;
 using System.Linq;
 
 
-namespace WCFHostForApp
+namespace ServiceHost
 {
     [RunInstaller(true)]
     public partial class ServiceInstaller : System.Configuration.Install.Installer

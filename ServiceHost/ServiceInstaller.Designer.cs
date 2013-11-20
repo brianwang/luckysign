@@ -1,4 +1,4 @@
-﻿namespace WCFHostForApp
+﻿namespace ServiceHost
 {
     partial class ServiceInstaller
     {
@@ -41,7 +41,7 @@
             // 
             this.serviceInstaller1.Description = "上上签Rest服务";
             this.serviceInstaller1.DisplayName = "上上签Rest服务";
-            this.serviceInstaller1.ServiceName = "WCFHostForApp";
+            this.serviceInstaller1.ServiceName = "ServiceHost";
             // 
             // ProjectInstaller
             // 
