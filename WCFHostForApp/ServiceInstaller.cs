@@ -9,9 +9,9 @@ using System.Linq;
 namespace WCFHostForApp
 {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
+    public partial class ServiceInstaller : System.Configuration.Install.Installer
     {
-        public ProjectInstaller()
+        public ServiceInstaller()
         {
             InitializeComponent();
         }

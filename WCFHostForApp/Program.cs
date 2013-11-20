@@ -16,7 +16,7 @@ namespace WCFHostForApp
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
-				new LSHostService() 
+				new WCFHostService() 
 			};
             ServiceBase.Run(ServicesToRun);
         }

@@ -12,9 +12,9 @@ using XMS.Core.WCF;
 
 namespace WCFHostForApp
 {
-    public partial class LSHostService : ServiceBase
+    public partial class WCFHostService : ServiceBase
     {
-        public LSHostService()
+        public WCFHostService()
         {
             InitializeComponent();
 

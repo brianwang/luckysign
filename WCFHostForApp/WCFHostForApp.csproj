@@ -57,18 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="LSHostService.cs">
+    <Compile Include="WCFHostService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LSHostService.Designer.cs">
-      <DependentUpon>LSHostService.cs</DependentUpon>
+    <Compile Include="WCFHostService.Designer.cs">
+      <DependentUpon>WCFHostService.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectInstaller.cs">
+    <Compile Include="ServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    <Compile Include="ServiceInstaller.Designer.cs">
+      <DependentUpon>ServiceInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceConfig.cs" />
@@ -95,12 +95,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    <EmbeddedResource Include="ServiceInstaller.resx">
+      <DependentUpon>ServiceInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LS.Service\WCFServiceForApp.csproj">
+    <ProjectReference Include="..\WCFServiceForApp\WCFServiceForApp.csproj">
       <Project>{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}</Project>
       <Name>WCFServiceForApp</Name>
     </ProjectReference>

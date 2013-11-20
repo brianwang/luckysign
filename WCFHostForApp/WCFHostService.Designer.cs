@@ -1,6 +1,6 @@
 ﻿namespace WCFHostForApp
 {
-    partial class LSHostService
+    partial class WCFHostService
     {
         /// <summary> 
         /// Required designer variable.

@@ -30,6 +30,7 @@ namespace ServiceForSite
         /// <param name="args"></param>
         protected override void OnStart(string[] args)
         {
+            Thread.Sleep(50000);
             StartEndQuest();
         }
 
@@ -65,7 +66,7 @@ namespace ServiceForSite
                 //ThreadStart NewThreadStart = new ThreadStart(VoidName);
                 //Thread NewThead = new Thread(NewThreadStart);
                 //NewThead.Start();
-
+                Flag = true;
                 ThreadEndQuest = new Thread(new ThreadStart(EndQuest));
                 ThreadEndQuest.Start();
                 System.Diagnostics.Trace.Write("线程任务开始");
@@ -170,6 +171,7 @@ namespace ServiceForSite
                                 USR_MessageBll.GetInstance().AddMessage(m_notice);
 
                                 scope.Complete();
+                                //EventLog.WriteEntry("Hi,I'm wiseman");
                             }
                         }
                     }
