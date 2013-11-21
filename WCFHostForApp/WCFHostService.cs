@@ -9,6 +9,7 @@ using System.Text;
 
 using XMS.Core;
 using XMS.Core.WCF;
+using XMS.Core.Tasks;
 
 namespace WCFHostForApp
 {
@@ -20,6 +21,9 @@ namespace WCFHostForApp
 
             // 向服务管理器中注册服务
             ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.LsService));
+
+            // 向任务管理器中注册任务
+            TaskManager.Instance.RegisterTask(typeof(WCFServiceForApp.Task.RewardTask));
         }
 
         protected override void OnStart(string[] args)
@@ -28,7 +32,7 @@ namespace WCFHostForApp
             ManageableServiceHostManager.Instance.Start();
 
             // 启动任务管理器
-            // TaskManager.Instance.Start();
+            TaskManager.Instance.Start();
 
             base.OnStart(args);
         }
@@ -39,7 +43,7 @@ namespace WCFHostForApp
             ManageableServiceHostManager.Instance.Stop();
 
             // 停止任务管理器
-            // TaskManager.Instance.Stop();
+            TaskManager.Instance.Stop();
 
             base.OnStop();
         }

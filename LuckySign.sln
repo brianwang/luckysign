@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseAssemblies", "BaseAssemblies", "{3102147A-3AA3-4AA1-B2E3-357793ADB4B2}"
 	ProjectSection(SolutionItems) = preProject
 		BaseAssemblies\AjaxControlToolkit.dll = BaseAssemblies\AjaxControlToolkit.dll
@@ -39,8 +39,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForAnalyse", "WebForAnalyse\WebForAnalyse.csproj", "{48C09AB6-6852-4AA1-8D5D-D3D68890C54E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForApps", "WebForApps\WebForApps.csproj", "{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinServiceForSite", "ServiceForSite\WinServiceForSite.csproj", "{87CDB98C-95D8-4453-89EC-6F7B84C398F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceForApp", "WCFServiceForApp\WCFServiceForApp.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
 EndProject
@@ -166,16 +164,6 @@ Global
 		{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}.Release|x86.ActiveCfg = Release|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{87CDB98C-95D8-4453-89EC-6F7B84C398F1}.Release|x86.ActiveCfg = Release|Any CPU
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
