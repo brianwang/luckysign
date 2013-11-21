@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WCFHostForApp
+namespace ServiceHost
 {
 	/// <summary>
 	/// 定义当前工程用到的所有常量或者只读变量。
@@ -25,7 +25,7 @@ namespace WCFHostForApp
 
 
 		// 其它常量定义
-		public const string DefaultServiceName = "WCFHostForApp";
+		public const string DefaultServiceName = "ServiceHost";
 		public const string DefaultServiceDisplayName = "上上签Rest服务";
         public const string DefaultServiceDescription = "上上签Rest服务";
 	}

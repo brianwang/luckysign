@@ -11,7 +11,7 @@ using XMS.Core;
 using XMS.Core.WCF;
 using XMS.Core.Tasks;
 
-namespace WCFHostForApp
+namespace ServiceHost
 {
     public partial class WCFHostService : ServiceBase
     {

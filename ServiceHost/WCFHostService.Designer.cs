@@ -1,4 +1,4 @@
-﻿namespace WCFHostForApp
+﻿namespace ServiceHost
 {
     partial class WCFHostService
     {
