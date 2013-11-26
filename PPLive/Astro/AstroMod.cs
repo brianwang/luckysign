@@ -72,7 +72,7 @@ namespace PPLive.Astro
         }
         public AppCmn.AppEnum.Gender Gender1
         {
-            get { return _gender; }
+            get { return _gender1; }
             set { _gender1 = value; }
         }
         public int houseSystem

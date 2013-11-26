@@ -1045,12 +1045,14 @@ namespace PPLive
             cixian = 2,
             [Description("月亮三限法(29.530588)")]
             sanxian = 3,
+            [Description("月亮三限法(27.321582)")]
+            sanxian1 = 4,
             [Description("太阳反照法(Solar Return)")]
-            rifanzhao = 4,
+            rifanzhao = 5,
             [Description("月亮反照法(Lunar Return)")]
-            yuefanzhao = 5,
+            yuefanzhao = 6,
             [Description("太阳弧法(Solar Arc)")]
-            taiyanghu = 6,
+            taiyanghu = 7,
         }
 
         public static SortedList GetAstroTuiyun()

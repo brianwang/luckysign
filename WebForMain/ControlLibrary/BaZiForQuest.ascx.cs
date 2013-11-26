@@ -82,6 +82,7 @@ namespace WebForMain.ControlLibrary
                 new LatLng(tmplatlng[1], tmplatlng[0], _input.FirstPoiName)) : DateTime.Parse(_input.FirstBirth.ToString()));
             m_bazi.AreaName = _input.FirstPoiName.ToString();
             m_bazi.Longitude = tmplatlng[0];
+            m_bazi.Gender = (AppEnum.Gender)_input.FirstGender;
             SetBenMing();
 
             if (_input.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
@@ -91,6 +92,7 @@ namespace WebForMain.ControlLibrary
                     new LatLng(tmplatlng[1], tmplatlng[0], _input.SecondPoiName)) : DateTime.Parse(_input.SecondBirth.ToString()));
                 m_bazi.AreaName = _input.SecondPoiName.ToString();
                 m_bazi.Longitude = tmplatlng[0];
+                m_bazi.Gender = (AppEnum.Gender)_input.SecondGender;
                 SetHePan();
             }
             #endregion

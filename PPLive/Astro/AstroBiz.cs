@@ -109,6 +109,12 @@ namespace PPLive.Astro
                                                    mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -pd 29.530588 -p " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
                 }
+                else if (mod.transit == PublicValue.AstroTuiyun.sanxian1)
+                {
+                    argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
+                                                   mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                    argument += " -pd 27.321582 -p " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
+                }
                 else if (mod.transit == PublicValue.AstroTuiyun.rifanzhao)
                 {
                     string file = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\R" + CommonTools.GetRandomString(5);
