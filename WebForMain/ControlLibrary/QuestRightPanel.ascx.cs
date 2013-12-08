@@ -6,19 +6,60 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using AppBll.QA;
-
+using AppMod.QA;
+using AppBll.User;
+using AppCmn;
 
 namespace WebForMain.ControlLibrary
 {
     public partial class QuestRightPanel : System.Web.UI.UserControl
     {
+        private int cate = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["key"] != null)
+                {
+                    txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
+                }
+            if (Request.QueryString["cate"] != null)
+            {
+                try
+                {
+                    cate = int.Parse(Request.QueryString["cate"]);
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
             if (!IsPostBack)
             {
-                DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(0);
-                rptCateMain.DataSource = m_dt;
+                QA_CategoryMod m_cate = QA_CategoryBll.GetInstance().GetModel(cate);
+                if (m_cate.TopSysNo == 1)
+                {
+                    ltrMaster.Text = "驻场命理师";
+                }
+                else if (m_cate.TopSysNo == 2)
+                {
+                    ltrMaster.Text = "版主";
+                }
+                DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(0).Copy();
+                for (int i = 0; i < m_dt.Rows.Count; i++)
+                {
+                    if (m_dt.Rows[i]["SysNo"].ToString() != m_cate.TopSysNo.ToString())
+                    {
+                        m_dt.Rows.RemoveAt(i);
+                        i--;
+                    }
+                }
+                    rptCateMain.DataSource = m_dt;
                 rptCateMain.DataBind();
+                BindStars();
+                
             }
         }
 
@@ -76,5 +117,39 @@ namespace WebForMain.ControlLibrary
                 rptCate.DataBind();
             }
         }
+
+        protected void BindStars()
+        {
+            //int count = 5;
+            if (Request.QueryString["cate"] != null)
+            {
+                try
+                {
+                    DataTable m_dt = REL_Customer_CategoryBll.GetInstance().GetListByCate(int.Parse(Request.QueryString["cate"]), (int)AppEnum.CategoryType.QA);
+                    //DataTable m_dt = QA_StarBll.GetInstance().GetStarsList(count, 0);
+                    for (int i = 0; i < m_dt.Rows.Count; i++)
+                    {
+                        m_dt.Rows[i]["intro"] = CommonTools.CutStr(m_dt.Rows[i]["intro"].ToString(), 80);
+                    }
+                    rptStars.DataSource = m_dt;
+                    rptStars.DataBind();
+                }
+                catch
+                { }
+            }
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            if(Request.Url.ToString().Contains("?"))
+            {
+                Response.Redirect(Request.Url + "&key=" + txtName.Text.Trim());
+            }
+            else
+            {
+                Response.Redirect(Request.Url + "?key=" + txtName.Text.Trim());
+            }
+        }
+
     }
 }

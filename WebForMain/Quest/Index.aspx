@@ -1,121 +1,152 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="True"
-    CodeBehind="Index.aspx.cs" Inherits="WebForMain.Quest.Index" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebForMain.Quest.Index" %>
 
-<%@ Register Src="../ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/QuestRightPanel.ascx" TagName="Right" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>问题悬赏列表-上上签</title>
+    <title>煮酒论命-上上签</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager runat="server">
-    </asp:ScriptManager>
     <div class="main">
+
         <div class="index_left">
-            <!--煮酒论命-->
-
-            <div class="index_left_box">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="index_new_ask_t" style="padding: 0px">
-                            <div class="index_new_ask_button">
-                                <a href="Ask.aspx" target="_blank" style="background: #779058">我要求测</a>
-                                <a href="Talk.aspx" target="_blank" style="background: #6D8690">发起讨论</a>
-                            </div>
-                            <div class="index_new_ask_rank">
-                                <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder3" runat="server" OnClick="Unnamed7_Click">悬赏金额<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                        <div class="index_left_new_list">
-                            <div class="index_left_new_ul">
-                                <ul>
-                                    <asp:Repeater ID="rptQuestion" runat="server" OnItemDataBound="rptQuestion_ItemDataBound">
-                                        <ItemTemplate>
-                                            <li <%# Container.ItemIndex==0?@"style=""padding-top:0px""":"" %>>
-                                                <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
-                                                <div class="index_left_new_info">
-                                                    发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
-                                                    <img src="../WebResources/img/new/ico1.jpg" align="absmiddle" />
-                                                    <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
-                                                </div>
-                                                <asp:Panel ID="Panel1" runat="server" CssClass="index_left_new_reply">
-                                                    <asp:Image ID="Image1" runat="server" /><asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                                                </asp:Panel>
-                                            </li>
-                                        </ItemTemplate>
-                                        <AlternatingItemTemplate>
-                                            <li class="odd">
-                                                <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
-                                                <div class="index_left_new_info">
-                                                    发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
-                                                    <img src="../WebResources/img/new/ico1.jpg" align="absmiddle" />
-                                                    <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
-                                                </div>
-                                                <asp:Panel ID="Panel1" runat="server" CssClass="index_left_new_reply">
-                                                    <asp:Image ID="Image1" runat="server" /><asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                                                </asp:Panel>
-                                            </li>
-                                        </AlternatingItemTemplate>
-                                    </asp:Repeater>
+            <!--免费求测-->
+            <div class="zjlm_box" style="border-top: solid 2px #a4534b">
+                <div class="zjlm_box_t">
+                    <a href="Ask.aspx" target="_blank" class="zjlm_box_t_a" style="background: #779058">求解盘</a>
+                    <h1>免费求测</h1>
+                    免费求测咨询，供初学者或命理师研究学习，求测者有反馈义务。
+                </div>
 
 
-                                </ul>
-                            </div>
-
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
-                <uc1:Pager ID="Pager1" runat="server"></uc1:Pager>
+                <div class="zjlm_ul1">
+                    <ul>
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                                <li style='<%#Eval("style")%>'>
+                                    <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
+                                        <img src='../WebResources/img/CatePic/<%#Eval("Pic")%>' alt='<%#Eval("Name")%>' /></a>
+                                    <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%>（<%#Eval("NewCount")%>）</a>
+                                    <%#Eval("Intro")%>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
             </div>
+
+            <!--专业咨询-->
+            <%--<div class="zjlm_box" style="background: #d2eff2">
+                <div class="zjlm_box_t">
+                    <a href="#" class="zjlm_box_t_a" style="background: #a5534c">求解盘</a>
+                    <h1>专业咨询</h1>
+                    面向客户的付费专业解盘，由获命理师竞价咨询提供深度解析服务，保障服务质量并提供隐私保护。
+                </div>
+
+                <div class="zjlm_ul2">
+                    <ul>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>--%>
+
+            <!--学习讨论-->
+            <div class="zjlm_box">
+                <div class="zjlm_box_t">
+                    <a href="Talk.aspx" target="_blank" class="zjlm_box_t_a" style="background: #6d8690">发新贴</a>
+                    <h1>学习讨论</h1>
+                    星座，占星，塔罗占卜，紫薇八字，一网打尽，发帖讨论，学习交友，娱乐灌水。
+                </div>
+
+                <div class="zjlm_ul3">
+                    <ul>
+                        <asp:Repeater ID="Repeater2" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <div class="zjlm_img">
+                                        <a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
+                                            <img alt='<%#Eval("Name")%>' src='../WebResources/img/CatePic/<%#Eval("Pic")%>' /></a>
+                                    </div>
+                                    <div class="zjlm_img_r">
+                                        <div class="zjlm_img_r_item"><a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%></a></div>
+                                        <div class="zjlm_img_r_num"><%#Eval("NewCount")%></div>
+                                        <div class="clear"></div>
+                                        <div class="zjlm_img_r_name"><a href='Topic.aspx?id=<%#Eval("NewSysNo")%>' target="_blank"><%#Eval("NewTitle")%></a></div>
+                                        <div class="zjlm_img_r_content"><%#AppCmn.CommonTools.CutStr(Eval("NewContext").ToString(),60)%></div>
+                                        <div class="zjlm_img_r_time"><%#Eval("NewUser")%>     <%# DateTime.Parse(Eval("NewTime").ToString()).ToString("yyyy-MM-dd HH:mm") %></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
         </div>
+
 
         <div class="index_right">
-            <div class="new_right_item">煮酒论命</div>
-           
-            <uc1:Right ID="Right1" runat="server"></uc1:Right> 
             <div class="page_person_search" style="margin: 0; padding: 0; width: auto">
-                <asp:TextBox runat="server" class="input1" ID="txtName" value="寻找你感兴趣的咨询话题" onblur="if (this.value==''){ this.value='寻找你感兴趣的咨询话题';this.style.color='#9C9C9C';}else{this.style.color='#333';}"
-                    Style="width: 170px" onfocus="if (this.value=='寻找你感兴趣的咨询话题') {this.value='';this.style.color='#333';}"></asp:TextBox>
-                <asp:Button ID="LinkButton1" class="input2" runat="server" Text="GO" />
+                <asp:TextBox runat="server" class="input1" ID="txtName" value="寻找你感兴趣的内容" onblur="if (this.value==''){ this.value='寻找你感兴趣的内容';this.style.color='#9C9C9C';}else{this.style.color='#333';}"
+                    Style="width: 170px" onfocus="if (this.value=='寻找你感兴趣的内容') {this.value='';this.style.color='#333';}"></asp:TextBox>
+                <asp:Button ID="LinkButton1" class="input2" runat="server" Text="GO" OnClick="LinkButton1_Click" />
             </div>
-            <%--<div class="side_banner">
-                <a href="#" target="_blank">
-                    <img src="../WebResources/IMAGES/banner_01.jpg" width="242" height="191" /></a>
-            </div>--%>
-            <div class="star">
-                <h2>版主</h2>
-                <asp:Repeater ID="rptStars" runat="server">
-                    <ItemTemplate>
-                        <div class="stars">
-                            <div class="s_photo">
-                                <a href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank">
-                                    <img src="../ControlLibrary/ShowPhoto.aspx?type=o&id=<%#Eval("Photo")%>"+ width="70" height="70" /><span class="arr_01"></span></a>
-                            </div>
-                            <div class="s_about">
-                                <span class="f_r"><a  target="_blank" href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>">
-                                    <%#Eval("NickName")%></a> |
-                                    <%# AppCmn.AppEnum.GetFateType(int.Parse(Eval("FateType").ToString()))%></span><br />
-                                积分：<%#Eval("Point")%><br />
-                                金币：<%#Eval("Credit")%>
-                            </div>
-                            <div class="clear">
-                            </div>
-                            <p>
-                                <%#Eval("Intro")%>
-                            </p>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+            <div class="zjlm_r">
+                <div class="zjlm_r_t">最新问答</div>
+                <div class="zjlm_r_c">
+                    <ul>
+                        <asp:Repeater ID="Repeater3" runat="server">
+                            <ItemTemplate>
+                                <li><a href='Question.aspx?id=<%#Eval("SysNo")%>' target="_blank"><%#Eval("AnswerUser")%>：<%#AppCmn.CommonTools.CutStr(Eval("Answer").ToString(),25)%> || <%#Eval("NickName")%>：[<%#Eval("CateName")%>]<%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),15)%></a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="zjlm_r">
+                <div class="zjlm_r_t">最新话题</div>
+                <div class="zjlm_r_c2">
+                    <ul>
+                        <asp:Repeater ID="Repeater4" runat="server" OnItemDataBound="Repeater4_ItemDataBound">
+                            <ItemTemplate>
+                                <asp:Repeater ID="Repeater5" runat="server">
+                                    <ItemTemplate>
+                                        <li><a href='Topic.aspx?id=<%#Eval("SysNo")%>' target="_blank"><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),16)%></a></li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                    <script type="text/javascript">
+                        $(function () {
+
+                            $(".zjlm_r_c2 li:nth-child(5n)").append("<li class='spc'></li>");
+                        })
+                    </script>
+                </div>
             </div>
         </div>
-        <div class="clear">
-        </div>
+
+
+        <div class="clear"></div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
+    <script type="text/javascript" src="../WebResources/JS/jquery.pngFix.pack.js"></script>
+    <script type="text/javascript" src="../WebResources/JS/new.js"></script>
 </asp:Content>

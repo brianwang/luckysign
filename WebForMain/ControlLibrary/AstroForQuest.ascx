@@ -158,7 +158,7 @@
                 <asp:CheckBox ID="star6" runat="server" Text="木星" Checked="true" /><br />
                 <asp:CheckBox ID="star7" runat="server" Text="土星" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:CheckBox ID="star8" runat="server" Text="天王星" Checked="true" /><br />
-                <asp:CheckBox ID="star9" runat="server" Text="海王星" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:CheckBox ID="star9" runat="server" Text="海王星" Checked="true" />&nbsp;&nbsp;&nbsp;
                 <asp:CheckBox ID="star10" runat="server" Text="冥王星" Checked="true" /><br />
 
                 <br />

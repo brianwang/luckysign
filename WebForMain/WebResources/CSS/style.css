@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 body{ margin:0; padding:0; background:url(../IMAGES/bg.jpg); font:12px/1.5 "微软雅黑","arial"; color:#3f3d3e}
 a{ text-decoration:none;}
@@ -12,7 +12,7 @@ h2{ font-size:24px; color:#80776d; padding:0 2px}
 .clear{ clear:both; line-height:0; height:0; overflow:hidden}
 .fred{ color:#F00}
 .fsred{ color:#a4534b}
-.fblue{ color:#307c94}
+.fblue{ color:#307c94} 
 .hi20{ height:20px}
 
 .wrap{ width:1000px; margin:0 auto; padding:0 25px}

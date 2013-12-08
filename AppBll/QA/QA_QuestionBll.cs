@@ -554,6 +554,24 @@ namespace AppBll.QA
             }
         }
 
+        public DataTable GetTopListByCate(int top)
+        {
+             string cachyname = "QACatePostTop" + top;
+            if (HttpRuntime.Cache[cachyname] == null)
+            {
+            DataTable m_dt = new DataTable();
+            string sqlstr = @"select b.*,NickName,Photo from(select * from 
+(select SysNo,CateSysNo,CustomerSysNo,Title,Context,Award,LastReplyTime,row_number() over(partition by CateSysNo order by LastReplyTime desc)
+as rowindex from QA_Question) a where rowindex <= " + top + ") b left join USR_Customer on CustomerSysNo=USR_Customer.sysno";
+            using (SQLData m_data = new SQLData())
+            {
+                m_dt = m_data.CmdtoDataTable(sqlstr);
+            }
+            HttpRuntime.Cache.Insert(cachyname, m_dt, null, DateTime.Now.AddMinutes(5), TimeSpan.Zero,
+                        System.Web.Caching.CacheItemPriority.High, null);
+            }
+            return (HttpRuntime.Cache[cachyname] as DataTable).Copy();
+        }
 
         #endregion 扩展成员方法
 

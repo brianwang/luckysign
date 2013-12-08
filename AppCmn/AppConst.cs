@@ -62,6 +62,9 @@ namespace AppCmn
         public const string AstroDiceNewQuest = "AstroDiceNewQuest";
         public const string AstroDiceNewAnswer = "AstroDiceNewAnswer";
         public const string AstroDiceAricle = "AstroDiceAricle";
+
+        public const string AllNewAnswer = "AllNewAnswer";
+        public const string AllNewTalk = "AllNewTalk";
         #endregion cachename
 
         #region 默认系统消息

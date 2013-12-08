@@ -111,6 +111,8 @@ namespace WebForMain.ControlLibrary
                     {
                         InitialFate();
                     }
+                    else
+                    { return; }
                     ViewState["OriginalChart"] = m_astro;
                     ViewState["NowChart"] = m_astro;
                     
@@ -307,7 +309,7 @@ namespace WebForMain.ControlLibrary
                 {
                     SetTransit();
                 }
-                else if (_m_astro.transit == PublicValue.AstroTuiyun.sanxian || _m_astro.transit == PublicValue.AstroTuiyun.cixian)
+                else if (_m_astro.transit == PublicValue.AstroTuiyun.sanxian || _m_astro.transit == PublicValue.AstroTuiyun.cixian || _m_astro.transit == PublicValue.AstroTuiyun.sanxian1)
                 {
                     SetProgress();
                 }

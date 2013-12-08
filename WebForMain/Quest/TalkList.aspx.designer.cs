@@ -10,60 +10,87 @@
 namespace WebForMain.Quest {
     
     
-    public partial class Index {
+    public partial class TalkList {
         
         /// <summary>
-        /// Repeater1 控件。
+        /// UpdatePanel1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Repeater2 控件。
+        /// lkbOrder1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater2;
+        protected global::System.Web.UI.WebControls.LinkButton lkbOrder1;
         
         /// <summary>
-        /// txtName 控件。
+        /// lkbOrder3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.WebControls.LinkButton lkbOrder3;
         
         /// <summary>
-        /// LinkButton1 控件。
+        /// lkbOrder2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton lkbOrder2;
         
         /// <summary>
-        /// Repeater3 控件。
+        /// ltrNav 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater3;
+        protected global::System.Web.UI.WebControls.Literal ltrNav;
         
         /// <summary>
-        /// Repeater4 控件。
+        /// rptQuestion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater4;
+        protected global::System.Web.UI.WebControls.Repeater rptQuestion;
+        
+        /// <summary>
+        /// Pager1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::WebForMain.ControlLibrary.Pagination Pager1;
+        
+        /// <summary>
+        /// ltrCateName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCateName;
+        
+        /// <summary>
+        /// Right1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::WebForMain.ControlLibrary.QuestRightPanel Right1;
     }
 }

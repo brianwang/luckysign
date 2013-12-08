@@ -73,6 +73,8 @@ namespace AppBll.QA
                         builder.Append(@"SELECT [SysNo]
                               ,[Name]
                               ,[ParentSysNo]
+                              ,[Pic]
+                              ,[Intro]
                               ,[DR]
                               ,[TS]
                           FROM [QA_Category] where dr=").Append((int)AppEnum.State.normal)
@@ -133,7 +135,6 @@ SELECT COUNT(*) as questnum
   FROM [QA_Question] group by [CateSysNo],(case EndTime when null then '0' else '1' end);
 
 
-
 select * from 
 (SELECT COUNT(*) as AnswerNum
       ,[CateSysNo]
@@ -144,7 +145,25 @@ select * from
 (SELECT COUNT(*) as CommentNum
       ,[CateSysNo]
   FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo group by [CateSysNo]
+) as KK where PP.CateSysNo = KK.CateSysNo;
+
+                    SELECT COUNT(*) as questnum
+      ,[CateSysNo]
+  FROM [QA_Question] where datediff(day,TS,getdate())<1 group by [CateSysNo];
+
+
+select * from 
+(SELECT COUNT(*) as AnswerNum
+      ,[CateSysNo]
+  FROM QA_Answer left join [QA_Question] on QA_Answer.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Answer.TS,getdate())<1 group by [CateSysNo]
+  ) as PP,
+
+
+(SELECT COUNT(*) as CommentNum
+      ,[CateSysNo]
+  FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Comment.TS,getdate())<1 group by [CateSysNo]
 ) as KK where PP.CateSysNo = KK.CateSysNo");
+
                     try
                     {
                         tables = data.CmdtoDataSet(builder.ToString());

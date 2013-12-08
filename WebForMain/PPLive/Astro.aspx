@@ -116,6 +116,7 @@
                         <asp:DropDownList ID="drpProgressType" runat="server" CssClass="sel_0">
                             <asp:ListItem Text="次限（365.25636）" Value="2"></asp:ListItem>
                             <asp:ListItem Text="三限（29.530588）" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="三限（27.321582）" Value="4"></asp:ListItem>
                         </asp:DropDownList>
 
                         <span class="fred">*</span><strong>推进日期：</strong>

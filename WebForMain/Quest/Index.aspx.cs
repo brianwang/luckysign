@@ -4,329 +4,199 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AppBll.QA;
-using AppBll.User;
-using AppCmn;
 using System.Data;
+using AppBll.QA;
+using AppCmn;
 
 namespace WebForMain.Quest
 {
-    public partial class Index : PageBase
+    public partial class Index : System.Web.UI.Page
     {
-        private int pageindex = 1;
-        private int pagesize = 12;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            WebForMain.Master.Main m_master = (WebForMain.Master.Main)Master;
-            m_master.SetTab(1);
             if (!IsPostBack)
             {
-                if (Request.QueryString["key"] != null)
-                {
-                    txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
-                }
-                if (Request.QueryString["pn"] != null)
-                {
-                    try
-                    {
-                        pageindex = int.Parse(Request.QueryString["pn"]);
-                    }
-                    catch
-                    { }
-                }
-
-                ViewState["order"] = "timedown";
-                lkbOrder1.CssClass = "current";
-                lkbOrder2.CssClass = "";
-                lkbOrder3.CssClass = "";
-
-                BindData();
-                BindStars();
+                BindFreeCate();
+                BindTalkCate();
+                BindNewQuest();
+                BindNewTalk();
             }
         }
 
-        protected void Unnamed3_Click(object sender, EventArgs e)
+
+        protected void BindFreeCate()
         {
-            if (txtName.Text.Trim() != "")
-            {
-                string url = "Index.aspx?key="+txtName.Text;
-                if (Request.QueryString["pn"] != null)
-                {
-                    url += "&pn=" + Request.QueryString["pn"];
-                }
-                if (Request.QueryString["cate"] != null)
-                {
-                    url += "&cate=" + Request.QueryString["cate"];
-                }
-                if (Request.QueryString["order"] != null)
-                {
-                    url += "&order=" + Request.QueryString["order"];
-                }
-                Response.Redirect(url);
-            }
-        }
-
-        protected void Unnamed5_Click(object sender, EventArgs e)
-        {
-            string order = "";
-            if (lkbOrder1.Text.Contains("up"))
-            {
-                order = "timeup";
-                if (lkbOrder1.CssClass == "current")
-                {
-                    order = "timedown";
-                    lkbOrder1.Text = lkbOrder1.Text.Replace("up", "down");
-                }
-            }
-            else
-            {
-                order = "timedown";
-                if (lkbOrder1.CssClass == "current")
-                {
-                    order = "timeup";
-                    lkbOrder1.Text = lkbOrder1.Text.Replace("down", "up");
-                }
-            }
-            lkbOrder1.CssClass = "current";
-            lkbOrder2.CssClass = "";
-            lkbOrder3.CssClass = "";
-
-            ViewState["order"] = order;
-            BindData();
-        }
-
-        protected void Unnamed6_Click(object sender, EventArgs e)
-        {
-            string order = "";
-            if (lkbOrder2.Text.Contains("up"))
-            {
-                order = "replyup";
-                if (lkbOrder2.CssClass == "current")
-                {
-                    order = "replydown";
-                    lkbOrder2.Text = lkbOrder2.Text.Replace("up", "down");
-                }
-            }
-            else
-            {
-                order = "replydown";
-                if (lkbOrder2.CssClass == "current")
-                {
-                    order = "replyup";
-                    lkbOrder2.Text = lkbOrder2.Text.Replace("down", "up");
-                }
-            }
-            lkbOrder1.CssClass = "";
-            lkbOrder2.CssClass = "current";
-            lkbOrder3.CssClass = "";
-
-            ViewState["order"] = order;
-            BindData();
-        }
-
-        protected void Unnamed7_Click(object sender, EventArgs e)
-        {
-            string order = "";
-            if (lkbOrder3.Text.Contains("up"))
-            {
-                order = "pointup";
-                if (lkbOrder3.CssClass == "current")
-                {
-                    order = "pointdown";
-                    lkbOrder3.Text = lkbOrder3.Text.Replace("up", "down");
-                }
-            }
-            else
-            {
-                order = "pointdown";
-                if (lkbOrder3.CssClass == "current")
-                {
-                    order = "pointup";
-                    lkbOrder3.Text = lkbOrder3.Text.Replace("down", "up");
-                }
-            }
-            lkbOrder1.CssClass = "";
-            lkbOrder2.CssClass = "";
-            lkbOrder3.CssClass = "current";
-
-            ViewState["order"] = order;
-            BindData();
-        }
-
-        protected void BindData()
-        {
-            int total = 0;
-            int cate = 0;
-            if (Request.QueryString["cate"] != null)
-            {
-                try
-                {
-                    cate = int.Parse(Request.QueryString["cate"]);
-                }
-                catch
-                { }
-            }
-            string search = "";
-            if (txtName.Text.Trim() != "寻找你感兴趣的咨询话题")
-            {
-                search = txtName.Text.Trim();
-            }
-            DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex, search, cate, ViewState["order"].ToString(), ref total);
-            m_dt.Columns.Add("DateShow");
+            DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(1);
+            m_dt.Columns.Add("NewCount");
+            m_dt.Columns.Add("style");
+            
+            DataSet tmpds = QA_CategoryBll.GetInstance().GetCatesPostNum();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                //m_dt.Rows[i]["Context"] = CommonTools.CutStr(m_dt.Rows[i]["Context"].ToString(), 100);
-                DateTime ts = DateTime.Parse(m_dt.Rows[i]["ts"].ToString());
-                if ((DateTime.Now - ts).TotalDays > 365)
+                if (i % 3 == 2)
                 {
-                    m_dt.Rows[i]["DateShow"] = "一年前发布";
+                    m_dt.Rows[i]["style"] = "margin-right: 0";
                 }
-                else if ((DateTime.Now - ts).TotalDays > 180)
+                m_dt.Rows[i]["NewCount"] = "0";
+                for (int j = 0; j < tmpds.Tables[2].Rows.Count; j++)
                 {
-                    m_dt.Rows[i]["DateShow"] = "半年前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 60)
-                {
-                    m_dt.Rows[i]["DateShow"] = "几个月前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 30)
-                {
-                    m_dt.Rows[i]["DateShow"] = "一个月前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 15)
-                {
-                    m_dt.Rows[i]["DateShow"] = "半个月前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 7)
-                {
-                    m_dt.Rows[i]["DateShow"] = "一周前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 2)
-                {
-                    m_dt.Rows[i]["DateShow"] = "几天前发布";
-                }
-                else if ((DateTime.Now - ts).TotalDays > 1)
-                {
-                    m_dt.Rows[i]["DateShow"] = "一天前发布";
-                }
-                else if ((DateTime.Now - ts).TotalHours > 2)
-                {
-                    m_dt.Rows[i]["DateShow"] = "几小时前发布";
-                }
-                else if ((DateTime.Now - ts).TotalHours > 1)
-                {
-                    m_dt.Rows[i]["DateShow"] = "一小时前发布";
-                }
-                else if ((DateTime.Now - ts).TotalMinutes > 30)
-                {
-                    m_dt.Rows[i]["DateShow"] = "半小时前发布";
-                }
-                else if ((DateTime.Now - ts).TotalMinutes > 2)
-                {
-                    m_dt.Rows[i]["DateShow"] = "几分钟前发布";
-                }
-                else if ((DateTime.Now - ts).TotalMinutes > 1)
-                {
-                    m_dt.Rows[i]["DateShow"] = "一分钟前发布";
-                }
-                else
-                {
-                    m_dt.Rows[i]["DateShow"] = "几秒钟前发布";
-                }
-            }
-            rptQuestion.DataSource = m_dt;
-            rptQuestion.DataBind();
-
-            Pager1.url = "Index.aspx?key=" + txtName.Text.Trim() + "&cate=" + Request.QueryString["cate"] + "&order=" + Request.QueryString["order"] + "&pn=";
-            Pager1.totalrecord = total;
-            if (total % AppConst.PageSize == 0)
-            {
-                this.Pager1.total = total / pagesize;
-            }
-            else
-            {
-                this.Pager1.total = total / pagesize + 1;
-            }
-            this.Pager1.index = pageindex;
-            this.Pager1.numlenth = 3;
-        }
-
-
-
-        protected void BindStars()
-        {
-            //int count = 5;
-            if (Request.QueryString["cate"] != null)
-            {
-                try
-                {
-                    DataTable m_dt = REL_Customer_CategoryBll.GetInstance().GetListByCate(int.Parse(Request.QueryString["cate"]), (int)AppEnum.CategoryType.QA);
-                    //DataTable m_dt = QA_StarBll.GetInstance().GetStarsList(count, 0);
-                    for (int i = 0; i < m_dt.Rows.Count; i++)
+                    if (tmpds.Tables[2].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
                     {
-                        m_dt.Rows[i]["intro"] = CommonTools.CutStr(m_dt.Rows[i]["intro"].ToString(), 80);
+                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[2].Rows[j]["questnum"].ToString());
+                        break;
                     }
-                    rptStars.DataSource = m_dt;
-                    rptStars.DataBind();
                 }
-                catch
-                { }
+                for (int j = 0; j < tmpds.Tables[3].Rows.Count; j++)
+                {
+                    if (tmpds.Tables[3].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    {
+                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["CommentNum"].ToString());
+                        break;
+                    }
+                }
+                
             }
+
+            Repeater1.DataSource = m_dt;
+            Repeater1.DataBind();
         }
 
-        protected void rptQuestion_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void BindTalkCate()
         {
+            DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(2);
+            m_dt.Columns.Add("NewCount");
+            m_dt.Columns.Add("NewSysNo");
+            m_dt.Columns.Add("NewTitle");
+            m_dt.Columns.Add("NewContext");
+            m_dt.Columns.Add("NewUser");
+            m_dt.Columns.Add("NewTime");
+            DataSet tmpds = QA_CategoryBll.GetInstance().GetCatesPostNum();
+            DataTable tmpdt = QA_QuestionBll.GetInstance().GetTopListByCate(1);
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                m_dt.Rows[i]["NewCount"] = "0";
+                for (int j = 0; j < tmpds.Tables[2].Rows.Count; j++)
+                {
+                    if (tmpds.Tables[2].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    {
+                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[2].Rows[j]["questnum"].ToString());
+                        break;
+                    }
+                }
+                for (int j = 0; j < tmpds.Tables[3].Rows.Count; j++)
+                {
+                    if (tmpds.Tables[3].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    {
+                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["CommentNum"].ToString());
+                        break;
+                    }
+                }
+                for (int j = 0; j < tmpdt.Rows.Count; j++)
+                {
+                    if (tmpdt.Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    {
+                        m_dt.Rows[i]["NewSysNo"] = tmpdt.Rows[j]["SysNo"];
+                        m_dt.Rows[i]["NewTitle"] = tmpdt.Rows[j]["Title"];
+                        m_dt.Rows[i]["NewContext"] = tmpdt.Rows[j]["Context"];
+                        m_dt.Rows[i]["NewUser"] = tmpdt.Rows[j]["NickName"];
+                        m_dt.Rows[i]["NewTime"] = tmpdt.Rows[j]["LastReplyTime"];
+
+                    }
+                }
+                if (m_dt.Rows[i]["NewTime"].ToString() == "")
+                {
+                    m_dt.Rows[i]["NewTime"] = DateTime.Now;
+                }
+            }
+
+            Repeater2.DataSource = m_dt;
+            Repeater2.DataBind();
+        }
+
+        protected void BindNewQuest()
+        {
+            int total = 0;
+            DataTable dt = new DataTable();
+            if (HttpRuntime.Cache[AppConst.AllNewAnswer] == null)
+            {
+                dt = QA_QuestionBll.GetInstance().GetList(6, 1, "", 0, "replytimedown", ref total);
+                dt.Columns.Add("Answer");
+                dt.Columns.Add("AnswerUser");
+                dt.Columns.Add("CateName");
+                int tmptotal = 0;
+                DataTable tmpdt = QA_CategoryBll.GetInstance().GetAllCates();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataTable tmpanswer = QA_AnswerBll.GetInstance().GetListByQuest(1, 1, int.Parse(dt.Rows[i]["SysNo"].ToString()), ref tmptotal);
+                    dt.Rows[i]["Answer"] = tmpanswer.Rows[0]["Context"].ToString();
+                    dt.Rows[i]["AnswerUser"] = tmpanswer.Rows[0]["NickName"].ToString();
+                    for (int j = 0; j < tmpdt.Rows.Count; j++)
+                    {
+                        if (dt.Rows[i]["CateSysNo"].ToString() == tmpdt.Rows[j]["SysNo"].ToString())
+                        {
+                            dt.Rows[i]["CateName"] = tmpdt.Rows[j]["Name"].ToString();
+                            break;
+                        }
+                    }
+                }
+                HttpRuntime.Cache.Insert(AppConst.AllNewAnswer, dt,
+                 null, DateTime.Now.AddMinutes(5), TimeSpan.Zero,
+                 System.Web.Caching.CacheItemPriority.High, null);
+            }
+            dt = HttpRuntime.Cache[AppConst.AllNewAnswer] as DataTable;
+            Repeater3.DataSource = dt;
+            Repeater3.DataBind();
+        }
+
+        protected void BindNewTalk()
+        {
+            DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(2);
+            Repeater4.DataSource = m_dt;
+            Repeater4.DataBind();
+        }
+
+        protected void Repeater4_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Repeater rptTopic = (Repeater)e.Item.FindControl("Repeater5");
+
             //找到分类Repeater关联的数据项 
             DataRowView rowv = (DataRowView)e.Item.DataItem;
             //提取分类ID 
-            int sysno = Convert.ToInt32(rowv["SysNo"]);
+            int CategoryId = Convert.ToInt32(rowv["SysNo"]);
+            //根据分类ID查询该分类下的子分类，并绑定子分类Repeater  
+
             int total = 0;
-            DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuest(1000, 1, sysno, ref total);
-            int choosen = AppConst.IntNull; ;
-            int goodnow = 0;
-            int awardnow = 0;
-            for (int i = 0; i < m_dt.Rows.Count; i++)
+            DataTable dt = new DataTable();
+            if (HttpRuntime.Cache[AppConst.AllNewTalk + CategoryId] == null)
             {
-                if (choosen == AppConst.IntNull && m_dt.Rows[i]["CustomerSysNo"].ToString() != rowv["CustomerSysNo"].ToString())
+                dt = QA_QuestionBll.GetInstance().GetList(5, 1, "", CategoryId, "timedown", ref total);
+                dt.Columns.Add("CateName");
+                DataTable tmpdt = QA_CategoryBll.GetInstance().GetAllCates();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    choosen = i;
-                    goodnow = int.Parse(m_dt.Rows[i]["Love"].ToString());
-                    awardnow = int.Parse(m_dt.Rows[i]["Award"].ToString());
-                    continue;
+                    for (int j = 0; j < tmpdt.Rows.Count; j++)
+                    {
+                        if (dt.Rows[i]["CateSysNo"].ToString() == tmpdt.Rows[j]["SysNo"].ToString())
+                        {
+                            dt.Rows[i]["CateName"] = tmpdt.Rows[j]["Name"].ToString();
+                            break;
+                        }
+                    }
                 }
-                if (awardnow < int.Parse(m_dt.Rows[i]["Award"].ToString()))
-                {
-                    choosen = i;
-                    goodnow = int.Parse(m_dt.Rows[i]["Love"].ToString());
-                    awardnow = int.Parse(m_dt.Rows[i]["Award"].ToString());
-                    continue;
-                }
-                if (awardnow == 0 && goodnow < int.Parse(m_dt.Rows[i]["Love"].ToString()))
-                {
-                    choosen = i;
-                    goodnow = int.Parse(m_dt.Rows[i]["Love"].ToString());
-                    awardnow = int.Parse(m_dt.Rows[i]["Award"].ToString());
-                    continue;
-                }
+                HttpRuntime.Cache.Insert(AppConst.AllNewTalk + CategoryId, dt,
+                 null, DateTime.Now.AddMinutes(5), TimeSpan.Zero,
+                 System.Web.Caching.CacheItemPriority.High, null);
             }
-            if (choosen == AppConst.IntNull)
-            {
-                Image Image1 = (Image)e.Item.FindControl("Image1");
-                Panel Panel1 = (Panel)e.Item.FindControl("Panel1");
-                Panel1.CssClass = "no_reply";
-                Image1.Visible = false;
-                Literal Literal1 = (Literal)e.Item.FindControl("Literal1");
-                Literal1.Text = @"<a target=""_blank"" href=""Question.aspx?id="+sysno+@""">还没人回复，快来抢个大沙发吧！</a>";
-            }
-            else
-            {
-                Image Image1 = (Image)e.Item.FindControl("Image1");
-                Image1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_dt.Rows[choosen]["photo"].ToString();
-                Literal Literal1 = (Literal)e.Item.FindControl("Literal1");
-                Literal1.Text = @"<span>" + m_dt.Rows[choosen]["NickName"].ToString() + @"回复：</span>" + AppCmn.CommonTools.CutStr(m_dt.Rows[choosen]["Context"].ToString(),85);
-            }
+            dt = HttpRuntime.Cache[AppConst.AllNewTalk + CategoryId] as DataTable;
+            rptTopic.DataSource = dt;
+            rptTopic.DataBind();
         }
 
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

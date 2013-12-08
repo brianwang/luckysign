@@ -112,8 +112,11 @@
     <Content Include="Qin\UserInfo.aspx" />
     <Content Include="Qin\View.aspx" />
     <Content Include="Quest\Index.aspx" />
+    <Content Include="Quest\QuestList.aspx" />
     <Content Include="Quest\Question.aspx" />
     <Content Include="Quest\Talk.aspx" />
+    <Content Include="Quest\TalkList.aspx" />
+    <Content Include="Quest\Topic.aspx" />
     <Content Include="WebResources\AstroDice\astro dice 480 510 1.swf" />
     <Content Include="WebResources\AstroDice\common.css" />
     <Content Include="WebResources\AstroDice\DD_belatedPNG.js" />
@@ -192,6 +195,12 @@
     <Content Include="WebResources\img\bottom_logo.gif" />
     <Content Include="WebResources\img\box_bg1.gif" />
     <Content Include="WebResources\img\c.gif" />
+    <Content Include="WebResources\img\CatePic\i1.jpg" />
+    <Content Include="WebResources\img\CatePic\i2.jpg" />
+    <Content Include="WebResources\img\CatePic\i3.jpg" />
+    <Content Include="WebResources\img\CatePic\i4.jpg" />
+    <Content Include="WebResources\img\CatePic\i5.jpg" />
+    <Content Include="WebResources\img\CatePic\pp1.jpg" />
     <Content Include="WebResources\img\grip.gif" />
     <Content Include="WebResources\img\h.gif" />
     <Content Include="WebResources\img\ico.gif" />
@@ -204,6 +213,7 @@
     <Content Include="WebResources\img\list.gif" />
     <Content Include="WebResources\img\man.jpg" />
     <Content Include="WebResources\img\Medal\1.gif" />
+    <Content Include="WebResources\img\new\ding.gif" />
     <Content Include="WebResources\img\new\down.jpg" />
     <Content Include="WebResources\img\new\down_arrow.gif" />
     <Content Include="WebResources\img\new\ico1.jpg" />
@@ -216,7 +226,10 @@
     <Content Include="WebResources\img\new\icon4.gif" />
     <Content Include="WebResources\img\new\icon7.gif" />
     <Content Include="WebResources\img\new\icon_bazi.jpg" />
+    <Content Include="WebResources\img\new\jing.gif" />
     <Content Include="WebResources\img\new\list1.gif" />
+    <Content Include="WebResources\img\new\msg_num.gif" />
+    <Content Include="WebResources\img\new\msg_num2.gif" />
     <Content Include="WebResources\img\new\tip_message.gif" />
     <Content Include="WebResources\img\new\top_tip.gif" />
     <Content Include="WebResources\img\new\up.jpg" />
@@ -743,6 +756,13 @@
     <Compile Include="Quest\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Quest\QuestList.aspx.cs">
+      <DependentUpon>QuestList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\QuestList.aspx.designer.cs">
+      <DependentUpon>QuestList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Quest\Question.aspx.cs">
       <DependentUpon>Question.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -763,6 +783,20 @@
     </Compile>
     <Compile Include="Quest\Talk.aspx.designer.cs">
       <DependentUpon>Talk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\TalkList.aspx.cs">
+      <DependentUpon>TalkList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\TalkList.aspx.designer.cs">
+      <DependentUpon>TalkList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Topic.aspx.cs">
+      <DependentUpon>Topic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Topic.aspx.designer.cs">
+      <DependentUpon>Topic.aspx</DependentUpon>
     </Compile>
     <Compile Include="SessionInfo.cs" />
     <Compile Include="Error.aspx.cs">

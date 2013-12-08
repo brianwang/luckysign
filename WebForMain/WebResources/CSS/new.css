@@ -1702,6 +1702,14 @@ a.c18 {
 
 .index_new_ask_rank a.current{color:#A4534B}
 
+.index_new_ask_position a{font-size:14px;color:#000; font-weight:normal}
+
+.index_new_ask_position{font-size:14px;color:#000; padding-left:20px;font-weight:normal}
+
+.index_new_ask_position span{color:#a4534b}
+
+
+
 .index_left_new_ul li{ padding:15px 18px}
 
 .index_left_new_ul  h3 a{color:#B83937; font-size:14px; font-weight:bold; line-height:30px}
@@ -1721,5 +1729,66 @@ a.c18 {
 .no_reply{background:url("../img/new/tip_message.gif");width:194px;height:28px; padding-left:23px; margin-top:10px}
 
 .no_reply a{font:12px/28px "微软雅黑";color:#0075C9}
+
+.index_left_new_msgnum{width:44px;float:left;background:url("../img/new/msg_num.gif") no-repeat;height:44px;font:bold 12px/31px Arial;color:#fff; text-align:center }
+
+.index_left_new_msgbox{width:590px;float:right;color:#393633}
+
+.index_left_new_msgbox span.msgtime{float:right;color:#0784ab}
+
+.index_left_new_ul .index_left_new_msgbox h3 a{ line-height:20px}
+
+.msgcontent{ margin-top:5px}
+
+/*朱酒论命*/
+.zjlm_box{ background:#F7F4EE; padding:20px 30px}
+
+.zjlm_box_t h1{font-size: 24px;color:#80776d; font-weight:bold}
+
+.zjlm_box_t_a{display:block;float:right;width:74px;height:23px;font:bold 14px/23px "微软雅黑";color:#fff; text-align:center; margin-top:8px}
+
+.zjlm_box_t_a:hover{color:#fff}
+
+.zjlm_ul1 li{width:141px;height:150px;float:left; margin-right:76px; margin-top:20px}
+
+.zjlm_ul1 li a{ display:block; font-size:14px;color:#99443d}
+
+.zjlm_ul2{ margin-top:20px}
+
+.zjlm_ul2 li{width:290px;float:left; background:url(../img/new/a_arrow.gif) no-repeat 0px 8px; line-height:28px; padding-left:15px}
+
+.zjlm_ul2 li span{color:#f00; margin-left:5px}
+
+.zjlm_ul3 li{ margin-top:20px}
+
+.zjlm_img{width:120px;float:left}
+
+.zjlm_img_r{width:490px;float:right}
+
+.zjlm_img_r_item{float:left; }
+
+.zjlm_img_r_item a{ font-weight:bold;color:#9f483f;font-size:14px;}
+
+.zjlm_img_r_num{ background:url(../img/new/msg_num2.gif) no-repeat;width:45px;height:25px;font:bold 12px/18px Arial;color:#fff; text-align:center;float:left; margin-left:5px; display: inline; position:relative; top:-5px}
+
+.zjlm_img_r_name a{color:#4f6c78;font-weight:bold;font-size:14px;}
+
+.zjlm_img_r_content{ font-size:14px;color:#000}
+
+.zjlm_img_r_time{color:#3e7287}
+
+.zjlm_r_t{font-size:14px; font-weight:bold;color:#80776d; line-height:24px}
+
+.zjlm_r_c li{ margin-bottom:20px;color:#000}
+
+.zjlm_r_c li a{color:#9f483f}
+
+.zjlm_r_c2 li a{color:#446370; font-size:14px}
+
+.zjlm_r_c2 li.spc{ border-bottom: dashed 2px #9a9186; height:10px ; margin-bottom:10px; overflow:hidden}
+
+
+
+
 
 
