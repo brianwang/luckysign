@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="URLRewriter">
+      <HintPath>..\BaseAssemblies\URLRewriter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\HelpCenter.aspx" />

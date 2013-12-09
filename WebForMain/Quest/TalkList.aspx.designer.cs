@@ -22,6 +22,15 @@ namespace WebForMain.Quest {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// ltrNav 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrNav;
+        
+        /// <summary>
         /// lkbOrder1 控件。
         /// </summary>
         /// <remarks>
@@ -47,15 +56,6 @@ namespace WebForMain.Quest {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lkbOrder2;
-        
-        /// <summary>
-        /// ltrNav 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrNav;
         
         /// <summary>
         /// rptQuestion 控件。

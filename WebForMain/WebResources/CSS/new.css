@@ -1694,6 +1694,8 @@ a.c18 {
 
 .index_new_ask_button a{display:block;float:left;width:74px; margin-right:18px;height:23px;font:bold 14px/23px "微软雅黑";color:#fff; text-align:center; margin-top:8px}
 
+.index_new_ask_rank{width:300px;float:left}
+
 .index_new_ask_rank a{ margin-left:22px;}
 
 .index_new_ask_rank img{ margin-left:3px}
@@ -1704,7 +1706,7 @@ a.c18 {
 
 .index_new_ask_position a{font-size:14px;color:#000; font-weight:normal}
 
-.index_new_ask_position{font-size:14px;color:#000; padding-left:20px;font-weight:normal}
+.index_new_ask_position{font-size:14px;color:#000; padding-left:20px;font-weight:normal;width:250px;float:left}
 
 .index_new_ask_position span{color:#a4534b}
 

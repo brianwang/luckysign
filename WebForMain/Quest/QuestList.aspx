@@ -22,16 +22,17 @@
                                 <a href="Ask.aspx" target="_blank" style="background: #779058">我要求测</a>
                                 <%--<a href="Talk.aspx" target="_blank" style="background: #6D8690">发起讨论</a>--%>
                             </div>
+                            <div class="index_new_ask_position">
+                                <asp:Literal ID="ltrNav" runat="server"></asp:Literal>
+                            </div>
+                            
                             <div class="index_new_ask_rank">
                                 <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
                                 <asp:LinkButton ID="lkbOrder3" runat="server" OnClick="Unnamed7_Click">悬赏金额<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
                                 <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
                             </div>
                             <div class="clear"></div>
-                             <div class="index_new_ask_position">
-                                 <asp:Literal ID="ltrNav" runat="server"></asp:Literal>
-                        </div>
-                        <div class="clear"></div>
+                            
                         </div>
 
                         <div class="index_left_new_list">
@@ -79,9 +80,10 @@
         </div>
 
         <div class="index_right">
-           <div class="new_right_item"><asp:Literal ID="ltrCateName" runat="server"></asp:Literal></div>
-            <uc1:Right ID="Right1" runat="server"></uc1:Right> 
-            
+            <div class="new_right_item">
+                <asp:Literal ID="ltrCateName" runat="server"></asp:Literal></div>
+            <uc1:Right ID="Right1" runat="server"></uc1:Right>
+
         </div>
         <div class="clear">
         </div>

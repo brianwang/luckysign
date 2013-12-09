@@ -18,12 +18,12 @@
 </asp:Repeater>
 
 
-<div class="page_person_search" style="margin: 0; padding: 0; width: auto; margin-top: 10px">
+<div class="page_person_search" style="margin: 0; padding: 0; width: auto; margin-top: 10px;margin-bottom: 10px">
     <asp:TextBox runat="server" class="input1" ID="txtName" value="寻找你感兴趣的咨询话题" onblur="if (this.value==''){ this.value='寻找你感兴趣的咨询话题';this.style.color='#9C9C9C';}else{this.style.color='#333';}"
         Style="width: 170px" onfocus="if (this.value=='寻找你感兴趣的咨询话题') {this.value='';this.style.color='#333';}"></asp:TextBox>
     <asp:Button ID="LinkButton1" class="input2" runat="server" Text="GO" OnClick="LinkButton1_Click" />
 </div>
-
+<div class="clear"></div>
 
 
 <asp:Repeater ID="rptCateMain" runat="server" OnItemDataBound="rptCateMain_ItemDataBound">

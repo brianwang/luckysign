@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseAssemblies", "BaseAssemblies", "{3102147A-3AA3-4AA1-B2E3-357793ADB4B2}"
 	ProjectSection(SolutionItems) = preProject
 		BaseAssemblies\AjaxControlToolkit.dll = BaseAssemblies\AjaxControlToolkit.dll
@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseAssemblies", "BaseAssem
 		BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Common.dll = BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Common.dll
 		BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.dll = BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.dll
 		BaseAssemblies\Microsoft.Practices.ObjectBuilder.dll = BaseAssemblies\Microsoft.Practices.ObjectBuilder.dll
+		BaseAssemblies\URLRewriter.dll = BaseAssemblies\URLRewriter.dll
 		BaseAssemblies\WebValidates.dll = BaseAssemblies\WebValidates.dll
 		BaseAssemblies\XMS.Core.dll = BaseAssemblies\XMS.Core.dll
 	EndProjectSection
