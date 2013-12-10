@@ -82,7 +82,7 @@ namespace WebForMain.Celebrity
             int total = 0;
             this.rptComment.DataSource = SYS_Famous_CommentBll.GetInstance().GetListByFamousSysNo(this.pageindex, this.pagesize, this.sysno, ref total);
             this.rptComment.DataBind();
-            this.Pager1.url = "Detail.aspx?id=" + this.sysno + "&pn=";
+            this.Pager1.url = "Detail.aspx?id=" + CommonTools.Encode(this.sysno.ToString()) + "&pn=";
             this.Pager1.totalrecord = total;
             if ((total % this.pagesize) == 0)
             {

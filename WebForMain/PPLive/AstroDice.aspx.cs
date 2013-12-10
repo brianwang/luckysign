@@ -122,6 +122,14 @@ namespace WebForMain.PPLive
         {
             if (gong.Value != "" && dice.Value != "" && xingzuo.Value != "")
             {
+                if (dice.Value == "10")
+                {
+                    dice.Value = "15";
+                }
+                else if (dice.Value == "11")
+                {
+                    dice.Value = "32";
+                }
                 Response.Redirect("../Quest/Ask.aspx?type=dice&star=" + (int.Parse(dice.Value)) +
                     "&house=" + int.Parse(gong.Value) +
                     "&const=" + int.Parse(xingzuo.Value) + "&ask=" + flashtitle.Value);

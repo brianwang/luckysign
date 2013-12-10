@@ -112,33 +112,7 @@ namespace WebForMain.Article
             #endregion
         }
 
-        protected void rptCateMain_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                Repeater rptCate = (Repeater)e.Item.FindControl("rptCateSub");
 
-                //找到分类Repeater关联的数据项 
-                DataRowView rowv = (DataRowView)e.Item.DataItem;
-                //提取分类ID 
-                int CategoryId = Convert.ToInt32(rowv["SysNo"]);
-                //根据分类ID查询该分类下的子分类，并绑定子分类Repeater                 
-
-                DataTable dt = CMS_CategoryBll.GetInstance().GetCates(CategoryId);
-                if (Request.QueryString["cate"] != null)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        if (Request.QueryString["cate"] == dt.Rows[i]["SysNo"].ToString())
-                        {
-
-                        }
-                    }
-                }
-                rptCate.DataSource = dt;
-                rptCate.DataBind();
-            }
-        }
 
         protected void BindRecommend()
         {
