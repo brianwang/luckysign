@@ -91,6 +91,7 @@
     <Content Include="ControlLibrary\VerifyCode.aspx" />
     <Content Include="ControlLibrary\ArticleRightPanel.ascx" />
     <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Passport\Agreement.aspx" />
     <Content Include="Passport\FindPass.aspx" />
     <Content Include="Passport\Login.aspx" />
@@ -565,6 +566,9 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Master\Qin.Master.cs">
       <DependentUpon>Qin.Master</DependentUpon>
