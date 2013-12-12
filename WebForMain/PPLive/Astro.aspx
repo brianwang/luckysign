@@ -68,8 +68,8 @@
                             <lable class="fsred"><strong>夏令时</strong></lable>
                             <asp:UpdatePanel ID="UpdatePaneld" runat="server">
                                 <ContentTemplate>
-                                    <span class="fred">*</span><strong>出生地点：</strong>
-                                    <div style="display:block;width:550px;float:right;text-align:left">
+                                    <div style="float:left;width:77px"><span class="fred">*</span><strong>出生地点：</strong></div>
+                                    <div style="width:500px">
                                     <uc1:District ID="District2" runat="server"></uc1:District>
                                         </div>
                                 </ContentTemplate>

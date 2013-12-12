@@ -27,13 +27,75 @@ namespace WebForMain
                 "~/Quest/Ask.aspx",
                 false);
             routes.MapPageRoute("煮酒论命问答列表",
-                "Quest/QuestList/{cate}/{pn}",
+                "Quest/QuestList/{cate}/{key}/{pn}",
                 "~/Quest/QuestList.aspx",
                 false,
+                new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
+            );
+            routes.MapPageRoute("煮酒论命帖子列表",
+                "Quest/TalkList/{cate}/{key}/{pn}",
+                "~/Quest/TalkList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
+            );
+            routes.MapPageRoute("煮酒论命问答详情",
+                "Quest/Question/{id}/{pn}",
+                "~/Quest/Question.aspx",
+                false,
                 new RouteValueDictionary { { "pn", "1" } },
-                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
+                new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
+            );
+            routes.MapPageRoute("煮酒论命帖子详情",
+                "Quest/Topic/{id}/{pn}",
+                "~/Quest/Topic.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
             );
 
+            routes.MapPageRoute("名人库",
+               "Celebrity/{key}/{keyword}",
+               "~/Celebrity/Search.aspx",
+               false,
+                new RouteValueDictionary { { "key", "" }, { "keyword", "" } },
+                new RouteValueDictionary { { "keyword", @"[^/]*" }, { "key", @"\d*" } }
+            );
+            routes.MapPageRoute("名人库详细",
+                "Celebrity/Detail/{id}/{pn}",
+                "~/Celebrity/Topic.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "id", @"[^/]*" }, { "pn", @"\d*" } }
+            );
+
+            routes.MapPageRoute("象牙塔分类列表",
+               "Article/{cate}/{key}/{pn}",
+               "~/Article/Index.aspx",
+               false,
+               new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
+            );
+            routes.MapPageRoute("象牙塔搜索",
+               "Article/{key}/{pn}",
+               "~/Article/Index.aspx",
+               false,
+               new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "pn", @"\d*" }, { "key", @"[^/]*" } }
+            );
+            routes.MapPageRoute("象牙塔文章",
+                "Article/Content/{id}",
+                "~/Article/Content.aspx",
+                false,
+                new RouteValueDictionary {  },
+                new RouteValueDictionary { { "id", @"\d*" }}
+            );
+
+            routes.MapPageRoute("帮助中心",
+                "About/HelpCenter/{memo}",
+                "~/About/HelpCenter.aspx",
+                false);
         }
 
 
