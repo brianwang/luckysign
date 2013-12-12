@@ -12,7 +12,7 @@ namespace WebForMain.Master
     public partial class Main : System.Web.UI.MasterPage
     {      
         private string[] _tab = { "now","","","","",""};
-        //public string css = @"<link href=""../WebResources/CSS/style.css"" rel=""stylesheet"" type=""text/css"" />";
+        //public string css = @"<link href="""+AppCmn.AppConfig.WebResourcesPath() +@"CSS/style.css"" rel=""stylesheet"" type=""text/css"" />";
         public string[] tab
         {
             get { return _tab; }

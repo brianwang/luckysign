@@ -33,7 +33,20 @@ namespace WebForMain
                 new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
             );
-
+            routes.MapPageRoute("煮酒论命帖子列表",
+                "Quest/TopicList/{cate}/{pn}",
+                "~/Quest/TopicList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
+            );
+            routes.MapPageRoute("煮酒论命问答详情",
+                "Quest/Question/{id}/{pn}",
+                "~/Quest/Question.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
+            );
         }
 
 

@@ -8,7 +8,7 @@
                 <asp:Repeater ID="Repeater2" runat="server" OnItemDataBound="Repeater2_ItemDataBound">
                     <ItemTemplate>
                         <li id="li<%#Eval("SysNo")%>" class="<%#Eval("currect")%>">
-                            <img src="../WebResources/img/new/icon<%#Eval("SysNo")%>.gif" align="absmiddle" /><a href="javascript:void(0);" onclick='showsub(this);'><%#Eval("Name")%></a></li>
+                            <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/icon<%#Eval("SysNo")%>.gif" align="absmiddle" /><a href="javascript:void(0);" onclick='showsub(this);'><%#Eval("Name")%></a></li>
                         <div id="sub<%#Eval("SysNo")%>" style="display:none;" class="new_right_submenu">
                             <asp:Repeater ID="Repeater3" runat="server">
                                 <ItemTemplate>

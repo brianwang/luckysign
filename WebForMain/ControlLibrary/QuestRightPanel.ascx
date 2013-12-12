@@ -35,7 +35,7 @@
                     <ItemTemplate>
                         <li>
                             <div class="new_right_l">
-                                <img src="../WebResources/img/new/ico<%#Eval("SysNo")%>.gif" align="absmiddle" />
+                                <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico<%#Eval("SysNo")%>.gif" align="absmiddle" />
                             </div>
                             <div class="new_right_r">
                                 <a href="../Quest/Index.aspx?cate=<%#Eval("SysNo")%>"><%#Eval("Name")%> （<%#Eval("Replys")%>）<br />

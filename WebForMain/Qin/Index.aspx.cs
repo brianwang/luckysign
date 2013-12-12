@@ -38,7 +38,7 @@ namespace WebForMain.Qin
                 BindFans();
                 BindLike();
 
-                imgPhoto.ImageUrl = "../WebResources/" + GetSession().CustomerEntity.Photo;
+                imgPhoto.ImageUrl = "<%=AppCmn.AppConfig.WebResourcesPath() %>" + GetSession().CustomerEntity.Photo;
             }
 		}
 

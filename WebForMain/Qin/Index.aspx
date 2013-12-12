@@ -13,11 +13,11 @@
         <div class="page_person_img">
             <asp:Image ID="imgPhoto" runat="server" /></div>
         <div class="page_person_item">
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button1.jpg" OnClick="Unnamed1_Click" />
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button2.jpg" OnClick="Unnamed2_Click" />
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button3.jpg" OnClick="Unnamed3_Click" />
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button4.jpg" OnClick="Unnamed4_Click" />
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button5.jpg" OnClick="Unnamed5_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button1.jpg" OnClick="Unnamed1_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button2.jpg" OnClick="Unnamed2_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button3.jpg" OnClick="Unnamed3_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button4.jpg" OnClick="Unnamed4_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button5.jpg" OnClick="Unnamed5_Click" />
         </div>
         <div class="page_person_search" style="padding-top: 10px">
             <uc1:Search ID="Search1" runat="server">
@@ -86,7 +86,7 @@
                     <asp:Repeater ID="rptLike" runat="server">
                         <ItemTemplate>
                             <li><a href="#">
-                                <img src="../WebResources/img/man.jpg" />’‘ﬁ±</a></li>
+                                <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/man.jpg" />’‘ﬁ±</a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>

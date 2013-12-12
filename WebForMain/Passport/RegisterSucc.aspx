@@ -21,7 +21,7 @@
             <div class="left dle">
                 <div class="form_1">
                     <div style="line-height:20px;font-size:20px; color:gray; vertical-align:bottom">
-<img src="../WebResources/Images/gou.png" width="35" height="35" style="vertical-align:bottom;" />&nbsp;<b>&nbsp;恭喜你！注册成功！</b>
+<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>Images/gou.png" width="35" height="35" style="vertical-align:bottom;" />&nbsp;<b>&nbsp;恭喜你！注册成功！</b>
                     </div>
                    <div style="margin-top:20px; font-size:14px;">
                     <asp:Literal ID="Literal2" runat="server"></asp:Literal></div>

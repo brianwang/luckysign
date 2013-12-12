@@ -17,7 +17,7 @@
             background-color: black;
         }
     </style>
-    <link href="../WebResources/CSS/style.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/style.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -26,8 +26,8 @@
             <asp:Image ID="imgPhoto" runat="server" />
         </div>
         <div class="page_person_item">
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button4.jpg" OnClick="Unnamed_Click" />
-            <asp:ImageButton runat="server" ImageUrl="../WebResources/img/page/button5.jpg" OnClick="Unnamed_Click1" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button4.jpg" OnClick="Unnamed_Click" />
+            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button5.jpg" OnClick="Unnamed_Click1" />
         </div>
         <div class="page_person_search">
             <uc1:Search ID="Search1" runat="server"></uc1:Search>
@@ -142,6 +142,6 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-    <%--<script language="javascript" src="../WebResources/JS/addition.js" type="text/javascript"></script>--%>
-    <script language="javascript" src="../WebResources/JS/comm.js" type="text/javascript"></script>
+    <%--<script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/addition.js" type="text/javascript"></script>--%>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/comm.js" type="text/javascript"></script>
 </asp:Content>

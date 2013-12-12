@@ -14,7 +14,7 @@
                 <asp:ImageButton ID="ImageButton1" OnClick="ImageButton1_Click" runat="server" />
             </div>
             <div class="mypage_otherperson_info">
-                <%=m_user.NickName %><img src="../WebResources/img/page/ico<%=(8-m_user.Gender).ToString("0") %>.gif" align="absmiddle" /><br />
+                <%=m_user.NickName %><img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/ico<%=(8-m_user.Gender).ToString("0") %>.gif" align="absmiddle" /><br />
 
                 <%=ltrMe %>目前最感兴趣的是：<samp><%=AppCmn.AppEnum.GetFateType(m_user.FateType) %></samp><br />
                 个人简介：<%=m_user.Intro %><br />

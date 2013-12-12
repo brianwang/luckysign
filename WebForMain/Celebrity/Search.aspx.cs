@@ -54,7 +54,7 @@ namespace WebForMain.Celebrity
             }
             else if (!m_dt.Rows[i]["photo"].ToString().Contains("//"))
             {
-                m_dt.Rows[i]["photo"] = "../WebResources/FamousPhoto/" + m_dt.Rows[i]["photo"];
+                m_dt.Rows[i]["photo"] = AppCmn.AppConfig.WebResourcesPath() + "FamousPhoto/" + m_dt.Rows[i]["photo"];
             }
             m_dt.Rows[i]["Description"] = CommonTools.CutStr(CommonTools.NoHTML(m_dt.Rows[i]["Description"].ToString()), 150);
         }

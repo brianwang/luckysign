@@ -49,7 +49,7 @@ namespace WebForMain.Qin
                 if (m_dt.Rows[i]["ToSysNo"].ToString() == GetSession().CustomerEntity.SysNo.ToString())
                 {
                     m_dt.Rows[i]["msgcontent"] = @"<div class='page_box_l'>
-                <img src='../WebResources/" + m_dt.Rows[i]["FromPhoto"].ToString() + @"' /></div>
+                <img src='" + AppCmn.AppConfig.WebResourcesPath() + m_dt.Rows[i]["FromPhoto"].ToString() + @"' /></div>
             <div class='page_box_r'>
                 <div class='page_corner'>
                 </div>

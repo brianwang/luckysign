@@ -27,9 +27,9 @@
                             </div>
                             
                             <div class="index_new_ask_rank">
-                                <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder3" runat="server" OnClick="Unnamed7_Click">悬赏金额<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder3" runat="server" OnClick="Unnamed7_Click">悬赏金额<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
                             </div>
                             <div class="clear"></div>
                             
@@ -44,7 +44,7 @@
                                                 <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
                                                     发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
-                                                    <img src="../WebResources/img/new/ico1.jpg" align="absmiddle" />
+                                                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>
                                                 <asp:Panel ID="Panel1" runat="server" CssClass="index_left_new_reply">
@@ -57,7 +57,7 @@
                                                 <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
                                                     发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
-                                                    <img src="../WebResources/img/new/ico1.jpg" align="absmiddle" />
+                                                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>
                                                 <asp:Panel ID="Panel1" runat="server" CssClass="index_left_new_reply">

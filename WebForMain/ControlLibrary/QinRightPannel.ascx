@@ -18,7 +18,7 @@
                             <asp:Repeater ID="rptIcon" runat="server">
                                 <ItemTemplate>
                                     <li>
-                                        <img src='../WebResources/img/Medal/<%#Eval("MedalSysNo")%>.gif' width="22" height="23" alt="<%#Eval("MedalName")%>"  /></li>
+                                        <img src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/Medal/<%#Eval("MedalSysNo")%>.gif' width="22" height="23" alt="<%#Eval("MedalName")%>"  /></li>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </ul>

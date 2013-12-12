@@ -61,7 +61,7 @@
             </asp:Repeater>
             <div class="side_banner">
                 <a href="#" target="_blank">
-                    <img src="../WebResources/IMAGES/banner_01.jpg" width="242" height="191" /></a>
+                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/banner_01.jpg" width="242" height="191" /></a>
             </div>
             <div class="tabs tabs2">
                 <a href="javascript:void(0)" title="最新" class="on">最新</a> <a href="javascript:void(0)"
@@ -112,5 +112,5 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-<script language="javascript" src="../WebResources/JS/comm.js" type="text/javascript"></script>
+<script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/comm.js" type="text/javascript"></script>
 </asp:Content>

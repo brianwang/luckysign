@@ -96,7 +96,7 @@ namespace WebForMain.ControlLibrary
                         _datalist.Rows[i]["TitleShow"] = @"<a href=""../Atricle/Content.aspx?id=" + _datalist.Rows[i]["ArticleSysNo"].ToString() + @""">" + _datalist.Rows[i]["Title"].ToString() + "</a>";
                         _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Description"].ToString();
                         _datalist.Rows[i]["ReadShow"] = @"<a href=""../Atricle/Content.aspx?id=" + _datalist.Rows[i]["ArticleSysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />阅读(" + _datalist.Rows[i]["ReadCount"].ToString() + ")</a>";
+                            <img src="""+AppCmn.AppConfig.WebResourcesPath() +@"img/page/read.gif"" align=""absmiddle"" />阅读(" + _datalist.Rows[i]["ReadCount"].ToString() + ")</a>";
                         _datalist.Rows[i]["CommentShow"] = @"";
                     }
                     break;
@@ -106,7 +106,7 @@ namespace WebForMain.ControlLibrary
                         _datalist.Rows[i]["TitleShow"] = _datalist.Rows[i]["Name"].ToString();
                         _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Detail"].ToString(); ;
                         _datalist.Rows[i]["ReadShow"] = @"<a href=""javascript:void(0)"" onclick=""javascript:var chart = document.getElementById('chartdiv" + i + @"');if(chart.style.display == '') chart.style.display = 'none'; else chart.style.display = '';"">
-                            <img id='showpic" + i + @"' src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />命盘</a>";
+                            <img id='showpic" + i + @"' src="""+AppCmn.AppConfig.WebResourcesPath() +@"img/page/read.gif"" align=""absmiddle"" />命盘</a>";
                         _datalist.Rows[i]["CommentShow"] = @"";
                         _datalist.Rows[i]["PhotoID"] = @"photoid" + i + @""" style=""display:none;";
                         _datalist.Rows[i]["PersonID"] = @"personid" + i + @""" style=""display:none;";
@@ -121,7 +121,7 @@ namespace WebForMain.ControlLibrary
                         _datalist.Rows[i]["TitleShow"] = @"<a href=""../Famous/Detail.aspx?id=" + CommonTools.Encode(_datalist.Rows[i]["RefSysNo"].ToString()) + @""">" + _datalist.Rows[i]["FamousName"].ToString() + "</a>";
                         _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Description"].ToString();
                         _datalist.Rows[i]["ReadShow"] = @"<a href=""../Famous/Detail.aspx?id=" + CommonTools.Encode(_datalist.Rows[i]["RefSysNo"].ToString()) + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />关注度(" + _datalist.Rows[i]["CollectCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />关注度(" + _datalist.Rows[i]["CollectCount"].ToString() + ")</a>";
                         _datalist.Rows[i]["CommentShow"] = @"";
                     }
                     break;
@@ -143,7 +143,7 @@ namespace WebForMain.ControlLibrary
                         _datalist.Rows[i]["TitleShow"] = @"<a href=""../Quest/Question.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">" + _datalist.Rows[i]["Title"].ToString() + "</a>";
                         _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Context"].ToString();
                         _datalist.Rows[i]["ReadShow"] = @"<a href=""../Quest/Question.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />悬赏(" + _datalist.Rows[i]["Award"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />悬赏(" + _datalist.Rows[i]["Award"].ToString() + ")</a>";
                         _datalist.Rows[i]["CommentShow"] = @"<a href=""../Quest/Question.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">回复(" + _datalist.Rows[i]["ReplyCount"].ToString() + ")</a>";
                     }
                     break;
@@ -157,14 +157,14 @@ namespace WebForMain.ControlLibrary
                                 _datalist.Rows[i]["TitleShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">" + _datalist.Rows[i]["Title"].ToString() + "</a>";
                                 _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Context"].ToString();
                                 _datalist.Rows[i]["ReadShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
                                 _datalist.Rows[i]["CommentShow"] = @"";
                                 break;
                             case (int)AppEnum.BlogArticleType.Chart:
                                 _datalist.Rows[i]["TitleShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">" + _datalist.Rows[i]["Title"].ToString() + "</a>";
                                 _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Context"].ToString();
                                 _datalist.Rows[i]["ReadShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
                                 _datalist.Rows[i]["CommentShow"] = @"";
                                 rptCombo.ItemDataBound += new RepeaterItemEventHandler(rptCombo_ItemDataBound);
                                 break;
@@ -176,12 +176,12 @@ namespace WebForMain.ControlLibrary
                                     if (tmp != "")
                                     {
                                         string lastname = tmp.Substring(tmp.LastIndexOf(".") + 1);
-                                        _datalist.Rows[i]["ContentShow"] += @"<a href=""" + tmp + @""" target='_blank'><img src=""../WebResources/" + GetFileIcon(lastname) + @""" /></a>";
+                                        _datalist.Rows[i]["ContentShow"] += @"<a href=""" + tmp + @""" target='_blank'><img src=""<%=AppCmn.AppConfig.WebResourcesPath() %>" + GetFileIcon(lastname) + @""" /></a>";
                                     }
                                 }
                                 _datalist.Rows[i]["ContentShow"] += "<br />" + _datalist.Rows[i]["Context"].ToString();
                                 _datalist.Rows[i]["ReadShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
                                 _datalist.Rows[i]["CommentShow"] = @"";
                                 break;
                             case (int)AppEnum.BlogArticleType.Link:
@@ -189,7 +189,7 @@ namespace WebForMain.ControlLibrary
                                 _datalist.Rows[i]["ContentShow"] = @"<a href=""" + _datalist.Rows[i]["TargetUrl"].ToString() + @""" target='_blank'>"
                                     + _datalist.Rows[i]["TargetUrl"].ToString() + "</a><br />" + _datalist.Rows[i]["Context"].ToString();
                                 _datalist.Rows[i]["ReadShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
                                 _datalist.Rows[i]["CommentShow"] = @"";
                                 break;
                             case (int)AppEnum.BlogArticleType.Picture:
@@ -198,7 +198,7 @@ namespace WebForMain.ControlLibrary
                             <img src=""" + _datalist.Rows[i]["TargetUrl"].ToString() + @""" /></div>";
                                 _datalist.Rows[i]["ContentShow"] = _datalist.Rows[i]["Context"].ToString();
                                 _datalist.Rows[i]["ReadShow"] = @"<a href=""Atricle.aspx?id=" + _datalist.Rows[i]["SysNo"].ToString() + @""">
-                            <img src=""../WebResources/img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
+                            <img src=""" + AppCmn.AppConfig.WebResourcesPath() + @"img/page/read.gif"" align=""absmiddle"" />评论(" + _datalist.Rows[i]["CommentCount"].ToString() + ")</a>";
                                 _datalist.Rows[i]["CommentShow"] = @"";
                                 break;
                         }
