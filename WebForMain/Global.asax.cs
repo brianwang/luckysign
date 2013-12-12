@@ -69,7 +69,7 @@ namespace WebForMain
                 new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "id", @"[^/]*" }, { "pn", @"\d*" } }
             );
-
+            routes.MapPageRoute("煮酒论命帖子列表",
             routes.MapPageRoute("象牙塔分类列表",
                "Article/{cate}/{key}/{pn}",
                "~/Article/Index.aspx",

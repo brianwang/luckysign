@@ -10,7 +10,7 @@
     <meta content="aaaa" name="keywords" />
     <meta content="bbbb" name="description" />
 
-    <link href="../WebResources/CSS/page.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/page.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -133,6 +133,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-    <%--<script language="javascript" src="../WebResources/JS/addition.js" type="text/javascript"></script>--%>
-    <script language="javascript" src="../WebResources/JS/comm.js" type="text/javascript"></script>
+    <%--<script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/addition.js" type="text/javascript"></script>--%>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/comm.js" type="text/javascript"></script>
 </asp:Content>

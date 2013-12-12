@@ -261,7 +261,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-    <script language="javascript" src="../WebResources/JS/addition.js" type="text/javascript"></script>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/addition.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         /*首页广告效果*/

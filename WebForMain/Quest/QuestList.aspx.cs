@@ -37,6 +37,10 @@ namespace WebForMain.Quest
                     catch
                     { }
                 }
+                if (Page.RouteData.Values["pn"] != null)
+                {
+                    pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
+                }
 
                 ViewState["order"] = "timedown";
                 lkbOrder1.CssClass = "current";
@@ -169,6 +173,10 @@ namespace WebForMain.Quest
                 {
                     Response.Redirect("../Error.aspx?msg=请从正常入口进入");
                 }
+            }
+            else if(Page.RouteData.Values["cate"]!=null)
+            {
+                cate = int.Parse(Page.RouteData.Values["cate"].ToString());
             }
             else
             {

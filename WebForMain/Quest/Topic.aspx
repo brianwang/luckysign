@@ -19,7 +19,7 @@
             background-color: black;
         }
     </style>
-    <link href="../WebResources/CSS/page.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/page.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager runat="server">
@@ -87,12 +87,12 @@
                                                     <span class="xz">
                                                         <asp:Repeater ID="Repeater4" runat="server">
                                                             <ItemTemplate>
-                                                                <img src='../WebResources/img/Medal/<%#Eval("MedalSysNo")%>.gif' width="22" height="23" alt="<%#Eval("MedalName")%>"  />
+                                                                <img src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/Medal/<%#Eval("MedalSysNo")%>.gif' width="22" height="23" alt="<%#Eval("MedalName")%>"  />
                                                             </ItemTemplate>
                                                         </asp:Repeater>
                                                         <div class="clear"></div>
                                                     </span>
-                                                    <%#Eval("Award").ToString()=="0"?"" : @"<span class=""xs""><img src=""../WebResources/img/paipan/xz2.gif"" /><br />+"+Eval("Award")+"ÁéÇ©</span>"%>
+                                                    <%#Eval("Award").ToString()=="0"?"" : @"<span class=""xs""><img src=""<%=AppCmn.AppConfig.WebResourcesPath() %>img/paipan/xz2.gif"" /><br />+"+Eval("Award")+"ÁéÇ©</span>"%>
                                                     <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="xs_a" CommandArgument='<%#Eval("SysNo")%>'
                                                         CommandName="Award">ÐüÉÍ¸øTa</asp:LinkButton>--%>
                                                 </div>
@@ -151,7 +151,7 @@
                 <div class="mr_form" style="background: #F7F4EE; padding: 18px; position: relative">
                     <div id="nologin" runat="server" style="display: none;" class="mr_form_tip">·¢Ìû»Ø´ð£¬ÇëÏÈ<asp:LinkButton ID="LinkButton3" OnClick="LinkButton3_Click" runat="server">µÇÂ¼</asp:LinkButton><span>|</span><asp:LinkButton ID="LinkButton4" OnClick="LinkButton4_Click" runat="server">×¢²á</asp:LinkButton></div>
                     <div class="mr_form_l">
-                        <asp:Image ID="Image2" runat="server" ImageUrl="../WebResources/Images/tx_03.jpg" />
+                        <asp:Image ID="Image2" runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>Images/tx_03.jpg" />
                     </div>
                     <div class="mr_form_r">
                         <asp:TextBox ID="txtReply2" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -209,8 +209,8 @@
     <uc1:Login ID="Login1" runat="server"></uc1:Login>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-   <%-- <script language="javascript" src="../WebResources/JS/addition.js" type="text/javascript"></script>--%>
-    <script language="javascript" src="../WebResources/JS/comm.js" type="text/javascript"></script>
+   <%-- <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/addition.js" type="text/javascript"></script>--%>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/comm.js" type="text/javascript"></script>
     <script type="text/javascript">
         function showreply(input) {
             if (document.getElementById('<%=IsLogined.ClientID%>').value == 'TRUE') {

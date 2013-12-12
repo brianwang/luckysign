@@ -23,7 +23,7 @@
                             <ItemTemplate>
                                 <li style='<%#Eval("style")%>'>
                                     <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
-                                        <img src='../WebResources/img/CatePic/<%#Eval("Pic")%>' alt='<%#Eval("Name")%>' /></a>
+                                        <img src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/CatePic/<%#Eval("Pic")%>' alt='<%#Eval("Name")%>' /></a>
                                     <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%>£¨<%#Eval("NewCount")%>£©</a>
                                     <%#Eval("Intro")%>
                                 </li>
@@ -75,7 +75,7 @@
                                 <li>
                                     <div class="zjlm_img">
                                         <a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
-                                            <img alt='<%#Eval("Name")%>' src='../WebResources/img/CatePic/<%#Eval("Pic")%>' /></a>
+                                            <img alt='<%#Eval("Name")%>' src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/CatePic/<%#Eval("Pic")%>' /></a>
                                     </div>
                                     <div class="zjlm_img_r">
                                         <div class="zjlm_img_r_item"><a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%></a></div>
@@ -147,6 +147,6 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-    <script type="text/javascript" src="../WebResources/JS/jquery.pngFix.pack.js"></script>
-    <script type="text/javascript" src="../WebResources/JS/new.js"></script>
+    <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/jquery.pngFix.pack.js"></script>
+    <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/new.js"></script>
 </asp:Content>

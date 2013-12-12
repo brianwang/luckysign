@@ -8,9 +8,9 @@
     <title>占星骰子在线测算_上上签</title>
     <meta name="keywords" content="上上签_占星骰子_占星色子_占星头子_占星投子_占星骰子网络版_占星色子网络版_占星骰子在线测算" />
     <meta name="description" content="占星骰子第一站，上上签命理网提供专业的网络版占星骰子，专业占卜师在线解答，还有各类占星骰子学习资料。" />
-    <link href="../WebResources/AstroDice/common.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>AstroDice/common.css" rel="stylesheet" type="text/css" />
     <!--[if IE 6]>
-<script type="text/javascript" src="../WebResources/AstroDice/DD_belatedPNG.js"></script>
+<script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>AstroDice/DD_belatedPNG.js"></script>
 <script type="text/javascript">DD_belatedPNG.fix('.box3_item a.on');</script>
 <![endif]-->
     <script type="text/javascript">
@@ -71,11 +71,11 @@
                     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="480" height="510" id="astro dice1" align="middle">
                         <param name="allowScriptAccess" value="sameDomain" />
                         <param name="allowFullScreen" value="false" />
-                        <param name="movie" value="../WebResources/AstroDice/astro dice 480 510 1.swf" />
+                        <param name="movie" value="<%=AppCmn.AppConfig.WebResourcesPath() %>AstroDice/astro dice 480 510 1.swf" />
                         <param name="quality" value="high" />
                         <param name="bgcolor" value="#0A1D47" />
                         <param name="wmode" value="opaque" />
-                        <embed src="../WebResources/AstroDice/astro dice 480 510 1.swf" quality="high" bgcolor="#0A1D47" width="480" height="510" name="astro dice" align="middle" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                        <embed src="<%=AppCmn.AppConfig.WebResourcesPath() %>AstroDice/astro dice 480 510 1.swf" quality="high" bgcolor="#0A1D47" width="480" height="510" name="astro dice" align="middle" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
                     </object>
 
 

@@ -28,7 +28,7 @@
             <ItemTemplate>
                 <div class="page_box">
                     <div class="page_box_l">
-                        <img src="../WebResources/img/index_pic.jpg" /></div>
+                        <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/index_pic.jpg" /></div>
                     <div class="page_box_r">
                         <div class="page_corner">
                         </div>

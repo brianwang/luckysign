@@ -27,9 +27,9 @@
                             </div>
                             
                             <div class="index_new_ask_rank">
-                                <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder3" runat="server" Style="display: none;" OnClick="Unnamed7_Click">悬赏金额<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
-                                <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="../WebResources/img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder1" runat="server" OnClick="Unnamed5_Click" CssClass="current">发布时间<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder3" runat="server" Style="display: none;" OnClick="Unnamed7_Click">悬赏金额<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
+                                <asp:LinkButton ID="lkbOrder2" runat="server" OnClick="Unnamed6_Click">回复数<img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/down.jpg"  align="absmiddle"/></asp:LinkButton>
                             </div>
                             <div class="clear"></div>
                             

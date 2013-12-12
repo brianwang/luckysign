@@ -50,11 +50,11 @@ namespace AppCmn
         #region URL地址
         public static string WebResourcesPath()
         {
-             return ConfigurationManager.AppSettings["ImageFolderPath"]; 
+            return ConfigurationManager.AppSettings["WebResourcesPath"]; //网络地址
         }
         public static string WebResourcesFolderPath()
         {
-            return ConfigurationManager.AppSettings["WebResourcesFolderPath"];
+            return ConfigurationManager.AppSettings["WebResourcesFolderPath"];//硬盘位置
         }
         public static string AdvFolderPath
         {

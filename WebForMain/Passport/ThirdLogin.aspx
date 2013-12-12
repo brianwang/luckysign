@@ -64,14 +64,14 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-        <script src="../WebResources/JS/formValidator-4.0.1.min.js" type="text/javascript"
+        <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/formValidator-4.0.1.min.js" type="text/javascript"
         charset="UTF-8"></script>
 
-    <script src="../WebResources/JS/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
 
-    <script language="javascript" src="../WebResources/JS/DateTimeMask.js" type="text/javascript"></script>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/DateTimeMask.js" type="text/javascript"></script>
 
-    <script language="javascript" src="../WebResources/JS/comm.js" type="text/javascript"></script>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/comm.js" type="text/javascript"></script>
 
-    <script language="javascript" src="../WebResources/JS/addition.js" type="text/javascript"></script>
+    <script language="javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/addition.js" type="text/javascript"></script>
 </asp:Content>

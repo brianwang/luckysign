@@ -105,7 +105,7 @@ namespace WebForMain.Celebrity
             }
             else if (!this.m_famous.Photo.Contains("//"))
             {
-                this.m_famous.Photo = "../WebResources/FamousPhoto/" + this.m_famous.Photo;
+                this.m_famous.Photo = "<%=AppCmn.AppConfig.WebResourcesPath() %>FamousPhoto/" + this.m_famous.Photo;
             }
             this.DataBind();
         }

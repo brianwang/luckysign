@@ -21,7 +21,7 @@
         #bar {
             width: 211px;
             height: 18px;
-            background-image: url("../WebResources/img/track.gif");
+            background-image: url("<%=AppCmn.AppConfig.WebResourcesPath() %>img/track.gif");
             background-repeat: no-repeat;
             position: relative;
         }
@@ -29,7 +29,7 @@
         .child {
             width: 11px;
             height: 16px;
-            background-image: url("../WebResources/img/grip.gif");
+            background-image: url("<%=AppCmn.AppConfig.WebResourcesPath() %>img/grip.gif");
             background-repeat: no-repeat;
             left: 0;
             top: 2px;
@@ -410,7 +410,7 @@
                                 <table>
                                     <tr>
                                         <td id="Min">
-                                            <img alt="缩小" src="../WebResources/img/_c.gif" onmouseover="this.src='../WebResources/img/_c.gif';" onmouseout="this.src='../WebResources/img/_h.gif';" id="moresmall" class="smallbig" />
+                                            <img alt="缩小" src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/_c.gif" onmouseover="this.src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/_c.gif';" onmouseout="this.src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/_h.gif';" id="moresmall" class="smallbig" />
                                         </td>
                                         <td>
                                             <div id="bar">
@@ -419,7 +419,7 @@
                                             </div>
                                         </td>
                                         <td id="Max">
-                                            <img alt="放大" src="../WebResources/img/c.gif" onmouseover="this.src='../WebResources/img/c.gif';" onmouseout="this.src='../WebResources/img/h.gif';" id="morebig" class="smallbig" />
+                                            <img alt="放大" src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/c.gif" onmouseover="this.src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/c.gif';" onmouseout="this.src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/h.gif';" id="morebig" class="smallbig" />
                                         </td>
                                     </tr>
                                 </table>
@@ -478,6 +478,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-    <script type="text/javascript" src="../WebResources/js/jquery/jquery-ui-1.9.2.min.js"></script>
-    <script type="text/javascript" src="../WebResources/js/CutPic.js"></script>
+    <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>js/jquery/jquery-ui-1.9.2.min.js"></script>
+    <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>js/CutPic.js"></script>
 </asp:Content>
