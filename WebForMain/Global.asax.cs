@@ -55,18 +55,22 @@ namespace WebForMain
                 new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
             );
 
+            routes.MapPageRoute("名人库",
+               "Celebrity",
+               "~/Celebrity/Search.aspx",
+               false);
             routes.MapPageRoute("名人库标签",
                "Celebrity/{key}",
                "~/Celebrity/Search.aspx",
                false,
-                new RouteValueDictionary { { "key", "" } },
+                new RouteValueDictionary { },
                 new RouteValueDictionary { { "key", @"\d*" } }
             );
             routes.MapPageRoute("名人库搜索",
                "Celebrity/{keyword}",
                "~/Celebrity/Search.aspx",
                false,
-                new RouteValueDictionary { { "keyword", "" } },
+                new RouteValueDictionary { },
                 new RouteValueDictionary { { "keyword", @"[^/]*" } }
             );
             routes.MapPageRoute("名人库详细",

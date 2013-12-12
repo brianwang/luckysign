@@ -28,6 +28,10 @@ namespace WebForMain.Quest
                 {
                     search = Server.HtmlEncode(Request.QueryString["key"]);
                 }
+                else if (Page.RouteData.Values["key"] != null && Page.RouteData.Values["key"].ToString() != "")
+                {
+                    search = Server.HtmlEncode(Page.RouteData.Values["key"].ToString());
+                }
                 if (Request.QueryString["pn"] != null)
                 {
                     try
@@ -37,9 +41,14 @@ namespace WebForMain.Quest
                     catch
                     { }
                 }
-                if (Page.RouteData.Values["pn"] != null)
+                else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
                 {
-                    pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
+                    try
+                    {
+                        pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
+                    }
+                    catch
+                    { }
                 }
 
                 ViewState["order"] = "timedown";
@@ -171,19 +180,26 @@ namespace WebForMain.Quest
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx?msg=请从正常入口进入");
+                    ShowError("请从正常入口进入");
                 }
             }
-            else if(Page.RouteData.Values["cate"]!=null)
+            else if (Page.RouteData.Values["cate"] != null && Page.RouteData.Values["cate"].ToString()!="")
             {
-                cate = int.Parse(Page.RouteData.Values["cate"].ToString());
+                try
+                {
+                    cate = int.Parse(Page.RouteData.Values["cate"].ToString());
+                }
+                catch
+                {
+                    ShowError("请从正常入口进入");
+                }
             }
             else
             {
-                Response.Redirect("../Error.aspx?msg=请从正常入口进入");
+                ShowError("请从正常入口进入");
             }
             QA_CategoryMod m_cate = QA_CategoryBll.GetInstance().GetModel(cate);
-            ltrNav.Text = @"<a href=""../"">首页</a> > <a href=""Index.aspx"">煮酒论命</a> > <span>" + QA_CategoryBll.GetInstance().GetModel(m_cate.TopSysNo).Name + "</span> > <span>" + m_cate.Name + "</span>";
+            ltrNav.Text = @"<a href=""" + AppConfig.HomeUrl() + @""">首页</a> > <a href=""" + AppConfig.HomeUrl() + @"Quest/"">煮酒论命</a> > <span>" + QA_CategoryBll.GetInstance().GetModel(m_cate.TopSysNo).Name + "</span> > <span>" + m_cate.Name + "</span>";
             ltrCateName.Text = m_cate.Name;
             string search = "";
             //if (txtName.Trim() != "寻找你感兴趣的咨询话题")
@@ -256,7 +272,7 @@ namespace WebForMain.Quest
             rptQuestion.DataSource = m_dt;
             rptQuestion.DataBind();
 
-            Pager1.url = "Index.aspx?key=" + search.Trim() + "&cate=" + Request.QueryString["cate"] + "&order=" + Request.QueryString["order"] + "&pn=";
+            Pager1.url = AppConfig.HomeUrl()+@"QuestList/" + cate+"/"+ search.Trim() + "/";
             Pager1.totalrecord = total;
             if (total % AppConst.PageSize == 0)
             {
@@ -316,12 +332,12 @@ namespace WebForMain.Quest
                 Panel1.CssClass = "no_reply";
                 Image1.Visible = false;
                 Literal Literal1 = (Literal)e.Item.FindControl("Literal1");
-                Literal1.Text = @"<a target=""_blank"" href=""Question.aspx?id="+sysno+@""">还没人回复，快来抢个大沙发吧！</a>";
+                Literal1.Text = @"<a target=""_blank"" href="""+AppConfig.HomeUrl()+"Quest/Question/"+sysno+@""">还没人回复，快来抢个大沙发吧！</a>";
             }
             else
             {
                 Image Image1 = (Image)e.Item.FindControl("Image1");
-                Image1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_dt.Rows[choosen]["photo"].ToString();
+                Image1.ImageUrl = AppConfig.HomeUrl()+ "ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_dt.Rows[choosen]["photo"].ToString();
                 Literal Literal1 = (Literal)e.Item.FindControl("Literal1");
                 Literal1.Text = @"<span>" + m_dt.Rows[choosen]["NickName"].ToString() + @"回复：</span>" + AppCmn.CommonTools.CutStr(m_dt.Rows[choosen]["Context"].ToString(),85);
             }

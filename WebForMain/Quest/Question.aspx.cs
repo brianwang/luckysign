@@ -39,7 +39,7 @@ namespace WebForMain.Quest
                     ShowError("");
                 }
             }
-            else if (Page.RouteData.Values["id"] != null && Page.RouteData.Values["id"].ToString() == "")
+            else if (Page.RouteData.Values["id"] != null && Page.RouteData.Values["id"].ToString() != "")
             {
                 try
                 {
@@ -65,13 +65,11 @@ namespace WebForMain.Quest
                 catch
                 { }
             }
-            else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() == "")
+            else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
             {
                 try
                 {
-                    SysNo = int.Parse(Page.RouteData.Values["pn"].ToString());
-                    m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
-                    //DataBind();
+                    pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
                 }
                 catch
                 {
@@ -100,6 +98,7 @@ namespace WebForMain.Quest
                 IsLogined.Value = "TRUE";
             }
             #endregion
+            Right1.showsearch = false;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "SetDocument", "SetDocument();", true);
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SetDocument", "SetDocument();", true);
 

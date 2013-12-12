@@ -89,7 +89,7 @@ namespace WebForMain.Celebrity
             if ((base.Request.QueryString["key"] != null) || (base.Request.QueryString["keyword"] != null)||
                 Page.RouteData.Values["key"] != null || Page.RouteData.Values["keyword"] != null)
             {
-                if (base.Request.QueryString["key"] != null)
+                if (base.Request.QueryString["key"] != null && base.Request.QueryString["key"] != "")
                 {
                     try
                     {
@@ -111,7 +111,7 @@ namespace WebForMain.Celebrity
                         ShowError("");
                     }
                 }
-                else if (base.Request.QueryString["keyword"] != "")
+                else if (base.Request.QueryString["keyword"] != null && base.Request.QueryString["keyword"]!="")
                 {
                     this.txtKeyword.Text = base.Server.HtmlEncode(base.Request.QueryString["keyword"]);
                 }

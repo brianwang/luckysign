@@ -20,7 +20,7 @@
                         <div class="index_new_ask_t" style="padding: 0px">
                             <div class="index_new_ask_button">
                                 <%--<a href="Ask.aspx" target="_blank" style="background: #779058">我要求测</a>--%>
-                                <a href="Talk.aspx" target="_blank" style="background: #6D8690">发起讨论</a>
+                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Talk" target="_blank" style="background: #6D8690">发起讨论</a>
                             </div>
                             <div class="index_new_ask_position">
                                 <asp:Literal ID="ltrNav" runat="server"></asp:Literal>
@@ -44,7 +44,7 @@
                                                 <div class="index_left_new_msgnum"><%#Eval("ReplyCount")%></div>
                                                 <div class="index_left_new_msgbox">
                                                     <span class="msgtime"><a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>  |  <%#Eval("DateShow")%></span>
-                                                    <h3><a href='Topic.aspx?id=<%#Eval("SysNo")%>'><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),30)%></a> <%--<img src="WebResources/img/new/jing.gif" align="absmiddle" /> <img src="WebResources/img/new/ding.gif" align="absmiddle" />--%></h3>
+                                                    <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Topic/<%#Eval("SysNo")%>'><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),30)%></a> <%--<img src="WebResources/img/new/jing.gif" align="absmiddle" /> <img src="WebResources/img/new/ding.gif" align="absmiddle" />--%></h3>
                                                     <div class="clear"></div>
                                                     <div class="msgcontent">
                                                         <%#AppCmn.CommonTools.CutStr(Eval("Context").ToString(),50)%>
@@ -61,8 +61,8 @@
                                             <li class="odd">
                                                 <div class="index_left_new_msgnum"><%#Eval("ReplyCount")%></div>
                                                 <div class="index_left_new_msgbox">
-                                                    <span class="msgtime"><a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>  |  <%#Eval("DateShow")%></span>
-                                                    <h3><a href='Topic.aspx?id=<%#Eval("SysNo")%>'><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),30)%></a> <%--<img src="WebResources/img/new/jing.gif" align="absmiddle" /> <img src="WebResources/img/new/ding.gif" align="absmiddle" />--%></h3>
+                                                    <span class="msgtime"><a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>  |  <%#Eval("DateShow")%></span>
+                                                    <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Topic/<%#Eval("SysNo")%>'><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),30)%></a> <%--<img src="WebResources/img/new/jing.gif" align="absmiddle" /> <img src="WebResources/img/new/ding.gif" align="absmiddle" />--%></h3>
                                                     <div class="clear"></div>
                                                     <div class="msgcontent"><%#AppCmn.CommonTools.CutStr(Eval("Context").ToString(),50)%></div>
                                                 </div>

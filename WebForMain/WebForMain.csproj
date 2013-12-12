@@ -66,9 +66,6 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="URLRewriter">
-      <HintPath>..\BaseAssemblies\URLRewriter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\HelpCenter.aspx" />
@@ -205,6 +202,11 @@
     <Content Include="WebResources\img\CatePic\i4.jpg" />
     <Content Include="WebResources\img\CatePic\i5.jpg" />
     <Content Include="WebResources\img\CatePic\pp1.jpg" />
+    <Content Include="WebResources\img\CatePic\pp2.jpg" />
+    <Content Include="WebResources\img\CatePic\pp3.jpg" />
+    <Content Include="WebResources\img\CatePic\pp4.jpg" />
+    <Content Include="WebResources\img\CatePic\pp5.jpg" />
+    <Content Include="WebResources\img\CatePic\pp6.jpg" />
     <Content Include="WebResources\img\grip.gif" />
     <Content Include="WebResources\img\h.gif" />
     <Content Include="WebResources\img\ico.gif" />
@@ -221,9 +223,17 @@
     <Content Include="WebResources\img\new\down.jpg" />
     <Content Include="WebResources\img\new\down_arrow.gif" />
     <Content Include="WebResources\img\new\ico1.jpg" />
+    <Content Include="WebResources\img\new\ico10.gif" />
+    <Content Include="WebResources\img\new\ico11.gif" />
+    <Content Include="WebResources\img\new\ico12.gif" />
+    <Content Include="WebResources\img\new\ico13.gif" />
+    <Content Include="WebResources\img\new\ico14.gif" />
     <Content Include="WebResources\img\new\ico3.gif" />
     <Content Include="WebResources\img\new\ico4.gif" />
+    <Content Include="WebResources\img\new\ico5.gif" />
+    <Content Include="WebResources\img\new\ico6.gif" />
     <Content Include="WebResources\img\new\ico7.gif" />
+    <Content Include="WebResources\img\new\ico9.gif" />
     <Content Include="WebResources\img\new\icon21.gif" />
     <Content Include="WebResources\img\new\icon29.gif" />
     <Content Include="WebResources\img\new\icon3.gif" />

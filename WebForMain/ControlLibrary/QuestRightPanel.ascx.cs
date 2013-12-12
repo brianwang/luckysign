@@ -18,14 +18,29 @@ namespace WebForMain.ControlLibrary
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["key"] != null)
-                {
-                    txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
-                }
+            {
+                txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
+            }
+            else if (Page.RouteData.Values["key"] != null && Page.RouteData.Values["key"].ToString() != "")
+            {
+                txtName.Text = Server.HtmlEncode(Page.RouteData.Values["key"].ToString());
+            }
             if (Request.QueryString["cate"] != null)
             {
                 try
                 {
                     cate = int.Parse(Request.QueryString["cate"]);
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            else if (Page.RouteData.Values["cate"] != null && Page.RouteData.Values["cate"].ToString() != "")
+            {
+                try
+                {
+                    cate = int.Parse(Page.RouteData.Values["cate"].ToString());
                 }
                 catch
                 {
@@ -56,10 +71,22 @@ namespace WebForMain.ControlLibrary
                         i--;
                     }
                 }
-                    rptCateMain.DataSource = m_dt;
+                rptCateMain.DataSource = m_dt;
                 rptCateMain.DataBind();
                 BindStars();
+
                 
+            }
+        }
+
+        public bool showsearch 
+        {
+            set
+            {
+                if (!value)
+                {
+                    searchdiv.Style["display"] = "none";
+                }
             }
         }
 
@@ -105,9 +132,9 @@ namespace WebForMain.ControlLibrary
                     }
 
                     dt.Rows[i]["selected"] = "s" + i;
-                    if (Request.QueryString["cate"] != null)
+                    if (cate != 0)
                     {
-                        if (Request.QueryString["cate"] == dt.Rows[i]["SysNo"].ToString())
+                        if (cate.ToString() == dt.Rows[i]["SysNo"].ToString())
                         {
                             dt.Rows[i]["selected"] = "s" + i + "' style='text-decoration:underline;";
                         }
@@ -121,11 +148,11 @@ namespace WebForMain.ControlLibrary
         protected void BindStars()
         {
             //int count = 5;
-            if (Request.QueryString["cate"] != null)
+            if (cate != 0)
             {
                 try
                 {
-                    DataTable m_dt = REL_Customer_CategoryBll.GetInstance().GetListByCate(int.Parse(Request.QueryString["cate"]), (int)AppEnum.CategoryType.QA);
+                    DataTable m_dt = REL_Customer_CategoryBll.GetInstance().GetListByCate(cate, (int)AppEnum.CategoryType.QA);
                     //DataTable m_dt = QA_StarBll.GetInstance().GetStarsList(count, 0);
                     for (int i = 0; i < m_dt.Rows.Count; i++)
                     {
@@ -141,13 +168,13 @@ namespace WebForMain.ControlLibrary
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            if(Request.Url.ToString().Contains("?"))
+            if(Request.Url.ToString().ToLower().Contains("talk"))
             {
-                Response.Redirect(Request.Url + "&key=" + txtName.Text.Trim());
+                Response.Redirect(AppConfig.HomeUrl()+"Quest/TalkList/" +cate+ "/" + txtName.Text.Trim());
             }
             else
             {
-                Response.Redirect(Request.Url + "?key=" + txtName.Text.Trim());
+                Response.Redirect(AppConfig.HomeUrl() + "Quest/QuestList/" + cate + "/" + txtName.Text.Trim());
             }
         }
 

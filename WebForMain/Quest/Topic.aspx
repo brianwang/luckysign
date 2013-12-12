@@ -92,7 +92,7 @@
                                                         </asp:Repeater>
                                                         <div class="clear"></div>
                                                     </span>
-                                                    <%#Eval("Award").ToString()=="0"?"" : @"<span class=""xs""><img src=""<%=AppCmn.AppConfig.WebResourcesPath() %>img/paipan/xz2.gif"" /><br />+"+Eval("Award")+"¡È«©</span>"%>
+                                                    <%#Eval("Award").ToString()=="0"?"" : @"<span class=""xs""><img src="""+AppCmn.AppConfig.WebResourcesPath()+@"img/paipan/xz2.gif"" /><br />+"+Eval("Award")+"¡È«©</span>"%>
                                                     <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="xs_a" CommandArgument='<%#Eval("SysNo")%>'
                                                         CommandName="Award">–¸…Õ∏¯Ta</asp:LinkButton>--%>
                                                 </div>

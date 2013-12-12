@@ -28,8 +28,8 @@
                 </div>
                 <div class="page_head_r" id="manudiv" runat="server">
                     <div class="page_item">
-                        <a href="/" title="首页">首页</a><span>|</span> <a href="/Quest/Index.aspx" title="煮酒论命">煮酒论命</a><span>|</span> <a href="/Article/Index.aspx" title="象牙塔">象牙塔</a><%--<span>|</span> <a href="#" title="群组">群组</a>--%><span>|</span>
-                        <a href="/PPLive/Astro.aspx" title="在线排盘">在线排盘</a><span>|</span> <a href="/Celebrity/Search.aspx" title="名人库">名人库</a><span>|</span> <a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>
+                        <a href="/" title="首页">首页</a><span>|</span> <a href="/Quest" title="煮酒论命">煮酒论命</a><span>|</span> <a href="/Article" title="象牙塔">象牙塔</a><%--<span>|</span> <a href="#" title="群组">群组</a>--%><span>|</span>
+                        <a href="/PPLive/Astro.aspx" title="在线排盘">在线排盘</a><span>|</span> <a href="/Celebrity" title="名人库">名人库</a><span>|</span> <a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>
                     </div>
                     <div class="page_menu">
                         <a href="/Qin/View.aspx?id=<%=m_base.GetSession().CustomerEntity.SysNo %>" title="我的首页" class='<%=tab[0] %>'>我的首页</a> <a href="/Qin/MyCollection.aspx"

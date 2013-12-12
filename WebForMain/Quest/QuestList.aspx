@@ -19,7 +19,7 @@
                     <ContentTemplate>
                         <div class="index_new_ask_t" style="padding: 0px">
                             <div class="index_new_ask_button">
-                                <a href="Ask.aspx" target="_blank" style="background: #779058">我要求测</a>
+                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Ask" target="_blank" style="background: #779058">我要求测</a>
                                 <%--<a href="Talk.aspx" target="_blank" style="background: #6D8690">发起讨论</a>--%>
                             </div>
                             <div class="index_new_ask_position">
@@ -41,9 +41,9 @@
                                     <asp:Repeater ID="rptQuestion" runat="server" OnItemDataBound="rptQuestion_ItemDataBound">
                                         <ItemTemplate>
                                             <li <%# Container.ItemIndex==0?@"style=""padding-top:0px""":"" %>>
-                                                <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
+                                                <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
-                                                    发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
+                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
                                                     <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>
@@ -54,9 +54,9 @@
                                         </ItemTemplate>
                                         <AlternatingItemTemplate>
                                             <li class="odd">
-                                                <h3><a href='Question.aspx?id=<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
+                                                <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
-                                                    发布人：<a href='../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
+                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
                                                     <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>

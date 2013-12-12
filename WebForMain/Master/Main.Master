@@ -36,9 +36,9 @@
                     </div>
                 </div>
                 <div class="menu">
-                    <a href="/" title="首页" class='<%=tab[0] %>'>首页</a><span></span> <a href="/Quest/Index.aspx" title="煮酒论命" class='<%=tab[1] %>'>煮酒论命</a><span></span>
-                    <a href="/Article/Index.aspx" title="象牙塔" class='<%=tab[2] %>'>象牙塔</a><span></span> <%--<a href="#" title="群组" class='<%=tab[3] %>'>群组</a><span></span>--%>
-                    <a href="/PPLive/Astro.aspx" title="在线排盘" class='<%=tab[4] %>'>在线排盘</a><span></span> <a href="/Celebrity/Search.aspx" title="名人库" class='<%=tab[5] %>'>名人库</a>
+                    <a href="/" title="首页" class='<%=tab[0] %>'>首页</a><span></span> <a href="/Quest" title="煮酒论命" class='<%=tab[1] %>'>煮酒论命</a><span></span>
+                    <a href="/Article" title="象牙塔" class='<%=tab[2] %>'>象牙塔</a><span></span> <%--<a href="#" title="群组" class='<%=tab[3] %>'>群组</a><span></span>--%>
+                    <a href="/PPLive/Astro.aspx" title="在线排盘" class='<%=tab[4] %>'>在线排盘</a><span></span> <a href="/Celebrity" title="名人库" class='<%=tab[5] %>'>名人库</a>
                 </div>
             </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
