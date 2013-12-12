@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="ZiWeiChart.aspx.cs" Inherits="WebForMain.PPLive.ZiWeiChart" %>
 
-<%@ Register Src="../ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
 <%@ PreviousPageType VirtualPath="~/PPLive/ZiWei.aspx" %>
-<%@ Register Src="../ControlLibrary/ZiWeiForQuest.ascx" TagName="ZiWei" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/ZiWeiForQuest.ascx" TagName="ZiWei" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>紫薇斗数排盘-在线排盘-上上签</title>
 </asp:Content>

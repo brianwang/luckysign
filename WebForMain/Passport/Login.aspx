@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="Login.aspx.cs" Inherits="WebForMain.Passport.Login" %>
-<%@ Register Src="../ControlLibrary/PatnerLogin.ascx" TagName="PatnerLogin" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/PatnerLogin.ascx" TagName="PatnerLogin" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />

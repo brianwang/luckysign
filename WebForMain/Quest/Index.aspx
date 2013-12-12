@@ -11,7 +11,7 @@
             <!--免费求测-->
             <div class="zjlm_box" style="border-top: solid 2px #a4534b">
                 <div class="zjlm_box_t">
-                    <a href="Ask.aspx" target="_blank" class="zjlm_box_t_a" style="background: #779058">求解盘</a>
+                    <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Ask" target="_blank" class="zjlm_box_t_a" style="background: #779058">求解盘</a>
                     <h1>免费求测</h1>
                     免费求测咨询，供初学者或命理师研究学习，求测者有反馈义务。
                 </div>
@@ -22,9 +22,9 @@
                         <asp:Repeater ID="Repeater1" runat="server">
                             <ItemTemplate>
                                 <li style='<%#Eval("style")%>'>
-                                    <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
+                                    <a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/QuestList/<%#Eval("SysNo")%>' target="_blank">
                                         <img src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/CatePic/<%#Eval("Pic")%>' alt='<%#Eval("Name")%>' /></a>
-                                    <a href='QuestList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%>（<%#Eval("NewCount")%>）</a>
+                                    <a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/QuestList/<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%>（<%#Eval("NewCount")%>）</a>
                                     <%#Eval("Intro")%>
                                 </li>
                             </ItemTemplate>
@@ -63,7 +63,7 @@
             <!--学习讨论-->
             <div class="zjlm_box">
                 <div class="zjlm_box_t">
-                    <a href="Talk.aspx" target="_blank" class="zjlm_box_t_a" style="background: #6d8690">发新贴</a>
+                    <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Talk" target="_blank" class="zjlm_box_t_a" style="background: #6d8690">发新贴</a>
                     <h1>学习讨论</h1>
                     星座，占星，塔罗占卜，紫薇八字，一网打尽，发帖讨论，学习交友，娱乐灌水。
                 </div>
@@ -74,14 +74,14 @@
                             <ItemTemplate>
                                 <li>
                                     <div class="zjlm_img">
-                                        <a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank">
+                                        <a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/TalkList/<%#Eval("SysNo")%>' target="_blank">
                                             <img alt='<%#Eval("Name")%>' src='<%=AppCmn.AppConfig.WebResourcesPath() %>img/CatePic/<%#Eval("Pic")%>' /></a>
                                     </div>
                                     <div class="zjlm_img_r">
-                                        <div class="zjlm_img_r_item"><a href='TalkList.aspx?cate=<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%></a></div>
+                                        <div class="zjlm_img_r_item"><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/TalkList/<%#Eval("SysNo")%>' target="_blank"><%#Eval("Name")%></a></div>
                                         <div class="zjlm_img_r_num"><%#Eval("NewCount")%></div>
                                         <div class="clear"></div>
-                                        <div class="zjlm_img_r_name"><a href='Topic.aspx?id=<%#Eval("NewSysNo")%>' target="_blank"><%#Eval("NewTitle")%></a></div>
+                                        <div class="zjlm_img_r_name"><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Topic/<%#Eval("NewSysNo")%>' target="_blank"><%#Eval("NewTitle")%></a></div>
                                         <div class="zjlm_img_r_content"><%#AppCmn.CommonTools.CutStr(Eval("NewContext").ToString(),60)%></div>
                                         <div class="zjlm_img_r_time"><%#Eval("NewUser")%>     <%# DateTime.Parse(Eval("NewTime").ToString()).ToString("yyyy-MM-dd HH:mm") %></div>
                                     </div>
@@ -110,7 +110,7 @@
                     <ul>
                         <asp:Repeater ID="Repeater3" runat="server">
                             <ItemTemplate>
-                                <li><a href='Question.aspx?id=<%#Eval("SysNo")%>' target="_blank"><%#Eval("AnswerUser")%>：<%#AppCmn.CommonTools.CutStr(Eval("Answer").ToString(),25)%> || <%#Eval("NickName")%>：[<%#Eval("CateName")%>]<%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),15)%></a></li>
+                                <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question<%#Eval("SysNo")%>' target="_blank"><%#Eval("AnswerUser")%>：<%#AppCmn.CommonTools.CutStr(Eval("Answer").ToString(),25)%> || <%#Eval("NickName")%>：[<%#Eval("CateName")%>]<%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),15)%></a></li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>
@@ -125,7 +125,7 @@
                             <ItemTemplate>
                                 <asp:Repeater ID="Repeater5" runat="server">
                                     <ItemTemplate>
-                                        <li><a href='Topic.aspx?id=<%#Eval("SysNo")%>' target="_blank"><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),16)%></a></li>
+                                        <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Topic/<%#Eval("SysNo")%>' target="_blank"><%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),16)%></a></li>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </ItemTemplate>

@@ -6,7 +6,7 @@
     
     <ItemTemplate>
         <div class="page_right_box_info" style="background: none; padding-bottom: 0px">
-            <img src="../ControlLibrary/ShowPhoto.aspx?type=o&id=<%#Eval("Photo")%>" />
+            <img src="~/ControlLibrary/ShowPhoto.aspx?type=o&id=<%#Eval("Photo")%>" />
             <div class="page_right_box_info_r" style="width: 135px">
                 <a href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank"><%#Eval("NickName")%></a><br />
                 <%#Eval("Intro")%>

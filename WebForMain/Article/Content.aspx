@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="Content.aspx.cs" Inherits="WebForMain.Article.Content" %>
-
+<%@ Register Src="~/ControlLibrary/ArticleRightPanel.ascx" TagName="Right" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -40,72 +40,7 @@
                     <asp:Literal ID="ltrAft" runat="server"></asp:Literal><%--<strong>下一篇：</strong>婚身星--%></asp:HyperLink></div>
         </div>
         <div class="rightbox left">
-            <h2>
-                象牙塔</h2>
-            <asp:Repeater ID="rptCateMain" runat="server" OnItemDataBound="rptCateMain_ItemDataBound">
-                <ItemTemplate>
-                    <div class="sidebox">
-                        <div class="side_t">
-                            <%#Eval("Name")%></div>
-                        <ul>
-                            <asp:Repeater ID="rptCateSub" runat="server">
-                                <ItemTemplate>
-                                    <li class="icon<%#Eval("SysNo")%>"><a href='Index.aspx?cate=<%#Eval("SysNo")%>' title='<%#Eval("Name")%>'>
-                                        <%#Eval("Name")%></a></li></ItemTemplate>
-                            </asp:Repeater>
-                        </ul>
-                        <div class="clear">
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-            <div class="side_banner">
-                <a href="#" target="_blank">
-                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/banner_01.jpg" width="242" height="191" /></a>
-            </div>
-            <div class="tabs tabs2">
-                <a href="javascript:void(0)" title="最新" class="on">最新</a> <a href="javascript:void(0)"
-                    title="推荐">推荐</a> <a href="javascript:void(0)" title="热门">热门</a>
-            </div>
-            <div class="block show">
-                <asp:Repeater ID="rptNew" runat="server">
-                    <ItemTemplate>
-                        <div class="side_b">
-                            <h4>
-                                <a href="Content.aspx?id=<%#Eval("SysNo")%>" title="<%#Eval("title")%>">
-                                    <%#Eval("title")%></a></h4>
-                            <a href="Content.aspx?id=<%#Eval("SysNo")%>">
-                                <%#Eval("Description")%></a>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-            <div class="block">
-                <asp:Repeater ID="rptGood" runat="server">
-                    <ItemTemplate>
-                        <div class="side_b">
-                            <h4>
-                                <a href="Content.aspx?id=<%#Eval("SysNo")%>" title="<%#Eval("title")%>">
-                                    <%#Eval("title")%></a></h4>
-                            <a href="Content.aspx?id=<%#Eval("SysNo")%>">
-                                <%#Eval("Description")%></a>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-            <div class="block">
-                <asp:Repeater ID="rptHot" runat="server">
-                    <ItemTemplate>
-                        <div class="side_b">
-                            <h4>
-                                <a href="Content.aspx?id=<%#Eval("SysNo")%>" title="<%#Eval("title")%>">
-                                    <%#Eval("title")%></a></h4>
-                            <a href="Content.aspx?id=<%#Eval("SysNo")%>">
-                                <%#Eval("Description")%></a>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
+            <uc1:Right ID="Right1" runat="server"></uc1:Right>
         </div>
         <div class="clear">
         </div>

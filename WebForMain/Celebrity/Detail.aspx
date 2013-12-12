@@ -1,9 +1,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true" CodeBehind="Detail.aspx.cs" Inherits="WebForMain.Celebrity.Detail" %>
 
-<%@ Register Src="../ControlLibrary/AstroForQuest.ascx" TagName="Astro" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/BaZiForQuest.ascx" TagName="Bazi" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/ZiWeiForQuest.ascx" TagName="Ziwei" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/AstroForQuest.ascx" TagName="Astro" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/BaZiForQuest.ascx" TagName="Bazi" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/ZiWeiForQuest.ascx" TagName="Ziwei" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title><%=m_famous.Name%>_名人命盘库_上上签</title>
@@ -24,7 +24,7 @@
                 <div class="mr_content" style="margin-top:0px">
                     <div class="mr_content_title">
                         <div class="mr_left_name_a">
-                            <a href="../Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.famous %>&add=1&sysno=<%=m_famous.SysNo %>" target="_blank" class="gz1">添加到收藏</a>
+                            <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.famous %>&add=1&sysno=<%=m_famous.SysNo %>" target="_blank" class="gz1">添加到收藏</a>
                             <!-- JiaThis Button BEGIN -->
                             <a href="http://www.jiathis.com/share" class="jiathis gz2" target="_blank">分享到+</a>
                             <div class="jiathis_style" style="width:72px;float:left">
@@ -75,11 +75,11 @@
                                     <ItemTemplate>
                                         <li>
                                             <div class="mr_liuyan_img">
-                                                <a href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank">
-                                                    <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a>
+                                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank">
+                                                    <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a>
                                             </div>
                                             <div class="mr_liuyan_r">
-                                                <div class="mr_liuyan_title"><a href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank"><span><%#Eval("NickName")%></span></a> <%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%> </div>
+                                                <div class="mr_liuyan_title"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank"><span><%#Eval("NickName")%></span></a> <%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%> </div>
                                                 <div class="mr_liuyan_text"><%#Eval("Context")%></div>
                                             </div>
                                             <div class="clear"></div>

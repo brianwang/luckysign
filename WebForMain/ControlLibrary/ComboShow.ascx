@@ -6,7 +6,7 @@
     <ItemTemplate>
         <div class="page_box">
             <div class="page_box_l" id='pl<%#Eval("ifshowphoto")%>'>
-                <img id="<%#Eval("PhotoID")%>" src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" />
+                <img id="<%#Eval("PhotoID")%>" src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" />
             </div>
             <div class="page_box_r" id='pr<%#Eval("width")%>'>
                 <div class="page_corner" id='pc<%#Eval("ifshowphoto")%>' >

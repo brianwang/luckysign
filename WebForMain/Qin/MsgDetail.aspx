@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Qin.Master" AutoEventWireup="true"
     CodeBehind="MsgDetail.aspx.cs" Inherits="WebForMain.Qin.MsgDetail" %>
-<%@ Register Src="../ControlLibrary/QinRightPannel.ascx" TagName="RightPannel" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QinRightPannel.ascx" TagName="RightPannel" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>我和<%=TargetName %>之间的私密对话-上上签</title>
@@ -31,7 +31,7 @@
             <ItemTemplate>
                 <div class="page_box">
                     <div class="page_box_l">
-                        <img src='../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("FromPhoto")%>' />
+                        <img src='~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("FromPhoto")%>' />
                     </div>
                     <div class="page_box_r">
                         <div class="page_letter_t">

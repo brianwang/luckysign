@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="AstroChart.aspx.cs" Inherits="WebForMain.PPLive.AstroChart" %>
 
-<%@ Register Src="../ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
 <%@ PreviousPageType VirtualPath="~/PPLive/Astro.aspx" %>
-<%@ Register Src="../ControlLibrary/AstroForQuest.ascx" TagName="Astro" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/AstroForQuest.ascx" TagName="Astro" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>西洋占星术星盘排盘-在线排盘-上上签</title>
 </asp:Content>

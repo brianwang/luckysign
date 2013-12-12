@@ -21,7 +21,7 @@
                     <dt style="width:100px">验证码：</dt>
                     <dd>
                         <asp:TextBox runat="server" class="ipt_1" ID="code"></asp:TextBox><br />
-                        <img id="imgVerify" width="115" height="35" style="cursor: pointer;" src="../ControlLibrary/VerifyCode.aspx?"
+                        <img id="imgVerify" width="115" height="35" style="cursor: pointer;" src="~/ControlLibrary/VerifyCode.aspx?"
                             alt="看不清？点击更换" onclick="this.src=this.src+'?'" />
                         <a href="javascript:void(0);" onclick="javascript:document.getElementById('imgVerify').src=document.getElementById('imgVerify').src+'?'" title="看不清？点击更换" class="alink_01">看不清？点击更换</a>
 

@@ -1,10 +1,10 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Qin.Master" AutoEventWireup="true"
     CodeBehind="MyQuestion.aspx.cs" Inherits="WebForMain.Qin.MyQuestion" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Src="../ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/ComboShow.ascx" TagName="ComboShow" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/QinRightPannel.ascx" TagName="RightPannel" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/ComboShow.ascx" TagName="ComboShow" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QinRightPannel.ascx" TagName="RightPannel" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>我的问答-上上签</title>
@@ -71,7 +71,7 @@
                             <li class="<%# GetEnglishNum(Container.ItemIndex+1)%>)">
                                 <div class="page_right_rank_s">
                                     <span></span>
-                                    <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" />
+                                    <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" />
                                     <a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
                                         <%# Eval("NickName")%>
                                         |

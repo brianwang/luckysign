@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Qin.Master" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="WebForMain.Qin.UserInfo" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Src="../ControlLibrary/DatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/DistrictPicker.ascx" TagName="District" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/DatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/DistrictPicker.ascx" TagName="District" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         #Canvas {
@@ -78,7 +78,7 @@
 
                 <div class="setting_box">
                     <div class="setting_img">
-                        <img src="../ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
+                        <img src="~/ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
                     </div>
                     <div class="setting_img_upload" style="margin-left:10px;">
                         <asp:FileUpload ID="FileUpload1" CssClass="setting_input" Width="352px" runat="server" />
@@ -211,7 +211,7 @@
                                 <asp:TextBox ID="txtValid" runat="server" TextMode="Password" CssClass="setting_input" Width="208px"></asp:TextBox>
                             </div>
                             <h1>请输入图中字符，不区分大小写<br />
-                                <img id="imgVerify" width="133" height="53" style="cursor: pointer;" src="../ControlLibrary/VerifyCode.aspx?"
+                                <img id="imgVerify" width="133" height="53" style="cursor: pointer;" src="~/ControlLibrary/VerifyCode.aspx?"
                                     alt="看不清？点击更换" onclick="this.src=this.src+'?'" />
                                 <a href="javascript:void(0);" onclick="javascript:document.getElementById('imgVerify').src=document.getElementById('imgVerify').src+'?'" title="看不清？点击更换" class="alink_01">看不清？点击更换</a>
                             </h1>
@@ -465,7 +465,7 @@
             <div class="page_right_box_t">个人资料</div>
             <div class="mypage_otherperson_right">
                 <div class="mypage_otherperson_s" style="border: 0">
-                    <img src="../ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
+                    <img src="~/ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
                     <ul class="help_right_list">
                         <li><a href="UserInfo.aspx?id=<%=m_user.SysNo %>&tab=1">基本资料</a></li>
                         <li><a href="UserInfo.aspx?id=<%=m_user.SysNo %>&tab=0">修改头像</a></li>

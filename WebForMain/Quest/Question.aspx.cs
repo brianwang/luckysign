@@ -36,12 +36,25 @@ namespace WebForMain.Quest
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
+                }
+            }
+            else if (Page.RouteData.Values["id"] != null && Page.RouteData.Values["id"].ToString() == "")
+            {
+                try
+                {
+                    SysNo = int.Parse(Page.RouteData.Values["id"].ToString());
+                    m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
+                    //DataBind();
+                }
+                catch
+                {
+                    ShowError("");
                 }
             }
             else
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             }
             if (Request.QueryString["pn"] != null)
             {
@@ -51,6 +64,19 @@ namespace WebForMain.Quest
                 }
                 catch
                 { }
+            }
+            else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() == "")
+            {
+                try
+                {
+                    SysNo = int.Parse(Page.RouteData.Values["pn"].ToString());
+                    m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
+                    //DataBind();
+                }
+                catch
+                {
+                    ShowError("");
+                }
             }
             if (!IsPostBack)
             {
@@ -63,6 +89,7 @@ namespace WebForMain.Quest
                 txtReply2.Enabled = false;
                 Button3.Style["display"] = "none";
                 IsLogined.Value = "FALSE";
+                Image2.ImageUrl = AppConfig.WebResourcesPath()+"Images/tx_03.jpg";
             }
             else
             {
@@ -285,7 +312,7 @@ namespace WebForMain.Quest
             {
                 if (m_qustion.DR != (int)AppEnum.State.normal)
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
                 m_qustion.ReadCount++;
                 QA_QuestionBll.GetInstance().UpDate(m_qustion);
@@ -306,7 +333,7 @@ namespace WebForMain.Quest
                 ltrQALevel.Text = m_grade.Name;
                 ltrTotalReply.Text = m_user.TotalReply.ToString();
                 ltrTotalAsk.Text = m_user.TotalQuest.ToString();
-                Image1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_user.Photo;
+                Image1.ImageUrl = AppConfig.HomeUrl()+ "ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_user.Photo;
 
                 #region 显示命盘
                 FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(SysNo);
@@ -340,7 +367,7 @@ namespace WebForMain.Quest
             }
             catch
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             }
         }
 
@@ -354,7 +381,7 @@ namespace WebForMain.Quest
             DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuest(pagesize, pageindex, SysNo, ref total);
             Repeater1.DataSource = m_dt;
             Repeater1.DataBind();
-            Pager1.url = "Question.aspx?id=" + SysNo + "&pn=";
+            Pager1.url = AppConfig.HomeUrl()+"Quest/Question/" + SysNo + "/";
             Pager1.totalrecord = total;
             if (total % AppConst.PageSize == 0)
             {
@@ -459,7 +486,7 @@ namespace WebForMain.Quest
 
         protected void LinkButton4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Passport/Register.aspx?url="+Request.Url.ToString());
+            Response.Redirect(AppConfig.HomeUrl()+"Passport/Register.aspx?url="+Request.Url.ToString());
         }
 
         protected void LinkButton5_Click(object sender, EventArgs e)

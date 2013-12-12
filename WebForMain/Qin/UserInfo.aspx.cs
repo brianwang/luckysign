@@ -43,11 +43,11 @@ namespace WebForMain.Qin
                     m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Request.QueryString["id"]));
                     if (m_user.SysNo == AppConst.IntNull)
                     {
-                        Response.Redirect("../Error.aspx");
+                        ShowError("");
                     }                    
                     if (m_user.SysNo != GetSession().CustomerEntity.SysNo)
                     {
-                        Response.Redirect("../Error.aspx");
+                        ShowError("");
                     }
                     if (!IsPostBack)
                     {
@@ -56,12 +56,12 @@ namespace WebForMain.Qin
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
             }
             else
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             }
             MultiView1.ActiveViewIndex = tab;
         }
@@ -115,8 +115,8 @@ namespace WebForMain.Qin
             {
                 if (m_upload.UpLoadIMG(FileUpload1))
                 {
-                    ImageDrag.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=tmp&id="+ m_upload.OFileName.Replace("o", "");
-                    ImageIcon.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=tmp&id=" + m_upload.OFileName.Replace("o", "");
+                    ImageDrag.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=tmp&id="+ m_upload.OFileName.Replace("o", "");
+                    ImageIcon.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=tmp&id=" + m_upload.OFileName.Replace("o", "");
                     hdfPicID.Value = m_upload.OFileName.Replace("o", "");
                     MultiView1.ActiveViewIndex = 4;
                 }

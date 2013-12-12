@@ -81,7 +81,8 @@ namespace WebForMain.Quest
                 ltrPoint.Text = GetSession().CustomerEntity.Point.ToString();
 
                 #region 占星骰子问题
-                if (Request.QueryString["type"] != null && Request.QueryString["type"] == "dice")
+                if ((Request.QueryString["type"] != null && Request.QueryString["type"] == "dice")||
+                    (Page.RouteData.Values["type"]!=null &&Page.RouteData.Values["type"].ToString()=="dice"))
                 {
                     try
                     {
@@ -225,7 +226,7 @@ namespace WebForMain.Quest
 
                 LogManagement.getInstance().WriteTrace("前台发布问题", "Ask", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
                 Page.ClientScript.RegisterStartupScript(this.GetType(),"askok","alert('问题发布成功！');",true);
-                Response.Redirect("Question.aspx?id=" + sysno,false);
+                Response.Redirect(AppConfig.HomeUrl()+"Quest/Question/" + sysno,false);
             }
             catch (Exception ex)
             {

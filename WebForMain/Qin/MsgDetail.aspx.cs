@@ -31,7 +31,7 @@ namespace WebForMain.Qin
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
             }
             else if (Request.QueryString["UserSysNo"] != null)
@@ -43,12 +43,12 @@ namespace WebForMain.Qin
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
             }
             else
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             }
             if (!IsPostBack)
             {
@@ -57,7 +57,7 @@ namespace WebForMain.Qin
                     BindList();
                 }
 
-                imgPhoto.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=t&id=" + GetSession().CustomerEntity.Photo;
+                imgPhoto.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=t&id=" + GetSession().CustomerEntity.Photo;
                 RightPannel1.m_user = GetSession().CustomerEntity;
             }
         }
@@ -82,14 +82,14 @@ namespace WebForMain.Qin
                 }
                 else 
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
 
                 ViewState["targetsysno"] = TargetID;
             }
             else
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             } 
         }
 

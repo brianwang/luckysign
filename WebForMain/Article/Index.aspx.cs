@@ -21,18 +21,28 @@ namespace WebForMain.Article
         {
             WebForMain.Master.Main m_master = (WebForMain.Master.Main)Master;
             m_master.SetTab(2);
-            if (!IsPostBack)
-            {
-                if (Request.QueryString["key"] != null)
+             if (Request.QueryString["key"] != null)
                 {
                     txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
                 }
+                else if (Page.RouteData.Values["key"] != null && Page.RouteData.Values["key"].ToString()!="")
+                {
+                    txtName.Text = Server.HtmlEncode(Page.RouteData.Values["key"].ToString());
+                }
                 if (Request.QueryString["pn"] != null)
                 {
-
                     try
                     {
                         pageindex = int.Parse(Request.QueryString["pn"]);
+                    }
+                    catch
+                    { }
+                }
+                else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
+                {
+                    try
+                    {
+                        pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
                     }
                     catch
                     { }
@@ -46,6 +56,17 @@ namespace WebForMain.Article
                     catch
                     { }
                 }
+                else if (Page.RouteData.Values["cate"] != null && Page.RouteData.Values["cate"].ToString() != "")
+                {
+                    try
+                    {
+                        cate = int.Parse(Page.RouteData.Values["cate"].ToString());
+                    }
+                    catch
+                    { }
+                }
+            if (!IsPostBack)
+            {
                 if (cate == 0)
                 {
                     title = "象牙塔-上上签命理网";
@@ -55,7 +76,6 @@ namespace WebForMain.Article
                     title = CMS_CategoryBll.GetInstance().GetModel(cate).Name+ "-象牙塔-上上签命理网";
                 }
                 BindData();
-                BindRecommend();
             }
         }
 
@@ -63,15 +83,13 @@ namespace WebForMain.Article
         {
             if (txtName.Text.Trim() != "")
             {
-                string url = "Index.aspx?key=" + txtName.Text;
-                if (Request.QueryString["pn"] != null)
+                string url = AppConfig.HomeUrl() + "Article";
+                if (cate !=0)
                 {
-                    url += "&pn=" + Request.QueryString["pn"];
+                    url += "/" + cate;
                 }
-                if (Request.QueryString["cate"] != null)
-                {
-                    url += "&cate=" + Request.QueryString["cate"];
-                }
+                url += "/"+txtName.Text;
+                
                 Response.Redirect(url);
             }
         }
@@ -97,13 +115,13 @@ namespace WebForMain.Article
                 string[] tmpkeys = m_dt.Rows[i]["keywords"].ToString().Trim().Split(new char[] { ' ' });
                 for (int j = 0; j < tmpkeys.Length; j++)
                 {
-                    m_dt.Rows[i]["Keys"] += @"<a href=""Index.aspx?key=" + tmpkeys[j] + @""" title=""" + tmpkeys[j] + @""">" + tmpkeys[j] + @"</a> ";
+                    m_dt.Rows[i]["Keys"] += @"<a href="""+AppConfig.HomeUrl()+@"Article/" + tmpkeys[j] + @""" title=""" + tmpkeys[j] + @""">" + tmpkeys[j] + @"</a> ";
                 }
             }
             rptQuestion.DataSource = m_dt;
             rptQuestion.DataBind();
 
-            Pager1.url = "Index.aspx?key=" + txtName.Text.Trim() + "&cate=" + Request.QueryString["cate"] + "&pn=";
+            Pager1.url = AppConfig.HomeUrl() + "Article/" + cate + "/" + txtName.Text.Trim() + "/";
             Pager1.totalrecord = total;
             if (total % pagesize == 0)
             {
@@ -118,27 +136,6 @@ namespace WebForMain.Article
         }
 
 
-        protected void BindRecommend()
-        {
-            DataSet m_ds = CMS_ArticleBll.GetInstance().GetRecommendList(5);
-            for (int i = 0; i < m_ds.Tables[0].Rows.Count; i++)
-            {
-                m_ds.Tables[0].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[0].Rows[i]["Description"].ToString(), 100);
-            }
-            rptNew.DataSource = m_ds.Tables[0];
-            rptNew.DataBind();
-            for (int i = 0; i < m_ds.Tables[1].Rows.Count; i++)
-            {
-                m_ds.Tables[1].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[1].Rows[i]["Description"].ToString(), 100);
-            }
-            rptGood .DataSource = m_ds.Tables[1];
-            rptGood.DataBind();
-            for (int i = 0; i < m_ds.Tables[2].Rows.Count; i++)
-            {
-                m_ds.Tables[2].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[2].Rows[i]["Description"].ToString(), 100);
-            }
-            rptHot.DataSource = m_ds.Tables[2];
-            rptHot.DataBind();
-        }
+        
     }
 }

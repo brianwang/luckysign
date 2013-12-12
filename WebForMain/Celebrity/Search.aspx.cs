@@ -10,7 +10,7 @@ using AppCmn;
 
 namespace WebForMain.Celebrity
 {
-    public partial class Search : System.Web.UI.Page
+    public partial class Search : PageBase
     {
         // Fields
     private int key = 0;
@@ -44,7 +44,7 @@ namespace WebForMain.Celebrity
         else
         {
             state = 0;
-            m_dt = SYS_FamousBll.GetInstance().GetList(count, 1, SQLData.SQLFilter(base.Request.QueryString["keyword"]), AppConst.DateTimeNull, AppConst.DateTimeNull, state.ToString(), false, ref total);
+            m_dt = SYS_FamousBll.GetInstance().GetList(count, 1, SQLData.SQLFilter(this.txtKeyword.Text.Trim()), AppConst.DateTimeNull, AppConst.DateTimeNull, state.ToString(), false, ref total);
         }
         for (int i = 0; i < m_dt.Rows.Count; i++)
         {
@@ -78,7 +78,7 @@ namespace WebForMain.Celebrity
     {
         if (this.txtKeyword.Text.Trim() != "")
         {
-            base.Response.Redirect("Search.aspx?keyword=" + this.txtKeyword.Text.Trim());
+            base.Response.Redirect(AppCmn.AppConfig.HomeUrl()+"Celebrity/" + this.txtKeyword.Text.Trim());
         }
     }
 
@@ -86,7 +86,8 @@ namespace WebForMain.Celebrity
     {
         if (!base.IsPostBack)
         {
-            if ((base.Request.QueryString["key"] != null) || (base.Request.QueryString["keyword"] != null))
+            if ((base.Request.QueryString["key"] != null) || (base.Request.QueryString["keyword"] != null)||
+                Page.RouteData.Values["key"] != null || Page.RouteData.Values["keyword"] != null)
             {
                 if (base.Request.QueryString["key"] != null)
                 {
@@ -96,16 +97,31 @@ namespace WebForMain.Celebrity
                     }
                     catch
                     {
-                        base.Response.Redirect("../Error.aspx");
+                        ShowError("");
                     }
                 }
-                else if (base.Request.QueryString["keyword"] == "")
+                else if (Page.RouteData.Values["key"] != null&&Page.RouteData.Values["key"].ToString() != "")
                 {
-                    base.Response.Redirect("../Error.aspx");
+                    try
+                    {
+                        this.key = int.Parse(Page.RouteData.Values["key"].ToString());
+                    }
+                    catch
+                    {
+                        ShowError("");
+                    }
+                }
+                else if (base.Request.QueryString["keyword"] != "")
+                {
+                    this.txtKeyword.Text = base.Server.HtmlEncode(base.Request.QueryString["keyword"]);
+                }
+                else if (Page.RouteData.Values["keyword"] != null&&Page.RouteData.Values["keyword"].ToString() != "")
+                {
+                    this.txtKeyword.Text = base.Server.HtmlEncode(Page.RouteData.Values["keyword"].ToString());
                 }
                 else
                 {
-                    this.txtKeyword.Text = base.Server.HtmlEncode(base.Request.QueryString["keyword"]);
+                    ShowError("");
                 }
                 this.BindSearchList();
                 this.MultiView1.ActiveViewIndex = 1;

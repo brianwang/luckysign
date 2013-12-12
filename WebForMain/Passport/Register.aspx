@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="Register.aspx.cs" Inherits="WebForMain.Passport.Register" %>
-<%@ Register Src="../ControlLibrary/PatnerLogin.ascx" TagName="PatnerLogin" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/PatnerLogin.ascx" TagName="PatnerLogin" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>欢迎加入上上签</title>
@@ -69,7 +69,7 @@
                     <dt>验证码：</dt>
                     <dd>
                         <asp:TextBox runat="server" class="ipt_1" ID="code"></asp:TextBox><br />
-                        <img id="imgVerify" width="115" height="35" style="cursor: pointer;" src="../ControlLibrary/VerifyCode.aspx?"
+                        <img id="imgVerify" width="115" height="35" style="cursor: pointer;" src="~/ControlLibrary/VerifyCode.aspx?"
                             alt="看不清？点击更换" onclick="this.src=this.src+'?'" />
                         <a href="javascript:void(0);" onclick="javascript:document.getElementById('imgVerify').src=document.getElementById('imgVerify').src+'?'" title="看不清？点击更换" class="alink_01">看不清？点击更换</a>
 

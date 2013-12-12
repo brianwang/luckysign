@@ -35,12 +35,12 @@ namespace WebForMain.Qin
                     m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Request.QueryString["id"]));
                     if (m_user.SysNo == AppConst.IntNull)
                     {
-                        Response.Redirect("../Error.aspx");
+                        ShowError("");
                     }
                 }
                 catch
                 {
-                    Response.Redirect("../Error.aspx");
+                    ShowError("");
                 }
             }
             else
@@ -83,14 +83,14 @@ namespace WebForMain.Qin
                         ltrMe = "我";
                         sendmsg.Visible = false;
                         intro.HRef = "UserInfo.aspx?id=" + m_user.SysNo + "&tab=1";
-                        ImageButton1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
+                        ImageButton1.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
                     }
                     else
                     {
                         ltrMe = "Ta";
                         intro.Visible = false;
                         sendmsg.HRef = "MsgDetail.aspx?UserSysNo=" + m_user.SysNo;
-                        ImageButton1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
+                        ImageButton1.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
                         ImageButton1.Enabled = false;
                     }
                 RightPannel1.m_user = m_user;
@@ -98,7 +98,7 @@ namespace WebForMain.Qin
             }
             catch
             {
-                Response.Redirect("../Error.aspx");
+                ShowError("");
             }
 
             if (Request.QueryString["pn"] != null)

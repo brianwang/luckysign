@@ -16,7 +16,7 @@ namespace WebForMain.Passport
             {
                 if (GetSession().CustomerEntity == null || GetSession().CustomerEntity.SysNo == AppConst.IntNull)
                 {
-                    Response.Redirect("../error.aspx");
+                    ShowError("");
                 }
                 Literal2.Text = "亲爱的<font color='red'>" + GetSession().CustomerEntity.NickName +"</font>，感谢您注册上上签命理网，现在可以开始体验各项会员服务了！";
                 if (Request.QueryString["url"] != null)
@@ -30,7 +30,7 @@ namespace WebForMain.Passport
                     }
                     else
                     {
-                        Response.Redirect("../error.aspx");
+                        ShowError("");
                     }
                 }
             }

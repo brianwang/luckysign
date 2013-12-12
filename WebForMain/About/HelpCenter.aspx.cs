@@ -13,13 +13,22 @@ namespace WebForMain.About
         {
             if (!base.IsPostBack)
             {
-                if (string.IsNullOrEmpty(base.Request.QueryString["memo"]))
+                if (string.IsNullOrEmpty(base.Request.QueryString["memo"]) && string.IsNullOrEmpty(Page.RouteData.Values["memo"].ToString()))
                 {
                     this.HelpContent.AdvFrom = "Help/Index.htm";
                 }
                 else
                 {
-                    switch (base.Request.QueryString["memo"].ToString().ToUpper().Trim())
+                    string memo = "";
+                    if (!string.IsNullOrEmpty(base.Request.QueryString["memo"]))
+                    {
+                        memo = base.Request.QueryString["memo"].ToString().ToUpper().Trim();
+                    }
+                    if (Page.RouteData.Values["memo"] != null && Page.RouteData.Values["memo"].ToString() != "")
+                    {
+                        memo = Page.RouteData.Values["memo"].ToString().ToUpper().Trim();
+                    }
+                    switch (memo)
                     {
                         case "USERREGISTER":
                             this.HelpContent.AdvFrom = "Help/UserRegister.htm";

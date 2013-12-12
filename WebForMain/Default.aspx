@@ -7,8 +7,8 @@
     <meta name="keywords" content="上上签_占星术_占星骰子_紫薇斗数_四柱八字_塔罗牌_在线排盘_星座运势_命理咨询_大师专业解盘_名人案例库_算命_命盘" />
     <meta name="description" content="上上签命理网提供专业的排盘，在线算命咨询服务，这里还有海量的命理学习资料和名人命盘案例库，致力于用科技的手段服务于命理研究和在线咨询。" />
 
-    <link href="WebResources/CSS/new.css" rel="stylesheet" type="text/css" />
-    <link href="WebResources/CSS/page.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/new.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/page.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
@@ -36,11 +36,11 @@
                 <div class="index_right_list2">
                     <ul>
                         <li style="padding:3px 9px 0px; border-bottom:none"><a href="PPLive/Astro.aspx">
-                            <img src="WebResources/IMAGES/icon_zhanxing.jpg" height="58" width="58" alt="西洋占星术排盘" />占星排盘</a></li>
+                            <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_zhanxing.jpg" height="58" width="58" alt="西洋占星术排盘" />占星排盘</a></li>
                         <li style="padding:3px 9px 0px; border-bottom:none"><a href="PPLive/ZiWei.aspx">
-                            <img src="WebResources/IMAGES/icon_ziwei.jpg" height="58" width="58" alt="紫薇斗数排盘" />紫斗排盘</a></li>
+                            <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_ziwei.jpg" height="58" width="58" alt="紫薇斗数排盘" />紫斗排盘</a></li>
                         <li style="padding:3px 9px 0px; border-bottom:none"><a href="PPLive/BaZi.aspx">
-                            <img src="WebResources/IMAGES/icon_bazi.jpg" height="58" width="58" alt="四柱八字排盘" />八字排盘</a></li>
+                            <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_bazi.jpg" height="58" width="58" alt="四柱八字排盘" />八字排盘</a></li>
                     </ul>
                     <%--<a href="#">塔罗在线牌阵</a>--%>
                     <div class="clear">
@@ -59,13 +59,13 @@
             <div style="margin-top: 20px; height: 60px;">
                 <ul>
                     <li style="width: 158px; height: 56px; float: left;"><a href="PPLive/Astro.aspx">
-                        <img src="WebResources/IMAGES/icon_paipan_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_paipan_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_paipan_normal.jpg';" width="158px" height="56px" /></a></li>
+                        <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_paipan_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_paipan_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_paipan_normal.jpg';" width="158px" height="56px" /></a></li>
                     <li style="width: 158px; height: 56px; float: left; margin-left: 14px;"><a href="Quest/Ask.aspx">
-                        <img src="WebResources/IMAGES/icon_qiuce_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_qiuce_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_qiuce_normal.jpg';" width="158px" height="56px" /></a></li>
+                        <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_qiuce_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_qiuce_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_qiuce_normal.jpg';" width="158px" height="56px" /></a></li>
                     <li style="width: 158px; height: 56px; float: left; margin-left: 14px;"><a href="Article/Index.aspx">
-                        <img src="WebResources/IMAGES/icon_study_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_study_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_study_normal.jpg';" width="158px" height="56px" /></a></li>
+                        <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_study_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_study_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_study_normal.jpg';" width="158px" height="56px" /></a></li>
                     <li style="width: 158px; height: 56px; float: left; margin-left: 14px;"><a href="Celebrity/Search.aspx">
-                        <img src="WebResources/IMAGES/icon_yanjiu_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_yanjiu_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_yanjiu_normal.jpg';" width="158px" height="56px" /></a></li>
+                        <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>IMAGES/icon_yanjiu_normal.jpg" onmouseover="this.src='WebResources/IMAGES/icon_yanjiu_up.jpg';" onmouseout="this.src='WebResources/IMAGES/icon_yanjiu_normal.jpg';" width="158px" height="56px" /></a></li>
                 </ul>
             </div>
 
@@ -80,14 +80,14 @@
 
                 <div class="index_left_new_list block show">
                     <div class="new_list_ul" style="width: 325px">
-                        <div class="new_list_ul_t" style="background: url(WebResources/img/page/new_ico1.gif) no-repeat 0px 10px">咨询榜</div>
+                        <div class="new_list_ul_t" style="background: url(<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/new_ico1.gif) no-repeat 0px 10px">咨询榜</div>
                         <ul>
                             <asp:Repeater ID="rptCeNew" runat="server">
                                 <ItemTemplate>
                                     <li>
                                         <h2>
                                             <a href="Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
-                                                <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
+                                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
                                         <h1><a href="Quest/Question.aspx?id=<%# Eval("SysNo")%>"><%# Eval("Title")%></a><img id='cenew<%# Eval("IsHot")%>' src="WebResources/img/page/new_ico4.gif" align="absmiddle" /></h1>
                                         <div class="clear"></div>
                                     </li>
@@ -96,7 +96,7 @@
                         </ul>
                     </div>
                     <div class="new_list_ul" style="width: 290px">
-                        <div class="new_list_ul_t" style="background: url(WebResources/img/page/new_ico2.gif) no-repeat 0px 10px">等你解答</div>
+                        <div class="new_list_ul_t" style="background: url(<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/new_ico2.gif) no-repeat 0px 10px">等你解答</div>
                         <ul>
                             <asp:Repeater ID="tprCeHot" runat="server">
                                 <ItemTemplate>
@@ -112,14 +112,14 @@
                 </div>
                 <div class="index_left_new_list block">
                     <div class="new_list_ul" style="width: 325px">
-                        <div class="new_list_ul_t" style="background: url(WebResources/img/page/new_ico1.gif) no-repeat 0px 10px">咨询榜</div>
+                        <div class="new_list_ul_t" style="background: url(<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/new_ico1.gif) no-repeat 0px 10px">咨询榜</div>
                         <ul>
                             <asp:Repeater ID="rptStudyNew" runat="server">
                                 <ItemTemplate>
                                     <li>
                                         <h2>
                                             <a href="Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
-                                                <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
+                                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
                                         <h1><a href="Quest/Question.aspx?id=<%# Eval("SysNo")%>"><%# Eval("Title")%></a><img id='studynew<%# Eval("IsHot")%>' src="WebResources/img/page/new_ico4.gif" align="absmiddle" /></h1>
                                         <div class="clear"></div>
                                     </li>
@@ -128,7 +128,7 @@
                         </ul>
                     </div>
                     <div class="new_list_ul" style="width: 290px">
-                        <div class="new_list_ul_t" style="background: url(WebResources/img/page/new_ico2.gif) no-repeat 0px 10px">等你解答</div>
+                        <div class="new_list_ul_t" style="background: url(<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/new_ico2.gif) no-repeat 0px 10px">等你解答</div>
                         <ul>
                             <asp:Repeater ID="rptStudyHot" runat="server">
                                 <ItemTemplate>

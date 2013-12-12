@@ -1,9 +1,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Qin.Master" AutoEventWireup="True"
     CodeBehind="Index.aspx.cs" Inherits="WebForMain.Qin.Index" %>
 
-<%@ Register Src="../ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/ComboShow.ascx" TagName="ComboShow" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/ComboShow.ascx" TagName="ComboShow" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>我的关注-上上签</title>
@@ -50,7 +50,7 @@
                     <asp:Repeater ID="rptFriend" runat="server">
                         <ItemTemplate>
                             <li><a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
-                                <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
+                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
@@ -68,7 +68,7 @@
                     <asp:Repeater ID="rptFans" runat="server">
                         <ItemTemplate>
                             <li><a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
-                                <img src="../ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
+                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>

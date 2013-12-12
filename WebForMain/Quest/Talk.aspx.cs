@@ -190,7 +190,7 @@ namespace WebForMain.Quest
 
                 LogManagement.getInstance().WriteTrace("前台话题", "Ask", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "askok", "alert('话题发布成功！');", true);
-                Response.Redirect("Question.aspx?id=" + sysno,false);
+                Response.Redirect(AppConfig.HomeUrl()+"Topic/" + sysno,false);
             }
             catch (Exception ex)
             {

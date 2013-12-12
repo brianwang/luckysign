@@ -96,7 +96,7 @@ namespace WebForMain.Qin
                 
             }
 RightPannel1.m_user = GetSession().CustomerEntity;
-imgPhoto.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=o&id=" + RightPannel1.m_user.Photo;
+imgPhoto.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + RightPannel1.m_user.Photo;
         }
 
         #region channel

@@ -82,7 +82,7 @@ namespace WebForMain.Celebrity
             int total = 0;
             this.rptComment.DataSource = SYS_Famous_CommentBll.GetInstance().GetListByFamousSysNo(this.pageindex, this.pagesize, this.sysno, ref total);
             this.rptComment.DataBind();
-            this.Pager1.url = "Detail.aspx?id=" + CommonTools.Encode(this.sysno.ToString()) + "&pn=";
+            this.Pager1.url = AppCmn.AppConfig.HomeUrl()+"Celebrity/Detail/" + Server.UrlEncode(CommonTools.Encode(this.sysno.ToString())) + "/";
             this.Pager1.totalrecord = total;
             if ((total % this.pagesize) == 0)
             {
@@ -105,7 +105,7 @@ namespace WebForMain.Celebrity
             }
             else if (!this.m_famous.Photo.Contains("//"))
             {
-                this.m_famous.Photo = "<%=AppCmn.AppConfig.WebResourcesPath() %>FamousPhoto/" + this.m_famous.Photo;
+                this.m_famous.Photo = AppCmn.AppConfig.WebResourcesPath()+"FamousPhoto/" + this.m_famous.Photo;
             }
             this.DataBind();
         }
@@ -251,16 +251,27 @@ namespace WebForMain.Celebrity
             {
                 try
                 {
-                    this.sysno = int.Parse(CommonTools.Decode(base.Request.QueryString["id"].Replace(" ", "+")));
+                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(base.Request.QueryString["id"].Replace(" ", "+"))));
                 }
                 catch
                 {
-                    base.Response.Redirect("../Error.aspx");
+                    ShowError("");
+                }
+            }
+            else if (Page.RouteData.Values["id"] != null && Page.RouteData.Values["id"].ToString() != "")
+            {
+                try
+                {
+                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(Page.RouteData.Values["id"].ToString().Replace(" ", "+"))));
+                }
+                catch
+                {
+                    ShowError("");
                 }
             }
             else
             {
-                base.Response.Redirect("../Error.aspx");
+                ShowError("");
             }
             if (!base.IsPostBack)
             {
@@ -275,7 +286,7 @@ namespace WebForMain.Celebrity
             else
             {
                 this.MultiView1.ActiveViewIndex = 0;
-                this.Image1.ImageUrl = "../ControlLibrary/ShowPhoto.aspx?type=t&id=" + base.GetSession().CustomerEntity.Photo;
+                this.Image1.ImageUrl = AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + base.GetSession().CustomerEntity.Photo;
             }
         }
 

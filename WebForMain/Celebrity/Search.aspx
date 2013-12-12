@@ -21,7 +21,7 @@
                         <!--名人标签-->
                         <div class="mr_a">
                             <asp:Repeater ID="rptKeys" runat="server">
-                                <ItemTemplate><a href="Search.aspx?key=<%#Eval("SysNo") %>" class="c<%#Eval("css") %>"><span></span><%#Eval("KeyWords") %></a></ItemTemplate>
+                                <ItemTemplate><a href="<%=AppCmn.AppConfig.HomeUrl() %>Celebrity/<%#Eval("SysNo") %>" class="c<%#Eval("css") %>"><span></span><%#Eval("KeyWords") %></a></ItemTemplate>
                             </asp:Repeater>
 
                             <%--                <a href="#" class="c2"><span></span>神经病</a>
@@ -52,7 +52,7 @@
                                 <ul>
                                     <asp:Repeater ID="rptTop" runat="server">
                                         <ItemTemplate>
-                                            <li><a target="_blank" href="Detail.aspx?id=<%#AppCmn.CommonTools.Encode(Eval("SysNo").ToString()) %>">
+                                            <li><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Celebrity/Detail/<%#Server.UrlEncode(AppCmn.CommonTools.Encode(Eval("SysNo").ToString())) %>">
                                                 <img src="<%#Eval("photo") %>" height="155" width="127" alt="<%#Eval("Name") %>命盘" /><%#Eval("Name") %></a></li>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -82,11 +82,11 @@
                                     <ItemTemplate>
                                         <li>
                                             <div class="mr_search_ul_l">
-                                                <a target="_blank" href="Detail.aspx?id=<%#AppCmn.CommonTools.Encode(Eval("SysNo").ToString()) %>">
+                                                <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Celebrity/Detail/<%#Server.UrlEncode(AppCmn.CommonTools.Encode(Eval("SysNo").ToString())) %>">
                                                     <img src="<%#Eval("photo") %>" alt="<%#Eval("Name") %>" /></a>
                                             </div>
                                             <div class="mr_search_ul_r">
-                                                <a target="_blank" href="Detail.aspx?id=<%#AppCmn.CommonTools.Encode(Eval("SysNo").ToString()) %>">
+                                                <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Celebrity/Detail/<%#Server.UrlEncode(AppCmn.CommonTools.Encode(Eval("SysNo").ToString())) %>">
                                                     <h1><%#Eval("Name") %>（<%#Eval("FullName") %>）</h1>
                                                 </a>
                                                 <%#Eval("Description") %>

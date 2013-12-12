@@ -1,8 +1,8 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="True"
     CodeBehind="TalkList.aspx.cs" Inherits="WebForMain.Quest.TalkList" %>
 
-<%@ Register Src="../ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
-<%@ Register Src="../ControlLibrary/QuestRightPanel.ascx" TagName="Right" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/QuestRightPanel.ascx" TagName="Right" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>问题悬赏列表-上上签</title>

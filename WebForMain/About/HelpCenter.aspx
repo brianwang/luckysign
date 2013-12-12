@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true" CodeBehind="HelpCenter.aspx.cs" Inherits="WebForMain.About.HelpCenter" %>
 
-<%@ Register Src="../ControlLibrary/ShowAdv.ascx" TagName="ShowAdv" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/ShowAdv.ascx" TagName="ShowAdv" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

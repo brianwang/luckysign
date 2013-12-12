@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true"
     CodeBehind="BaZiChart.aspx.cs" Inherits="WebForMain.PPLive.BaZiChart" %>
 
-<%@ Register Src="../ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/PPPanel.ascx" TagName="RightPanel" TagPrefix="uc1" %>
 <%@ PreviousPageType VirtualPath="~/PPLive/BaZi.aspx" %>
-<%@ Register Src="../ControlLibrary/BaZiForQuest.ascx" TagName="BaZi" TagPrefix="uc1" %>
+<%@ Register Src="~/ControlLibrary/BaZiForQuest.ascx" TagName="BaZi" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

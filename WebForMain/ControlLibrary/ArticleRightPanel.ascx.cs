@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using AppBll.CMS;
-
+using AppCmn;
 
 namespace WebForMain.ControlLibrary
 {
@@ -19,6 +19,7 @@ namespace WebForMain.ControlLibrary
                 DataTable m_dt = CMS_CategoryBll.GetInstance().GetCates(0);
                 Repeater1.DataSource = m_dt;
                 Repeater1.DataBind();
+                BindRecommend();
             }
         }
 
@@ -80,6 +81,28 @@ namespace WebForMain.ControlLibrary
                 rptCate.DataSource = dt;
                 rptCate.DataBind();
             }
+        }
+        protected void BindRecommend()
+        {
+            DataSet m_ds = CMS_ArticleBll.GetInstance().GetRecommendList(5);
+            for (int i = 0; i < m_ds.Tables[0].Rows.Count; i++)
+            {
+                m_ds.Tables[0].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[0].Rows[i]["Description"].ToString(), 100);
+            }
+            rptNew.DataSource = m_ds.Tables[0];
+            rptNew.DataBind();
+            for (int i = 0; i < m_ds.Tables[1].Rows.Count; i++)
+            {
+                m_ds.Tables[1].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[1].Rows[i]["Description"].ToString(), 100);
+            }
+            rptGood.DataSource = m_ds.Tables[1];
+            rptGood.DataBind();
+            for (int i = 0; i < m_ds.Tables[2].Rows.Count; i++)
+            {
+                m_ds.Tables[2].Rows[i]["Description"] = CommonTools.CutStr(m_ds.Tables[2].Rows[i]["Description"].ToString(), 100);
+            }
+            rptHot.DataSource = m_ds.Tables[2];
+            rptHot.DataBind();
         }
     }
 }

@@ -55,21 +55,38 @@ namespace WebForMain
                 new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
             );
 
-            routes.MapPageRoute("名人库",
-               "Celebrity/{key}/{keyword}",
+            routes.MapPageRoute("名人库标签",
+               "Celebrity/{key}",
                "~/Celebrity/Search.aspx",
                false,
-                new RouteValueDictionary { { "key", "" }, { "keyword", "" } },
-                new RouteValueDictionary { { "keyword", @"[^/]*" }, { "key", @"\d*" } }
+                new RouteValueDictionary { { "key", "" } },
+                new RouteValueDictionary { { "key", @"\d*" } }
+            );
+            routes.MapPageRoute("名人库搜索",
+               "Celebrity/{keyword}",
+               "~/Celebrity/Search.aspx",
+               false,
+                new RouteValueDictionary { { "keyword", "" } },
+                new RouteValueDictionary { { "keyword", @"[^/]*" } }
             );
             routes.MapPageRoute("名人库详细",
                 "Celebrity/Detail/{id}/{pn}",
-                "~/Celebrity/Topic.aspx",
+                "~/Celebrity/Detail.aspx",
                 false,
                 new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "id", @"[^/]*" }, { "pn", @"\d*" } }
             );
-            routes.MapPageRoute("煮酒论命帖子列表",
+            routes.MapPageRoute("象牙塔文章",
+                "Article/Content/{id}",
+                "~/Article/Content.aspx",
+                false,
+                new RouteValueDictionary {  },
+                new RouteValueDictionary { { "id", @"\d*" }}
+            );
+            routes.MapPageRoute("象牙塔",
+               "Article",
+               "~/Article/Index.aspx",
+               false);
             routes.MapPageRoute("象牙塔分类列表",
                "Article/{cate}/{key}/{pn}",
                "~/Article/Index.aspx",
@@ -84,13 +101,7 @@ namespace WebForMain
                new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "pn", @"\d*" }, { "key", @"[^/]*" } }
             );
-            routes.MapPageRoute("象牙塔文章",
-                "Article/Content/{id}",
-                "~/Article/Content.aspx",
-                false,
-                new RouteValueDictionary {  },
-                new RouteValueDictionary { { "id", @"\d*" }}
-            );
+            
 
             routes.MapPageRoute("帮助中心",
                 "About/HelpCenter/{memo}",
