@@ -14,7 +14,7 @@
     <div class="main">
         <div class="leftbox left">
             <h3>
-                我要提问</h3>
+                发新主题</h3>
             <div class="line_03">
             </div>
             <div class="block show pp">
