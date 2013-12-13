@@ -110,7 +110,7 @@
                     <ul>
                         <asp:Repeater ID="Repeater3" runat="server">
                             <ItemTemplate>
-                                <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question<%#Eval("SysNo")%>' target="_blank"><%#Eval("AnswerUser")%>£º<%#AppCmn.CommonTools.CutStr(Eval("Answer").ToString(),25)%> || <%#Eval("NickName")%>£º[<%#Eval("CateName")%>]<%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),15)%></a></li>
+                                <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%#Eval("SysNo")%>' target="_blank"><%#Eval("AnswerUser")%>£º<%#AppCmn.CommonTools.CutStr(Eval("Answer").ToString(),25)%> || <%#Eval("NickName")%>£º[<%#Eval("CateName")%>]<%#AppCmn.CommonTools.CutStr(Eval("Title").ToString(),15)%></a></li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>
@@ -131,12 +131,7 @@
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>
-                    <script type="text/javascript">
-                        $(function () {
-
-                            $(".zjlm_r_c2 li:nth-child(5n)").append("<li class='spc'></li>");
-                        })
-                    </script>
+                    
                 </div>
             </div>
         </div>
@@ -149,4 +144,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
     <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/jquery.pngFix.pack.js"></script>
     <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/new.js"></script>
+    <script type="text/javascript">
+                        $(function () {
+
+                            $(".zjlm_r_c2 li:nth-child(5n)").append("");
+                        })
+                    </script>
 </asp:Content>

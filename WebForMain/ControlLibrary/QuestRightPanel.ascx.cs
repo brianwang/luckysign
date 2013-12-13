@@ -107,8 +107,17 @@ namespace WebForMain.ControlLibrary
                 dt.Columns.Add("Replys");
                 dt.Columns.Add("QuestNum");
                 dt.Columns.Add("SolvedNum");
+                dt.Columns.Add("Type");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    if (dt.Rows[i]["topsysno"].ToString() == "1")
+                    {
+                        dt.Rows[i]["Type"] = "Quest";
+                    }
+                    else
+                    {
+                        dt.Rows[i]["Type"] = "Talk";
+                    }
                     dt.Rows[i]["QuestNum"] = "0";
                     DataTable questnum = QA_CategoryBll.GetInstance().GetCatesPostNum().Tables[0];
                     for (int j = 0; j < questnum.Rows.Count; j++)

@@ -38,19 +38,19 @@ namespace WebForMain.Quest
                     m_dt.Rows[i]["style"] = "margin-right: 0";
                 }
                 m_dt.Rows[i]["NewCount"] = "0";
-                for (int j = 0; j < tmpds.Tables[2].Rows.Count; j++)
+                for (int j = 0; j < tmpds.Tables[0].Rows.Count; j++)
                 {
-                    if (tmpds.Tables[2].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    if (tmpds.Tables[0].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
                     {
-                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[2].Rows[j]["questnum"].ToString());
+                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[0].Rows[j]["questnum"].ToString());
                         break;
                     }
                 }
-                for (int j = 0; j < tmpds.Tables[3].Rows.Count; j++)
+                for (int j = 0; j < tmpds.Tables[1].Rows.Count; j++)
                 {
-                    if (tmpds.Tables[3].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    if (tmpds.Tables[1].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
                     {
-                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["CommentNum"].ToString());
+                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[1].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[1].Rows[j]["CommentNum"].ToString());
                         break;
                     }
                 }
@@ -75,19 +75,19 @@ namespace WebForMain.Quest
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 m_dt.Rows[i]["NewCount"] = "0";
-                for (int j = 0; j < tmpds.Tables[2].Rows.Count; j++)
+                for (int j = 0; j < tmpds.Tables[0].Rows.Count; j++)
                 {
-                    if (tmpds.Tables[2].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    if (tmpds.Tables[0].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
                     {
-                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[2].Rows[j]["questnum"].ToString());
+                        m_dt.Rows[i]["NewCount"] = int.Parse(tmpds.Tables[0].Rows[j]["questnum"].ToString());
                         break;
                     }
                 }
-                for (int j = 0; j < tmpds.Tables[3].Rows.Count; j++)
+                for (int j = 0; j < tmpds.Tables[1].Rows.Count; j++)
                 {
-                    if (tmpds.Tables[3].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
+                    if (tmpds.Tables[1].Rows[j]["CateSysNo"].ToString() == m_dt.Rows[i]["SysNo"].ToString())
                     {
-                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[3].Rows[j]["CommentNum"].ToString());
+                        m_dt.Rows[i]["NewCount"] = int.Parse(m_dt.Rows[i]["NewCount"].ToString()) + int.Parse(tmpds.Tables[1].Rows[j]["AnswerNum"].ToString()) + int.Parse(tmpds.Tables[1].Rows[j]["CommentNum"].ToString());
                         break;
                     }
                 }

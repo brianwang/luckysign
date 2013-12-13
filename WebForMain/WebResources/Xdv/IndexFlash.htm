@@ -33,3 +33,34 @@
         </div>
     </div>
 </div>
+<script src="http://www.ssqian.com/WebResources/JS/jquery/jquery-1.8.3.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+        /*首页广告效果*/
+        $(function () {
+            var len = $(".num li").length;
+            var index = 0;
+            var adTimer;
+            $(".num li").mouseover(function () {
+                index = $(".num li").index(this);
+                showImg(index);
+            }).eq(0).mouseover();
+            //滑入 停止动画，滑出开始动画.
+            $('.banner_img').hover(function () {
+                clearInterval(adTimer);
+            }, function () {
+                adTimer = setInterval(function () {
+                    showImg(index)
+                    index++;
+                    if (index == len) { index = 0; }
+                }, 5000);
+            }).trigger("mouseleave");
+        })
+        // 通过控制top ，来显示不同的幻灯片
+        function showImg(index) {
+            var adHeight = $(".banner_img").height();
+            $(".slider").stop(true, false).animate({ bottom: -adHeight * index }, 1000);
+            $(".num li").removeClass("on")
+                .eq(index).addClass("on");
+        }
+</script>

@@ -73,6 +73,7 @@ namespace AppBll.QA
                         builder.Append(@"SELECT [SysNo]
                               ,[Name]
                               ,[ParentSysNo]
+                              ,[TopSysNo]
                               ,[Pic]
                               ,[Intro]
                               ,[DR]
@@ -118,7 +119,11 @@ namespace AppBll.QA
                 }
             return tables;
         }
-
+        
+        /// <summary>
+        /// 获取目录中贴数，返回四个表，分别为总主题数，总回帖评论数，24小时内新主题数，24小时内新回帖评论数
+        /// </summary>
+        /// <returns></returns>
         public DataSet GetCatesPostNum()
         {
             string cachyname = "QACatePostNum";

@@ -83,7 +83,7 @@
                                             <li>
                                                 <div class="index_new_ask_l">
                                                     <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>">
-                                                        <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a><br />
+                                                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a><br />
                                                     <span class="xz">
                                                         <asp:Repeater ID="Repeater4" runat="server">
                                                             <ItemTemplate>
@@ -112,7 +112,7 @@
                                                                 <div class="index_new_reply_box">
                                                                     <div class="index_new_reply_l">
                                                                         <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>">
-                                                                            <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="33" height="33" /></a>
+                                                                            <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="33" height="33" /></a>
                                                                     </div>
                                                                     <div class="index_new_reply_r">
                                                                         <span class="info" style='<%#Eval("color")%>'><a target="_blank" href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a>£º<%#Eval("Context")%></span>
@@ -135,8 +135,6 @@
                                             </li>
                                         </ItemTemplate>
                                     </asp:Repeater>
-
-
                                 </ul>
                             </div>
                             <asp:HiddenField ID="HiddenField1" runat="server" />

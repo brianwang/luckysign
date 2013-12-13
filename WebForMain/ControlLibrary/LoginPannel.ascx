@@ -10,7 +10,7 @@
         <ul class="setting_ul" style="width:450px; margin-left:0px">
             <li><span>用户名：</span><div class="setting_r" style="width:350px;">
                 <div>
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="setting_input"></asp:TextBox>没有账号？立刻<a target="_blank" href="../Passport/Register.aspx">注册</a>
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="setting_input"></asp:TextBox>没有账号？立刻<a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Passport/Register.aspx">注册</a>
                 </div>
             </div>
 
