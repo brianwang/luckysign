@@ -119,9 +119,9 @@ namespace WebForMain.Quest
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
             }
-            if (txtTitle.Text.Trim().Length > 200)
+            if (txtTitle.Text.Trim().Length > 30)
             {
-                TitleTip.InnerHtml = "您输入的标题太长，请控制在200字以内";
+                TitleTip.InnerHtml = "您输入的标题太长，请控制在30字以内";
                 TitleTip.Attributes["class"] = "err";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
