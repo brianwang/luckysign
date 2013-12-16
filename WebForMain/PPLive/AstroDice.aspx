@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>占星骰子在线测算_上上签</title>
     <meta name="keywords" content="上上签_占星骰子_占星色子_占星头子_占星投子_占星骰子网络版_占星色子网络版_占星骰子在线测算" />

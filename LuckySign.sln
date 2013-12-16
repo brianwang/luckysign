@@ -8,11 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseAssemblies", "BaseAssem
 		BaseAssemblies\Castle.Windsor.dll = BaseAssemblies\Castle.Windsor.dll
 		BaseAssemblies\EntityFramework.dll = BaseAssemblies\EntityFramework.dll
 		BaseAssemblies\Enyim.Caching.dll = BaseAssemblies\Enyim.Caching.dll
+		BaseAssemblies\FreeTextBox.dll = BaseAssemblies\FreeTextBox.dll
 		BaseAssemblies\log4net.dll = BaseAssemblies\log4net.dll
 		BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Common.dll = BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Common.dll
 		BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.dll = BaseAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.dll
 		BaseAssemblies\Microsoft.Practices.ObjectBuilder.dll = BaseAssemblies\Microsoft.Practices.ObjectBuilder.dll
-		BaseAssemblies\URLRewriter.dll = BaseAssemblies\URLRewriter.dll
 		BaseAssemblies\WebValidates.dll = BaseAssemblies\WebValidates.dll
 		BaseAssemblies\XMS.Core.dll = BaseAssemblies\XMS.Core.dll
 	EndProjectSection

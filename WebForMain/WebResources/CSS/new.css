@@ -1520,7 +1520,7 @@ a.c18 {
 
 .paipan_l_c span{font-weight:bold}
 
-.paipan_l_c select{ margin:0px 10px 0px 10px}
+.paipan_l_c select{}
 
 .paipan_l_c p{padding:10px 0px}
 
@@ -1606,7 +1606,7 @@ a.c18 {
 
 .index_new_ask_xs span{width:67px;height:19px; margin-right:5px;float:left; display:block; font:12px/19px "微软雅黑";color:#000; text-align:center}
 
-.index_new_ask_info{ font-size:14px; line-height:28px}
+.index_new_ask_info{ font:14px/24px "微软雅黑"}
 
 .index_new_ask_qs{ margin-bottom:30px}
 

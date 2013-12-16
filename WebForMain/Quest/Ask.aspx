@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="True"
-    CodeBehind="Ask.aspx.cs" Inherits="WebForMain.Quest.Ask" %>
-
+    CodeBehind="Ask.aspx.cs" Inherits="WebForMain.Quest.Ask" ValidateRequest="false" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/DatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/DistrictPicker.ascx" TagName="District" TagPrefix="uc1" %>
@@ -55,7 +55,7 @@
                         <asp:UpdatePanel ID="UpdatePanelb" runat="server" UpdateMode="Conditional" RenderMode="Inline">
                             <ContentTemplate>
                                 <span class="fred">*</span><strong>出生地点：</strong>
-                                <div style="display:block;width:546px;float:right;text-align:left">
+                                <div style="display:block;width:496px;float:right;text-align:left">
                                 	<uc1:District ID="District1" runat="server"></uc1:District>
                                 </div>
                                 <span id="District1Tip" runat="server"></span>
@@ -91,7 +91,7 @@
                         <asp:UpdatePanel ID="UpdatePaneld" runat="server" UpdateMode="Conditional" RenderMode="Inline">
                             <ContentTemplate>
                                 <span class="fred">*</span><strong>出生地点：</strong>
-                                <div style="display:block;width:550px;float:right;text-align:left">
+                                <div style="display:block;width:496px;float:right;text-align:left">
                                 <uc1:District ID="District2" runat="server"></uc1:District>
                                     </div>
                             </ContentTemplate>
@@ -116,10 +116,12 @@
                     </div>
                     <div class="box_c" style="padding-top:10px">
                         <%--<strong><span class="fred">*</span>持续时间：</strong><select class="sel_1"></select><br />--%>
-                        <strong style="vertical-align: top"><span class="fred">*</span>问题详情：</strong><asp:TextBox
+                        <strong style="vertical-align: top"><span class="fred">*</span>问题详情：</strong>
+                        <FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="560px" Height="200px" />
+                        <%--<asp:TextBox
                             runat="server" ID="txtContext" TextMode="MultiLine" Columns="60" Rows="15" CssClass="tarea"></asp:TextBox>
-                        <br />
-                        <asp:LinkButton runat="server" CssClass="btn_01" OnClick="Unnamed3_Click" style="margin-left:71px">提交</asp:LinkButton>
+                        <br />--%>
+                        <asp:LinkButton runat="server" CssClass="btn_01" OnClick="Unnamed3_Click" style="margin-top:10px;">提交</asp:LinkButton>
                     </div>
                 </div>
             </div>

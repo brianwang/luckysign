@@ -66,17 +66,17 @@
                                 <asp:CheckBox ID="chkDaylight2" runat="server" />
                                 <lable class="fsred"><strong>夏令时</strong></lable>
                             </p>
-                            <p>
+                            <div style="padding:10px 0px">
                                 <span>出生地点：</span>
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" style="display: block; width: 321px; float: right; text-align: left">
                                     <ContentTemplate>
-                                        <samp style="display: block; width: 500px; float: right; text-align: left">
+                                        <samp>
                                             <uc1:District ID="District2" runat="server"></uc1:District>
                                         </samp>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 <div class="clear"></div>
-                            </p>
+                            </div>
                         </div>
                         <p>
                             <span>所属时区：</span>
