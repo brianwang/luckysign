@@ -87,7 +87,7 @@
                                     <li>
                                         <h2>
                                             <a href="Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
-                                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
+                                                <img src="ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
                                         <h1><a href="Quest/Question.aspx?id=<%# Eval("SysNo")%>"><%# Eval("Title")%></a><img id='cenew<%# Eval("IsHot")%>' src="WebResources/img/page/new_ico4.gif" align="absmiddle" /></h1>
                                         <div class="clear"></div>
                                     </li>
@@ -119,7 +119,7 @@
                                     <li>
                                         <h2>
                                             <a href="Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
-                                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
+                                                <img src="ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a></h2>
                                         <h1><a href="Quest/Question.aspx?id=<%# Eval("SysNo")%>"><%# Eval("Title")%></a><img id='studynew<%# Eval("IsHot")%>' src="WebResources/img/page/new_ico4.gif" align="absmiddle" /></h1>
                                         <div class="clear"></div>
                                     </li>
