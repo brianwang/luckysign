@@ -127,17 +127,9 @@ namespace WebForMain.Quest
                 m_quest.DR = (int)AppEnum.State.normal;
 
                 int sysno = 0;
-                using (SQLData m_data = new SQLData())
-                {
-                    sysno = m_data.GetSequence("QA_Question_Seq");
-                }
-                if (sysno == 0)
-                {
-                    //出错
-                    LogManagement.getInstance().WriteException("QA_Question表Sequence无法生成");
-                }
-                m_quest.SysNo = sysno;
+               
                 QA_QuestionBll.GetInstance().AddQuest(m_quest,false);
+                sysno = m_quest.SysNo;
                 RefreshSession();
                 
                 FATE_ChartMod m_chart = new FATE_ChartMod();
@@ -190,11 +182,12 @@ namespace WebForMain.Quest
 
                 LogManagement.getInstance().WriteTrace("前台话题", "Ask", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "askok", "alert('话题发布成功！');", true);
-                Response.Redirect(AppConfig.HomeUrl()+"Topic/" + sysno,false);
+                Response.Redirect(AppConfig.HomeUrl()+"Quest/Topic/" + sysno,false);
             }
             catch (Exception ex)
             {
                 LogManagement.getInstance().WriteException(ex, "QA-Add", Request.UserHostAddress, "发布话题失败");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "askok", "alert('系统故障，请联系管理员！');", true);
             }
         }
 
