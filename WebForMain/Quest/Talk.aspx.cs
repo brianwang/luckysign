@@ -187,6 +187,7 @@ namespace WebForMain.Quest
             catch (Exception ex)
             {
                 LogManagement.getInstance().WriteException(ex, "QA-Add", Request.UserHostAddress, "发布话题失败");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "askok", "alert('系统故障，请联系管理员！');", true);
             }
         }
 

@@ -72,7 +72,7 @@ namespace WebForMain.ControlLibrary
                         drpMinute.DataValueField = "Value";
                         drpMinute.DataBind();
                         drpMinute.Visible = true;
-                        fen.Text = "分钟";
+                        fen.Text = "分";
                         if (type > 5)
                         {
                             drpSecond.DataSource = minute;

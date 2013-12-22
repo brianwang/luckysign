@@ -37,26 +37,26 @@
 </script>
 
 
-<asp:DropDownList ID="drpYear" runat="server" CssClass="sel_2">
+<asp:DropDownList ID="drpYear" runat="server" CssClass="sel_2" style="width:55px">
 </asp:DropDownList>
 年
-<asp:DropDownList ID="drpMonth" runat="server" CssClass="sel_2">
+<asp:DropDownList ID="drpMonth" runat="server" CssClass="sel_2" style="width:40px">
 </asp:DropDownList>
 月
-<asp:DropDownList ID="drpDay" runat="server" CssClass="sel_2">
+<asp:DropDownList ID="drpDay" runat="server" CssClass="sel_2" style="width:40px">
 </asp:DropDownList>
 日
-<asp:DropDownList ID="drpHour" runat="server" CssClass="sel_2" Visible="false" style="margin-left:70px">
+<asp:DropDownList ID="drpHour" runat="server" CssClass="sel_2" Visible="false" style="width:40px">
 </asp:DropDownList>
 
 <asp:Literal ID="shi" runat="server" Text=""></asp:Literal>
 
-<asp:DropDownList ID="drpMinute" runat="server" CssClass="sel_2" Visible="false">
+<asp:DropDownList ID="drpMinute" runat="server" CssClass="sel_2" Visible="false" style="width:40px">
 </asp:DropDownList>
 
 <asp:Literal ID="fen" runat="server" Text=""></asp:Literal>
 
-<asp:DropDownList ID="drpSecond" runat="server" CssClass="sel_2" Visible="false">
+<asp:DropDownList ID="drpSecond" runat="server" CssClass="sel_2" Visible="false" style="width:40px">
 </asp:DropDownList>
 
 <asp:Literal ID="miao" runat="server" Text=""></asp:Literal>

@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="True"
-    CodeBehind="Talk.aspx.cs" Inherits="WebForMain.Quest.Talk" %>
-
+    CodeBehind="Talk.aspx.cs" Inherits="WebForMain.Quest.Talk" ValidateRequest="false" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/DatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/DistrictPicker.ascx" TagName="District" TagPrefix="uc1" %>
@@ -111,10 +111,12 @@
                     </div>
                     <div class="box_c" style="padding-top:10px">
                         <%--<strong><span class="fred">*</span>持续时间：</strong><select class="sel_1"></select><br />--%>
-                        <strong style="vertical-align: top"><span class="fred">*</span>话题内容：</strong><asp:TextBox
+                        <strong style="vertical-align: top"><span class="fred">*</span>话题内容：</strong>
+                        <FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" Width="560px" Height="200px" />
+                        <%--<asp:TextBox
                             runat="server" ID="txtContext" TextMode="MultiLine" Columns="60" Rows="15" CssClass="tarea"></asp:TextBox>
-                        <br />
-                        <asp:LinkButton runat="server" CssClass="btn_01" OnClick="Unnamed3_Click" style="margin-left:71px">提交</asp:LinkButton>
+                        <br />--%>
+                        <asp:LinkButton runat="server" CssClass="btn_01" OnClick="Unnamed3_Click"  style="margin-top:10px;">提交</asp:LinkButton>
                     </div>
                 </div>
             </div>

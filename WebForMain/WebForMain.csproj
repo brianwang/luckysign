@@ -48,6 +48,9 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\BaseAssemblies\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="FreeTextBox">
+      <HintPath>..\BaseAssemblies\FreeTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="NetDimension.Weibo">
       <HintPath>..\BaseAssemblies\NetDimension.Weibo.dll</HintPath>
     </Reference>
@@ -202,6 +205,7 @@
     <Content Include="WebResources\img\CatePic\i4.jpg" />
     <Content Include="WebResources\img\CatePic\i5.jpg" />
     <Content Include="WebResources\img\CatePic\i6.jpg" />
+    <Content Include="WebResources\img\CatePic\i7.jpg" />
     <Content Include="WebResources\img\CatePic\pp1.jpg" />
     <Content Include="WebResources\img\CatePic\pp2.jpg" />
     <Content Include="WebResources\img\CatePic\pp3.jpg" />
@@ -230,6 +234,7 @@
     <Content Include="WebResources\img\new\ico13.gif" />
     <Content Include="WebResources\img\new\ico14.gif" />
     <Content Include="WebResources\img\new\ico15.gif" />
+    <Content Include="WebResources\img\new\ico16.gif" />
     <Content Include="WebResources\img\new\ico3.gif" />
     <Content Include="WebResources\img\new\ico4.gif" />
     <Content Include="WebResources\img\new\ico5.gif" />

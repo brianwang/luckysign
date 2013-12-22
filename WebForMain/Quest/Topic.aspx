@@ -51,7 +51,7 @@
                                 <span>
                                     <asp:Literal ID="ltrAward" runat="server"></asp:Literal></span><%=m_qustion.EndTime==null||m_qustion.EndTime==AppCmn.AppConst.DateTimeNull ? @"<span style=""color:#f00"">未解决</span>" : @"<span>已解决</span>"%>
                             </div>--%>
-                            <div class="index_new_ask_info">
+                            <div class="index_new_ask_info" style="padding-right:15px">
                                 <asp:Literal ID="ltrContext" runat="server"></asp:Literal>
                             </div>
 

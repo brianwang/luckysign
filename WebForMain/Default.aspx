@@ -3,7 +3,7 @@
 
 <%@ Register Src="ControlLibrary/ShowAdv.ascx" TagName="ShowAdv" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>上上签 命理网_让命理科技化_让算命人性化_西洋占星术_紫薇斗数_四柱八字</title>
+    <title>上上签命理网_让命理科技化_让算命人性化_西洋占星术_紫薇斗数_四柱八字</title>
     <meta name="keywords" content="上上签_占星术_占星骰子_紫薇斗数_四柱八字_塔罗牌_在线排盘_星座运势_命理咨询_大师专业解盘_名人案例库_算命_命盘" />
     <meta name="description" content="上上签命理网提供专业的排盘，在线算命咨询服务，这里还有海量的命理学习资料和名人命盘案例库，致力于用科技的手段服务于命理研究和在线咨询。" />
 

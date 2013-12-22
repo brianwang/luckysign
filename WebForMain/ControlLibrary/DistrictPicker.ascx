@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DistrictPicker.ascx.cs"
     Inherits="WebForMain.ControlLibrary.DistrictPicker" %>
-
 <table cellpadding="0" cellspacing="0">
     <tr>
         <td>

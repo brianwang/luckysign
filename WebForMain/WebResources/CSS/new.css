@@ -1520,7 +1520,7 @@ a.c18 {
 
 .paipan_l_c span{font-weight:bold}
 
-.paipan_l_c select{ margin:0px 10px 0px 10px}
+.paipan_l_c select{}
 
 .paipan_l_c p{padding:10px 0px}
 
@@ -1606,7 +1606,7 @@ a.c18 {
 
 .index_new_ask_xs span{width:67px;height:19px; margin-right:5px;float:left; display:block; font:12px/19px "微软雅黑";color:#000; text-align:center}
 
-.index_new_ask_info{ font-size:14px; line-height:28px}
+.index_new_ask_info{ font:14px/24px "微软雅黑";color:#000}
 
 .index_new_ask_qs{ margin-bottom:30px}
 
@@ -1626,7 +1626,7 @@ a.c18 {
 
 .index_new_ask_r h2{font:bold 12px/37px "微软雅黑";color:#307C94;width:387px; border-bottom:dotted 1px #777}
 
-.index_new_ask_r h3{ font:14px/24px "微软雅黑";color:#000; margin-top:6px;}
+.index_new_ask_r h3{ font:14px/24px "微软雅黑";color:#000; margin-top:6px; padding-right:15px}
 
 .index_new_ask_r h4{ text-align:right; font-weight:normal; margin-top:55px}
 
@@ -1789,8 +1789,8 @@ a.c18 {
 
 .zjlm_r_c2 li.spc{ border-bottom: dashed 2px #9a9186; height:10px ; margin-bottom:10px; overflow:hidden}
 
+.left_next{ padding:10px 0px;height:24px; border-top:solid 1px #a3534a; background:#F7F4EE}
 
+.left_next a{display:block; background:#a3534a;width:76px;height:24px; text-align:center;font:14px/24px "微软雅黑";color:#fff; float:right; margin-right:15px}
 
-
-
-
+.left_next a:hover{color:#fff}
