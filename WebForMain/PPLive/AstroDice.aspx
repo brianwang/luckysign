@@ -127,7 +127,7 @@
                             <div class="content_l_s">
                                 <div class="content_left">
                                     <a href="../Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
-                                        <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a>
+                                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a>
                                 </div>
                                 <div class="content_right">
                                     <div class="content_title">
@@ -149,7 +149,7 @@
                             <div class="content_l_s">
                                 <div class="content_left">
                                     <a href="Qin/View.aspx?id=<%# Eval("CustomerSysNo")%>">
-                                        <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /></a>
+                                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /></a>
                                 </div>
                                 <div class="content_right">
                                     <div class="content_title"><a href="Qin/View.aspx?id=<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a>：<a href="../Quest/Question.aspx?id=<%# Eval("SysNo")%>">[占星骰子]<%# Eval("Title")%></a></div>

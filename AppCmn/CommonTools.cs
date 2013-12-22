@@ -101,7 +101,7 @@ namespace AppCmn
 
             sw.Flush();
 
-            return Convert.ToBase64String(ms.GetBuffer(), 0, (int)ms.Length);
+            return Convert.ToBase64String(ms.GetBuffer(), 0, (int)ms.Length).Replace("/","XiEGoN");
 
         }
         /// <summary>
@@ -121,7 +121,7 @@ namespace AppCmn
             try
             {
 
-                byEnc = Convert.FromBase64String(data);
+                byEnc = Convert.FromBase64String(data.Replace("XiEGoN","/"));
 
             }
 
@@ -450,6 +450,10 @@ namespace AppCmn
 
         public static string NoHTML(string Htmlstring)   
         {   
+            //删除注释
+            Htmlstring = Regex.Replace(Htmlstring, @"<!--\[if[\d\D]*?<!\[endif\]-->", "",  
+                RegexOptions.IgnoreCase); 
+            
             //删除脚本  
             Htmlstring = Regex.Replace(Htmlstring, @"<script[^>]*?>.*?</script>", "",  
                 RegexOptions.IgnoreCase);   
@@ -458,8 +462,8 @@ namespace AppCmn
                 RegexOptions.IgnoreCase); 
             Htmlstring = Regex.Replace(Htmlstring, @"([\r\n])[\s]+", "",  
                 RegexOptions.IgnoreCase); 
-            Htmlstring = Regex.Replace(Htmlstring, @"-->", "", RegexOptions.IgnoreCase);  
-            Htmlstring = Regex.Replace(Htmlstring, @"<!--.*", "", RegexOptions.IgnoreCase);  
+            //Htmlstring = Regex.Replace(Htmlstring, @"-->", "", RegexOptions.IgnoreCase);  
+            //Htmlstring = Regex.Replace(Htmlstring, @"<!--.*", "", RegexOptions.IgnoreCase);  
             Htmlstring = Regex.Replace(Htmlstring, @"&(quot|#34);", "\"",  
                 RegexOptions.IgnoreCase);  
             Htmlstring = Regex.Replace(Htmlstring, @"&(amp|#38);", "&",  

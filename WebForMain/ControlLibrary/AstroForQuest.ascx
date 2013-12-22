@@ -107,8 +107,10 @@
                     </div>
 
                     <div class="paipan_line">
-                        <a href="../Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.chart%>&minitype=astro&add=1&p=<%=chartpara %>" class="paipan_a" style="width: 120px; margin: auto">收藏当前本命盘</a>
+                        <a href="../Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.chart%>&minitype=astro&add=1&p=<%=chartpara %>" class="paipan_a" style="width: 120px; margin: auto">收藏当前本命盘</a>&nbsp;&nbsp;
+<asp:LinkButton ID="LinkButton8" runat="server" OnClick="LinkButton8_Click" CssClass="paipan_a">求解盘</asp:LinkButton>
                     </div>
+                    
                 </div>
             </div>
         </div>

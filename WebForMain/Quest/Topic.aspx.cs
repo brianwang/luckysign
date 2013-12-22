@@ -94,7 +94,7 @@ namespace WebForMain.Quest
                 nologin.Style["display"] = "none";
                 txtReply2.Enabled = true;
                 Button3.Style["display"] = "";
-                Image2.ImageUrl = AppConfig.WebResourcesPath() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + GetSession().CustomerEntity.Photo;
+                Image2.ImageUrl = AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + GetSession().CustomerEntity.Photo;
                 IsLogined.Value = "TRUE";
             }
             #endregion

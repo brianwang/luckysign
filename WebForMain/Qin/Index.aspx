@@ -50,7 +50,7 @@
                     <asp:Repeater ID="rptFriend" runat="server">
                         <ItemTemplate>
                             <li><a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
-                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
+                                <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
@@ -68,7 +68,7 @@
                     <asp:Repeater ID="rptFans" runat="server">
                         <ItemTemplate>
                             <li><a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
-                                <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
+                                <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /><%# Eval("NickName")%></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>

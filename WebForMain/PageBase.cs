@@ -90,7 +90,7 @@ namespace WebForMain
 
         protected void ShowError(string message)
         {
-            string url = "../Error.aspx?message=" + Server.UrlEncode(message);
+            string url = "~/Error.aspx?message=" + Server.UrlEncode(message);
             Response.Redirect(url);
         }
     }

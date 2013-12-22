@@ -71,7 +71,7 @@
                             <li class="<%# GetEnglishNum(Container.ItemIndex+1)%>)">
                                 <div class="page_right_rank_s">
                                     <span></span>
-                                    <img src="~/ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" />
+                                    <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" />
                                     <a href="View.aspx?id=<%# Eval("CustomerSysNo")%>">
                                         <%# Eval("NickName")%>
                                         |

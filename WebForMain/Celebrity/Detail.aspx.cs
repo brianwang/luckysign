@@ -251,7 +251,7 @@ namespace WebForMain.Celebrity
             {
                 try
                 {
-                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(base.Request.QueryString["id"].Replace(" ", "+"))));
+                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(base.Request.QueryString["id"]).Replace(" ", "+")));
                 }
                 catch
                 {
@@ -262,7 +262,7 @@ namespace WebForMain.Celebrity
             {
                 try
                 {
-                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(Page.RouteData.Values["id"].ToString().Replace(" ", "+"))));
+                    this.sysno = int.Parse(CommonTools.Decode(Server.UrlDecode(Page.RouteData.Values["id"].ToString()).Replace(" ", "+")));
                 }
                 catch
                 {

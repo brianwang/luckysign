@@ -78,7 +78,7 @@
 
                 <div class="setting_box">
                     <div class="setting_img">
-                        <img src="~/ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
+                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
                     </div>
                     <div class="setting_img_upload" style="margin-left:10px;">
                         <asp:FileUpload ID="FileUpload1" CssClass="setting_input" Width="352px" runat="server" />
@@ -465,7 +465,7 @@
             <div class="page_right_box_t">个人资料</div>
             <div class="mypage_otherperson_right">
                 <div class="mypage_otherperson_s" style="border: 0">
-                    <img src="~/ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
+                    <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=o&id=<%=m_user.Photo %>" />
                     <ul class="help_right_list">
                         <li><a href="UserInfo.aspx?id=<%=m_user.SysNo %>&tab=1">基本资料</a></li>
                         <li><a href="UserInfo.aspx?id=<%=m_user.SysNo %>&tab=0">修改头像</a></li>

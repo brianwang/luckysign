@@ -8,7 +8,7 @@
         <div class="page_right_box_info" style="background: none; padding-bottom: 0px">
             <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=o&id=<%#Eval("Photo")%>" />
             <div class="page_right_box_info_r" style="width: 135px">
-                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank"><%#Eval("NickName")%></a><br />
+                <a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("SysNo")%>'target="_blank"><%#Eval("NickName")%></a><br />
                 <%#Eval("Intro")%>
             </div>
             <div class="clear"></div>

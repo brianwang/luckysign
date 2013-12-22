@@ -34,7 +34,7 @@ namespace WebForMain.Master
                 int sms = USR_CustomerBll.GetInstance().GetUnReadInfoNum(m_base.GetSession().CustomerEntity.SysNo);
                 if (sms > 0)
                 {
-                    ltrLinks.Text += @"<div class=""msg_tip_box""><a href=""../Qin/MyNotice.aspx"">您有"+sms+"条新消息</a></div>";
+                    ltrLinks.Text += @"<div class=""msg_tip_box""><a href=""/Qin/MyNotice.aspx"">您有"+sms+"条新消息</a></div>";
                 }
             }
         }

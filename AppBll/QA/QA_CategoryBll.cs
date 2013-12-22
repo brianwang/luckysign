@@ -79,7 +79,7 @@ namespace AppBll.QA
                               ,[DR]
                               ,[TS]
                           FROM [QA_Category] where dr=").Append((int)AppEnum.State.normal)
-                           .Append(" and [ParentSysNo] = ").Append(parent).Append(" order by [Name];");
+                           .Append(" and [ParentSysNo] = ").Append(parent).Append(" order by [OrderID];");
                     try
                     {
                         tables = data.CmdtoDataTable(builder.ToString());
@@ -137,36 +137,36 @@ namespace AppBll.QA
 
 SELECT COUNT(*) as questnum
       ,[CateSysNo],(case EndTime when null then '0' else '1' end) as IsSolved
-  FROM [QA_Question] group by [CateSysNo],(case EndTime when null then '0' else '1' end);
+  FROM [QA_Question] where dr=0 group by [CateSysNo],(case EndTime when null then '0' else '1' end);
 
 
 select * from 
 (SELECT COUNT(*) as AnswerNum
       ,[CateSysNo]
-  FROM QA_Answer left join [QA_Question] on QA_Answer.QuestionSysNo = QA_Question.SysNo group by [CateSysNo]
+  FROM QA_Answer left join [QA_Question] on QA_Answer.QuestionSysNo = QA_Question.SysNo  where QA_Answer.dr=0 group by [CateSysNo]
   ) as PP,
 
 
 (SELECT COUNT(*) as CommentNum
       ,[CateSysNo]
-  FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo group by [CateSysNo]
+  FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo where QA_Comment.dr=0 group by [CateSysNo]
 ) as KK where PP.CateSysNo = KK.CateSysNo;
 
                     SELECT COUNT(*) as questnum
       ,[CateSysNo]
-  FROM [QA_Question] where datediff(day,TS,getdate())<1 group by [CateSysNo];
+  FROM [QA_Question] where datediff(day,TS,getdate())<1 and dr=0 group by [CateSysNo];
 
 
 select * from 
 (SELECT COUNT(*) as AnswerNum
       ,[CateSysNo]
-  FROM QA_Answer left join [QA_Question] on QA_Answer.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Answer.TS,getdate())<1 group by [CateSysNo]
+  FROM QA_Answer left join [QA_Question] on QA_Answer.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Answer.TS,getdate())<1 and QA_Answer.dr=0 group by [CateSysNo]
   ) as PP,
 
 
 (SELECT COUNT(*) as CommentNum
       ,[CateSysNo]
-  FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Comment.TS,getdate())<1 group by [CateSysNo]
+  FROM QA_Comment left join [QA_Question] on QA_Comment.QuestionSysNo = QA_Question.SysNo where datediff(day,QA_Comment.TS,getdate())<1 and QA_Comment.dr=0 group by [CateSysNo]
 ) as KK where PP.CateSysNo = KK.CateSysNo");
 
                     try

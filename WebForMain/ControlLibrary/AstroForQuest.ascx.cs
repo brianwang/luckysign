@@ -542,5 +542,11 @@ namespace WebForMain.ControlLibrary
             m_astro.aspectsShow.Add(5, decimal.Parse(((DropDownList)this.FindControl("drpAspect60")).SelectedValue));
         }
 
+        protected void LinkButton8_Click(object sender, EventArgs e)
+        {
+            m_astro = (AstroMod)ViewState["NowChart"];
+
+        }
+
     }
 }

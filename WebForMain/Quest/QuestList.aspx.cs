@@ -272,7 +272,7 @@ namespace WebForMain.Quest
             rptQuestion.DataSource = m_dt;
             rptQuestion.DataBind();
 
-            Pager1.url = AppConfig.HomeUrl()+@"QuestList/" + cate+"/"+ search.Trim() + "/";
+            Pager1.url = AppConfig.HomeUrl()+@"Quest/QuestList/" + cate+"/"+ search.Trim() + "/";
             Pager1.totalrecord = total;
             if (total % AppConst.PageSize == 0)
             {
@@ -339,7 +339,7 @@ namespace WebForMain.Quest
                 Image Image1 = (Image)e.Item.FindControl("Image1");
                 Image1.ImageUrl = AppConfig.HomeUrl()+ "ControlLibrary/ShowPhoto.aspx?type=t&id=" + m_dt.Rows[choosen]["photo"].ToString();
                 Literal Literal1 = (Literal)e.Item.FindControl("Literal1");
-                Literal1.Text = @"<span>" + m_dt.Rows[choosen]["NickName"].ToString() + @"回复：</span>" + AppCmn.CommonTools.CutStr(m_dt.Rows[choosen]["Context"].ToString(),85);
+                Literal1.Text = @"<span>" + m_dt.Rows[choosen]["NickName"].ToString() + @"回复：</span>" + AppCmn.CommonTools.CutStr(CommonTools.NoHTML(m_dt.Rows[choosen]["Context"].ToString()),85);
             }
         }
 

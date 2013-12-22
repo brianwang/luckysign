@@ -82,7 +82,7 @@
                                         <div class="zjlm_img_r_num"><%#Eval("NewCount")%></div>
                                         <div class="clear"></div>
                                         <div class="zjlm_img_r_name"><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Topic/<%#Eval("NewSysNo")%>' target="_blank"><%#Eval("NewTitle")%></a></div>
-                                        <div class="zjlm_img_r_content"><%#AppCmn.CommonTools.CutStr(Eval("NewContext").ToString(),60)%></div>
+                                        <div class="zjlm_img_r_content"><%# AppCmn.CommonTools.CutStr(AppCmn.CommonTools.NoHTML(Eval("NewContext").ToString()),60)%></div>
                                         <div class="zjlm_img_r_time"><%#Eval("NewUser")%>     <%# DateTime.Parse(Eval("NewTime").ToString()).ToString("yyyy-MM-dd HH:mm") %></div>
                                     </div>
                                     <div class="clear"></div>
