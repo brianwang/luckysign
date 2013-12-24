@@ -2,7 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>煮酒论命-上上签</title>
+    <title>煮酒论命-上上签-专业在线算命咨询-大师亲测-学习讨论</title>
+    <meta name="keywords" content="上上签_占星术_占星骰子_在线排盘_星座运势_命理咨询_大师专业解盘_算命_命盘" />
+    <meta name="description" content="上上签算命咨询网提供专业的排盘，在线算命咨询服务，这里还有海量的命理学习资料和名人命盘案例库，致力于用科技的手段服务于命理研究和在线咨询。" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
