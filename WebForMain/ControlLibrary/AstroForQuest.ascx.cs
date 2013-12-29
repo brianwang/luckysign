@@ -545,7 +545,9 @@ namespace WebForMain.ControlLibrary
         protected void LinkButton8_Click(object sender, EventArgs e)
         {
             m_astro = (AstroMod)ViewState["NowChart"];
-
+            string url = AppConfig.HomeUrl()+"Quest/Ask.aspx?";
+            url += "chart1="+m_astro.birth.ToString("yyyy-MM-dd_HH:mm_")+Convert.ToInt16(m_astro.IsDaylight)+"_"+;
+            Response.Redirect(url);
         }
 
     }
