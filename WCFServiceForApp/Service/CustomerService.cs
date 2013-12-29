@@ -11,7 +11,7 @@ using AppBll.User;
 
 namespace WCFServiceForApp
 {
-    public class LsService : ILsService
+    public class CustomerService : ICustomerService
     {
         public ReturnValue<USR_CustomerMod> UserLogin(string username, string password)
         {

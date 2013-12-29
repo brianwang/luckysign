@@ -809,6 +809,14 @@ namespace WebForMain.ControlLibrary
         }
         #endregion
 
-
+        protected void LinkButton8_Click(object sender, EventArgs e)
+        {
+            m_ziwei = (ZiWeiMod)ViewState["NowChart"];
+            string url = AppConfig.HomeUrl() + "Quest/Ask.aspx?";
+            url += "chart1=" + m_ziwei.BirthTime.Date.ToString("yyyy-MM-dd_HH:mm")+"_0_2146_" + (int)m_ziwei.Gender +
+                "&chart2=" + m_ziwei.BirthTime.Date.ToString("yyyy-MM-dd_HH:mm")+"_0_2146_" + (int)m_ziwei.Gender +
+                "&type=" + (int)PublicValue.AstroType.benming;
+            Response.Redirect(url);
+        }
     }
 }

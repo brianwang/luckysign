@@ -26,6 +26,20 @@ namespace WebForMain
                 "Quest/Ask",
                 "~/Quest/Ask.aspx",
                 false);
+            routes.MapPageRoute("煮酒论命问答列表1",
+                "Quest/QuestList/{cate}/{pn}",
+                "~/Quest/QuestList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" }},
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
+            );
+            routes.MapPageRoute("煮酒论命帖子列表1",
+                "Quest/TalkList/{cate}/{pn}",
+                "~/Quest/TalkList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
+            );
             routes.MapPageRoute("煮酒论命问答列表",
                 "Quest/QuestList/{cate}/{key}/{pn}",
                 "~/Quest/QuestList.aspx",

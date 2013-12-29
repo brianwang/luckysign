@@ -74,6 +74,7 @@
 
             <%--<a href="#" onclick="javascript:window.clipboardData.setData('text',document.getElementById('chartdiv').innerHTML);alert('星盘已经复制到剪贴板中');" class="btn_03">复制星盘</a>--%>
         </div>
-        <div style="text-align: center; padding-top: 10px; border-top: 1px dotted #000000"><a href="../Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.chart%>&minitype=ziwei&add=1&p=<%=chartpara %>" class="btn_01" target="_blank">收藏当前本命盘</a></div>
+        <div style="text-align: center; padding-top: 10px; border-top: 1px dotted #000000"><a href="../Qin/MyCollection.aspx?type=<%=(int)AppCmn.AppEnum.CollectionType.chart%>&minitype=ziwei&add=1&p=<%=chartpara %>" class="btn_01" target="_blank">收藏当前本命盘</a>&nbsp;&nbsp;
+<asp:LinkButton ID="LinkButton8" runat="server" OnClick="LinkButton8_Click" CssClass="btn_01">求解盘</asp:LinkButton></div>
     </ContentTemplate>
 </asp:UpdatePanel>

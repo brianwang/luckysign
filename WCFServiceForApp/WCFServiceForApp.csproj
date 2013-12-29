@@ -56,9 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\ILsService.cs" />
+    <Compile Include="Interface\ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\LsService.cs" />
+    <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Task\RewardTask.cs" />
   </ItemGroup>
   <ItemGroup />

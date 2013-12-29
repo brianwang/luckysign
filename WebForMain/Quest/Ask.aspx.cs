@@ -81,22 +81,54 @@ namespace WebForMain.Quest
                 ltrPoint.Text = GetSession().CustomerEntity.Point.ToString();
 
                 #region 占星骰子问题
-                if ((Request.QueryString["type"] != null && Request.QueryString["type"] == "dice")||
-                    (Page.RouteData.Values["type"]!=null &&Page.RouteData.Values["type"].ToString()=="dice"))
+                if ((Request.QueryString["type"] != null && Request.QueryString["type"] == "dice") ||
+                    (Page.RouteData.Values["type"] != null && Page.RouteData.Values["type"].ToString() == "dice"))
                 {
                     try
                     {
-                        int star = int.Parse(Request.QueryString["star"])+1;
-                        int house = int.Parse(Request.QueryString["house"])+1;
-                        int constellation = int.Parse(Request.QueryString["const"])+1;
-                        txtTitle.Text = Request.QueryString["ask"] + " #" + PublicValue.GetAstroStar(star)+" " + house + "宫 " + PublicValue.GetConstellation(constellation) + "#";
+                        int star = int.Parse(Request.QueryString["star"]) + 1;
+                        int house = int.Parse(Request.QueryString["house"]) + 1;
+                        int constellation = int.Parse(Request.QueryString["const"]) + 1;
+                        txtTitle.Text = Request.QueryString["ask"] + " #" + PublicValue.GetAstroStar(star) + " " + house + "宫 " + PublicValue.GetConstellation(constellation) + "#";
                         drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue("0"));
                         drpCate.SelectedIndex = drpCate.Items.IndexOf(drpCate.Items.FindByValue("7"));
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "touzi", "qaTypeChanged(document.getElementById('"+drpType.ClientID+"'));", true);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "touzi", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                     }
                     catch { }
-                    }
+                }
 
+                #endregion
+
+                #region 排盘跳转解析
+                else if (Request.QueryString["type"] != null)
+                {
+                    try
+                    {
+                        string[] chart1 = Request.QueryString["chart1"].Split(new char[] {'_'});
+                        DatePicker1.SelectedTime = DateTime.Parse(chart1[0] + " " + chart1[1] + ":00");
+                        District1.Area3SysNo = int.Parse(chart1[3]);
+                        if(Convert.ToBoolean(int.Parse(chart1[2])))
+                        {
+                            chkDaylight1.Checked = true;
+                        }
+                        drpGender1.SelectedIndex = drpGender1.Items.IndexOf(drpGender1.Items.FindByValue(chart1[4]));
+                        drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue("1"));
+
+                        if (Request.QueryString["type"] == ((int)PublicValue.AstroType.hepan).ToString())
+                        {
+                            string[] chart2 = Request.QueryString["chart2"].Split(new char[] { '_' });
+                            DatePicker2.SelectedTime = DateTime.Parse(chart2[0] + " " + chart2[1] + ":00");
+                            District2.Area3SysNo = int.Parse(chart2[3]);
+                            if (Convert.ToBoolean(int.Parse(chart2[2])))
+                            {
+                                chkDaylight2.Checked = true;
+                            }
+                            drpGender2.SelectedIndex = drpGender2.Items.IndexOf(drpGender2.Items.FindByValue(chart2[4]));
+                            drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue("2"));
+                        }
+                    }
+                    catch { }
+                }
                 #endregion
             }
         }

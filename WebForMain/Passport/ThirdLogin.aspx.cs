@@ -78,8 +78,8 @@ namespace WebForMain.Passport
 
                 try
                 {
-                    ViewState["nickname"] = ret.Split(new char[] { '"' })[9];
-                    ViewState["photo"] = ret.Split(new char[] { '"' })[25];
+                    ViewState["nickname"] = ret.Split(new char[] { ':',',' })[7].Replace(@"""","").Trim();
+                    ViewState["photo"] = ret.Split(new string[] { @""":", "," }, StringSplitOptions.None)[19].Replace(@"""", "").Replace(@"\", "").Trim();
                 }
                 catch
                 {

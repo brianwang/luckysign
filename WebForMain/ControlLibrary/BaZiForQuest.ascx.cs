@@ -42,6 +42,7 @@ namespace WebForMain.ControlLibrary
         private bool hepan = false;
         private bool _total = true;
         private bool _realtime = true;
+        public string chartpara = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Visible == true)
@@ -62,6 +63,7 @@ namespace WebForMain.ControlLibrary
                     ViewState["NowChart"] = _m_bazi;
                 }
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SetDocument", "SetDocument();", true);
+                chartpara = m_bazi.BirthTime.Date.ToString("yyyy_MM_dd_HH_mm") + "_" + ((int)m_bazi.Gender).ToString();
             }
         }
 
@@ -582,5 +584,15 @@ namespace WebForMain.ControlLibrary
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "jz", "document.getElementById('" + pnl2.ClientID + "').click();document.getElementById('" + pnljiaozheng2.ClientID + "').click();", true);
         }
         #endregion
+
+        protected void LinkButton8_Click(object sender, EventArgs e)
+        {
+            m_bazi = (BaZiMod)ViewState["NowChart"];
+            string url = AppConfig.HomeUrl() + "Quest/Ask.aspx?";
+            url += "chart1=" + m_bazi.BirthTime.Date.ToString("yyyy-MM-dd_HH:mm") + "_0_2146_" + (int)m_bazi.Gender +
+                "&chart2=" + m_bazi.BirthTime.Date.ToString("yyyy-MM-dd_HH:mm") + "_0_2146_" + (int)m_bazi.Gender +
+                "&type=" + (int)PublicValue.AstroType.benming;
+            Response.Redirect(url);
+        }
     }
 }

@@ -272,7 +272,11 @@ namespace WebForMain.Quest
             rptQuestion.DataSource = m_dt;
             rptQuestion.DataBind();
 
-            Pager1.url = AppConfig.HomeUrl() + @"Quest/TalkList/" + search.Trim() + "/" + cate;
+            Pager1.url = AppConfig.HomeUrl() + @"Quest/TalkList/" + cate + "/";
+            if (search.Trim() != "")
+            {
+                Pager1.url += search.Trim() + "/";
+            }
             Pager1.totalrecord = total;
             if (total % AppConst.PageSize == 0)
             {
