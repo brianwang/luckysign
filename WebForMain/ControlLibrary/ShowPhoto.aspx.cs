@@ -53,6 +53,10 @@ namespace WebForMain.ControlLibrary
                 }
                 pPath = base.Server.MapPath(@"~\WebResources\UpUserFiles\Photos\O\");
             Label_0189:
+                if (base.Request.QueryString["id"].Contains("http://q.qlogo.cn"))
+                {
+                    base.Response.Redirect(base.Server.UrlDecode(base.Request.QueryString["id"]));
+                }
                 if (base.Request.QueryString["id"] != null)
                 {
                     pPath = pPath + base.Request.QueryString["id"];

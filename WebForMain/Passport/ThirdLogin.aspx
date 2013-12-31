@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="true" CodeBehind="ThirdLogin.aspx.cs" Inherits="WebForMain.Passport.ThirdLogin" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>欢迎加入上上签</title>
@@ -20,6 +21,14 @@
         <h2>欢迎加入上上签</h2>
         <div class="dbox">
             <div class="left dle form_1">
+                <dl id="newname" runat="server" style="display:none;">
+                    <dt>新的昵称：</dt>
+                    <dd>
+                        <asp:TextBox runat="server" class="ipt_1" ID="name"></asp:TextBox></dd>
+                    <div class="onFocus" id="ctl00_ContentPlaceHolder1_nameTip">
+                        您的昵称已被占用，请重新填写一个站内昵称吧
+                    </div>
+                </dl>
                 <dl>
                     <dt>我：</dt>
                     <dd>
@@ -64,7 +73,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bottom" runat="server">
-        <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/formValidator-4.0.1.min.js" type="text/javascript"
+    <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/formValidator-4.0.1.min.js" type="text/javascript"
         charset="UTF-8"></script>
 
     <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>

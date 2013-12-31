@@ -147,18 +147,24 @@ namespace WebForMain.Passport
         private bool ValidatePass()
         {
             if (CommonTools.CheckPasswordLevel(password1.Text.Trim()) == 0)
-            {
+        {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "passwrong", "document.getElementById('ctl00_ContentPlaceHolder1_password1Tip').innerHTML = '您的密码实在太过简单，请重新输入!';document.getElementById('ctl00_ContentPlaceHolder1_password1Tip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_password1Tip').className='onError';", true);
                 return false;
             }
             
             return true;
         }
-        private bool ValidateNickName()
+            private bool ValidateNickName()
         {
             if (CommonTools.HasForbiddenWords(name.Text.Trim()))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "namewrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '您的昵称中有违禁字符,请重新输入!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
+                return false;
+            }
+            USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckNickName(name.Text.Trim());
+            if (m_user.SysNo != AppConst.IntNull)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "emailwrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '该昵称已被占用，请尝试使用其他昵称!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
                 return false;
             }
 

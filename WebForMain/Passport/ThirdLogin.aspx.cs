@@ -80,6 +80,10 @@ namespace WebForMain.Passport
                 {
                     ViewState["nickname"] = ret.Split(new char[] { ':',',' })[7].Replace(@"""","").Trim();
                     ViewState["photo"] = ret.Split(new string[] { @""":", "," }, StringSplitOptions.None)[19].Replace(@"""", "").Replace(@"\", "").Trim();
+                    if (USR_CustomerBll.GetInstance().CheckNickName(ViewState["nickname"].ToString().Trim()).SysNo != AppConst.IntNull)
+                    {
+                        newname.Style["display"] = "";
+                    }
                 }
                 catch
                 {
@@ -157,10 +161,10 @@ namespace WebForMain.Passport
             //{
             //    return;
             //}
-            //if (!ValidateNickName())
-            //{
-            //    return;
-            //}
+            if (!ValidateNickName())
+            {
+                return;
+            }
 
             #region 获取用户第三方数据
             USR_ThirdLoginMod m_third = new USR_ThirdLoginMod();
@@ -260,26 +264,22 @@ namespace WebForMain.Passport
         //    }
         //    return true;
         //}
+        private bool ValidateNickName()
+        {
+            if (CommonTools.HasForbiddenWords(name.Text.Trim()))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "namewrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '您的昵称中有违禁字符,请重新输入!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
+                return false;
+            }
+            USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckNickName(name.Text.Trim());
+            if (m_user.SysNo != AppConst.IntNull)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "emailwrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '该昵称已被占用，请尝试使用其他昵称!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
+                return false;
+            }
 
-        //private bool ValidateNickName()
-        //{
-        //    if (CommonTools.HasForbiddenWords(name.Text.Trim()))
-        //    {
-        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "namewrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '您的昵称中有违禁字符,请重新输入!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
-        //        return false;
-        //    }
+            return true;
+        }
 
-        //    return true;
-        //}
-        //private bool ValidateNickName()
-        //{
-        //    if (CommonTools.HasForbiddenWords(name.Text.Trim()))
-        //    {
-        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "namewrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '您的昵称中有违禁字符,请重新输入!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
-        //        return false;
-        //    }
-
-        //    return true;
-        //}
     }
 }
