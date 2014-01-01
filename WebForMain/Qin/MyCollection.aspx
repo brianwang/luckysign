@@ -26,8 +26,8 @@
             <asp:Image ID="imgPhoto" runat="server" />
         </div>
         <div class="page_person_item">
-            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button4.jpg" OnClick="Unnamed_Click" />
-            <asp:ImageButton runat="server" ImageUrl="<%=AppCmn.AppConfig.WebResourcesPath() %>img/page/button5.jpg" OnClick="Unnamed_Click1" />
+            <asp:ImageButton ID="ImageButton1" runat="server"  OnClick="Unnamed_Click" />
+            <asp:ImageButton ID="ImageButton2" runat="server"  OnClick="Unnamed_Click1" />
         </div>
         <div class="page_person_search">
             <uc1:Search ID="Search1" runat="server"></uc1:Search>

@@ -31,9 +31,9 @@ namespace AppDal.User
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into USR_Customer(");
-            strSql.Append("Email,Password,GradeSysNo,NickName,Gender,Photo,Credit,Point,birth,FateType,RegTime,LastLoginTime,Status,IsStar,Signature,Exp,TotalAnswer,TotalQuest,BestAnswer,HomeTown,Intro,Icons,IsShowBirth,TotalReply,HasNewInfo,TotalTalk,TotalTalkReply)");
+            strSql.Append("Email,Password,GradeSysNo,NickName,Gender,Photo,Credit,Point,birth,FateType,RegTime,LastLoginTime,Status,IsStar,Signature,Exp,TotalAnswer,TotalQuest,BestAnswer,HomeTown,Intro,Icons,IsShowBirth,TotalReply,HasNewInfo,TotalTalk,TotalTalkReply,Phone)");
             strSql.Append(" values (");
-            strSql.Append("@Email,@Password,@GradeSysNo,@NickName,@Gender,@Photo,@Credit,@Point,@birth,@FateType,@RegTime,@LastLoginTime,@Status,@IsStar,@Signature,@Exp,@TotalAnswer,@TotalQuest,@BestAnswer,@HomeTown,@Intro,@Icons,@IsShowBirth,@TotalReply,@HasNewInfo,@TotalTalk,@TotalTalkReply)");
+            strSql.Append("@Email,@Password,@GradeSysNo,@NickName,@Gender,@Photo,@Credit,@Point,@birth,@FateType,@RegTime,@LastLoginTime,@Status,@IsStar,@Signature,@Exp,@TotalAnswer,@TotalQuest,@BestAnswer,@HomeTown,@Intro,@Icons,@IsShowBirth,@TotalReply,@HasNewInfo,@TotalTalk,@TotalTalkReply,@Phone)");
             strSql.Append(";select @@IDENTITY");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -64,6 +64,7 @@ namespace AppDal.User
                  new SqlParameter("@HasNewInfo",SqlDbType.Int,4),
                  new SqlParameter("@TotalTalk",SqlDbType.Int,4),
                  new SqlParameter("@TotalTalkReply",SqlDbType.Int,4),
+                 new SqlParameter("@Phone",SqlDbType.VarChar,50),
              };
             if (model.Email != AppConst.StringNull)
                 parameters[0].Value = model.Email;
@@ -200,6 +201,11 @@ namespace AppDal.User
             else
                 parameters[26].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[26]);
+            if (model.Phone != AppConst.StringNull)
+                parameters[27].Value = model.Phone;
+            else
+                parameters[27].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[27]);
 
             return Convert.ToInt32(SqlHelper.ExecuteScalar(cmd, parameters));
         }
@@ -237,7 +243,8 @@ namespace AppDal.User
             strSql.Append("TotalReply=@TotalReply,");
             strSql.Append("HasNewInfo=@HasNewInfo,");
             strSql.Append("TotalTalk=@TotalTalk,");
-            strSql.Append("TotalTalkReply=@TotalTalkReply");
+            strSql.Append("TotalTalkReply=@TotalTalkReply,");
+            strSql.Append("Phone=@Phone");
             strSql.Append(" where SysNo=@SysNo ");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -268,7 +275,8 @@ namespace AppDal.User
                  new SqlParameter("@TotalReply",SqlDbType.Int,4),
                  new SqlParameter("@HasNewInfo",SqlDbType.Int,4),
                  new SqlParameter("@TotalTalk",SqlDbType.Int,4),
-                 new SqlParameter("@TotalTalkReply",SqlDbType.Int,4)
+                 new SqlParameter("@TotalTalkReply",SqlDbType.Int,4),
+                 new SqlParameter("@Phone",SqlDbType.VarChar,50)
              };
             if (model.SysNo != AppConst.IntNull)
                 parameters[0].Value = model.SysNo;
@@ -410,6 +418,11 @@ namespace AppDal.User
             else
                 parameters[27].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[27]);
+            if (model.Phone != AppConst.StringNull)
+                parameters[28].Value = model.Phone;
+            else
+                parameters[28].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[28]);
             return SqlHelper.ExecuteNonQuery(cmd, parameters);
         }
         /// <summary>
@@ -434,7 +447,7 @@ namespace AppDal.User
         public USR_CustomerMod GetModel(int SysNo)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select SysNo, Email, Password, GradeSysNo, NickName, Gender, Photo, Credit, Point, birth, FateType, RegTime, LastLoginTime, Status, IsStar, Signature, Exp, TotalAnswer, TotalQuest, BestAnswer, HomeTown, Intro, Icons, IsShowBirth, TotalReply, HasNewInfo, TotalTalk, TotalTalkReply from  USR_Customer");
+            strSql.Append("select SysNo, Email, Password, GradeSysNo, NickName, Gender, Photo, Credit, Point, birth, FateType, RegTime, LastLoginTime, Status, IsStar, Signature, Exp, TotalAnswer, TotalQuest, BestAnswer, HomeTown, Intro, Icons, IsShowBirth, TotalReply, HasNewInfo, TotalTalk, TotalTalkReply, Phone from  USR_Customer");
             strSql.Append(" where SysNo=@SysNo ");
             SqlParameter[] parameters = { 
 		new SqlParameter("@SysNo", SqlDbType.Int,4 )
@@ -530,11 +543,12 @@ namespace AppDal.User
                 if (ds.Tables[0].Rows[0]["TotalTalk"].ToString() != "")
                 {
                     model.TotalTalk = int.Parse(ds.Tables[0].Rows[0]["TotalTalk"].ToString());
-                } 
+                }
                 if (ds.Tables[0].Rows[0]["TotalTalkReply"].ToString() != "")
                 {
                     model.TotalTalkReply = int.Parse(ds.Tables[0].Rows[0]["TotalTalkReply"].ToString());
                 }
+                model.Phone = ds.Tables[0].Rows[0]["Phone"].ToString();
                 return model;
             }
             else
@@ -543,6 +557,7 @@ namespace AppDal.User
             }
         }
         #endregion  成员方法
+
 
 
 

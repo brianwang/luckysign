@@ -154,7 +154,7 @@ namespace WebForMain.Passport
             
             return true;
         }
-            private bool ValidateNickName()
+        private bool ValidateNickName()
         {
             if (CommonTools.HasForbiddenWords(name.Text.Trim()))
             {
@@ -164,7 +164,7 @@ namespace WebForMain.Passport
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckNickName(name.Text.Trim());
             if (m_user.SysNo != AppConst.IntNull)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "emailwrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '该昵称已被占用，请尝试使用其他昵称!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "namewrong", "document.getElementById('ctl00_ContentPlaceHolder1_nameTip').innerHTML = '该昵称已被占用，请尝试使用其他昵称!';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').style['display']='block';document.getElementById('ctl00_ContentPlaceHolder1_nameTip').className='onError';", true);
                 return false;
             }
 

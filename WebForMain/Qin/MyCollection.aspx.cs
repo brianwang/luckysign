@@ -72,7 +72,7 @@ namespace WebForMain.Qin
                             break;
                         case (int)AppCmn.AppEnum.CollectionType.url:
                             ltrInfo.Text = "收藏站外资源：<br/>请完善以下收藏信息";
-                             urlli.Visible = true;
+                            urlli.Visible = true;
                             ModalPopupExtender1.Show();
                             break;
                         default:
@@ -93,10 +93,12 @@ namespace WebForMain.Qin
                     { }
                 }
                 BindList();
-                
+
             }
-RightPannel1.m_user = GetSession().CustomerEntity;
-imgPhoto.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + RightPannel1.m_user.Photo;
+            RightPannel1.m_user = GetSession().CustomerEntity;
+            imgPhoto.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + RightPannel1.m_user.Photo;
+            ImageButton1.ImageUrl = AppCmn.AppConfig.WebResourcesPath()+"img/page/button4.jpg";
+            ImageButton2.ImageUrl = AppCmn.AppConfig.WebResourcesPath()+"img/page/button5.jpg";
         }
 
         #region channel

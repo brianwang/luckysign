@@ -138,6 +138,29 @@ namespace AppBll.User
             return model;
         }
 
+        public USR_CustomerMod CheckPhone(string phone)
+        {
+            USR_CustomerMod model = new USR_CustomerMod();
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append("select SysNo from USR_Customer where Phone='").Append(SQLData.SQLFilter(phone)).Append("' and Status=").Append((int)AppEnum.State.normal);
+                try
+                {
+                    model.SysNo = int.Parse(data.CmdtoDataRow(builder.ToString())["SysNo"].ToString());
+                }
+                catch (Exception exception)
+                {
+                    //throw exception;
+                }
+            }
+            if (model.SysNo != AppConst.IntNull)
+            {
+                model = this.GetModel(model.SysNo);
+            }
+            return model;
+        }
+
         public USR_CustomerMod CheckNickName(string nickname)
         {
             USR_CustomerMod model = new USR_CustomerMod();

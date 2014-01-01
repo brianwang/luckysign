@@ -44,6 +44,7 @@ namespace AppMod.User
         private int _HasNewInfo;
         private int _TotalTalk;
         private int _TotalTalkReply;
+        private string _Phone;
 
         [DataMember]
         public int SysNo
@@ -241,6 +242,13 @@ namespace AppMod.User
             get { return _TotalTalkReply; }
         }
 
+        [DataMember]
+        public string Phone
+        {
+            set { _Phone = value; }
+            get { return _Phone; }
+        }
+
 
         #endregion
 
@@ -274,8 +282,10 @@ namespace AppMod.User
             HasNewInfo = AppConst.IntNull;
             TotalTalk = AppConst.IntNull;
             TotalTalkReply = AppConst.IntNull;
+            Phone = AppConst.StringNull;
 
         }
+
 
         #region 实现IComparable<T>接口的泛型排序方法
         /// <sumary> 

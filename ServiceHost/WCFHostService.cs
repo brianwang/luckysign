@@ -20,7 +20,7 @@ namespace ServiceHost
             InitializeComponent();
 
             // 向服务管理器中注册服务
-            ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.LsService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.CustomerService));
 
             // 向任务管理器中注册任务
             TaskManager.Instance.RegisterTask(typeof(WCFServiceForApp.Task.RewardTask));
