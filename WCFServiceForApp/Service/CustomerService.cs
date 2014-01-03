@@ -90,6 +90,24 @@ namespace WCFServiceForApp
             }
         }
 
+        public ReturnValue<bool> FindPass(string email, string phone)
+        {
+            if (string.IsNullOrEmpty(phone))
+            {
+                throw new BusinessException("手机号不能为空");
+            }
+
+            USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckPhone(phone);
+            if (m_user.SysNo != -999999)
+            {
+                return ReturnValue<bool>.Get200OK(true);
+            }
+            else
+            {
+                throw new BusinessException("用户不存在！");
+            }
+        }
+
         public ReturnValue<USR_CustomerMod> Register(string email, string password, string phone, string nickname, string fatetype)
         {
             #region 验证输入

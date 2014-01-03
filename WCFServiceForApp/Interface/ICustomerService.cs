@@ -35,6 +35,10 @@ namespace WCFServiceForApp
         [OperationContract, WebGet(UriTemplate = "/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         [Description("验证昵称,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         ReturnValue<USR_CustomerMod> Register(string email, string password, string phone, string nickname, string fatetype);
+
+        [OperationContract, WebGet(UriTemplate = "/FindPass?email={email}&phone={phone}")]
+        [Description("找回密码,/FindPass?email={email}&phone={phone}")]
+        ReturnValue<bool> FindPass(string email, string phone);
     }
 
 }
