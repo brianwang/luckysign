@@ -14,7 +14,7 @@ namespace WebForMain.Article
     public partial class Index : PageBase
     {
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         public string title = "";
         private int cate = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace WebForMain.Article
 
             Pager1.url = AppConfig.HomeUrl() + "Article/" + cate + "/" + txtName.Text.Trim() + "/";
             Pager1.totalrecord = total;
-            if (total % pagesize == 0)
+            if (total % AppConst.PageSize == 0)
             {
                 this.Pager1.total = total / pagesize;
             }

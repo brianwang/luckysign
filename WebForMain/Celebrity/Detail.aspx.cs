@@ -22,7 +22,7 @@ namespace WebForMain.Celebrity
         
         public SYS_FamousMod m_famous = new SYS_FamousMod();     
         private int pageindex = 1;
-        private int pagesize = 10;
+        private int pagesize = AppConst.PageSize;
         public int sysno = 0;
 
         // Methods
@@ -84,7 +84,7 @@ namespace WebForMain.Celebrity
             this.rptComment.DataBind();
             this.Pager1.url = AppCmn.AppConfig.HomeUrl()+"Celebrity/Detail/" + Server.UrlEncode(CommonTools.Encode(this.sysno.ToString())) + "/";
             this.Pager1.totalrecord = total;
-            if ((total % this.pagesize) == 0)
+            if (total % AppConst.PageSize == 0)
             {
                 this.Pager1.total = total / this.pagesize;
             }

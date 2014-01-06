@@ -14,7 +14,7 @@ namespace WebForMain.Qin
     {
         private int type;
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         public string[] on = { "now",""};
         protected void Page_Load(object sender, EventArgs e)
         {

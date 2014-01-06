@@ -129,6 +129,8 @@ namespace WebForMain.Passport
                 {
                     var Sina = new NetDimension.Weibo.Client(oauth);
                     uid = Sina.API.Account.GetUID(); //调用API中获取UID的方法
+                    var userinfo = Sina.API.Users.Show(uid: uid);
+                    Response.Write(userinfo);
                 }
 
                 USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetUserByThirdID(uid);

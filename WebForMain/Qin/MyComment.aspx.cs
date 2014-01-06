@@ -16,7 +16,7 @@ namespace WebForMain.Qin
     public partial class MyComment : PageBase
     {
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

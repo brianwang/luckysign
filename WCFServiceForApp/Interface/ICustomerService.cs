@@ -28,9 +28,9 @@ namespace WCFServiceForApp
         [Description("验证昵称,/CheckNickName?nickname={nickname}")]
         ReturnValue<USR_CustomerMod> CheckNickName(string nickname);
 
-        [OperationContract, WebGet(UriTemplate = "/CheckPhone?phone={phone}")]
-        [Description("验证手机号,/CheckPhone?phone={phone}")]
-        ReturnValue<USR_CustomerMod> CheckPhone(string phone);
+        [OperationContract, WebGet(UriTemplate = "/CheckPhone?phone={phone}&sendsms={sendsms}")]
+        [Description("验证手机号,/CheckPhone?phone={phone}&sendsms={sendsms}")]
+        ReturnValue<USR_CustomerMod> CheckPhone(string phone, string sendsms);
 
         [OperationContract, WebGet(UriTemplate = "/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         [Description("验证昵称,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
@@ -39,6 +39,22 @@ namespace WCFServiceForApp
         [OperationContract, WebGet(UriTemplate = "/FindPass?email={email}&phone={phone}")]
         [Description("找回密码,/FindPass?email={email}&phone={phone}")]
         ReturnValue<bool> FindPass(string email, string phone);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQQLoginUrl")]
+        [Description("QQ第三方登录地址获取,/GetQQLoginUrl")]
+        ReturnValue<string> GetQQLoginUrl();
+
+        [OperationContract, WebGet(UriTemplate = "/GetWeiboLoginUrl")]
+        [Description("微博第三方登录地址获取,/GetWeiboLoginUrl")]
+        ReturnValue<string> GetWeiboLoginUrl();
+
+        [OperationContract, WebGet(UriTemplate = "/QQLogin?code={code}")]
+        [Description("QQ第三方登录,/QQLogin?code={code}")]
+        ReturnValue<USR_CustomerMod> QQLogin(string code);
+
+        [OperationContract, WebGet(UriTemplate = "/WeiboLogin?code={code}")]
+        [Description("微博第三方登录,/WeiboLogin?code={code}")]
+        ReturnValue<USR_CustomerMod> WeiboLogin(string code);
     }
 
 }

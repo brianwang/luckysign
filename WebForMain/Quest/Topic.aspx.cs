@@ -18,7 +18,7 @@ namespace WebForMain.Quest
     {
         private int SysNo = 0;
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         public QA_QuestionMod m_qustion = new QA_QuestionMod();
 
 

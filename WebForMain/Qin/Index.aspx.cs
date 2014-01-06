@@ -13,7 +13,7 @@ namespace WebForMain.Qin
 	public partial class Index : PageBase
 	{
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         public int TotalFriends = 0;
         public int TotalFans = 0;
         public int TotalLike = 0;

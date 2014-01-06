@@ -15,7 +15,7 @@ namespace WebForMain.Quest
     public partial class QuestList : PageBase
     {
         private int pageindex = 1;
-        private int pagesize = 12;
+        private int pagesize = AppConst.PageSize;
         private string search = "";
 
         protected void Page_Load(object sender, EventArgs e)
