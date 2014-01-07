@@ -348,11 +348,11 @@ namespace WCFServiceForApp
                 m_user.Email = "";
                 m_user.FateType = (int)AppEnum.FateType.astro;
                 m_user.GradeSysNo = AppConst.OriginalGrade; ;
-                m_user.NickName = ViewState["nickname"].ToString();
+                m_user.NickName = uid;
                 m_user.Password = "";
                 m_user.RegTime = DateTime.Now;
                 m_user.Point = AppConst.OriginalPoint;
-                m_user.Photo = ViewState["photo"].ToString();
+                m_user.Photo = AppConst.OriginalPhoto;
                 m_user.LastLoginTime = DateTime.Now;
                 if (AppConfig.RegisterEmailCheck.ToLower() == "true")
                 {
