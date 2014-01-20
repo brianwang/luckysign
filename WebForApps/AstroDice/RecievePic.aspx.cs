@@ -18,7 +18,15 @@ namespace WebForApps
             string newName = "";
             if (Request.QueryString["id"] != null)
             {
-                newName = Server.MapPath("../WebResources/DicePic/") + Request.QueryString["id"] + ".jpg";
+                try 
+                {
+                    int.Parse(Request.QueryString["id"].Substring(1));
+                    newName = Server.MapPath("../WebResources/DicePic/") + Request.QueryString["id"] + ".jpg";
+                }
+                catch
+                {
+                    newName = Server.MapPath("../WebResources/DicePic/") + Request.UserHostAddress + ".jpg";
+                }
 
                 int length = Request.TotalBytes;
                 byte[] buffer = Request.BinaryRead(length);

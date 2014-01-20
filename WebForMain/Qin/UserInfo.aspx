@@ -100,7 +100,7 @@
                         <li><span>账号:</span><div class="setting_r"><%=m_user.Email %></div>
                             <div class="clear"></div>
                         </li>
-                        <li><span>密码:</span><div class="setting_r"><a href="ChangePass.aspx">修改密码</a></div>
+                        <li><span>密码:</span><div class="setting_r"><a href="UserInfo.aspx?id=1022&tab=2">修改密码</a></div>
                             <div class="clear"></div>
                         </li>
                         <li><span>昵称:</span><div class="setting_r"><%=m_user.NickName %></div>
@@ -211,7 +211,7 @@
                                 <asp:TextBox ID="txtValid" runat="server" TextMode="Password" CssClass="setting_input" Width="208px"></asp:TextBox>
                             </div>
                             <h1>请输入图中字符，不区分大小写<br />
-                                <img id="imgVerify" width="133" height="53" style="cursor: pointer;" src="~/ControlLibrary/VerifyCode.aspx?"
+                                <img id="imgVerify" width="133" height="53" style="cursor: pointer;" src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/VerifyCode.aspx?"
                                     alt="看不清？点击更换" onclick="this.src=this.src+'?'" />
                                 <a href="javascript:void(0);" onclick="javascript:document.getElementById('imgVerify').src=document.getElementById('imgVerify').src+'?'" title="看不清？点击更换" class="alink_01">看不清？点击更换</a>
                             </h1>
