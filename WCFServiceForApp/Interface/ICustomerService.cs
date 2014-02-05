@@ -36,9 +36,9 @@ namespace WCFServiceForApp
         [Description("验证昵称,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         ReturnValue<USR_CustomerMod> Register(string email, string password, string phone, string nickname, string fatetype);
 
-        [OperationContract, WebGet(UriTemplate = "/FindPass?email={email}&phone={phone}")]
-        [Description("找回密码,/FindPass?email={email}&phone={phone}")]
-        ReturnValue<bool> FindPass(string email, string phone);
+        [OperationContract, WebGet(UriTemplate = "/FindPass?username={username}")]
+        [Description("找回密码,/FindPass?username={username}")]
+        ReturnValue<bool> FindPass(string username);
 
         [OperationContract, WebGet(UriTemplate = "/GetQQLoginUrl")]
         [Description("QQ第三方登录地址获取,/GetQQLoginUrl")]

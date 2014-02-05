@@ -112,7 +112,7 @@ namespace WCFServiceForApp
             }
         }
 
-        public ReturnValue<bool> FindPass(string email, string phone)
+        public ReturnValue<bool> FindPass(string username)
         {
             USR_CustomerMod m_user = new USR_CustomerMod();
             //生成6位随机新密码,并MD5加密;
@@ -125,52 +125,59 @@ namespace WCFServiceForApp
                 randValue = rand.Next(0, arr.Length - 1);
                 Password += arr[randValue];
             }
-
-            if (!string.IsNullOrEmpty(phone) )
+            if (!string.IsNullOrEmpty(username))
             {
-                m_user = USR_CustomerBll.GetInstance().CheckPhone(phone);
-                m_user.Password = Password;
-                USR_CustomerBll.GetInstance().UpDate(m_user);
-
-                #region 发送短信
-                throw new BusinessException("短信接口还未申请！");
-                #endregion
-
-            }
-            else if (!string.IsNullOrEmpty(email))
-            {
-                m_user = USR_CustomerBll.GetInstance().CheckUser(email);
-                m_user.Password = Password;
-                USR_CustomerBll.GetInstance().UpDate(m_user);
-                
-                #region SetEmailContent
-                string mailBody = CommonTools.ReadHtmFile(AppConfig.AdvFolderPath + @"EmailTemplate/FindPassword.htm");
-                mailBody.Replace("@nickname", m_user.NickName);
-                mailBody.Replace("@password", m_user.Password);
-                //mailBody.Replace("@userid", m_user.SysNo.ToString());
-                //mailBody.Replace("@md5",CommonTools.md5(m_user.NickName+m_user.Password+DateTime.Now.ToString("yyyyMMddHHmmss"),32);
-                string mailadd = m_user.Email;
-                string mailSubject = "上上签密码找回";
-                #endregion SetEmailContent
-                
-                //邮件发送
-                TCPMail oMail = new TCPMail();
-                oMail.Html = true;
-                if (oMail.Send(mailadd,
-                    mailSubject,
-                    mailBody))
-                {
-                    return ReturnValue<bool>.Get200OK(true);
-                }
-                else
-                {
-                    throw new BusinessException("发送邮件失败！");
-                }
+                throw new BusinessException("手机号或邮箱为空");
             }
             else
             {
-                throw new BusinessException("手机号与邮箱不能全为空");
+                if (Util.IsCellNumber(username))
+                {
+                    m_user = USR_CustomerBll.GetInstance().CheckPhone(username);
+                    m_user.Password = Password;
+                    USR_CustomerBll.GetInstance().UpDate(m_user);
+
+                    #region 发送短信
+                    throw new BusinessException("短信接口还未申请！");
+                    #endregion
+
+                }
+                else if (Util.IsEmailAddress(username))
+                {
+                    m_user = USR_CustomerBll.GetInstance().CheckUser(username);
+                    m_user.Password = Password;
+                    USR_CustomerBll.GetInstance().UpDate(m_user);
+
+                    #region SetEmailContent
+                    string mailBody = CommonTools.ReadHtmFile(AppConfig.AdvFolderPath + @"EmailTemplate/FindPassword.htm");
+                    mailBody.Replace("@nickname", m_user.NickName);
+                    mailBody.Replace("@password", m_user.Password);
+                    //mailBody.Replace("@userid", m_user.SysNo.ToString());
+                    //mailBody.Replace("@md5",CommonTools.md5(m_user.NickName+m_user.Password+DateTime.Now.ToString("yyyyMMddHHmmss"),32);
+                    string mailadd = m_user.Email;
+                    string mailSubject = "上上签密码找回";
+                    #endregion SetEmailContent
+
+                    //邮件发送
+                    TCPMail oMail = new TCPMail();
+                    oMail.Html = true;
+                    if (oMail.Send(mailadd,
+                        mailSubject,
+                        mailBody))
+                    {
+                        return ReturnValue<bool>.Get200OK(true);
+                    }
+                    else
+                    {
+                        throw new BusinessException("发送邮件失败！");
+                    }
+                }
+                else
+                {
+                    throw new BusinessException("手机号或邮箱不合法");
+                }
             }
+            
 
              
             if (m_user.SysNo != -999999)
