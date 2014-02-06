@@ -19,7 +19,7 @@ namespace WebForMain
                 }
                 else
                 {
-                    ltrErr.Text = "您访问的页面暂时无法打开";
+                    ltrErr.Text = "您访问的页面不存在或已被删除";
                 }
             }
         }

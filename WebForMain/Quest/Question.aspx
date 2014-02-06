@@ -82,7 +82,7 @@
 
                                             <li>
                                                 <div class="index_new_ask_l">
-                                                    <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>">
+                                                    <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>">
                                                         <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a><br />
                                                     <span class="xz">
                                                         <asp:Repeater ID="Repeater4" runat="server">
@@ -97,7 +97,7 @@
                                                         CommandName="Award">悬赏给Ta</asp:LinkButton>
                                                 </div>
                                                 <div class="index_new_ask_r">
-                                                    <h1><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a></h1>
+                                                    <h1><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a></h1>
                                                     <h2>等级：<%#Eval("LevelNum")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;灵签：<%#Eval("Point")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;解答数：<%#Eval("TotalAnswer")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;被采纳数：<%#Eval("BestAnswer")%> </h2>
                                                     <h3>
                                                         <%--<div class="index_new_ask_r_qs" style="font-size:12px"><a href="#">山有扶苏:</a>哇，看来这个东西以后也可以看的。性格上部分正确，稳重，独处，但是比较内向，呵呵。不过口才真没发现，现在还不大爱说话，两三岁的时候才开始会说话。</div>--%>
@@ -111,11 +111,11 @@
                                                             <ItemTemplate>
                                                                 <div class="index_new_reply_box">
                                                                     <div class="index_new_reply_l">
-                                                                        <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>">
+                                                                        <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>">
                                                                             <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="33" height="33" /></a>
                                                                     </div>
                                                                     <div class="index_new_reply_r">
-                                                                        <span class="info" style='<%#Eval("color")%>'><a target="_blank" href="../Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a>：<%#Eval("Context")%></span>
+                                                                        <span class="info" style='<%#Eval("color")%>'><a target="_blank" href="../Qin/View/<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a>：<%#Eval("Context")%></span>
                                                                         <span class="time"><%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%><asp:Literal ID="Literal1" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal><asp:LinkButton ID="LinkButton5"  runat="server" Visible="false" CommandArgument='<%#Eval("SysNo")%>' CommandName="del">删除</asp:LinkButton></span>
                                                                     </div>
                                                                     <div class="clear"></div>

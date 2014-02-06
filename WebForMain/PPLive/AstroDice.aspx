@@ -126,13 +126,13 @@
                         <ItemTemplate>
                             <div class="content_l_s">
                                 <div class="content_left">
-                                    <a href="../Qin/View.aspx?id=<%# Eval("LastReplyUser")%>">
+                                    <a href="../Qin/View/<%# Eval("LastReplyUser")%>">
                                         <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("ReplyPhoto")%>" /></a>
                                 </div>
                                 <div class="content_right">
                                     <div class="content_title">
-                                        <span class="new"><a href="../Qin/View.aspx?id=<%# Eval("LastReplyUser")%>"><%# Eval("ReplyNickName")%></a>：<%# AppCmn.CommonTools.CutStr(Eval("Reply").ToString(),50)%></a></span>
-                                        || <a href="../Qin/View.aspx?id=<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a>：<a href="../Quest/Question.aspx?id=<%# Eval("SysNo")%>">[占星骰子]<%# Eval("Title")%></a>
+                                        <span class="new"><a href="../Qin/View/<%# Eval("LastReplyUser")%>"><%# Eval("ReplyNickName")%></a>：<%# AppCmn.CommonTools.CutStr(Eval("Reply").ToString(),50)%></a></span>
+                                        || <a href="../Qin/View/<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a>：<a href="../Quest/Question.aspx?id=<%# Eval("SysNo")%>">[占星骰子]<%# Eval("Title")%></a>
                                     </div>
                                     <%--<div class="content_txt1 new"></div>--%>
                                 </div>
@@ -148,11 +148,11 @@
                         <ItemTemplate>
                             <div class="content_l_s">
                                 <div class="content_left">
-                                    <a href="Qin/View.aspx?id=<%# Eval("CustomerSysNo")%>">
+                                    <a href="Qin/View/<%# Eval("CustomerSysNo")%>">
                                         <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" /></a>
                                 </div>
                                 <div class="content_right">
-                                    <div class="content_title"><a href="Qin/View.aspx?id=<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a>：<a href="../Quest/Question.aspx?id=<%# Eval("SysNo")%>">[占星骰子]<%# Eval("Title")%></a></div>
+                                    <div class="content_title"><a href="Qin/View/<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a>：<a href="../Quest/Question.aspx?id=<%# Eval("SysNo")%>">[占星骰子]<%# Eval("Title")%></a></div>
 
                                 </div>
                                 <div class="clear"></div>

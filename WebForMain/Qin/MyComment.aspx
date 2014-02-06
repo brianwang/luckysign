@@ -34,7 +34,7 @@
                         </div>
                         <div class="page_box_all">
                             <div class="page_person_name">
-                                <a href="View.aspx?id=<%# Eval("CustomerSysNo") %>">
+                                <a href="View/<%# Eval("CustomerSysNo") %>">
                                     <%# Eval("NickName")%></a><%# DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%></div>
                             <div class="page_person_discuss">
                                 <span>评论我的轻博客</span><a href="#"><%# AppCmn.CommonTools.CutStr(Eval("articletitle").ToString(), 20)%></a><br />

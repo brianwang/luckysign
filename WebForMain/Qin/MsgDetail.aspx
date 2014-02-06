@@ -23,7 +23,7 @@
             </div>
         </div>
         <div id="isTarget" runat="server" class="page_letter_text">
-            我与 <a href="View.aspx?id=<%=TargetID %>"><%=TargetName %></a> 之间的私密对话
+            我与 <a href="View/<%=TargetID %>"><%=TargetName %></a> 之间的私密对话
         </div>
         <div class="height20">
         </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="page_box_r">
                         <div class="page_letter_t">
-                            <a href='View.aspx?id=<%# Eval("FromSysNo")%>'><%# Eval("FromNickName")%></a> <%# DateTime.Parse(Eval("TS").ToString()).ToString("")%>
+                            <a href='View/<%# Eval("FromSysNo")%>'><%# Eval("FromNickName")%></a> <%# DateTime.Parse(Eval("TS").ToString()).ToString("")%>
                         </div>
                         <div class="page_letter_c">
                             <%# Eval("Context")%>

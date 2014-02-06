@@ -43,7 +43,7 @@
                                             <li <%# Container.ItemIndex==0?@"style=""padding-top:0px""":"" %>>
                                                 <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
-                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
+                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
                                                     <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>
@@ -56,7 +56,7 @@
                                             <li class="odd">
                                                 <h3><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%#Eval("SysNo")%>'><%#Eval("Title")%></a></h3>
                                                 <div class="index_left_new_info">
-                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
+                                                    发布人：<a href='<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>' target="_blank"><%#Eval("NickName")%></a>   |  
                                                     <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/new/ico1.jpg" align="absmiddle" />
                                                     <%#Eval("Award")%>灵签&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("ReplyCount")%>回复&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<%#Eval("DateShow")%>
                                                 </div>

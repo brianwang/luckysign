@@ -22,8 +22,8 @@
                 来自：<asp:Literal ID="ltrFrom" runat="server"></asp:Literal>
 
                 <div class="page_guanzhu_button">
-                    <a id="intro" runat="server" href="UserInfo.aspx?id=<%=m_user.SysNo %>&tab=1" class="gz1">介绍自己</a>
-                    <a id="sendmsg" runat="server" href="MsgDetail.aspx?UserSysNo=<%=m_user.SysNo %>" class="gz1">发消息</a>
+                    <a id="intro" runat="server" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/UserInfo.aspx?id=<%=m_user.SysNo %>&tab=1" class="gz1">介绍自己</a>
+                    <a id="sendmsg" runat="server" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/MsgDetail.aspx?UserSysNo=<%=m_user.SysNo %>" class="gz1">发消息</a>
                     <%--<a href="UserInfo.aspx?tab=3" class="gz2">排盘设置</a>--%>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <asp:Repeater ID="rptArticle" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <div class="mypage_otherperson_title"><a href="../Article/Content.aspx?id=<%# Eval("SysNo")%>" target="_blank"><%# Eval("Title")%></a></div>
+                                    <div class="mypage_otherperson_title"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Article/Content/<%# Eval("SysNo")%>" target="_blank"><%# Eval("Title")%></a></div>
                                     <div class="mypage_otherperson_con"><%# Eval("Description")%></div>
                                     <div class="mypage_otherperson_a"><%# Eval("KeyWordsShow")%></div>
                                 </li>
@@ -55,7 +55,7 @@
                         <asp:Repeater ID="rptQuest" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <div class="mypage_otherperson_title"><a href="../Quest/Question.aspx?id=<%# Eval("QuestSysNo")%>" target="_blank"><%# Eval("QuestTitle")%></a></div>
+                                    <div class="mypage_otherperson_title"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Question/<%# Eval("QuestSysNo")%>" target="_blank"><%# Eval("QuestTitle")%></a></div>
                                     <div class="mypage_otherperson_con"><%# Eval("Context")%></div>
 <%--                                    <div class="mypage_otherperson_a"><%# Eval("KeyWordsShow")%></div>--%>
                                 </li>

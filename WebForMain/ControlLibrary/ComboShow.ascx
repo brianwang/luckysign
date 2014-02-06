@@ -13,7 +13,7 @@
                 </div>
                 <div class="page_box_all">
                     <div id="<%#Eval("PersonID")%>" class="page_person_name">
-                        <a href="View.aspx?id=<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a><%# DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%>
+                        <a href="View/<%# Eval("CustomerSysNo")%>"><%# Eval("NickName")%></a><%# DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%>
                     </div>
                     <div class="page_person_title">
                         <%# Eval("TitleShow")%>

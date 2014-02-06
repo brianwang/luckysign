@@ -75,11 +75,11 @@
                                     <ItemTemplate>
                                         <li>
                                             <div class="mr_liuyan_img">
-                                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank">
+                                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">
                                                     <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a>
                                             </div>
                                             <div class="mr_liuyan_r">
-                                                <div class="mr_liuyan_title"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View.aspx?id=<%#Eval("CustomerSysNo")%>" target="_blank"><span><%#Eval("NickName")%></span></a> <%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%> </div>
+                                                <div class="mr_liuyan_title"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank"><span><%#Eval("NickName")%></span></a> <%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm")%> </div>
                                                 <div class="mr_liuyan_text"><%#Eval("Context")%></div>
                                             </div>
                                             <div class="clear"></div>

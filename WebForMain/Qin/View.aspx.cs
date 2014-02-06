@@ -43,6 +43,21 @@ namespace WebForMain.Qin
                     ShowError("");
                 }
             }
+            else if (Page.RouteData.Values["id"] != null)
+            {
+                try
+                {
+                    m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Page.RouteData.Values["id"].ToString()));
+                    if (m_user.SysNo == AppConst.IntNull)
+                    {
+                        ShowError("");
+                    }
+                }
+                catch
+                {
+                    ShowError("");
+                }
+            }
             else
             {
                 Login(Request.Url.ToString());
@@ -57,7 +72,7 @@ namespace WebForMain.Qin
                     
                     if (m_user.HomeTown != AppConst.IntNull)
                     {
-                        SYS_DistrictMod m_dictrict = SYS_DistrictBll.GetInstance().GetModel(m_user.HomeTown);
+                        SYS_DistrictMod m_dictrict = SYS_DistrictBll.GetInstance().GetModel(SYS_DistrictBll.GetInstance().GetModel(m_user.HomeTown).UpSysNo);
                         ltrFrom.Text = m_dictrict.Name;
                     }
                     else
@@ -82,15 +97,15 @@ namespace WebForMain.Qin
                     {
                         ltrMe = "我";
                         sendmsg.Visible = false;
-                        intro.HRef = "UserInfo.aspx?id=" + m_user.SysNo + "&tab=1";
-                        ImageButton1.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
+                        intro.HRef = AppConfig.HomeUrl() + "Qin/UserInfo.aspx?id=" + m_user.SysNo + "&tab=1";
+                        ImageButton1.ImageUrl = AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
                     }
                     else
                     {
                         ltrMe = "Ta";
                         intro.Visible = false;
-                        sendmsg.HRef = "MsgDetail.aspx?UserSysNo=" + m_user.SysNo;
-                        ImageButton1.ImageUrl = "~/ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
+                        sendmsg.HRef = AppConfig.HomeUrl() + "Qin/MsgDetail.aspx?UserSysNo=" + m_user.SysNo;
+                        ImageButton1.ImageUrl = AppConfig.HomeUrl()+"ControlLibrary/ShowPhoto.aspx?type=o&id=" + m_user.Photo;
                         ImageButton1.Enabled = false;
                     }
                 RightPannel1.m_user = m_user;
@@ -133,7 +148,7 @@ namespace WebForMain.Qin
                 m_dt.Rows[i]["KeyWordsShow"] = "";
                 foreach (string tmpkey in tmpkeys)
                 {
-                    m_dt.Rows[i]["KeyWordsShow"] += @"<a href=""../Article/Index.aspx?key=" + tmpkey + @""">" + tmpkey + "</a>";
+                    m_dt.Rows[i]["KeyWordsShow"] += @"<a href="""+AppConfig.HomeUrl() + @"Article/" + tmpkey + @""">" + tmpkey + "</a>";
                 }
             }
             rptArticle.DataSource = m_dt;
@@ -158,7 +173,7 @@ namespace WebForMain.Qin
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("UserInfo.aspx?id="+m_user.SysNo+"&tab=0");
+            Response.Redirect(AppConfig.HomeUrl() + "Qin/UserInfo.aspx?id=" + m_user.SysNo + "&tab=0");
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)

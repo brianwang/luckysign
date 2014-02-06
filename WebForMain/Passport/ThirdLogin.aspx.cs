@@ -103,7 +103,7 @@ namespace WebForMain.Passport
                     }
                     else
                     {
-                        Response.Redirect("../Qin/View.aspx?id=" + m_customer.SysNo);
+                        Response.Redirect("../Qin/View/" + m_customer.SysNo);
                     }
                     return;
                 }
@@ -145,7 +145,7 @@ namespace WebForMain.Passport
                     }
                     else
                     {
-                        Response.Redirect("../Qin/View.aspx?id=" + m_customer.SysNo);
+                        Response.Redirect("../Qin/View/" + m_customer.SysNo);
                     }
                     return;
                 }

@@ -25,7 +25,7 @@
                     </div>
                    <div style="margin-top:20px; font-size:14px;">
                     <asp:Literal ID="Literal2" runat="server"></asp:Literal></div>
-                    <div style="line-height:24px;font-size:14px;"><a href="../Qin/View.aspx?id=<%=GetSession().CustomerEntity.SysNo %>" style="color:blue; text-decoration:underline;">我的首页</a><br />
+                    <div style="line-height:24px;font-size:14px;"><a href="../Qin/View/<%=GetSession().CustomerEntity.SysNo %>" style="color:blue; text-decoration:underline;">我的首页</a><br />
                         <a href="../Qin/UserInfo.aspx?tab=0&id=<%=GetSession().CustomerEntity.SysNo %>" style="color:blue; text-decoration:underline;">上传我的头像</a><br /> 
                         <a href="../Qin/UserInfo.aspx?tab=1&id=<%=GetSession().CustomerEntity.SysNo %>" style="color:blue; text-decoration:underline;">完善个人资料</a><br /> 
                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>

@@ -98,7 +98,7 @@ namespace WebForMain.Passport
                 }
                 else
                 {
-                    Response.Redirect("../Qin/View.aspx?id=" + m_user.SysNo);
+                    Response.Redirect("../Qin/View/" + m_user.SysNo);
                 }
             }
             else

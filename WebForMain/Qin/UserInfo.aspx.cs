@@ -139,7 +139,7 @@ namespace WebForMain.Qin
         /// <param name="e"></param>
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("View.aspx?id=" + m_user.SysNo);
+            Response.Redirect("View/" + m_user.SysNo);
         }
 
         /// <summary>

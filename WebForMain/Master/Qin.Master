@@ -32,7 +32,7 @@
                         <a href="/PPLive/Astro.aspx" title="在线排盘">在线排盘</a><span>|</span> <a href="/Celebrity" title="名人库">名人库</a><span>|</span> <a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>
                     </div>
                     <div class="page_menu">
-                        <a href="/Qin/View.aspx?id=<%=m_base.GetSession().CustomerEntity.SysNo %>" title="我的首页" class='<%=tab[0] %>'>我的首页</a> <a href="/Qin/MyCollection.aspx"
+                        <a href="/Qin/View/<%=m_base.GetSession().CustomerEntity.SysNo %>" title="我的首页" class='<%=tab[0] %>'>我的首页</a> <a href="/Qin/MyCollection.aspx"
                             title="我的收藏" class='<%=tab[1] %>'>我的收藏</a> <a href="/Qin/MyQuestion.aspx" title="我的问答"
                                 class='<%=tab[2] %>'>我的问答</a>
                         <%--<a href="/Qin/MyGroup.aspx" title="我的群组" class='<%=tab[3] %>'>我的群组</a> --%><a

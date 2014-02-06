@@ -71,7 +71,7 @@ namespace WebForMain
                 }
                 LogManagement.getInstance().WriteTrace("前台会员登录", "Login", "IP:" + Request.UserHostAddress + "|AdminID:" + m_session.CustomerEntity.Email);
                 //跳转
-                Response.Redirect("Qin/View.aspx?id=" + m_user.SysNo);
+                Response.Redirect("Qin/View/" + m_user.SysNo);
             }
             else
             {

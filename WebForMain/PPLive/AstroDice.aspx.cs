@@ -42,7 +42,7 @@ namespace WebForMain.PPLive
             PageBase m_base = new PageBase();
             if (m_base.GetSession().CustomerEntity != null && m_base.GetSession().CustomerEntity.SysNo != AppConst.IntNull)
             {
-                ltrLinks.Text = "<a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>｜<a href='/Qin/View.aspx?id=" + m_base.GetSession().CustomerEntity.SysNo + "' title='我的首页'>我的首页</a>";
+                ltrLinks.Text = "<a href='/Passport/Login.aspx?type=logout' title='注销'>退出</a>｜<a href='/Qin/View/" + m_base.GetSession().CustomerEntity.SysNo + "' title='我的首页'>我的首页</a>";
                 ltrTips.Text = m_base.GetSession().CustomerEntity.NickName + "，欢迎回到上上签";
             }
         }

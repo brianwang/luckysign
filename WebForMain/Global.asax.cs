@@ -119,7 +119,11 @@ namespace WebForMain
                new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "pn", @"\d*" }, { "key", @"[^/]*" } }
             );
-            
+
+            routes.MapPageRoute("用户详情",
+              "Qin/View/{id}",
+              "~/Qin/View.aspx",
+              false);
 
             routes.MapPageRoute("帮助中心",
                 "About/HelpCenter/{memo}",

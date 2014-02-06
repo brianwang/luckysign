@@ -21,50 +21,50 @@ namespace WebForMain.Article
         {
             WebForMain.Master.Main m_master = (WebForMain.Master.Main)Master;
             m_master.SetTab(2);
-             if (Request.QueryString["key"] != null)
+            if (Request.QueryString["key"] != null)
+            {
+                txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
+            }
+            else if (Page.RouteData.Values["key"] != null && Page.RouteData.Values["key"].ToString() != "")
+            {
+                txtName.Text = Server.HtmlEncode(Page.RouteData.Values["key"].ToString());
+            }
+            if (Request.QueryString["pn"] != null)
+            {
+                try
                 {
-                    txtName.Text = Server.HtmlEncode(Request.QueryString["key"]);
+                    pageindex = int.Parse(Request.QueryString["pn"]);
                 }
-                else if (Page.RouteData.Values["key"] != null && Page.RouteData.Values["key"].ToString()!="")
+                catch
+                { }
+            }
+            else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
+            {
+                try
                 {
-                    txtName.Text = Server.HtmlEncode(Page.RouteData.Values["key"].ToString());
+                    pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
                 }
-                if (Request.QueryString["pn"] != null)
+                catch
+                { }
+            }
+            if (Request.QueryString["cate"] != null)
+            {
+                try
                 {
-                    try
-                    {
-                        pageindex = int.Parse(Request.QueryString["pn"]);
-                    }
-                    catch
-                    { }
+                    cate = int.Parse(Request.QueryString["cate"]);
                 }
-                else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
+                catch
+                { }
+            }
+            else if (Page.RouteData.Values["cate"] != null && Page.RouteData.Values["cate"].ToString() != "")
+            {
+                try
                 {
-                    try
-                    {
-                        pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
-                    }
-                    catch
-                    { }
+                    cate = int.Parse(Page.RouteData.Values["cate"].ToString());
                 }
-                if (Request.QueryString["cate"] != null)
-                {
-                    try
-                    {
-                        cate = int.Parse(Request.QueryString["cate"]);
-                    }
-                    catch
-                    { }
-                }
-                else if (Page.RouteData.Values["cate"] != null && Page.RouteData.Values["cate"].ToString() != "")
-                {
-                    try
-                    {
-                        cate = int.Parse(Page.RouteData.Values["cate"].ToString());
-                    }
-                    catch
-                    { }
-                }
+                catch
+                { }
+            }
             if (!IsPostBack)
             {
                 if (cate == 0)
@@ -73,7 +73,7 @@ namespace WebForMain.Article
                 }
                 else
                 {
-                    title = CMS_CategoryBll.GetInstance().GetModel(cate).Name+ "-象牙塔-上上签命理网";
+                    title = CMS_CategoryBll.GetInstance().GetModel(cate).Name + "-象牙塔-上上签命理网";
                 }
                 BindData();
             }

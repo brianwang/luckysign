@@ -55,7 +55,7 @@ namespace WebForMain.Qin
                 </div>
                 <div class='page_box_all'>
                     <div class='page_person_name'>
-                        <a href='View.aspx?id=" + m_dt.Rows[i]["FromSysNo"].ToString() + @"'>来自：" + m_dt.Rows[i]["FromName"].ToString() + @"</a>" + DateTime.Parse(m_dt.Rows[i]["TS"].ToString()).ToString("yyyy-MM-dd HH:mm") + @"</div>
+                        <a href='View/" + m_dt.Rows[i]["FromSysNo"].ToString() + @"'>来自：" + m_dt.Rows[i]["FromName"].ToString() + @"</a>" + DateTime.Parse(m_dt.Rows[i]["TS"].ToString()).ToString("yyyy-MM-dd HH:mm") + @"</div>
                     <div class='page_person_con'>
                         <div class='page_person_letter'>
                             " + CommonTools.CutStr(m_dt.Rows[i]["Context"].ToString(), 200) + @"
@@ -77,7 +77,7 @@ namespace WebForMain.Qin
                 </div>
                 <div class='page_box_all'>
                     <div class='page_person_name'>
-                        <a href='View.aspx?id=" + m_dt.Rows[i]["ToSysNo"].ToString() + @"'>发给：" + m_dt.Rows[i]["ToName"].ToString() + @"</a>" + DateTime.Parse(m_dt.Rows[i]["TS"].ToString()).ToString("yyyy-MM-dd HH:mm") + @"</div>
+                        <a href='View/" + m_dt.Rows[i]["ToSysNo"].ToString() + @"'>发给：" + m_dt.Rows[i]["ToName"].ToString() + @"</a>" + DateTime.Parse(m_dt.Rows[i]["TS"].ToString()).ToString("yyyy-MM-dd HH:mm") + @"</div>
                     <div class='page_person_con'>
                         <div class='page_person_letter'>
                             " + CommonTools.CutStr(m_dt.Rows[i]["Context"].ToString(), 200) + @"
