@@ -11,7 +11,7 @@ using XMS.Core;
 using AppMod.User;
 using AppDal.User;
 
-namespace WCFServiceForApp
+namespace WebHost
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/Customer")]
     public interface ICustomerService
