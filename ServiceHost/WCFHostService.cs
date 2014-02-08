@@ -20,16 +20,16 @@ namespace ServiceHost
             InitializeComponent();
 
             // 向服务管理器中注册服务
-            ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.CustomerService));
+            //ManageableServiceHostManager.Instance.RegisterService(typeof(WCFServiceForApp.CustomerService));
 
             // 向任务管理器中注册任务
-            TaskManager.Instance.RegisterTask(typeof(WCFServiceForApp.Task.RewardTask));
+            TaskManager.Instance.DefaultTriggerTaskHost.RegisterTriggerTask(new WCFServiceForApp.Task.RewardTask("RewardTask", "RewardTask"));
         }
 
         protected override void OnStart(string[] args)
         {
             // 启动服务管理器
-            ManageableServiceHostManager.Instance.Start();
+            //ManageableServiceHostManager.Instance.Start();
 
             // 启动任务管理器
             TaskManager.Instance.Start();
@@ -40,7 +40,7 @@ namespace ServiceHost
         protected override void OnStop()
         {
             // 停止服务管理器
-            ManageableServiceHostManager.Instance.Stop();
+            //ManageableServiceHostManager.Instance.Stop();
 
             // 停止任务管理器
             TaskManager.Instance.Stop();

@@ -25,7 +25,7 @@ namespace ServiceHost
 
 
 		// 其它常量定义
-		public const string DefaultServiceName = "ServiceHost";
+		public const string DefaultServiceName = "SSqianService";
 		public const string DefaultServiceDisplayName = "上上签Rest服务";
         public const string DefaultServiceDescription = "上上签Rest服务";
 	}
