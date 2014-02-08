@@ -130,9 +130,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WCFServiceForApp\WCFServiceForTask.csproj">
+    <ProjectReference Include="..\WCFServiceForApp\WCFHostForTask.csproj">
       <Project>{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}</Project>
-      <Name>WCFServiceForTask</Name>
+      <Name>WCFHostForTask</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
