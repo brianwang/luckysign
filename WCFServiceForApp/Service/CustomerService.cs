@@ -15,7 +15,7 @@ namespace WCFServiceForApp
 {
     public class CustomerService : ICustomerService
     {
-        public ReturnValue<USR_CustomerMod> UserLogin(string username, string password)
+        public ReturnValue<USR_CustomerShow> UserLogin(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -30,7 +30,7 @@ namespace WCFServiceForApp
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckUser(username, password);
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_user);
+                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_user);
             }
             else
             {
@@ -38,7 +38,7 @@ namespace WCFServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerMod> CheckUserName(string username)
+        public ReturnValue<USR_CustomerShow> CheckUserName(string username)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -56,7 +56,7 @@ namespace WCFServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerMod> CheckNickName(string nickname)
+        public ReturnValue<USR_CustomerShow> CheckNickName(string nickname)
         {
             if (string.IsNullOrEmpty(nickname))
             {
@@ -74,7 +74,7 @@ namespace WCFServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerMod> CheckPhone(string phone,string sms)
+        public ReturnValue<bool> CheckPhone(string phone,string sms)
         {
             if (string.IsNullOrEmpty(phone))
             {
@@ -84,7 +84,7 @@ namespace WCFServiceForApp
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckPhone(phone);
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_user);
+                throw new BusinessException("该手机号已注册");
             }
             else
             {
@@ -101,15 +101,38 @@ namespace WCFServiceForApp
                         Password += arr[randValue];
                     }
                     #region 发送短信
-                    throw new BusinessException(Password);
+                    
+                    Password = "111111";    //测试验证码为111111
+                    XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode"+phone, Password, 600);
+                    return ReturnValue<bool>.Get200OK(true);
+                    
                     #endregion
-                    throw new BusinessException("用户不存在！");
                 }
                 else
                 {
                     throw new BusinessException("用户不存在！");
                 }
             }
+        }
+
+        public ReturnValue<bool> CheckSMSVerifyCode(string phone, string code)
+        {
+            try
+            {
+                if (code.ToUpper() == XMS.Core.Container.CacheService.LocalCache.GetItem(AppConst.APIRegionName, "SMSVerifyCode" + phone).ToString().ToUpper())
+                {
+                    return ReturnValue<bool>.Get200OK(true);
+                }
+                else
+                {
+                    return ReturnValue<bool>.Get200OK(false);
+                }
+            }
+            catch
+            {
+                throw new BusinessException("验证码已过期或手机号有误！");
+            }
+
         }
 
         public ReturnValue<bool> FindPass(string username)
@@ -134,6 +157,10 @@ namespace WCFServiceForApp
                 if (Util.IsCellNumber(username))
                 {
                     m_user = USR_CustomerBll.GetInstance().CheckPhone(username);
+                    if (m_user.SysNo == AppConst.IntNull)
+                    {
+                        throw new BusinessException("用户不存在！");
+                    }
                     m_user.Password = Password;
                     USR_CustomerBll.GetInstance().UpDate(m_user);
 
@@ -145,6 +172,10 @@ namespace WCFServiceForApp
                 else if (Util.IsEmailAddress(username))
                 {
                     m_user = USR_CustomerBll.GetInstance().CheckUser(username);
+                    if (m_user.SysNo == AppConst.IntNull)
+                    {
+                        throw new BusinessException("用户不存在！");
+                    }
                     m_user.Password = Password;
                     USR_CustomerBll.GetInstance().UpDate(m_user);
 
@@ -177,20 +208,9 @@ namespace WCFServiceForApp
                     throw new BusinessException("手机号或邮箱不合法");
                 }
             }
-            
-
-             
-            if (m_user.SysNo != -999999)
-            {
-                return ReturnValue<bool>.Get200OK(true);
-            }
-            else
-            {
-                throw new BusinessException("用户不存在！");
-            }
         }
 
-        public ReturnValue<USR_CustomerMod> Register(string email, string password, string phone, string nickname, string fatetype)
+        public ReturnValue<USR_CustomerShow> Register(string email, string password, string phone, string nickname, string fatetype)
         {
             #region 验证输入
             if (email.Trim() != "")
@@ -320,7 +340,7 @@ namespace WCFServiceForApp
             return ReturnValue<string>.Get200OK(authUrl);
         }
 
-        public ReturnValue<USR_CustomerMod> WeiboLogin(string code)
+        public ReturnValue<USR_CustomerShow> WeiboLogin(string code)
         {
             //新浪微博回调
             XmlDocument xmlDoc = new XmlDocument();
@@ -396,7 +416,7 @@ namespace WCFServiceForApp
             return ReturnValue<USR_CustomerMod>.Get200OK(m_customer);
         }
 
-        public ReturnValue<USR_CustomerMod> QQLogin(string code)
+        public ReturnValue<USR_CustomerShow> QQLogin(string code)
         {
             //QQ回调
             XmlDocument xmlDoc = new XmlDocument();

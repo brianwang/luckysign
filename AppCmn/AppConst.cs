@@ -65,6 +65,9 @@ namespace AppCmn
 
         public const string AllNewAnswer = "AllNewAnswer";
         public const string AllNewTalk = "AllNewTalk";
+
+        public const string APIRegionName = "APICache";
+        public const string SMSVerifyCode = "SMSVerifyCode";
         #endregion cachename
 
         #region 默认系统消息

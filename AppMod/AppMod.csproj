@@ -82,6 +82,7 @@
     <Compile Include="User\USR_RecordMod.cs" />
     <Compile Include="User\USR_SMSMod.cs" />
     <Compile Include="User\USR_ThirdLoginMod.cs" />
+    <Compile Include="User\USR_CustomerShow.cs" />
     <Compile Include="WebSys\REL_Admin_PrivilegeMod.cs" />
     <Compile Include="WebSys\REL_Famous_KeyWordMod.cs" />
     <Compile Include="WebSys\SYS_AdminMod.cs" />
