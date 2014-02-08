@@ -38,7 +38,7 @@ namespace WCFServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerShow> CheckUserName(string username)
+        public ReturnValue<bool> CheckUserName(string username)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -48,15 +48,15 @@ namespace WCFServiceForApp
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckUser(username);
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_user);
+                return ReturnValue<bool>.Get200OK(true);
             }
             else
             {
-                throw new BusinessException("用户不存在！");
+                return ReturnValue<bool>.Get200OK(false);
             }
         }
 
-        public ReturnValue<USR_CustomerShow> CheckNickName(string nickname)
+        public ReturnValue<bool> CheckNickName(string nickname)
         {
             if (string.IsNullOrEmpty(nickname))
             {
@@ -66,11 +66,11 @@ namespace WCFServiceForApp
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckNickName(nickname);
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_user);
+                return ReturnValue<bool>.Get200OK(true);
             }
             else
             {
-                throw new BusinessException("用户不存在！");
+                return ReturnValue<bool>.Get200OK(false);
             }
         }
 
@@ -306,7 +306,7 @@ namespace WCFServiceForApp
             #endregion
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_user);
+                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_user);
             }
             else
             {
@@ -362,7 +362,7 @@ namespace WCFServiceForApp
             {
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_customer);
+                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
             }
 
             USR_ThirdLoginMod m_third = new USR_ThirdLoginMod();
@@ -413,7 +413,7 @@ namespace WCFServiceForApp
                 throw new Exception(ex.Message);
             }
 
-            return ReturnValue<USR_CustomerMod>.Get200OK(m_customer);
+            return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
         }
 
         public ReturnValue<USR_CustomerShow> QQLogin(string code)
@@ -461,7 +461,7 @@ namespace WCFServiceForApp
             {
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
-                return ReturnValue<USR_CustomerMod>.Get200OK(m_customer);
+                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
             }
 
             m_customer = new USR_CustomerMod();
@@ -540,7 +540,7 @@ namespace WCFServiceForApp
             }
             #endregion
 
-            return ReturnValue<USR_CustomerMod>.Get200OK(m_customer);
+            return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
         }
     }
 }

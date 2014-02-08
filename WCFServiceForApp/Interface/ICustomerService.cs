@@ -22,11 +22,11 @@ namespace WCFServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/CheckUserName?uname={username}")]
         [Description("验证用户名,/CheckUserName?uname={username}")]
-        ReturnValue<USR_CustomerShow> CheckUserName(string username);
+        ReturnValue<bool> CheckUserName(string username);
 
         [OperationContract, WebGet(UriTemplate = "/CheckNickName?nickname={nickname}")]
         [Description("验证昵称,/CheckNickName?nickname={nickname}")]
-        ReturnValue<USR_CustomerShow> CheckNickName(string nickname);
+        ReturnValue<bool> CheckNickName(string nickname);
 
         [OperationContract, WebGet(UriTemplate = "/CheckPhone?phone={phone}&sendsms={sendsms}")]
         [Description("验证手机号,/CheckPhone?phone={phone}&sendsms={sendsms}")]
@@ -37,7 +37,7 @@ namespace WCFServiceForApp
         ReturnValue<bool> CheckSMSVerifyCode(string phone, string code);
 
         [OperationContract, WebGet(UriTemplate = "/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
-        [Description("验证昵称,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
+        [Description("注册,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         ReturnValue<USR_CustomerShow> Register(string email, string password, string phone, string nickname, string fatetype);
 
         [OperationContract, WebGet(UriTemplate = "/FindPass?username={username}")]
