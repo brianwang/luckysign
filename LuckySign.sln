@@ -43,8 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForApps", "WebForApps\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFHostForTask", "WCFServiceForApp\WCFHostForTask.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFHostForApp", "ServiceHost\WCFHostForApp.csproj", "{621D5204-12A9-45F4-8052-FE413668C92E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceForApp", "WebHost\WebServiceForApp.csproj", "{E11B5B09-E53C-4F86-B67E-6C7231473714}"
 EndProject
 Global
@@ -177,16 +175,6 @@ Global
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}.Release|x86.ActiveCfg = Release|Any CPU
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Debug|x86.ActiveCfg = Debug|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Debug|x86.Build.0 = Debug|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Release|Any CPU.ActiveCfg = Release|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Release|Mixed Platforms.Build.0 = Release|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Release|x86.ActiveCfg = Release|x86
-		{621D5204-12A9-45F4-8052-FE413668C92E}.Release|x86.Build.0 = Release|x86
 		{E11B5B09-E53C-4F86-B67E-6C7231473714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E11B5B09-E53C-4F86-B67E-6C7231473714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E11B5B09-E53C-4F86-B67E-6C7231473714}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
