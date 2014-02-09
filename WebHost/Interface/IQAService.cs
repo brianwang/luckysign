@@ -11,7 +11,7 @@ using XMS.Core;
 using AppMod.User;
 using AppDal.User;
 
-namespace WebHost
+namespace WebServiceForApp
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
     public interface IQAService

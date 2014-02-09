@@ -11,7 +11,7 @@ using AppBll.User;
 using System.IO;
 using System.Configuration;
 
-namespace WebHost
+namespace WebServiceForApp
 {
     public class CustomerService : ICustomerService
     {
