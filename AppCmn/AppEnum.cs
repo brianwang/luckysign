@@ -594,11 +594,12 @@ namespace AppCmn
         }
         #endregion
 
-        #region 目录类型（用户数据库中关联目录的关联表中的类型区分）
+        #region 目录类型（数据库中用户关联目录的关联表中的类型区分）
         public enum CategoryType
         {
             [Description("问答")]
             QA = 1,
+
         }
         public static SortedList GetCategoryType()
         {

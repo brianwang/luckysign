@@ -7,24 +7,10 @@ using System.Runtime.Serialization;
 namespace AppMod.QA
 {
     [Serializable]
-    public class QA_AnswerMod : IComparable<QA_AnswerMod>
+    public class QA_AnswerShow : QA_AnswerMod
     {
-        public QA_AnswerMod()
-        {
-            Init();
-        }
 
-        #region 成员变量和公共属性
-        private int _SysNo;
-        private int _QuestionSysNo;
-        private int _CustomerSysNo;
-        private string _Title;
-        private string _Context;
-        private int _Love;
-        private int _Hate;
-        private int _Award;
-        private int _DR;
-        private DateTime _TS;
+        #region 父类属性
         [DataMember]
         public int SysNo
         {
@@ -89,32 +75,7 @@ namespace AppMod.QA
 
         #endregion
 
-        public void Init()
-        {
-            SysNo = AppConst.IntNull;
-            QuestionSysNo = AppConst.IntNull;
-            CustomerSysNo = AppConst.IntNull;
-            Title = AppConst.StringNull;
-            Context = AppConst.StringNull;
-            Love = AppConst.IntNull;
-            Hate = AppConst.IntNull;
-            Award = AppConst.IntNull;
-            DR = AppConst.IntNull;
-            TS = AppConst.DateTimeNull;
 
-        }
-
-        #region 实现IComparable<T>接口的泛型排序方法
-        /// <sumary> 
-        /// 根据SysNo字段实现的IComparable<T>接口的泛型排序方法 
-        /// </sumary> 
-        /// <param name="other"></param> 
-        /// <returns></returns> 
-        public int CompareTo(QA_AnswerMod other)
-        {
-            return SysNo.CompareTo(other.SysNo);
-        }
-        #endregion
     }
 
 }

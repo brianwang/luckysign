@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace AppMod.QA
 {
@@ -20,25 +21,25 @@ namespace AppMod.QA
         private int _TopSysNo;
         private int _DR;
         private DateTime _TS;
-
+        [DataMember]
         public int SysNo
         {
             set { _SysNo = value; }
             get { return _SysNo; }
         }
-
+        [DataMember]
         public string Name
         {
             set { _Name = value; }
             get { return _Name; }
         }
-
+        [DataMember]
         public int ParentSysNo
         {
             set { _ParentSysNo = value; }
             get { return _ParentSysNo; }
         }
-
+        [DataMember]
         public int TopSysNo
         {
             set { _TopSysNo = value; }
