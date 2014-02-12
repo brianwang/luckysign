@@ -7,9 +7,13 @@ using System.ServiceModel.Web;
 using System.ComponentModel;
 
 using XMS.Core;
-using AppMod.User;
+
 using AppMod.QA;
+<<<<<<< HEAD
 using AppDal.QA;
+=======
+using AppMod.User;
+>>>>>>> d605600a73ae7fc5ba2a1c25d8dfa48f5e2a7c45
 
 namespace WebServiceForApp
 {
@@ -17,6 +21,15 @@ namespace WebServiceForApp
     public interface IQAService
     {
         [OperationContract, WebGet(UriTemplate = "/GetCates?parent={parent}")]
+<<<<<<< HEAD
+        [Description("获取目录列表,/GetCates?parent={parent}")]
+        ReturnValue<List<QA_CategoryMod>> GetCates(int parent);
+
+        [OperationContract, WebGet(UriTemplate = "/GetStarsList?count={count}&type={type}")]
+        [Description("获取明星列表,/GetStarsList?count={count}&type={type}")]
+        ReturnValue<Dictionary<int, QA_CategoryMod>> GetCates(int parent);
+
+=======
         [Description("获取分类列表,/GetCates?parent={parent}")]
         ReturnValue<List<QA_CategoryMod>> GetCates(int parent);
 
@@ -37,8 +50,8 @@ namespace WebServiceForApp
         ReturnValue<USR_CustomerMaintain> AddQuestion(int sysno);
 
         [OperationContract, WebGet(UriTemplate = "/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
-        [Description("获取问题的回复列表,/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
-        ReturnValue<List<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno);
+        [Description("获取问题的回复列表,/AddQuestion?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
+        ReturnValue<List<QA_AnswerShow>> AddQuestion(int pagesize, int pageindex,int sysno);
 
         [OperationContract, WebGet(UriTemplate = "/AddAnswer?sysno={sysno}")]
         [Description("发布回复,/AddAnswer?sysno={sysno}")]
@@ -46,15 +59,16 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/SetAward?questsysno={sysno}&answersysno={answersysno}&score={score}&msg={msg}")]
         [Description("设置悬赏,/SetAward?questsysno={sysno}&answersysno={answersysno}&score={score}&msg={msg}")]
-        ReturnValue<QA_QuestionShow> SetAward(int questsysno, int questsysno, int score, string msg);
+        ReturnValue<QA_QuestionShow> AddAnswer(int questsysno, int questsysno, int score, string msg);
 
         [OperationContract, WebGet(UriTemplate = "/AddComment?sysno={sysno}")]
-        [Description("发布评论,/AddComment?sysno={sysno}")]
+        [Description("发布回复,/AddComment?sysno={sysno}")]
         ReturnValue<USR_CustomerMaintain> AddComment(int sysno);
 
         [OperationContract, WebGet(UriTemplate = "/GetCommentByAnswer?sysno={sysno}")]
-        [Description("获取某回复的评论列表,/GetCommentByAnswer?sysno={sysno}")]
+        [Description("获取问题的回复列表,/GetCommentByAnswer?sysno={sysno}")]
         ReturnValue<List<QA_CommentShow>> GetCommentByAnswer(int sysno);
+>>>>>>> d605600a73ae7fc5ba2a1c25d8dfa48f5e2a7c45
 
     }
 

@@ -92,6 +92,23 @@ namespace AppMod.QA
             set { _Customer = value; }
         }
 
+        private List<QA_CommentShow> _TopComments;
+        [DataMember]
+        public List<QA_CommentShow> TopComments
+        {
+            get { return _TopComments; }
+            set { _TopComments = value; }
+        }
+
+        private bool _HasMoreComment;
+        [DataMember]
+        public bool HasMoreComment
+        {
+            get { return _HasMoreComment; }
+            set { _HasMoreComment = value; }
+        }
+
+
         #endregion
 
 

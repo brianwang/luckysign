@@ -63,8 +63,8 @@ namespace WebServiceForApp
             List<QA_QuestionShowMini> ret = new List<QA_QuestionShowMini>();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                QA_QuestionShowMini tmp_star = MapQA_QuestionShowMini(m_dt.Rows[i]);
-                ret.Add(tmp_star);
+                QA_QuestionShowMini tmp_quest = MapQA_QuestionShowMini(m_dt.Rows[i]);
+                ret.Add(tmp_quest);
             }
             return ReturnValue<List<QA_QuestionShowMini>>.Get200OK(ret);
         }
@@ -77,6 +77,60 @@ namespace WebServiceForApp
             ret.Chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
             return ReturnValue<QA_QuestionShow>.Get200OK(ret);
         }
+
+        public ReturnValue<List<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno)
+        {
+            int total = 0;
+            DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuest(pagesize, pageindex, sysno, ref total);
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                throw new BusinessException("没有符合条件的数据项");
+            }
+            List<QA_AnswerShow> ret = new List<QA_AnswerShow>();
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_AnswerShow tmp_answer = MapQA_AnswerShow(m_dt.Rows[i]);
+                tmp_answer.Customer = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(tmp_answer.CustomerSysNo);
+                DataTable tmp_dt = QA_CommentBll.GetInstance().GetListByAnswer(tmp_answer.SysNo);
+                if (tmp_dt != null && tmp_dt.Rows.Count > 0)
+                {
+                    List<QA_CommentShow> commentlist = new List<QA_CommentShow>();
+                    for (int j = 0; j < m_dt.Rows.Count&&j<=3; j++)
+                    {
+                        QA_CommentShow tmp_comment = MapQA_CommentShow(m_dt.Rows[i]);
+                        commentlist.Add(tmp_comment);
+                    }
+                    tmp_answer.TopComments = commentlist;
+                    if (m_dt.Rows.Count > 3)
+                    {
+                        tmp_answer.HasMoreComment = true;
+                    }
+                    else
+                    {
+                        tmp_answer.HasMoreComment = false;
+                    }
+                }
+                ret.Add(tmp_answer);
+            }
+            return ReturnValue<List<QA_AnswerShow>>.Get200OK(ret);
+        }
+
+        public ReturnValue<List<QA_CommentShow>> GetCommentByAnswer(int sysno)
+        {
+            DataTable m_dt = QA_CommentBll.GetInstance().GetListByAnswer(sysno);
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                throw new BusinessException("没有符合条件的数据项");
+            }
+            List<QA_CommentShow> ret = new List<QA_CommentShow>();
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_CommentShow tmp_comment = MapQA_CommentShow(m_dt.Rows[i]);
+                ret.Add(tmp_comment);
+            }
+            return ReturnValue<List<QA_CommentShow>>.Get200OK(ret);
+        }
+
 
         #region map方法
 
@@ -112,6 +166,37 @@ namespace WebServiceForApp
             ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
             ret.SysNo = int.Parse(input["SysNo"].ToString());
             ret.Title = input["Title"].ToString();
+            ret.TS = DateTime.Parse(input["TS"].ToString());
+
+            return ret;
+        }
+
+        public QA_AnswerShow MapQA_AnswerShow(DataRow input)
+        {
+            QA_AnswerShow ret = new QA_AnswerShow();
+            ret.Award = int.Parse(input["Award"].ToString());
+            ret.Context = input["Context"].ToString();
+            ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            ret.DR = int.Parse(input["DR"].ToString());
+            ret.Hate = int.Parse(input["Hate"].ToString());
+            ret.Love = int.Parse(input["Love"].ToString());
+            ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
+            ret.SysNo = int.Parse(input["SysNo"].ToString());
+            ret.Title = input["Title"].ToString();
+            ret.TS = DateTime.Parse(input["TS"].ToString());
+
+            return ret;
+        }
+
+        public QA_CommentShow MapQA_CommentShow(DataRow input)
+        {
+            QA_CommentShow ret = new QA_CommentShow();
+            ret.AnswerSysNo = int.Parse(input["AnswerSysNo"].ToString());
+            ret.Context = input["Context"].ToString();
+            ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            ret.DR = int.Parse(input["DR"].ToString());
+            ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
+            ret.SysNo = int.Parse(input["SysNo"].ToString());
             ret.TS = DateTime.Parse(input["TS"].ToString());
 
             return ret;
