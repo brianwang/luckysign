@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AppCmn;
 using System.Text;
 using System.Runtime.Serialization;
+using AppMod.User;
 
 namespace AppMod.QA
 {
@@ -66,6 +67,14 @@ namespace AppMod.QA
         public string TSShow
         {
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
+        }
+
+        private USR_CustomerMaintain _Customer;
+        [DataMember]
+        public USR_CustomerMaintain Customer
+        {
+            get { return _Customer; }
+            set { _Customer = value; }
         }
 
         #endregion

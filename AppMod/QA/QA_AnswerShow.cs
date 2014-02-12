@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AppCmn;
 using System.Text;
 using System.Runtime.Serialization;
+using AppMod.User;
 
 namespace AppMod.QA
 {
@@ -11,67 +12,85 @@ namespace AppMod.QA
     {
 
         #region 父类属性
-        [DataMember]
-        public int SysNo
+        //[DataMember]
+        //public int SysNo
+        //{
+        //    set { _SysNo = value; }
+        //    get { return _SysNo; }
+        //}
+        //[DataMember]
+        //public int QuestionSysNo
+        //{
+        //    set { _QuestionSysNo = value; }
+        //    get { return _QuestionSysNo; }
+        //}
+        //[DataMember]
+        //public int CustomerSysNo
+        //{
+        //    set { _CustomerSysNo = value; }
+        //    get { return _CustomerSysNo; }
+        //}
+        //[DataMember]
+        //public string Title
+        //{
+        //    set { _Title = value; }
+        //    get { return _Title; }
+        //}
+        //[DataMember]
+        //public string Context
+        //{
+        //    set { _Context = value; }
+        //    get { return _Context; }
+        //}
+        //[DataMember]
+        //public int Love
+        //{
+        //    set { _Love = value; }
+        //    get { return _Love; }
+        //}
+        //[DataMember]
+        //public int Hate
+        //{
+        //    set { _Hate = value; }
+        //    get { return _Hate; }
+        //}
+        //[DataMember]
+        //public int Award
+        //{
+        //    set { _Award = value; }
+        //    get { return _Award; }
+        //}
+        
+        public new int DR
         {
-            set { _SysNo = value; }
-            get { return _SysNo; }
+            set { base.DR = value; }
+            get { return base.DR; }
         }
+        //[DataMember]
+        //public DateTime TS
+        //{
+        //    set { _TS = value; }
+        //    get { return _TS; }
+        //}
+
+
+        #endregion
+
+        #region 扩展成员属性
+
         [DataMember]
-        public int QuestionSysNo
+        public string TSShow
         {
-            set { _QuestionSysNo = value; }
-            get { return _QuestionSysNo; }
-        }
-        [DataMember]
-        public int CustomerSysNo
-        {
-            set { _CustomerSysNo = value; }
-            get { return _CustomerSysNo; }
-        }
-        [DataMember]
-        public string Title
-        {
-            set { _Title = value; }
-            get { return _Title; }
-        }
-        [DataMember]
-        public string Context
-        {
-            set { _Context = value; }
-            get { return _Context; }
-        }
-        [DataMember]
-        public int Love
-        {
-            set { _Love = value; }
-            get { return _Love; }
-        }
-        [DataMember]
-        public int Hate
-        {
-            set { _Hate = value; }
-            get { return _Hate; }
-        }
-        [DataMember]
-        public int Award
-        {
-            set { _Award = value; }
-            get { return _Award; }
-        }
-        [DataMember]
-        public int DR
-        {
-            set { _DR = value; }
-            get { return _DR; }
-        }
-        [DataMember]
-        public DateTime TS
-        {
-            set { _TS = value; }
-            get { return _TS; }
+            get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
         }
 
+        private USR_CustomerMaintain _Customer;
+        [DataMember]
+        public USR_CustomerMaintain Customer
+        {
+            get { return _Customer; }
+            set { _Customer = value; }
+        }
 
         #endregion
 

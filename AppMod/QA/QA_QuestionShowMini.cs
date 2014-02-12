@@ -9,12 +9,12 @@ using System.Runtime.Serialization;
 namespace AppMod.QA
 {
     [Serializable]
-    public class QA_QuestionShow : QA_QuestionMod
+    public class  QA_QuestionShowMini: QA_QuestionMod
     {
 
         #region 父类属性
 
-
+        
         //public int SysNo
         //{
         //    set { _SysNo = value; }
@@ -39,11 +39,11 @@ namespace AppMod.QA
         //    get { return _Title; }
         //}
 
-        //public string Context
-        //{
-        //    set { _Context = value; }
-        //    get { return _Context; }
-        //}
+        public new string Context
+        {
+            set { base.Context = value; }
+            get { return CommonTools.CutStr(base.Context,100); }
+        }
 
         //public int Award
         //{
@@ -103,11 +103,11 @@ namespace AppMod.QA
 
         #region 扩展属性
 
-        private FATE_ChartMod _chart = new FATE_ChartMod();
+        private FATE_ChartMod _chart;
         [DataMember]
         public FATE_ChartMod Chart
         {
-            get { return _chart; }
+            get { return _chart ; }
             set { _chart = value; }
         }
         [DataMember]
@@ -120,13 +120,30 @@ namespace AppMod.QA
         {
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
         }
-
-        private USR_CustomerMaintain _Customer;
-        [DataMember]
-        public USR_CustomerMaintain Customer
+        private string _CustomerPhoto;
+        public string CustomerPhoto
         {
-            get { return _Customer; }
-            set { _Customer = value; }
+            get { return _CustomerPhoto; }
+            set { _CustomerPhoto = value; }
+        }
+        private string _CustomerNickName;
+        [DataMember]
+        public string CustomerNickName
+        {
+            get { return _CustomerNickName; }
+            set { _CustomerNickName = value; }
+        }
+
+        [DataMember]
+        public string BigPhotoShow
+        {
+            get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + CustomerPhoto; }
+        }
+
+        [DataMember]
+        public string smallPhotoShow
+        {
+            get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + CustomerPhoto; }
         }
 
         #endregion

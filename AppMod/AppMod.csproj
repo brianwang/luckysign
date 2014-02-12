@@ -74,6 +74,7 @@
     <Compile Include="QA\QA_QuestionShow.cs" />
     <Compile Include="QA\QA_CommentShow.cs" />
     <Compile Include="QA\QA_AnswerShow.cs" />
+    <Compile Include="QA\QA_QuestionShowMini.cs" />
     <Compile Include="Spider\SPD_FamousMod.cs" />
     <Compile Include="QA\QA_StarMod.cs" />
     <Compile Include="User\REL_Customer_CategoryMod.cs" />

@@ -22,11 +22,11 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/GetStarsList?catesysno={catesysno}")]
         [Description("获取明星列表,/GetStarsList?catesysno={catesysno}")]
-        ReturnValue<List<QA_StarShow>> GetStarsList(int count,int fatetype);
+        ReturnValue<List<USR_CustomerMaintain>> GetStarsList(int catesysno);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
         [Description("获取问题列表,/GetQuestionList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
-        ReturnValue<List<QA_QuestShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby);
+        ReturnValue<List<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestion?sysno={sysno}")]
         [Description("获取问题详情,/GetQuestion?sysno={sysno}")]
