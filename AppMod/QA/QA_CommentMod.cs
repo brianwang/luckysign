@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace AppMod.QA
 {
@@ -21,43 +22,43 @@ namespace AppMod.QA
         private string _Context;
         private int _DR;
         private DateTime _TS;
-
+        [DataMember]
         public int SysNo
         {
             set { _SysNo = value; }
             get { return _SysNo; }
         }
-
+        [DataMember]
         public int QuestionSysNo
         {
             set { _QuestionSysNo = value; }
             get { return _QuestionSysNo; }
         }
-
+        [DataMember]
         public int AnswerSysNo
         {
             set { _AnswerSysNo = value; }
             get { return _AnswerSysNo; }
         }
-
+        [DataMember]
         public int CustomerSysNo
         {
             set { _CustomerSysNo = value; }
             get { return _CustomerSysNo; }
         }
-
+        [DataMember]
         public string Context
         {
             set { _Context = value; }
             get { return _Context; }
         }
-
+        [DataMember]
         public int DR
         {
             set { _DR = value; }
             get { return _DR; }
         }
-
+        [DataMember]
         public DateTime TS
         {
             set { _TS = value; }

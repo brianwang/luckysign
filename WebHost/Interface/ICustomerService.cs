@@ -9,7 +9,6 @@ using System.ComponentModel;
 using XMS.Core;
 
 using AppMod.User;
-using AppDal.User;
 
 namespace WebServiceForApp
 {

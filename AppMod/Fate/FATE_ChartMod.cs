@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace AppMod.Fate
 {
@@ -34,61 +35,61 @@ namespace AppMod.Fate
         private int _SecondTimeZone;
         private int _FirstGender;
         private int _SecondGender;
-
+        [DataMember]
         public int SysNo
         {
             set { _SysNo = value; }
             get { return _SysNo; }
         }
-
+        [DataMember]
         public DateTime FirstBirth
         {
             set { _FirstBirth = value; }
             get { return _FirstBirth; }
         }
-
+        [DataMember]
         public string FirstPoi
         {
             set { _FirstPoi = value; }
             get { return _FirstPoi; }
         }
-
+        [DataMember]
         public DateTime Transit
         {
             set { _Transit = value; }
             get { return _Transit; }
         }
-
+        [DataMember]
         public string TransitPoi
         {
             set { _TransitPoi = value; }
             get { return _TransitPoi; }
         }
-
+        [DataMember]
         public DateTime SecondBirth
         {
             set { _SecondBirth = value; }
             get { return _SecondBirth; }
         }
-
+        [DataMember]
         public string SecondPoi
         {
             set { _SecondPoi = value; }
             get { return _SecondPoi; }
         }
-
+        [DataMember]
         public int CharType
         {
             set { _CharType = value; }
             get { return _CharType; }
         }
-
+        [DataMember]
         public int TheoryType
         {
             set { _TheoryType = value; }
             get { return _TheoryType; }
         }
-
+        [DataMember]
         public string Bitvalue
         {
             set { _Bitvalue = value; }
@@ -106,49 +107,49 @@ namespace AppMod.Fate
             set { _TS = value; }
             get { return _TS; }
         }
-
+        [DataMember]
         public int FirstDayLight
         {
             set { _FirstDayLight = value; }
             get { return _FirstDayLight; }
         }
-
+        [DataMember]
         public int SecondDayLight
         {
             set { _SecondDayLight = value; }
             get { return _SecondDayLight; }
         }
-
+        [DataMember]
         public string FirstPoiName
         {
             set { _FirstPoiName = value; }
             get { return _FirstPoiName; }
         }
-
+        [DataMember]
         public string SecondPoiName
         {
             set { _SecondPoiName = value; }
             get { return _SecondPoiName; }
         }
-
+        [DataMember]
         public int FirstTimeZone
         {
             set { _FirstTimeZone = value; }
             get { return _FirstTimeZone; }
         }
-
+        [DataMember]
         public int SecondTimeZone
         {
             set { _SecondTimeZone = value; }
             get { return _SecondTimeZone; }
         }
-
+        [DataMember]
         public int FirstGender
         {
             set { _FirstGender = value; }
             get { return _FirstGender; }
         }
-
+        [DataMember]
         public int SecondGender
         {
             set { _SecondGender = value; }

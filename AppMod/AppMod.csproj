@@ -71,6 +71,10 @@
     <Compile Include="QA\QA_CommentMod.cs" />
     <Compile Include="QA\QA_QuestionMod.cs" />
     <Compile Include="QA\REL_Question_ChartMod.cs" />
+    <Compile Include="QA\QA_QuestionShow.cs" />
+    <Compile Include="QA\QA_CommentShow.cs" />
+    <Compile Include="QA\QA_AnswerShow.cs" />
+    <Compile Include="QA\QA_QuestionShowMini.cs" />
     <Compile Include="Spider\SPD_FamousMod.cs" />
     <Compile Include="QA\QA_StarMod.cs" />
     <Compile Include="User\REL_Customer_CategoryMod.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="User\USR_SMSMod.cs" />
     <Compile Include="User\USR_ThirdLoginMod.cs" />
     <Compile Include="User\USR_CustomerShow.cs" />
+    <Compile Include="User\USR_CustomerMaintain.cs" />
     <Compile Include="WebSys\REL_Admin_PrivilegeMod.cs" />
     <Compile Include="WebSys\REL_Famous_KeyWordMod.cs" />
     <Compile Include="WebSys\SYS_AdminMod.cs" />
