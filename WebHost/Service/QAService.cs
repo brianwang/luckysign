@@ -14,6 +14,8 @@ using AppMod.QA;
 using AppMod.User;
 using AppMod.Fate;
 using System.Data;
+using System.Web;
+using AppMod.WebSys;
 
 namespace WebServiceForApp
 {
@@ -52,7 +54,7 @@ namespace WebServiceForApp
             return ReturnValue<List<USR_CustomerMaintain>>.Get200OK(ret);
         }
 
-        public ReturnValue<List<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby)
+        public ReturnValue<PageInfo<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby)
         {
             int total = 0;
             DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex,key,cate,orderby,ref total);
@@ -66,7 +68,10 @@ namespace WebServiceForApp
                 QA_QuestionShowMini tmp_quest = MapQA_QuestionShowMini(m_dt.Rows[i]);
                 ret.Add(tmp_quest);
             }
-            return ReturnValue<List<QA_QuestionShowMini>>.Get200OK(ret);
+            PageInfo<QA_QuestionShowMini> rett = new PageInfo<QA_QuestionShowMini>();
+            rett.List = ret;
+            rett.Total = total;
+            return ReturnValue<PageInfo<QA_QuestionShowMini>>.Get200OK(rett);
         }
 
         public ReturnValue<QA_QuestionShow> GetQuestion(int sysno)
@@ -78,7 +83,7 @@ namespace WebServiceForApp
             return ReturnValue<QA_QuestionShow>.Get200OK(ret);
         }
 
-        public ReturnValue<List<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno)
+        public ReturnValue<PageInfo<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno)
         {
             int total = 0;
             DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuest(pagesize, pageindex, sysno, ref total);
@@ -112,7 +117,10 @@ namespace WebServiceForApp
                 }
                 ret.Add(tmp_answer);
             }
-            return ReturnValue<List<QA_AnswerShow>>.Get200OK(ret);
+            PageInfo<QA_AnswerShow> rett = new PageInfo<QA_AnswerShow>();
+            rett.List = ret;
+            rett.Total = total;
+            return ReturnValue<PageInfo<QA_AnswerShow>>.Get200OK(rett);
         }
 
         public ReturnValue<List<QA_CommentShow>> GetCommentByAnswer(int sysno)
@@ -128,8 +136,73 @@ namespace WebServiceForApp
                 QA_CommentShow tmp_comment = MapQA_CommentShow(m_dt.Rows[i]);
                 ret.Add(tmp_comment);
             }
+
             return ReturnValue<List<QA_CommentShow>>.Get200OK(ret);
         }
+
+        public ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData)
+        {
+            StreamReader reader = new StreamReader(openPageData);
+            string text = reader.ReadToEnd();
+            Dictionary<string, string> para = new Dictionary<string, string>();
+            string[] tmp = text.Split(new char[] { '&' });
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                string[] tmpp = tmp[i].Split(new char[] { '=' });
+                if (tmpp.Length != 2)
+                {
+                    throw new BusinessException("参数有误");
+                }
+                para.Add(tmpp[0], tmpp[1]);
+            }
+
+
+            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+        }
+
+        public ReturnValue<USR_CustomerMaintain> AddAnswer(int CustomerSysNo, int QuestionSysNo,string Title, string Context)
+        {
+            QA_AnswerMod m_answer = new QA_AnswerMod();
+            m_answer.Award = 0;
+            m_answer.Title = Title;
+            m_answer.Context = HttpUtility.HtmlEncode(Context.Trim());
+            m_answer.CustomerSysNo = CustomerSysNo;
+            m_answer.DR = (int)AppEnum.State.normal;
+            m_answer.Hate = 0;
+            m_answer.Love = 0;
+            m_answer.QuestionSysNo = QuestionSysNo;
+            m_answer.Title = "";
+            m_answer.TS = DateTime.Now;
+            QA_AnswerBll.GetInstance().AddAnswer(m_answer);
+
+            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+        }
+
+        public ReturnValue<USR_CustomerMaintain> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context)
+        {
+            QA_CommentMod m_comment = new QA_CommentMod();
+            m_comment.AnswerSysNo = AnswerSysNo;
+            m_comment.Context = HttpUtility.HtmlEncode(Context.Trim());
+            m_comment.DR = (int)AppEnum.State.normal;
+            m_comment.QuestionSysNo = QuestionSysNo;
+            m_comment.TS = DateTime.Now;
+            m_comment.CustomerSysNo = CustomerSysNo;
+            QA_CommentBll.GetInstance().AddComment(m_comment);
+
+            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+        }
+
+        public ReturnValue<QA_QuestionShow> SetAward(int answersysno, int score, string msg)
+        { 
+            QA_AnswerMod m_anser = QA_AnswerBll.GetInstance().GetModel(answersysno);
+            QA_AnswerBll.GetInstance().SetAward(m_anser, QA_QuestionBll.GetInstance().GetModel(m_anser.QuestionSysNo), score);
+
+            return GetQuestion(m_anser.SysNo);
+        }
+
 
 
         #region map方法

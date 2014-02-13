@@ -5,10 +5,11 @@ using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ComponentModel;
-
+using System.IO;
 using XMS.Core;
 using AppMod.User;
 using AppMod.QA;
+using AppMod.WebSys;
 using AppDal.QA;
 
 namespace WebServiceForApp
@@ -26,31 +27,31 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
         [Description("获取问题列表,/GetQuestionList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
-        ReturnValue<List<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby);
+        ReturnValue<PageInfo<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestion?sysno={sysno}")]
         [Description("获取问题详情,/GetQuestion?sysno={sysno}")]
         ReturnValue<QA_QuestionShow> GetQuestion(int sysno);
 
-        [OperationContract, WebGet(UriTemplate = "/AddQuestion?sysno={sysno}")]
-        [Description("发布问题,/AddQuestion?sysno={sysno}")]
-        ReturnValue<USR_CustomerMaintain> AddQuestion(int sysno);
+        [OperationContract, WebGet(UriTemplate = "/AddQuestion")]
+        [Description("发布问题,/AddQuestion")]
+        ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData);
 
         [OperationContract, WebGet(UriTemplate = "/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
         [Description("获取问题的回复列表,/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
-        ReturnValue<List<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno);
+        ReturnValue<PageInfo<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno);
 
-        [OperationContract, WebGet(UriTemplate = "/AddAnswer?sysno={sysno}")]
-        [Description("发布回复,/AddAnswer?sysno={sysno}")]
-        ReturnValue<USR_CustomerMaintain> AddAnswer(int sysno);
+        [OperationContract, WebGet(UriTemplate = "/AddAnswer?CustomerSysNo={CustomerSysNo}&QuestionSysNo={QuestionSysNo}&Title={Title}&Context={Context}")]
+        [Description("发布回复,/AddAnswer?CustomerSysNo={CustomerSysNo}&QuestionSysNo={QuestionSysNo}&Title={Title}&Context={Context}")]
+        ReturnValue<USR_CustomerMaintain> AddAnswer(int CustomerSysNo, int QuestionSysNo, string Title, string Context);
 
-        [OperationContract, WebGet(UriTemplate = "/SetAward?questsysno={sysno}&answersysno={answersysno}&score={score}&msg={msg}")]
-        [Description("设置悬赏,/SetAward?questsysno={sysno}&answersysno={answersysno}&score={score}&msg={msg}")]
-        ReturnValue<QA_QuestionShow> SetAward(int questsysno, int questsysno, int score, string msg);
+        [OperationContract, WebGet(UriTemplate = "/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
+        [Description("设置悬赏,/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
+        ReturnValue<QA_QuestionShow> SetAward(int answersysno, int score, string msg);
 
-        [OperationContract, WebGet(UriTemplate = "/AddComment?sysno={sysno}")]
+        [OperationContract, WebGet(UriTemplate = "/AddComment?CustomerSysNo={CustomerSysNo}&AnswerSysNo={AnswerSysNo}&QuestionSysNo={QuestionSysNo}&Context={Context}")]
         [Description("发布评论,/AddComment?sysno={sysno}")]
-        ReturnValue<USR_CustomerMaintain> AddComment(int sysno);
+        ReturnValue<USR_CustomerMaintain> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context);
 
         [OperationContract, WebGet(UriTemplate = "/GetCommentByAnswer?sysno={sysno}")]
         [Description("获取某回复的评论列表,/GetCommentByAnswer?sysno={sysno}")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
+using System.Runtime.Serialization;
 
 namespace AppMod.WebSys
 {
@@ -92,5 +93,6 @@ namespace AppMod.WebSys
         }
         #endregion
     }
+
 
 }
