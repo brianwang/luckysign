@@ -204,7 +204,7 @@ namespace WebForMain.Quest
 
                 int sysno = 0;
 
-                QA_QuestionBll.GetInstance().AddQuest(m_quest,true);
+                QA_QuestionBll.GetInstance().AddQuest(ref m_quest,true);
                 sysno = m_quest.SysNo;
                 RefreshSession();
 

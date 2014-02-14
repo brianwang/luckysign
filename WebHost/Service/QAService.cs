@@ -142,23 +142,111 @@ namespace WebServiceForApp
 
         public ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData)
         {
-            StreamReader reader = new StreamReader(openPageData);
-            string text = reader.ReadToEnd();
-            Dictionary<string, string> para = new Dictionary<string, string>();
-            string[] tmp = text.Split(new char[] { '&' });
-            for (int i = 0; i < tmp.Length; i++)
+            QA_QuestionShow input;
+            try
             {
-                string[] tmpp = tmp[i].Split(new char[] { '=' });
-                if (tmpp.Length != 2)
+                int nReadCount = 0;
+                MemoryStream ms = new MemoryStream();
+                byte[] buffer = new byte[1024];
+                while ((nReadCount = openPageData.Read(buffer, 0, 1024)) > 0)
+                {
+                    ms.Write(buffer, 0, nReadCount);
+                }
+                byte[] byteJson = ms.ToArray();
+                string textJson = System.Text.Encoding.Default.GetString(byteJson);
+
+                input = (QA_QuestionShow)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow));
+
+                if (input == null)
                 {
                     throw new BusinessException("参数有误");
                 }
-                para.Add(tmpp[0], tmpp[1]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
+            #region 判断输入项
+            if (input.CateSysNo == 0 || input.CateSysNo == AppConst.IntNull)
+            {
+                throw new BusinessException("请选择分类");
+            }
+            if (input.Title.Trim() == "")
+            {
+                throw new BusinessException("请输入标题");
+            }
+            if (input.Title.Trim().Length > 30)
+            {
+                throw new BusinessException("您输入的标题太长，请控制在30字以内");
+            }
+            int point = USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo).Point;
+            if (input.Award > point && point != AppConst.IntNull)
+            {
+                throw new BusinessException("您最多可用" + point + "积分");
+            }
 
-            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            #endregion
+
+            try
+            {
+                QA_QuestionMod m_quest = new QA_QuestionMod();
+                m_quest.Award = input.Award;
+                m_quest.CateSysNo = input.CateSysNo;
+                m_quest.Context = input.Context;
+                m_quest.CustomerSysNo = input.CustomerSysNo;
+                m_quest.LastReplyTime = DateTime.Now;
+                m_quest.ReplyCount = 0;
+                m_quest.ReadCount = 0;
+                m_quest.Title = input.Title;
+                m_quest.TS = DateTime.Now;
+                m_quest.DR = (int)AppEnum.State.normal;
+
+                int sysno = 0;
+
+                QA_QuestionBll.GetInstance().AddQuest(ref m_quest, true);
+                sysno = m_quest.SysNo;
+
+                FATE_ChartMod m_chart = new FATE_ChartMod();
+                m_chart.CharType = input.Chart.CharType; ;
+                if (m_chart.CharType != (int)AppEnum.ChartType.nochart)
+                {
+                    m_chart.FirstBirth = input.Chart.FirstBirth;
+                    m_chart.FirstPoi = input.Chart.FirstPoi;
+                    m_chart.Transit = DateTime.Now;
+                    m_chart.TransitPoi = input.Chart.FirstPoi;
+                    m_chart.TheoryType = 0;
+                    m_chart.FirstPoiName = input.Chart.FirstPoiName;
+                    m_chart.FirstTimeZone = -8;
+                    m_chart.FirstGender = input.Chart.FirstGender;
+                    m_chart.FirstDayLight = input.Chart.FirstDayLight;
+                    if (m_chart.CharType == (int)AppEnum.ChartType.relation)
+                    {
+                        m_chart.SecondBirth = input.Chart.SecondBirth;
+                        m_chart.SecondPoi = input.Chart.SecondPoi;
+                        m_chart.SecondPoiName = input.Chart.SecondPoiName;
+                        m_chart.SecondTimeZone = -8;
+                        m_chart.SecondGender = input.Chart.SecondGender;
+                        m_chart.SecondDayLight = input.Chart.SecondDayLight;
+                    }
+                    m_chart.TS = DateTime.Now;
+                    m_chart.DR = (int)AppEnum.State.normal;
+                    int fatesysno = FATE_ChartBll.GetInstance().Add(m_chart);
+
+                    REL_Question_ChartMod m_qchart = new REL_Question_ChartMod();
+                    m_qchart.Chart_SysNo = fatesysno;
+                    m_qchart.Question_SysNo = sysno;
+                    REL_Question_ChartBll.GetInstance().Add(m_qchart);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo);
             return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+
         }
 
         public ReturnValue<USR_CustomerMaintain> AddAnswer(int CustomerSysNo, int QuestionSysNo,string Title, string Context)

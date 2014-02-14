@@ -520,7 +520,7 @@ namespace AppBll.QA
         /// 前台发问题
         /// </summary>
         /// <param name="model"></param>
-        public void AddQuest(QA_QuestionMod model, bool isquest)
+        public void AddQuest(ref QA_QuestionMod model, bool isquest)
         {
             TransactionOptions options = new TransactionOptions();
             options.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
