@@ -36,7 +36,7 @@ namespace PPLive.Astro
         private AppCmn.AppEnum.Gender _gender = AppCmn.AppEnum.Gender.none;
         private AppCmn.AppEnum.Gender _gender1 = AppCmn.AppEnum.Gender.none;
 
-        private Star[] xing = new Star[32]; //紫薇
+        private Star[] xing = new Star[32]; 
         #endregion
 
         #region 接口

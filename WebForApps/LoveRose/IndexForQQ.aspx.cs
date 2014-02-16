@@ -60,8 +60,8 @@ namespace WebForApps.LoveRose
                 }
                 
             }
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "showflash",
-                    @"swfobject.embedSWF('LoveRose.swf', 'flashmov', '816', '459', '9.0.0',null,{ele:'"+ele+"'});",true);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "showflash",
+            //        @"swfobject.embedSWF('LoveRose.swf', 'flashmov', '816', '459', '9.0.0',null,{ele:'"+ele+"'});",true);
             
             #region 记录用户数据
             LoveRoseMod m_record = new LoveRoseMod();
@@ -71,6 +71,21 @@ namespace WebForApps.LoveRose
             m_record.TS = DateTime.Now;
             LoveRoseBll.GetInstance().Add(m_record);
             #endregion
+        }
+
+
+        public bool IsHeXiang(Star a, Star b)
+        {
+            int offset = 0;
+            
+            decimal degreeA = ((int)a.Constellation)*30+a.Degree + a.Cent/60*100;
+            decimal degreeB = ((int)b.Constellation)*30+b.Degree + b.Cent/60*100;
+
+            decimal angle = Math.Abs(degreeA - degreeB);
+            if (angle > 180)
+            {
+                angle = 360 - angle;
+            }
         }
     }
 }
