@@ -1204,6 +1204,30 @@ namespace PPLive
             return GetDescription(typeof(Element), v);
         }
 
+        public enum Phase
+        {
+            [Description("合")]
+            he = 0,
+            [Description("刑")]
+            xing = 90,
+            [Description("拱")]
+            gong = 120,
+            [Description("冲")]
+            chong = 180,
+            [Description("半拱")]
+            bangong = 60,
+
+        }
+
+        public static SortedList GetPhase()
+        {
+            return GetStatus(typeof(Phase));
+        }
+        public static string GetPhase(object v)
+        {
+            return GetDescription(typeof(Phase), v);
+        }
+
         #endregion
 
     }

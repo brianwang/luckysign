@@ -28,7 +28,8 @@
         </asp:UpdatePanel>
         <asp:ImageButton runat="server" ID="ImageButton1" onclick="Unnamed1_Click" />
         <br /><br />
-        <div id="flashmov" align="center"></div>
+        <div id="flashmov" align="center">
+            <asp:Literal ID="Label1" runat="server"></asp:Literal></div>
     </div>
     </form>
     
