@@ -47,11 +47,15 @@ namespace WebForApps.LoveRose
                 m_astro.aspectsShow.Add(i, 5);
             }
             #endregion
-            
-            AstroBiz.GetInstance().GetParamters(ref m_astro);
 
+            AstroBiz.GetInstance().GetParamters(ref m_astro);
             Dictionary<PublicValue.AstroStar, Star> m_star = new Dictionary<PublicValue.AstroStar, Star>();
 
+            #region 花
+            Label1.Text = "1.金星星座为：" + PublicValue.GetAstroStar(m_star[PublicValue.AstroStar.Ven].StarName) + "<br/>";
+            #endregion
+
+            #region 金星元素
             int venusEle = 0;
             foreach (Star tmpstar in m_astro.Stars)
             {
@@ -61,25 +65,37 @@ namespace WebForApps.LoveRose
                     venusEle = (int)PublicDeal.GetInstance().GetConstellationElement(tmpstar.Constellation);
                 }
             }
+            Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation));
+            #endregion
 
+            #region 红杏
             bool hongxing = false;
-            if(HasPhase(m_star[PublicValue.AstroStar.Ven],m_star[PublicValue.AstroStar.Jun],PublicValue.Phase.he,AppConst.IntNull)
-                || HasPhase(m_star[PublicValue.AstroStar.Ven],m_star[PublicValue.AstroStar.Jun],PublicValue.Phase.chong,AppConst.IntNull)
-                || HasPhase(m_star[PublicValue.AstroStar.Ven],m_star[PublicValue.AstroStar.Jun],PublicValue.Phase.xing,AppConst.IntNull))
+            if (PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.he, AppConst.IntNull)
+                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.chong, AppConst.IntNull)
+                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.xing, AppConst.IntNull))
             {
                 hongxing = true;
             }
-
-
-
-            Label1.Text = "1.金星星座为："+ PublicValue.GetAstroStar(m_star[PublicValue.AstroStar.Ven].StarName) + "<br/>";
-            Label1.Text+="2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation));
             Label1.Text += "3.是否有红杏:" + (hongxing ? "有" : "没有");
+            #endregion
+
+            #region 蜜蜂
+            int beecount = 0;
+            if()
+            #endregion
+
+            #region 花盆
+
+            #endregion
+
+            
+            
+            
 
 
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "showflash",
             //        @"swfobject.embedSWF('LoveRose.swf', 'flashmov', '816', '459', '9.0.0',null,{ele:'"+ele+"'});",true);
-            
+
             #region 记录用户数据
             LoveRoseMod m_record = new LoveRoseMod();
             m_record.Area = District1.Area3SysNo;
@@ -91,48 +107,7 @@ namespace WebForApps.LoveRose
         }
 
 
-        public bool HasPhase(Star a, Star b, PublicValue.Phase phase,decimal offset)
-        {
-            if (offset == AppConst.IntNull)
-            {
-                switch (phase)
-                {
-                    case PublicValue.Phase.he:
-                        offset = 5;
-                        break;
-                    case PublicValue.Phase.xing:
-                        offset = 4;
-                        break;
-                    case PublicValue.Phase.chong:
-                        offset = 4;
-                        break;
-                    case PublicValue.Phase.gong:
-                        offset = 4;
-                        break;
-                    case PublicValue.Phase.bangong:
-                        offset = (decimal)2.5;
-                        break;
-                }
-            }
-
-            decimal degreeA = ((int)a.Constellation) * 30 + a.Degree + a.Cent / 60 * 100;
-            decimal degreeB = ((int)b.Constellation) * 30 + b.Degree + b.Cent / 60 * 100;
-
-            decimal angle = Math.Abs(degreeA - degreeB);
-            if (angle > 180)
-            {
-                angle = 360 - angle;
-            }
-
-            if (angle <= offset + (int)phase && angle >= (int)phase - offset)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+       
 
 
     }

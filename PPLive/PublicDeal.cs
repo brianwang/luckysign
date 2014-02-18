@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AppCmn;
+using PPLive.Astro;
 
 namespace PPLive
 {
@@ -19,6 +21,8 @@ namespace PPLive
             }
             return _instance;
         }
+
+        #region 八字相关
 
         // <summary>
         // 五行判断,A对B的作用,B的能量增减.
@@ -403,6 +407,10 @@ namespace PPLive
 
         }
 
+        #endregion
+
+        #region 占星术相关
+
         public PublicValue.Element GetConstellationElement(PublicValue.Constellation input)
         {
 
@@ -436,6 +444,148 @@ namespace PPLive
             }
         }
 
+        public bool HasPhase( Star a, Star b, PublicValue.Phase phase, decimal offset)
+        {
+            if (offset == AppConst.IntNull)
+            {
+                switch (phase)
+                {
+                    case PublicValue.Phase.he:
+                        offset = 5;
+                        break;
+                    case PublicValue.Phase.xing:
+                        offset = 4;
+                        break;
+                    case PublicValue.Phase.chong:
+                        offset = 4;
+                        break;
+                    case PublicValue.Phase.gong:
+                        offset = 4;
+                        break;
+                    case PublicValue.Phase.bangong:
+                        offset = (decimal)2.5;
+                        break;
+                }
+            }
+
+            decimal degreeA = ((int)a.Constellation) * 30 + a.Degree + a.Cent / 60 * 100;
+            decimal degreeB = ((int)b.Constellation) * 30 + b.Degree + b.Cent / 60 * 100;
+
+            decimal angle = Math.Abs(degreeA - degreeB);
+            if (angle > 180)
+            {
+                angle = 360 - angle;
+            }
+
+            if (angle <= offset + (int)phase && angle >= (int)phase - offset)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 获取宫主星
+        /// </summary>
+        /// <param name="stars"></param>
+        /// <param name="gong"></param>
+        /// <returns></returns>
+        public List<PublicValue.AstroStar> GetGongMasters(Star[] stars,int gong)
+        {
+            List<PublicValue.AstroStar> ret = new List<PublicValue.AstroStar>();
+            List<PublicValue.AstroStar> tmp = new List<PublicValue.AstroStar>();
+            int gongafter = gong+1;
+                if(gongafter==13)
+                {
+                    gongafter=1;
+                }
+            int gongconst = 0;
+            foreach (Star tmpstar in stars)
+            {
+                if ((int)tmpstar.StarName == gong + 20)
+                {
+                    gongconst = (int)tmpstar.Constellation;
+                    tmp = GetShouHu(tmpstar.Constellation);
+                    foreach (PublicValue.AstroStar tmps in tmp)
+                    {
+                        ret.Add(tmps);
+                    }
+                }
+                //劫夺
+                if ((int)tmpstar.StarName == gongafter + 20)
+                {
+                    if ((int)tmpstar.Constellation - gongconst == 2 || (int)tmpstar.Constellation - gongconst == -10)
+                    {
+                        tmp = GetShouHu((PublicValue.Constellation)(gongconst+1));
+                        foreach (PublicValue.AstroStar tmps in tmp)
+                        {
+                            ret.Add(tmps);
+                        }
+                    }
+                }
+            }
+            ret = ret.Distinct().ToList();
+            return ret;
+        }
+
+        /// <summary>
+        /// 获取守护星
+        /// </summary>
+        /// <returns></returns>
+        public List<PublicValue.AstroStar> GetShouHu(PublicValue.Constellation input)
+        {
+            List<PublicValue.AstroStar> ret = new List<PublicValue.AstroStar>();
+
+            switch (input)
+            {
+                case PublicValue.Constellation.Ari:
+                    ret.Add(PublicValue.AstroStar.Mar);
+                    break;
+                case PublicValue.Constellation.Tau:
+                    ret.Add(PublicValue.AstroStar.Ven);
+                    break;
+                case PublicValue.Constellation.Gem:
+                    ret.Add(PublicValue.AstroStar.Mer);
+                    break;
+                case PublicValue.Constellation.Can:
+                    ret.Add(PublicValue.AstroStar.Moo);
+                    break;
+                case PublicValue.Constellation.Leo:
+                    ret.Add(PublicValue.AstroStar.Sun);
+                    break;
+                case PublicValue.Constellation.Vir:
+                    ret.Add(PublicValue.AstroStar.Mer);
+                    break;
+                case PublicValue.Constellation.Lib:
+                    ret.Add(PublicValue.AstroStar.Ven);
+                    break;
+                case PublicValue.Constellation.Sco:
+                    ret.Add(PublicValue.AstroStar.Plu);
+                    ret.Add(PublicValue.AstroStar.Mar);
+                    break;
+                case PublicValue.Constellation.Sag:
+                    ret.Add(PublicValue.AstroStar.Jup);
+                    break;
+                case PublicValue.Constellation.Cap:
+                    ret.Add(PublicValue.AstroStar.Sat);
+                    break;
+                case PublicValue.Constellation.Aqu:
+                    ret.Add(PublicValue.AstroStar.Ura);
+                    ret.Add(PublicValue.AstroStar.Sat);
+                    break;
+                case PublicValue.Constellation.Pis:
+                    ret.Add(PublicValue.AstroStar.Jup);
+                    ret.Add(PublicValue.AstroStar.Nep);
+                    break;
+            }
+
+            return ret;
+        }
+
+        #endregion
     }
 
     public class WuXingRelation
