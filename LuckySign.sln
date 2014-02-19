@@ -41,9 +41,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForAnalyse", "WebForAnal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForApps", "WebForApps\WebForApps.csproj", "{1FE2FCAE-AFE9-4835-8AD5-31F265E6B2D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFHostForTask", "WCFServiceForApp\WCFHostForTask.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFHostForTask", "WCFHostForTask\WCFHostForTask.csproj", "{AA7ABF1B-DB80-4E63-9B4F-44AB0874CD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceForApp", "WebHost\WebServiceForApp.csproj", "{E11B5B09-E53C-4F86-B67E-6C7231473714}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceForApp", "WebServiceForApp\WebServiceForApp.csproj", "{E11B5B09-E53C-4F86-B67E-6C7231473714}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
