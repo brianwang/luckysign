@@ -14,8 +14,7 @@ using AppDal.QA;
 
 namespace WebServiceForApp
 {
-    [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
-    public interface IQAService
+    public partial interface ISSQianService
     {
         [OperationContract, WebGet(UriTemplate = "/GetCates?parent={parent}")]
         [Description("获取分类列表,/GetCates?parent={parent}")]
@@ -33,7 +32,7 @@ namespace WebServiceForApp
         [Description("获取问题详情,/GetQuestion?sysno={sysno}")]
         ReturnValue<QA_QuestionShow> GetQuestion(int sysno);
 
-        [OperationContract, WebGet(UriTemplate = "/AddQuestion")]
+        [OperationContract, WebInvoke(UriTemplate = "/AddQuestion")]
         [Description("发布问题,/AddQuestion")]
         ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData);
 

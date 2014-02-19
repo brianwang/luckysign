@@ -21,16 +21,16 @@ namespace AppMod.QA
         //    get { return _SysNo; }
         //}
 
-        public int QuestionSysNo
+        public new int QuestionSysNo
         {
-            set { base.QuestionSysNo = value; }
-            get { return base.QuestionSysNo; }
+            set;
+            get;
         }
 
-        public int AnswerSysNo
+        public new int AnswerSysNo
         {
-            set { base.AnswerSysNo = value; }
-            get { return base.AnswerSysNo; }
+            set;
+            get;
         }
         //[DataMember]
         //public int CustomerSysNo
@@ -45,10 +45,10 @@ namespace AppMod.QA
         //    get { return _Context; }
         //}
 
-        public int DR
+        public new int DR
         {
-            set { base.DR = value; }
-            get { return base.DR; }
+            set;
+            get;
         }
         //[DataMember]
         //public DateTime TS
@@ -67,6 +67,7 @@ namespace AppMod.QA
         public string TSShow
         {
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
+            set{}
         }
 
         private USR_CustomerMaintain _Customer;

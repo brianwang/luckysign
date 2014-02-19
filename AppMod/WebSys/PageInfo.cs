@@ -12,10 +12,11 @@ namespace AppMod.WebSys
     public class PageInfo<T>
     {
         private int _total;
+        private bool _hasNextPage;
         private List<T> _list;
 
         /// <summary>
-        /// 是否第一页
+        /// 总数
         /// </summary>
         [DataMember(Name = "total")]
         public int Total
@@ -27,6 +28,19 @@ namespace AppMod.WebSys
             set
             {
                 _total = value;
+            }
+        }
+
+        [DataMember(Name = "hasNextPage")]
+        public bool HasNextPage
+        {
+            get
+            {
+                return _hasNextPage;
+            }
+            set
+            {
+                _hasNextPage = value;
             }
         }
 

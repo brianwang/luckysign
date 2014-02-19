@@ -19,7 +19,7 @@ using AppMod.WebSys;
 
 namespace WebServiceForApp
 {
-    public class QAService : IQAService
+    public partial class SSQianService : ISSQianService
     {
         public ReturnValue<List<QA_CategoryMod>> GetCates(int parent)
         {
@@ -45,10 +45,9 @@ namespace WebServiceForApp
                 throw new BusinessException("该分类下无版主");
             }
             List<USR_CustomerMaintain> ret = new List<USR_CustomerMaintain>();
-            CustomerService tmpsvr = new CustomerService();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                USR_CustomerMaintain tmp_star = tmpsvr.MapUSR_CustomerMaintain(m_dt.Rows[i]);
+                USR_CustomerMaintain tmp_star = MapUSR_CustomerMaintain(m_dt.Rows[i]);
                 ret.Add(tmp_star);
             }
             return ReturnValue<List<USR_CustomerMaintain>>.Get200OK(ret);
@@ -71,12 +70,22 @@ namespace WebServiceForApp
             PageInfo<QA_QuestionShowMini> rett = new PageInfo<QA_QuestionShowMini>();
             rett.List = ret;
             rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
             return ReturnValue<PageInfo<QA_QuestionShowMini>>.Get200OK(rett);
         }
 
         public ReturnValue<QA_QuestionShow> GetQuestion(int sysno)
         {
-            QA_QuestionShow ret = (QA_QuestionShow)QA_QuestionBll.GetInstance().GetModel(sysno);
+            QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
+            QA_QuestionShow ret = new QA_QuestionShow();
+            tmp.MemberwiseCopy<USR_CustomerShow>(ret);
 
             ret.Customer = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo);
             ret.Chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
@@ -120,6 +129,14 @@ namespace WebServiceForApp
             PageInfo<QA_AnswerShow> rett = new PageInfo<QA_AnswerShow>();
             rett.List = ret;
             rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
             return ReturnValue<PageInfo<QA_AnswerShow>>.Get200OK(rett);
         }
 
@@ -244,7 +261,8 @@ namespace WebServiceForApp
                 throw ex;
             }
 
-            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo);
+            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo).MemberwiseCopy(ret);
             return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
 
         }
@@ -264,7 +282,8 @@ namespace WebServiceForApp
             m_answer.TS = DateTime.Now;
             QA_AnswerBll.GetInstance().AddAnswer(m_answer);
 
-            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerBll.GetInstance().GetModel(CustomerSysNo).MemberwiseCopy(ret);
             return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
         }
 
@@ -279,7 +298,8 @@ namespace WebServiceForApp
             m_comment.CustomerSysNo = CustomerSysNo;
             QA_CommentBll.GetInstance().AddComment(m_comment);
 
-            USR_CustomerMaintain ret = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(CustomerSysNo);
+            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerBll.GetInstance().GetModel(CustomerSysNo).MemberwiseCopy(ret);
             return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
         }
 

@@ -53,13 +53,14 @@ namespace AppMod.QA
 
         public new DateTime EndTime
         {
-            set { base.EndTime = value; }
-            get { return base.EndTime; }
+            set;
+            get;
         }
 
         public new int IsSecret
         {
-            set { base.IsSecret = value; }
+            set;
+            get;
         }
 
         //public DateTime LastReplyTime
@@ -88,8 +89,8 @@ namespace AppMod.QA
 
         public new int DR
         {
-            set { base.DR = value; }
-            get { return base.DR; }
+            set;
+            get;
         }
 
         //public DateTime TS

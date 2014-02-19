@@ -26,14 +26,14 @@ namespace AppMod.User
 
         public new string Email
         {
-            set { base.Email = value; }
-            //get { return base.Email; }
+            set;
+            get;
         }
 
         public new string Password
         {
-            set { base.Password = value; }
-            //get { return base.Password; }
+            set;
+            get;
         }
 
         //[DataMember]
@@ -45,7 +45,8 @@ namespace AppMod.User
 
         public new string NickName
         {
-            set { base.NickName = value; }
+            set;
+            get;
         }
 
         //[DataMember]
@@ -58,8 +59,8 @@ namespace AppMod.User
         
         public new string Photo
         {
-            set { base.Photo = value; }
-            //get { return base.Photo; }
+            set;
+            get;
         }
 
         //[DataMember]
@@ -92,14 +93,14 @@ namespace AppMod.User
 
         public new DateTime RegTime
         {
-            set { base.RegTime = value; }
-            //get { return base.RegTime; }
+            set;
+            get;
         }
 
         public new DateTime LastLoginTime
         {
-            set { base.LastLoginTime = value; }
-            //get { return base.LastLoginTime; }
+            set;
+            get;
         }
 
         //public new int Status
@@ -166,8 +167,8 @@ namespace AppMod.User
 
         public new string Icons
         {
-            set { base.Icons = value; }
-            //get { return base.Icons; }
+            set;
+            get;
         }
 
         //[DataMember]
@@ -207,8 +208,8 @@ namespace AppMod.User
 
         public new string Phone
         {
-            set { base.Phone = value; }
-            //get { return base.Phone; }
+            set;
+            get;
         }
 
         #endregion
@@ -219,6 +220,7 @@ namespace AppMod.User
         public string GradeShow
         {
             get { return base.GradeSysNo.ToString()+"级"; }
+            set { }
         }
 
         //[DataMember]
@@ -231,18 +233,21 @@ namespace AppMod.User
         public string BigPhotoShow
         {
             get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + base.Photo; }
+            set { }
         }
 
         [DataMember]
         public string smallPhotoShow
         {
             get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + base.Photo; }
+            set { }
         }
 
         [DataMember]
         public string BirthShow
         {
             get { return base.birth.ToString("yyyy-MM-dd") ; }
+            set { }
         }
 
         //[DataMember]
@@ -262,6 +267,7 @@ namespace AppMod.User
         public string LastLoginTimeShow
         {
             get { return base.birth.ToString("yyyy-MM-dd HH:mm:ss"); }
+            set { }
         }
 
         #endregion

@@ -13,7 +13,7 @@ using AppMod.User;
 namespace WebServiceForApp
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/Customer")]
-    public interface ICustomerService
+    public partial interface ISSQianService
     {
         [OperationContract, WebGet(UriTemplate = "/login?uname={username}&pwd={password}")]
         [Description("登录,/login?uname={username}&pwd={password}")]

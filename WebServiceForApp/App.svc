@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="WebHost.CustomerService" %> 
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WebServiceForApp.SSQianService" %> 

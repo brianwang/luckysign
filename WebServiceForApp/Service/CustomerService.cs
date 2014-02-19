@@ -13,7 +13,7 @@ using System.Data;
 
 namespace WebServiceForApp
 {
-    public class CustomerService : ICustomerService
+    public partial class SSQianService : ISSQianService
     {
         public ReturnValue<USR_CustomerShow> UserLogin(string username, string password)
         {
@@ -26,11 +26,12 @@ namespace WebServiceForApp
             {
                 throw new BusinessException("密码不能为空");
             }
-
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckUser(username, password);
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_user);
+                USR_CustomerShow ret = new USR_CustomerShow();
+                m_user.MemberwiseCopy<USR_CustomerShow>(ret);
+                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
             {
@@ -148,7 +149,7 @@ namespace WebServiceForApp
                 randValue = rand.Next(0, arr.Length - 1);
                 Password += arr[randValue];
             }
-            if (!string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(username))
             {
                 throw new BusinessException("手机号或邮箱为空");
             }
@@ -306,7 +307,9 @@ namespace WebServiceForApp
             #endregion
             if (m_user.SysNo != -999999)
             {
-                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_user);
+                USR_CustomerShow ret = new USR_CustomerShow();
+                m_user.MemberwiseCopy<USR_CustomerShow>(ret);
+                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
             {
@@ -362,7 +365,10 @@ namespace WebServiceForApp
             {
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
-                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
+
+                USR_CustomerShow ret = new USR_CustomerShow();
+                m_customer.MemberwiseCopy<USR_CustomerShow>(ret);
+                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
 
             USR_ThirdLoginMod m_third = new USR_ThirdLoginMod();
@@ -413,7 +419,9 @@ namespace WebServiceForApp
                 throw new Exception(ex.Message);
             }
 
-            return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
+            USR_CustomerShow rett = new USR_CustomerShow();
+            m_customer.MemberwiseCopy<USR_CustomerShow>(rett);
+            return ReturnValue<USR_CustomerShow>.Get200OK(rett);
         }
 
         public ReturnValue<USR_CustomerShow> QQLogin(string code)
@@ -461,7 +469,10 @@ namespace WebServiceForApp
             {
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
-                return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
+
+                USR_CustomerShow rett = new USR_CustomerShow();
+                m_customer.MemberwiseCopy<USR_CustomerShow>(rett);
+                return ReturnValue<USR_CustomerShow>.Get200OK(rett);
             }
 
             m_customer = new USR_CustomerMod();
@@ -540,7 +551,10 @@ namespace WebServiceForApp
             }
             #endregion
 
-            return ReturnValue<USR_CustomerShow>.Get200OK((USR_CustomerShow)m_customer);
+
+            USR_CustomerShow rettt = new USR_CustomerShow();
+            m_customer.MemberwiseCopy<USR_CustomerShow>(rettt);
+            return ReturnValue<USR_CustomerShow>.Get200OK(rettt);
         }
 
 

@@ -39,10 +39,11 @@ namespace AppMod.QA
         //    get { return _Title; }
         //}
 
+        [DataMember]
         public new string Context
         {
-            set { base.Context = value; }
-            get { return CommonTools.CutStr(base.Context,100); }
+            set {}
+            get { return CommonTools.CutStr(base.Context, 100); }
         }
 
         //public int Award
@@ -53,13 +54,14 @@ namespace AppMod.QA
 
         public new DateTime EndTime
         {
-            set { base.EndTime = value; }
-            get { return base.EndTime; }
+            set;
+            get;
         }
 
         public new int IsSecret
         {
-            set { base.IsSecret = value; }
+            set;
+            get;
         }
 
         //public DateTime LastReplyTime
@@ -88,8 +90,8 @@ namespace AppMod.QA
 
         public new int DR
         {
-            set { base.DR = value; }
-            get { return base.DR; }
+            set;
+            get;
         }
 
         //public DateTime TS
@@ -114,11 +116,13 @@ namespace AppMod.QA
         public string LastReplyTimeShow
         {
             get { return base.LastReplyTime.ToString("yyyy-MM-dd HH:mm"); }
+            set { }
         }
         [DataMember]
         public string TSShow
         {
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
+            set { }
         }
         private string _CustomerPhoto;
         public string CustomerPhoto
@@ -138,12 +142,14 @@ namespace AppMod.QA
         public string BigPhotoShow
         {
             get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + CustomerPhoto; }
+            set { }
         }
 
         [DataMember]
         public string smallPhotoShow
         {
             get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + CustomerPhoto; }
+            set { }
         }
 
         #endregion

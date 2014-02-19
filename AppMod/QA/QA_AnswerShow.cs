@@ -63,8 +63,8 @@ namespace AppMod.QA
         
         public new int DR
         {
-            set { base.DR = value; }
-            get { return base.DR; }
+            set;
+            get;
         }
         //[DataMember]
         //public DateTime TS
@@ -82,6 +82,7 @@ namespace AppMod.QA
         public string TSShow
         {
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
+            set { }
         }
 
         private USR_CustomerMaintain _Customer;
