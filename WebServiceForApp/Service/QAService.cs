@@ -85,7 +85,7 @@ namespace WebServiceForApp
         {
             QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
             QA_QuestionShow ret = new QA_QuestionShow();
-            tmp.MemberwiseCopy<USR_CustomerShow>(ret);
+            tmp.MemberwiseCopy(ret);
 
             ret.Customer = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo);
             ret.Chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);

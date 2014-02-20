@@ -23,14 +23,14 @@ namespace AppMod.QA
 
         public new int QuestionSysNo
         {
-            set;
-            get;
+            set { base.QuestionSysNo = value; }
+            get { return base.QuestionSysNo; }
         }
 
         public new int AnswerSysNo
         {
-            set;
-            get;
+            set { base.AnswerSysNo = value; }
+            get { return base.AnswerSysNo; }
         }
         //[DataMember]
         //public int CustomerSysNo
@@ -47,8 +47,8 @@ namespace AppMod.QA
 
         public new int DR
         {
-            set;
-            get;
+            set { base.DR = value; }
+            get { return base.DR; }
         }
         //[DataMember]
         //public DateTime TS

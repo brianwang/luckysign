@@ -24,15 +24,16 @@ namespace AppMod.User
         //    get { return _SysNo; }
         //}
 
-        public new string Email
+        private new string Email
         {
-            set;get;
+            set { base.Email = value; }
+            get { return base.Email; }
         }
 
-        public new string Password
+        private new string Password
         {
-            set;
-            get;
+            set { base.Password = value; }
+            get { return base.Password; }
         }
 
         //[DataMember]
@@ -56,11 +57,11 @@ namespace AppMod.User
         //    get { return _Gender; }
         //}
 
-        
+
         public new string Photo
         {
-            set;
-            get;
+            set { base.Photo = value; }
+            get { return ""; }
         }
 
         //[DataMember]
@@ -91,22 +92,22 @@ namespace AppMod.User
         //    get { return _FateType; }
         //}
 
-        public new DateTime RegTime
+        private new DateTime RegTime
         {
-            set;
-            get;
+            set { base.RegTime = value; }
+            get { return base.RegTime; }
         }
 
-        public new DateTime LastLoginTime
+        private new DateTime LastLoginTime
         {
-            set;
-            get;
+            set { base.LastLoginTime = value; }
+            get { return base.LastLoginTime; }
         }
 
-        public new int Status
+        private new int Status
         {
-            set;
-            get;
+            set { base.Status = value; }
+            get { return base.Status; }
         }
 
         //[DataMember]
@@ -165,10 +166,10 @@ namespace AppMod.User
         //    get { return _Intro; }
         //}
 
-        public new string Icons
+        private new string Icons
         {
-            set;
-            get;
+            set { base.Icons = value; }
+            get { return base.Icons; }
         }
 
         //[DataMember]
@@ -206,10 +207,10 @@ namespace AppMod.User
         //    get { return _TotalTalkReply; }
         //}
 
-        public new string Phone
+        private new string Phone
         {
-            set;
-            get;
+            set { base.Phone = value; }
+            get { return base.Phone; }
         }
 
         #endregion

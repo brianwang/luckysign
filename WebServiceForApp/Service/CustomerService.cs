@@ -30,7 +30,7 @@ namespace WebServiceForApp
             if (m_user.SysNo != -999999)
             {
                 USR_CustomerShow ret = new USR_CustomerShow();
-                m_user.MemberwiseCopy<USR_CustomerShow>(ret);
+                m_user.MemberwiseCopy(ret);
                 return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
@@ -39,11 +39,11 @@ namespace WebServiceForApp
             }
         }
 
-        public ReturnValue<bool> CheckUserName(string username)
+        public ReturnValue<bool> CheckUser(string username)
         {
             if (string.IsNullOrEmpty(username))
             {
-                throw new BusinessException("用户名不能为空");
+                throw new BusinessException("用户名或手机号不能为空");
             }
 
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckUser(username);
@@ -53,7 +53,15 @@ namespace WebServiceForApp
             }
             else
             {
-                return ReturnValue<bool>.Get200OK(false);
+                m_user = USR_CustomerBll.GetInstance().CheckPhone(username);
+                if (m_user.SysNo != -999999)
+                {
+                    return ReturnValue<bool>.Get200OK(true);
+                }
+                else
+                {
+                    return ReturnValue<bool>.Get200OK(false);
+                }
             }
         }
 
@@ -75,7 +83,7 @@ namespace WebServiceForApp
             }
         }
 
-        public ReturnValue<bool> CheckPhone(string phone,string sms)
+        public ReturnValue<bool> CheckPhone(string phone)
         {
             if (string.IsNullOrEmpty(phone))
             {
@@ -89,30 +97,23 @@ namespace WebServiceForApp
             }
             else
             {
-                if (sms == "1" || sms.ToUpper() == "TRUE")
+                //生成6位随机验证码
+                string[] arr = ("A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,2,3,4,5,6,7,8,9").Split(',');
+                string Password = "";
+                int randValue = -1;
+                Random rand = new Random(unchecked((int)DateTime.Now.Ticks));
+                for (int i = 0; i < 6; i++)
                 {
-                    //生成6位随机验证码
-                    string[] arr = ("A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,2,3,4,5,6,7,8,9").Split(',');
-                    string Password = "";
-                    int randValue = -1;
-                    Random rand = new Random(unchecked((int)DateTime.Now.Ticks));
-                    for (int i = 0; i < 6; i++)
-                    {
-                        randValue = rand.Next(0, arr.Length - 1);
-                        Password += arr[randValue];
-                    }
-                    #region 发送短信
-                    
-                    Password = "111111";    //测试验证码为111111
-                    XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode"+phone, Password, 600);
-                    return ReturnValue<bool>.Get200OK(true);
-                    
-                    #endregion
+                    randValue = rand.Next(0, arr.Length - 1);
+                    Password += arr[randValue];
                 }
-                else
-                {
-                    throw new BusinessException("用户不存在！");
-                }
+                #region 发送短信
+
+                Password = "111111";    //测试验证码为111111
+                XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode" + phone, Password, 600);
+                return ReturnValue<bool>.Get200OK(true);
+
+                #endregion
             }
         }
 
@@ -308,7 +309,7 @@ namespace WebServiceForApp
             if (m_user.SysNo != -999999)
             {
                 USR_CustomerShow ret = new USR_CustomerShow();
-                m_user.MemberwiseCopy<USR_CustomerShow>(ret);
+                m_user.MemberwiseCopy(ret);
                 return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
@@ -367,7 +368,7 @@ namespace WebServiceForApp
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
 
                 USR_CustomerShow ret = new USR_CustomerShow();
-                m_customer.MemberwiseCopy<USR_CustomerShow>(ret);
+                m_customer.MemberwiseCopy(ret);
                 return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
 
@@ -420,7 +421,7 @@ namespace WebServiceForApp
             }
 
             USR_CustomerShow rett = new USR_CustomerShow();
-            m_customer.MemberwiseCopy<USR_CustomerShow>(rett);
+            m_customer.MemberwiseCopy(rett);
             return ReturnValue<USR_CustomerShow>.Get200OK(rett);
         }
 
@@ -471,7 +472,7 @@ namespace WebServiceForApp
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
 
                 USR_CustomerShow rett = new USR_CustomerShow();
-                m_customer.MemberwiseCopy<USR_CustomerShow>(rett);
+                m_customer.MemberwiseCopy(rett);
                 return ReturnValue<USR_CustomerShow>.Get200OK(rett);
             }
 
@@ -553,7 +554,7 @@ namespace WebServiceForApp
 
 
             USR_CustomerShow rettt = new USR_CustomerShow();
-            m_customer.MemberwiseCopy<USR_CustomerShow>(rettt);
+            m_customer.MemberwiseCopy(rettt);
             return ReturnValue<USR_CustomerShow>.Get200OK(rettt);
         }
 

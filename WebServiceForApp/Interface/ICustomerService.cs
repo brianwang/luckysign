@@ -19,17 +19,17 @@ namespace WebServiceForApp
         [Description("登录,/login?uname={username}&pwd={password}")]
         ReturnValue<USR_CustomerShow> UserLogin(string username, string password);
 
-        [OperationContract, WebGet(UriTemplate = "/CheckUserName?uname={username}")]
-        [Description("验证用户名,/CheckUserName?uname={username}")]
-        ReturnValue<bool> CheckUserName(string username);
+        [OperationContract, WebGet(UriTemplate = "/CheckUser?uname={username}")]
+        [Description("验证用户名,/CheckUser?uname={username}")]
+        ReturnValue<bool> CheckUser(string username);
 
         [OperationContract, WebGet(UriTemplate = "/CheckNickName?nickname={nickname}")]
         [Description("验证昵称,/CheckNickName?nickname={nickname}")]
         ReturnValue<bool> CheckNickName(string nickname);
 
-        [OperationContract, WebGet(UriTemplate = "/CheckPhone?phone={phone}&sendsms={sendsms}")]
-        [Description("验证手机号,/CheckPhone?phone={phone}&sendsms={sendsms}")]
-        ReturnValue<bool> CheckPhone(string phone, string sendsms);
+        [OperationContract, WebGet(UriTemplate = "/CheckPhone?phone={phone}")]
+        [Description("验证手机号,/CheckPhone?phone={phone}")]
+        ReturnValue<bool> CheckPhone(string phone);
 
         [OperationContract, WebGet(UriTemplate = "/CheckSMSVerifyCode?phone={phone}&code={code}")]
         [Description("验证短信验证码,/CheckSMSVerifyCode?phone={phone}&code={code}")]

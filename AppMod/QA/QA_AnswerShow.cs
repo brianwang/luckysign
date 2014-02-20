@@ -63,8 +63,8 @@ namespace AppMod.QA
         
         public new int DR
         {
-            set;
-            get;
+            set { base.DR = value; }
+            get { return base.DR; }
         }
         //[DataMember]
         //public DateTime TS
