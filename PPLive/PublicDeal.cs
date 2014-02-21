@@ -444,9 +444,9 @@ namespace PPLive
             }
         }
 
-        public bool HasPhase( Star a, Star b, PublicValue.Phase phase, decimal offset)
+        public bool HasPhase(Star a, Star b, PublicValue.Phase phase, decimal offset)
         {
-            if (offset == AppConst.IntNull)
+            if (offset == AppConst.DecimalNull)
             {
                 switch (phase)
                 {
@@ -478,6 +478,26 @@ namespace PPLive
             }
 
             if (angle <= offset + (int)phase && angle >= (int)phase - offset)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 是否有任何主相位，0,60,90,120,180
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public bool HasAnyMainPhase(Star a, Star b)
+        {
+            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull)
+                || HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.gong, AppConst.DecimalNull)
+                || HasPhase(a, b, PublicValue.Phase.bangong, AppConst.DecimalNull))
             {
                 return true;
             }
