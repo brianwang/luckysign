@@ -108,6 +108,8 @@ namespace WebForApps.LoveRose
             beestars.Add(PublicValue.AstroStar.Jun);
             foreach (PublicValue.AstroStar tmpstar in beestars)
             {
+                if(tmpstar!=goodstars[0] )
+                    continue;
                 int tmpflag = 0;
                 if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmpstar], m_star[goodstars[0]]))
                 {
@@ -127,20 +129,44 @@ namespace WebForApps.LoveRose
             #endregion
 
             #region 花盆
-            Label1.Text += "5.花盆为:" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Des].Constellation) + "<br />";
+            Label1.Text += "5.花盆为:" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Jun].Constellation) + "<br />";
             #endregion
 
             #region 裂痕
             int breakcount = 0;
+
              List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7);
             breakstars.Add(PublicValue.AstroStar.Ven);
             breakstars.Add(PublicValue.AstroStar.Jun);
             breakstars.Add(PublicValue.AstroStar.Des);
-            foreach()
-
+            breakstars.Distinct();
+            foreach (PublicValue.AstroStar tmp in breakstars)
+            {
+                if(tmp!=goodstars[0] )
+                    continue;
+                int tmpflag = 0;
+                for (int i = 0; i < badstars.Count; i++)
+                {
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmp], m_star[badstars[i]]))
+                    {
+                        breakcount++;
+                        if (tmpflag == 0)
+                        {
+                            tmpflag ++;
+                        }
+                        else
+                        {
+                            tmpflag = 0;
+                            breakcount++;
+                        }
+                    }
+                }
+            }
+            Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
             #endregion
 
-
+            #region 
+            #endregion
 
 
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "showflash",
