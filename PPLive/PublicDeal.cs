@@ -605,6 +605,79 @@ namespace PPLive
             return ret;
         }
 
+        /// <summary>
+        /// 计算互溶关系
+        /// </summary>
+        /// <param name="stars"></param>
+        /// <param name="isWang">是否包括旺相互溶</param>
+        /// <returns></returns>
+        public List<List<PublicValue.AstroStar>> GetHuRong(Star[] stars, bool isWang)
+        {
+            List<List<PublicValue.AstroStar>> ret = new List<List<PublicValue.AstroStar>>();
+            List<PublicValue.AstroStar> checkedstar = new List<PublicValue.AstroStar>();
+            foreach (Star tmpstar in stars)//遍历盘中所有星体
+            {
+                if ((int)tmpstar.StarName > 10)//只选取主星体
+                {
+                    continue;
+                }
+                if (checkedstar.Contains(tmpstar.StarName))//排除已排查过的星体
+                {
+                    continue;
+                }
+
+                checkedstar.Add(tmpstar.StarName);
+                List<List<Star>> checkingstars = new List<List<Star>>();//创建当前主星体引申出的互溶链
+                checkingstars.Add(new List<Star>() { tmpstar });
+
+                while (checkingstars.Count > 0)//循环处理当前互溶链组
+                {
+                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation);//每次获取顶端的链最后星体所在星座的守护星
+                    List<Star> nowline = checkingstars[0];//拿出顶端链
+                    checkingstars.RemoveAt(0);
+                    foreach (PublicValue.AstroStar sh in shouhuxing)//逐一处理守护星
+                    {
+                        checkedstar.Add(sh);//守护星加入已排查队列
+                        if (sh == nowline.Last().StarName)//互溶链中最后一个星体入庙，排除该守护星
+                        {
+                            continue;
+                        }
+                        bool isexist = false;
+                        foreach (Star tmps in nowline)//该守护星存在于互溶链中，拼出该链，加入返回列表中
+                        {
+                            if (tmps.StarName == sh)
+                            {
+                                List<PublicValue.AstroStar> tmpinput = new List<PublicValue.AstroStar>();
+                                int index = nowline.IndexOf(tmps);
+                                for (int i = index; i < nowline.Count; i++)
+                                {
+                                    tmpinput.Add(nowline[i].StarName);
+                                }
+                                ret.Add(tmpinput);
+                                isexist = true;
+                                break;
+                            }
+                        }
+                        if (!isexist)
+                        {
+                            foreach (Star tmps in stars)//原互溶链中不存在该守护星，将该链完善重新加入当前互溶链组中
+                            {
+                                if (tmps.StarName == sh)
+                                {
+                                    List<Star> tmplist = nowline;
+                                    tmplist.Add(tmps);
+                                    checkingstars.Add(tmplist);
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            return ret;
+        }
+
         #endregion
     }
 

@@ -92,7 +92,7 @@ namespace AppMod.User
         //    get { return _FateType; }
         //}
 
-        private new DateTime RegTime
+        new private DateTime RegTime
         {
             set { base.RegTime = value; }
             get { return base.RegTime; }
