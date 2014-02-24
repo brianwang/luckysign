@@ -31,19 +31,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\Space\Space.Host\Base\Castle.Core.dll</HintPath>
+      <HintPath>..\BaseAssemblies\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\Space\Space.Host\Base\Castle.Windsor.dll</HintPath>
+      <HintPath>..\BaseAssemblies\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="CKEditor.NET">
+      <HintPath>..\BaseAssemblies\CKEditor.NET.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\Space\Space.Host\Base\EntityFramework.dll</HintPath>
+      <HintPath>..\BaseAssemblies\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Enyim.Caching">
-      <HintPath>..\..\Space\Space.Host\Base\Enyim.Caching.dll</HintPath>
+      <HintPath>..\BaseAssemblies\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="FreeTextBox">
+      <HintPath>..\BaseAssemblies\FreeTextBox.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\Space\Space.Host\Base\log4net.dll</HintPath>
+      <HintPath>..\BaseAssemblies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NetDimension.Weibo">
       <HintPath>..\BaseAssemblies\NetDimension.Weibo.dll</HintPath>
@@ -62,7 +68,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="XMS.Core">
-      <HintPath>..\..\Space\Space.Host\Base\XMS.Core.dll</HintPath>
+      <HintPath>..\BaseAssemblies\XMS.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

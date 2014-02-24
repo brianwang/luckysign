@@ -37,20 +37,20 @@ namespace WebServiceForApp
             return ReturnValue<List<QA_CategoryMod>>.Get200OK(ret);
         }
 
-        public ReturnValue<List<USR_CustomerMaintain>> GetStarsList(int catesysno)
+        public ReturnValue<List<USR_CustomerShow>> GetStarsList(int catesysno)
         {
             DataTable m_dt = REL_Customer_CategoryBll.GetInstance().GetListByCate(catesysno,(int)AppEnum.CategoryType.QA);
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
                 throw new BusinessException("该分类下无版主");
             }
-            List<USR_CustomerMaintain> ret = new List<USR_CustomerMaintain>();
+            List<USR_CustomerShow> ret = new List<USR_CustomerShow>();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                USR_CustomerMaintain tmp_star = MapUSR_CustomerMaintain(m_dt.Rows[i]);
+                USR_CustomerShow tmp_star = MapUSR_CustomerShow(m_dt.Rows[i]);
                 ret.Add(tmp_star);
             }
-            return ReturnValue<List<USR_CustomerMaintain>>.Get200OK(ret);
+            return ReturnValue<List<USR_CustomerShow>>.Get200OK(ret);
         }
 
         public ReturnValue<PageInfo<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby)
@@ -87,7 +87,9 @@ namespace WebServiceForApp
             QA_QuestionShow ret = new QA_QuestionShow();
             tmp.MemberwiseCopy(ret);
 
-            ret.Customer = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo);
+            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
+            ret.Customer = tmpu;
             ret.Chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
             return ReturnValue<QA_QuestionShow>.Get200OK(ret);
         }
@@ -104,7 +106,9 @@ namespace WebServiceForApp
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_AnswerShow tmp_answer = MapQA_AnswerShow(m_dt.Rows[i]);
-                tmp_answer.Customer = (USR_CustomerMaintain)USR_CustomerBll.GetInstance().GetModel(tmp_answer.CustomerSysNo);
+                USR_CustomerShow tmpu = new USR_CustomerShow();
+                USR_CustomerBll.GetInstance().GetModel(tmp_answer.CustomerSysNo).MemberwiseCopy(tmpu);
+                tmp_answer.Customer = tmpu;
                 DataTable tmp_dt = QA_CommentBll.GetInstance().GetListByAnswer(tmp_answer.SysNo);
                 if (tmp_dt != null && tmp_dt.Rows.Count > 0)
                 {
@@ -157,7 +161,7 @@ namespace WebServiceForApp
             return ReturnValue<List<QA_CommentShow>>.Get200OK(ret);
         }
 
-        public ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData)
+        public ReturnValue<USR_CustomerShow> AddQuestion(Stream openPageData)
         {
             QA_QuestionShow input;
             try
@@ -261,13 +265,13 @@ namespace WebServiceForApp
                 throw ex;
             }
 
-            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerShow ret = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo).MemberwiseCopy(ret);
-            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+            return ReturnValue<USR_CustomerShow>.Get200OK(ret);
 
         }
 
-        public ReturnValue<USR_CustomerMaintain> AddAnswer(int CustomerSysNo, int QuestionSysNo,string Title, string Context)
+        public ReturnValue<USR_CustomerShow> AddAnswer(int CustomerSysNo, int QuestionSysNo, string Title, string Context)
         {
             QA_AnswerMod m_answer = new QA_AnswerMod();
             m_answer.Award = 0;
@@ -282,12 +286,12 @@ namespace WebServiceForApp
             m_answer.TS = DateTime.Now;
             QA_AnswerBll.GetInstance().AddAnswer(m_answer);
 
-            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerShow ret = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(CustomerSysNo).MemberwiseCopy(ret);
-            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+            return ReturnValue<USR_CustomerShow>.Get200OK(ret);
         }
 
-        public ReturnValue<USR_CustomerMaintain> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context)
+        public ReturnValue<USR_CustomerShow> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context)
         {
             QA_CommentMod m_comment = new QA_CommentMod();
             m_comment.AnswerSysNo = AnswerSysNo;
@@ -298,9 +302,9 @@ namespace WebServiceForApp
             m_comment.CustomerSysNo = CustomerSysNo;
             QA_CommentBll.GetInstance().AddComment(m_comment);
 
-            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerShow ret = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(CustomerSysNo).MemberwiseCopy(ret);
-            return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+            return ReturnValue<USR_CustomerShow>.Get200OK(ret);
         }
 
         public ReturnValue<QA_QuestionShow> SetAward(int answersysno, int score, string msg)

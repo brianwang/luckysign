@@ -22,7 +22,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/GetStarsList?catesysno={catesysno}")]
         [Description("获取明星列表,/GetStarsList?catesysno={catesysno}")]
-        ReturnValue<List<USR_CustomerMaintain>> GetStarsList(int catesysno);
+        ReturnValue<List<USR_CustomerShow>> GetStarsList(int catesysno);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
         [Description("获取问题列表,/GetQuestionList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
@@ -34,7 +34,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebInvoke(UriTemplate = "/AddQuestion")]
         [Description("发布问题,/AddQuestion")]
-        ReturnValue<USR_CustomerMaintain> AddQuestion(Stream openPageData);
+        ReturnValue<USR_CustomerShow> AddQuestion(Stream openPageData);
 
         [OperationContract, WebGet(UriTemplate = "/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
         [Description("获取问题的回复列表,/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
@@ -42,7 +42,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/AddAnswer?CustomerSysNo={CustomerSysNo}&QuestionSysNo={QuestionSysNo}&Title={Title}&Context={Context}")]
         [Description("发布回复,/AddAnswer?CustomerSysNo={CustomerSysNo}&QuestionSysNo={QuestionSysNo}&Title={Title}&Context={Context}")]
-        ReturnValue<USR_CustomerMaintain> AddAnswer(int CustomerSysNo, int QuestionSysNo, string Title, string Context);
+        ReturnValue<USR_CustomerShow> AddAnswer(int CustomerSysNo, int QuestionSysNo, string Title, string Context);
 
         [OperationContract, WebGet(UriTemplate = "/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
         [Description("设置悬赏,/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
@@ -50,7 +50,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/AddComment?CustomerSysNo={CustomerSysNo}&AnswerSysNo={AnswerSysNo}&QuestionSysNo={QuestionSysNo}&Context={Context}")]
         [Description("发布评论,/AddComment?sysno={sysno}")]
-        ReturnValue<USR_CustomerMaintain> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context);
+        ReturnValue<USR_CustomerShow> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context);
 
         [OperationContract, WebGet(UriTemplate = "/GetCommentByAnswer?sysno={sysno}")]
         [Description("获取某回复的评论列表,/GetCommentByAnswer?sysno={sysno}")]

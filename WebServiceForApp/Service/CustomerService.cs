@@ -561,30 +561,26 @@ namespace WebServiceForApp
 
         #region Map方法
 
-        public USR_CustomerMaintain MapUSR_CustomerMaintain(DataRow input)
+        public USR_CustomerShow MapUSR_CustomerShow(DataRow input)
         {
-            USR_CustomerMaintain ret = new USR_CustomerMaintain();
+            USR_CustomerShow ret = new USR_CustomerShow();
             ret.BestAnswer = int.Parse(input["BestAnswer"].ToString());
-            ret.birth = DateTime.Parse(input["birth"].ToString());
+            ret.birth = (DateTime.Parse(input["birth"].ToString()).ToMilliSecondsFrom1970L())/1000;
             ret.Credit = int.Parse(input["Credit"].ToString());
-            ret.Email = input["Email"].ToString();
             ret.Exp = int.Parse(input["Exp"].ToString());
             ret.FateType = int.Parse(input["FateType"].ToString());
             ret.Gender = int.Parse(input["Gender"].ToString());
             ret.GradeSysNo = int.Parse(input["GradeSysNo"].ToString());
             ret.HasNewInfo = int.Parse(input["HasNewInfo"].ToString());
             ret.HomeTown = int.Parse(input["HomeTown"].ToString());
-            ret.Icons = input["Icons"].ToString();
             ret.Intro = input["Intro"].ToString();
             ret.IsShowBirth = int.Parse(input["IsShowBirth"].ToString());
             ret.IsStar = int.Parse(input["IsStar"].ToString());
-            ret.LastLoginTime = DateTime.Parse(input["LastLoginTime"].ToString());
+            ret.LastLoginTime = (DateTime.Parse(input["LastLoginTime"].ToString()).ToMilliSecondsFrom1970L())/1000;
             ret.NickName = input["NickName"].ToString();
-            ret.Password = input["Password"].ToString();
-            ret.Phone = input["Phone"].ToString();
             ret.Photo = input["Photo"].ToString();
             ret.Point = int.Parse(input["Point"].ToString());
-            ret.RegTime = DateTime.Parse(input["RegTime"].ToString());
+            ret.RegTime = (DateTime.Parse(input["RegTime"].ToString()).ToMilliSecondsFrom1970L())/1000;
             ret.Signature = input["Signature"].ToString();
             ret.Status = int.Parse(input["Status"].ToString());
             ret.SysNo = int.Parse(input["SysNo"].ToString());

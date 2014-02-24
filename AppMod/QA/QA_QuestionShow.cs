@@ -122,9 +122,9 @@ namespace AppMod.QA
             get { return base.TS.ToString("yyyy-MM-dd HH:mm"); }
         }
 
-        private USR_CustomerMaintain _Customer;
+        private USR_CustomerShow _Customer;
         [DataMember]
-        public USR_CustomerMaintain Customer
+        public USR_CustomerShow Customer
         {
             get { return _Customer; }
             set { _Customer = value; }
