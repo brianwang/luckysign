@@ -15,7 +15,7 @@ namespace WebServiceForApp
 {
     public partial class SSQianService : ISSQianService
     {
-        public ReturnValue<USR_CustomerShow> UserLogin(string username, string password)
+        public ReturnValue<USR_CustomerMaintain> UserLogin(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -29,9 +29,9 @@ namespace WebServiceForApp
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().CheckUser(username, password);
             if (m_user.SysNo != -999999)
             {
-                USR_CustomerShow ret = new USR_CustomerShow();
+                USR_CustomerMaintain ret = new USR_CustomerMaintain();
                 m_user.MemberwiseCopy(ret);
-                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace WebServiceForApp
                     USR_CustomerBll.GetInstance().UpDate(m_user);
 
                     #region SetEmailContent
-                    string mailBody = CommonTools.ReadHtmFile(AppConfig.AdvFolderPath + @"EmailTemplate/FindPassword.htm");
+                    string mailBody = CommonTools.ReadHtmFile(Container.ConfigService.GetAppSetting<string>("AdvFolderPath","") + @"EmailTemplate/FindPassword.htm");
                     mailBody.Replace("@nickname", m_user.NickName);
                     mailBody.Replace("@password", m_user.Password);
                     //mailBody.Replace("@userid", m_user.SysNo.ToString());
@@ -212,10 +212,10 @@ namespace WebServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerShow> Register(string email, string password, string phone, string nickname, string fatetype)
+        public ReturnValue<USR_CustomerMaintain> Register(string email, string password, string phone, string nickname, string fatetype)
         {
             #region 验证输入
-            if (email.Trim() != "")
+            if (email!=null&&email.DoTrim() != "")
             {
                 USR_CustomerMod m_userrr = USR_CustomerBll.GetInstance().CheckUser(email);
                 if (m_userrr.SysNo != AppConst.IntNull)
@@ -223,7 +223,7 @@ namespace WebServiceForApp
                     throw new BusinessException("该邮箱已注册，请重新输入!");
                 }
             }
-            else if (phone.Trim() != "")
+            else if (phone != null && phone.DoTrim() != "")
             {
                 if (!Util.IsCellNumber(phone))
                 {
@@ -257,19 +257,18 @@ namespace WebServiceForApp
 
             #region 保存数据
             USR_CustomerMod m_user = new USR_CustomerMod();
-            try
-            {
-                m_user.Email = email.Trim();
-                m_user.Phone = phone.Trim();
+           
+                m_user.Email = email.DoTrim();
+                m_user.Phone = phone.DoTrim();
                 m_user.FateType = int.Parse(fatetype);
                 m_user.GradeSysNo = AppConst.OriginalGrade; ;
-                m_user.NickName = nickname.Trim();
-                m_user.Password = password.Trim();
+                m_user.NickName = nickname.DoTrim();
+                m_user.Password = password.DoTrim();
                 m_user.RegTime = DateTime.Now;
                 m_user.Point = AppConst.OriginalPoint;
                 m_user.Photo = AppConst.OriginalPhoto;
                 m_user.LastLoginTime = DateTime.Now;
-                if (AppConfig.RegisterEmailCheck.ToLower() == "true")
+                if (Container.ConfigService.GetAppSetting<string>("RegisterEmailCheck","false").ToLower() == "true")
                 {
                     m_user.Status = (int)AppEnum.State.prepare;
                 }
@@ -293,24 +292,20 @@ namespace WebServiceForApp
                 m_user.HasNewInfo = 0;
 
                 m_user.SysNo = USR_CustomerBll.GetInstance().Add(m_user);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+           
             #endregion
 
             #region 发送验证邮件
-            if (AppConfig.RegisterEmailCheck.ToLower() == "true")
+            if (Container.ConfigService.GetAppSetting<string>("RegisterEmailCheck","false").ToLower() == "true")
             {
 
             }
             #endregion
             if (m_user.SysNo != -999999)
             {
-                USR_CustomerShow ret = new USR_CustomerShow();
+                USR_CustomerMaintain ret = new USR_CustomerMaintain();
                 m_user.MemberwiseCopy(ret);
-                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
             }
             else
             {
@@ -322,9 +317,9 @@ namespace WebServiceForApp
         public ReturnValue<string> GetQQLoginUrl()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(ConfigurationManager.AppSettings["ThirdLoginFilePath"]);
+            xmlDoc.Load(Container.ConfigService.GetAppSetting<string>("ThirdLoginFilePath",""));
             XmlNode node = xmlDoc.SelectSingleNode("//ThirdLogin//QQ//AppID");
-            string returnurl = AppConfig.HomeUrl() + "Passport/ThirdLogin.aspx";
+            string returnurl = Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Passport/ThirdLogin.aspx";
 
             return ReturnValue<string>.Get200OK("https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=" + node.InnerText + "&redirect_uri=" + returnurl + "&state=test");
         }
@@ -332,10 +327,10 @@ namespace WebServiceForApp
         public ReturnValue<string> GetWeiboLoginUrl()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(ConfigurationManager.AppSettings["ThirdLoginFilePath"]);
+            xmlDoc.Load(Container.ConfigService.GetAppSetting<string>("ThirdLoginFilePath", ""));
             XmlNode node = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//AppID");
             XmlNode node1 = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//Key");
-            string returnurl = AppConfig.HomeUrl() + "Passport/ThirdLogin.aspx";
+            string returnurl = Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Passport/ThirdLogin.aspx";
             var oauth = new NetDimension.Weibo.OAuth(node.InnerText, node1.InnerText, returnurl);
 
             //第一步获取新浪授权页面的地址
@@ -344,14 +339,14 @@ namespace WebServiceForApp
             return ReturnValue<string>.Get200OK(authUrl);
         }
 
-        public ReturnValue<USR_CustomerShow> WeiboLogin(string code)
+        public ReturnValue<USR_CustomerMaintain> WeiboLogin(string code)
         {
             //新浪微博回调
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(ConfigurationManager.AppSettings["ThirdLoginFilePath"]);
+            xmlDoc.Load(Container.ConfigService.GetAppSetting<string>("ThirdLoginFilePath", ""));
             XmlNode node = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//AppID");
             XmlNode node1 = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//Key");
-            var oauth = new NetDimension.Weibo.OAuth(node.InnerText, node1.InnerText, AppConfig.HomeUrl() + "Passport/ThirdLogin.aspx");
+            var oauth = new NetDimension.Weibo.OAuth(node.InnerText, node1.InnerText, Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Passport/ThirdLogin.aspx");
 
             var accessToken = oauth.GetAccessTokenByAuthorizationCode(code);
             var uid = "";
@@ -367,9 +362,9 @@ namespace WebServiceForApp
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
 
-                USR_CustomerShow ret = new USR_CustomerShow();
+                USR_CustomerMaintain ret = new USR_CustomerMaintain();
                 m_customer.MemberwiseCopy(ret);
-                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
             }
 
             USR_ThirdLoginMod m_third = new USR_ThirdLoginMod();
@@ -388,7 +383,7 @@ namespace WebServiceForApp
                 m_user.Point = AppConst.OriginalPoint;
                 m_user.Photo = AppConst.OriginalPhoto;
                 m_user.LastLoginTime = DateTime.Now;
-                if (AppConfig.RegisterEmailCheck.ToLower() == "true")
+                if (Container.ConfigService.GetAppSetting<string>("RegisterEmailCheck", "false").ToLower() == "true")
                 {
                     m_user.Status = (int)AppEnum.State.prepare;
                 }
@@ -420,21 +415,21 @@ namespace WebServiceForApp
                 throw new Exception(ex.Message);
             }
 
-            USR_CustomerShow rett = new USR_CustomerShow();
+            USR_CustomerMaintain rett = new USR_CustomerMaintain();
             m_customer.MemberwiseCopy(rett);
-            return ReturnValue<USR_CustomerShow>.Get200OK(rett);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(rett);
         }
 
-        public ReturnValue<USR_CustomerShow> QQLogin(string code)
+        public ReturnValue<USR_CustomerMaintain> QQLogin(string code)
         {
             //QQ回调
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(ConfigurationManager.AppSettings["ThirdLoginFilePath"]);
+            xmlDoc.Load(Container.ConfigService.GetAppSetting<string>("ThirdLoginFilePath", ""));
             XmlNode node = xmlDoc.SelectSingleNode("//ThirdLogin//QQ//AppID");
             XmlNode node1 = xmlDoc.SelectSingleNode("//ThirdLogin//QQ//Key");
             //获取Access Token
             System.Net.HttpWebRequest req = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=" + node.InnerText + "&client_secret=" + node1.InnerText
-                + "&code=" + code + "&redirect_uri=" + AppConfig.HomeUrl() + "Passport/ThirdLogin.aspx");
+                + "&code=" + code + "&redirect_uri=" + Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Passport/ThirdLogin.aspx");
             System.Net.HttpWebResponse res = (System.Net.HttpWebResponse)req.GetResponse();
             Encoding encoding = Encoding.UTF8;
             StreamReader reader = new StreamReader(res.GetResponseStream(), encoding);
@@ -471,9 +466,9 @@ namespace WebServiceForApp
                 m_customer.LastLoginTime = DateTime.Now;
                 USR_CustomerBll.GetInstance().UpDate(m_customer);
 
-                USR_CustomerShow rett = new USR_CustomerShow();
+                USR_CustomerMaintain rett = new USR_CustomerMaintain();
                 m_customer.MemberwiseCopy(rett);
-                return ReturnValue<USR_CustomerShow>.Get200OK(rett);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(rett);
             }
 
             m_customer = new USR_CustomerMod();
@@ -490,8 +485,8 @@ namespace WebServiceForApp
 
             try
             {
-                m_customer.NickName = ret.Split(new char[] { ':', ',' })[7].Replace(@"""", "").Trim();
-                m_customer.Photo = ret.Split(new string[] { @""":", "," }, StringSplitOptions.None)[19].Replace(@"""", "").Replace(@"\", "").Trim();
+                m_customer.NickName = ret.Split(new char[] { ':', ',' })[7].Replace(@"""", "").DoTrim();
+                m_customer.Photo = ret.Split(new string[] { @""":", "," }, StringSplitOptions.None)[19].Replace(@"""", "").Replace(@"\", "").DoTrim();
                 if (USR_CustomerBll.GetInstance().CheckNickName(m_customer.NickName).SysNo != AppConst.IntNull)
                 {
                     m_customer.NickName += "-"+openid.Substring(0, 6);
@@ -519,7 +514,7 @@ namespace WebServiceForApp
                 m_user.RegTime = DateTime.Now;
                 m_user.Point = AppConst.OriginalPoint;
                 m_user.LastLoginTime = DateTime.Now;
-                if (AppConfig.RegisterEmailCheck.ToLower() == "true")
+                if (Container.ConfigService.GetAppSetting<string>("RegisterEmailCheck", "false").ToLower() == "true")
                 {
                     m_user.Status = (int)AppEnum.State.prepare;
                 }
@@ -553,9 +548,9 @@ namespace WebServiceForApp
             #endregion
 
 
-            USR_CustomerShow rettt = new USR_CustomerShow();
+            USR_CustomerMaintain rettt = new USR_CustomerMaintain();
             m_customer.MemberwiseCopy(rettt);
-            return ReturnValue<USR_CustomerShow>.Get200OK(rettt);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(rettt);
         }
 
 

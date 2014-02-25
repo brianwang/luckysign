@@ -193,11 +193,11 @@ namespace WebServiceForApp
             {
                 throw new BusinessException("请选择分类");
             }
-            if (input.Title.Trim() == "")
+            if (input.Title.DoTrim() == "")
             {
                 throw new BusinessException("请输入标题");
             }
-            if (input.Title.Trim().Length > 30)
+            if (input.Title.DoTrim().Length > 30)
             {
                 throw new BusinessException("您输入的标题太长，请控制在30字以内");
             }
@@ -276,7 +276,7 @@ namespace WebServiceForApp
             QA_AnswerMod m_answer = new QA_AnswerMod();
             m_answer.Award = 0;
             m_answer.Title = Title;
-            m_answer.Context = HttpUtility.HtmlEncode(Context.Trim());
+            m_answer.Context = HttpUtility.HtmlEncode(Context.DoTrim());
             m_answer.CustomerSysNo = CustomerSysNo;
             m_answer.DR = (int)AppEnum.State.normal;
             m_answer.Hate = 0;
@@ -295,7 +295,7 @@ namespace WebServiceForApp
         {
             QA_CommentMod m_comment = new QA_CommentMod();
             m_comment.AnswerSysNo = AnswerSysNo;
-            m_comment.Context = HttpUtility.HtmlEncode(Context.Trim());
+            m_comment.Context = HttpUtility.HtmlEncode(Context.DoTrim());
             m_comment.DR = (int)AppEnum.State.normal;
             m_comment.QuestionSysNo = QuestionSysNo;
             m_comment.TS = DateTime.Now;

@@ -116,7 +116,7 @@ namespace WCFServiceForApp.Task
 
                             USR_MessageMod m_notice = new USR_MessageMod();
                             m_notice.CustomerSysNo = int.Parse(m_dt.Rows[i]["CustomerSysNo"].ToString());
-                            m_notice.Title = AppConst.AutoSendAward.Replace("@url", AppConfig.HomeUrl() + "Quest/Question.aspx?id=" + m_dt.Rows[i]["SysNo"].ToString())
+                            m_notice.Title = AppConst.AutoSendAward.Replace("@url", Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Quest/Question.aspx?id=" + m_dt.Rows[i]["SysNo"].ToString())
                                 .Replace("@question", m_dt.Rows[i]["Title"].ToString());
                             m_notice.DR = 0;
                             m_notice.IsRead = 0;

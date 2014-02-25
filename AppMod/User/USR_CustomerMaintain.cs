@@ -77,7 +77,7 @@ namespace AppMod.User
             get { return _Gender; }
         }
 
-        [DataMember]
+        
         public string Photo
         {
             set { _Photo = value; }
@@ -98,7 +98,7 @@ namespace AppMod.User
             get { return _Point; }
         }
 
-        [DataMember]
+        
         public DateTime birth
         {
             set { _birth = value; }
@@ -112,14 +112,14 @@ namespace AppMod.User
             get { return _FateType; }
         }
 
-        [DataMember]
+        
         public DateTime RegTime
         {
             set { _RegTime = value; }
             get { return _RegTime; }
         }
 
-        [DataMember]
+        
         public DateTime LastLoginTime
         {
             set { _LastLoginTime = value; }
@@ -140,63 +140,63 @@ namespace AppMod.User
             get { return _IsStar; }
         }
 
-        [DataMember]
+        
         public string Signature
         {
             set { _Signature = value; }
             get { return _Signature; }
         }
 
-        [DataMember]
+        
         public int Exp
         {
             set { _Exp = value; }
             get { return _Exp; }
         }
 
-        [DataMember]
+        
         public int TotalAnswer
         {
             set { _TotalAnswer = value; }
             get { return _TotalAnswer; }
         }
 
-        [DataMember]
+        
         public int TotalQuest
         {
             set { _TotalQuest = value; }
             get { return _TotalQuest; }
         }
 
-        [DataMember]
+        
         public int BestAnswer
         {
             set { _BestAnswer = value; }
             get { return _BestAnswer; }
         }
 
-        [DataMember]
+        
         public int HomeTown
         {
             set { _HomeTown = value; }
             get { return _HomeTown; }
         }
 
-        [DataMember]
+        
         public string Intro
         {
             set { _Intro = value; }
             get { return _Intro; }
         }
 
-        [DataMember]
+        
         public int IsShowBirth
         {
             set { _IsShowBirth = value; }
             get { return _IsShowBirth; }
         }
 
-        [DataMember]
+        
         public int TotalReply
         {
             set { _TotalReply = value; }
@@ -210,14 +210,14 @@ namespace AppMod.User
             get { return _HasNewInfo; }
         }
 
-        [DataMember]
+        
         public int TotalTalk
         {
             set { _TotalTalk = value; }
             get { return _TotalTalk; }
         }
 
-        [DataMember]
+        
         public int TotalTalkReply
         {
             set { _TotalTalkReply = value; }
@@ -285,12 +285,12 @@ namespace AppMod.User
             set { }
         }
 
-        [DataMember]
-        public string BirthShow
-        {
-            get { return _birth.ToString("yyyy-MM-dd") ; }
-            set { }
-        }
+        //[DataMember]
+        //public string BirthShow
+        //{
+        //    get { return _birth.ToString("yyyy-MM-dd") ; }
+        //    set { }
+        //}
 
         //[DataMember]
         //public string HomeTownShow
@@ -305,19 +305,19 @@ namespace AppMod.User
         //    get { return _Phone; }
         //}
 
-        [DataMember]
-        public string LastLoginTimeShow
-        {
-            get { return _LastLoginTime.ToString("yyyy-MM-dd HH:mm:ss"); }
-            set { }
-        }
+        //[DataMember]
+        //public string LastLoginTimeShow
+        //{
+        //    get { return _LastLoginTime.ToString("yyyy-MM-dd HH:mm:ss"); }
+        //    set { }
+        //}
 
-        [DataMember]
-        public string RegTimeShow
-        {
-            get { return _RegTime.ToString("yyyy-MM-dd HH:mm:ss"); }
-            set { }
-        }
+        //[DataMember]
+        //public string RegTimeShow
+        //{
+        //    get { return _RegTime.ToString("yyyy-MM-dd HH:mm:ss"); }
+        //    set { }
+        //}
 
         #endregion
 

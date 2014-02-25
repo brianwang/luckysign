@@ -513,7 +513,7 @@ namespace PPLive
         /// <param name="stars"></param>
         /// <param name="gong"></param>
         /// <returns></returns>
-        public List<PublicValue.AstroStar> GetGongMasters(Star[] stars,int gong)
+        public List<PublicValue.AstroStar> GetGongMasters(Star[] stars,int gong,bool second)
         {
             List<PublicValue.AstroStar> ret = new List<PublicValue.AstroStar>();
             List<PublicValue.AstroStar> tmp = new List<PublicValue.AstroStar>();
@@ -528,7 +528,7 @@ namespace PPLive
                 if ((int)tmpstar.StarName == gong + 20)
                 {
                     gongconst = (int)tmpstar.Constellation;
-                    tmp = GetShouHu(tmpstar.Constellation);
+                    tmp = GetShouHu(tmpstar.Constellation,false);
                     foreach (PublicValue.AstroStar tmps in tmp)
                     {
                         ret.Add(tmps);
@@ -539,7 +539,7 @@ namespace PPLive
                 {
                     if ((int)tmpstar.Constellation - gongconst == 2 || (int)tmpstar.Constellation - gongconst == -10)
                     {
-                        tmp = GetShouHu((PublicValue.Constellation)(gongconst+1));
+                        tmp = GetShouHu((PublicValue.Constellation)(gongconst+1),false);
                         foreach (PublicValue.AstroStar tmps in tmp)
                         {
                             ret.Add(tmps);
@@ -554,8 +554,9 @@ namespace PPLive
         /// <summary>
         /// 获取守护星
         /// </summary>
+        /// <param name="second">是否包括第二守护星</param> 
         /// <returns></returns>
-        public List<PublicValue.AstroStar> GetShouHu(PublicValue.Constellation input)
+        public List<PublicValue.AstroStar> GetShouHu(PublicValue.Constellation input,bool second)
         {
             List<PublicValue.AstroStar> ret = new List<PublicValue.AstroStar>();
 
@@ -632,7 +633,7 @@ namespace PPLive
 
                 while (checkingstars.Count > 0)//循环处理当前互溶链组
                 {
-                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation);//每次获取顶端的链最后星体所在星座的守护星
+                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation,false);//每次获取顶端的链最后星体所在星座的守护星
                     List<Star> nowline = checkingstars[0];//拿出顶端链
                     checkingstars.RemoveAt(0);
                     foreach (PublicValue.AstroStar sh in shouhuxing)//逐一处理守护星
@@ -667,11 +668,11 @@ namespace PPLive
                                     List<Star> tmplist = nowline;
                                     tmplist.Add(tmps);
                                     checkingstars.Add(tmplist);
+                                    break;
                                 }
                             }
                         }
                     }
-
                 }
 
             }

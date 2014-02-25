@@ -17,7 +17,7 @@ namespace WebServiceForApp
     {
         [OperationContract, WebGet(UriTemplate = "/login?uname={username}&pwd={password}")]
         [Description("登录,/login?uname={username}&pwd={password}")]
-        ReturnValue<USR_CustomerShow> UserLogin(string username, string password);
+        ReturnValue<USR_CustomerMaintain> UserLogin(string username, string password);
 
         [OperationContract, WebGet(UriTemplate = "/CheckUser?uname={username}")]
         [Description("验证用户名,/CheckUser?uname={username}")]
@@ -37,7 +37,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
         [Description("注册,/Register?email={email}&pwd={password}&phone={phone}&nickname={nickname}&fatetype={fatetype}")]
-        ReturnValue<USR_CustomerShow> Register(string email, string password, string phone, string nickname, string fatetype);
+        ReturnValue<USR_CustomerMaintain> Register(string email, string password, string phone, string nickname, string fatetype);
 
         [OperationContract, WebGet(UriTemplate = "/FindPass?username={username}")]
         [Description("找回密码,/FindPass?username={username}")]
@@ -53,11 +53,11 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/QQLogin?code={code}")]
         [Description("QQ第三方登录,/QQLogin?code={code}")]
-        ReturnValue<USR_CustomerShow> QQLogin(string code);
+        ReturnValue<USR_CustomerMaintain> QQLogin(string code);
 
         [OperationContract, WebGet(UriTemplate = "/WeiboLogin?code={code}")]
         [Description("微博第三方登录,/WeiboLogin?code={code}")]
-        ReturnValue<USR_CustomerShow> WeiboLogin(string code);
+        ReturnValue<USR_CustomerMaintain> WeiboLogin(string code);
     }
 
 }
