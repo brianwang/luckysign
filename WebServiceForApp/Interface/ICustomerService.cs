@@ -15,6 +15,11 @@ namespace WebServiceForApp
     [ServiceContract(Namespace = "http://api.ssqian.com/Customer")]
     public partial interface ISSQianService
     {
+        [OperationContract, WebGet(UriTemplate = "/test")]
+        [Description("登录,/test")]
+        [SecurityBehavior(NeedVerifyHeader = true, NeedTokenHeader = false, NeedRequestLog = false)]
+        ReturnValue<String> Test();
+
         [OperationContract, WebGet(UriTemplate = "/login?uname={username}&pwd={password}")]
         [Description("登录,/login?uname={username}&pwd={password}")]
         ReturnValue<USR_CustomerMaintain> UserLogin(string username, string password);

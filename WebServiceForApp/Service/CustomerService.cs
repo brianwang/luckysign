@@ -15,6 +15,11 @@ namespace WebServiceForApp
 {
     public partial class SSQianService : ISSQianService
     {
+        public ReturnValue<String> Test()
+        {
+            return ReturnValue<string>.Get200OK("OK");
+        }
+
         public ReturnValue<USR_CustomerMaintain> UserLogin(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
