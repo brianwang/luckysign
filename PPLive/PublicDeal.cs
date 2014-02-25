@@ -564,42 +564,64 @@ namespace PPLive
             {
                 case PublicValue.Constellation.Ari:
                     ret.Add(PublicValue.AstroStar.Mar);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Sun);
                     break;
                 case PublicValue.Constellation.Tau:
                     ret.Add(PublicValue.AstroStar.Ven);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Moo);
                     break;
                 case PublicValue.Constellation.Gem:
                     ret.Add(PublicValue.AstroStar.Mer);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Mer);
                     break;
                 case PublicValue.Constellation.Can:
                     ret.Add(PublicValue.AstroStar.Moo);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Jup);
                     break;
                 case PublicValue.Constellation.Leo:
                     ret.Add(PublicValue.AstroStar.Sun);
                     break;
                 case PublicValue.Constellation.Vir:
                     ret.Add(PublicValue.AstroStar.Mer);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Plu);
                     break;
                 case PublicValue.Constellation.Lib:
                     ret.Add(PublicValue.AstroStar.Ven);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Sat);
                     break;
                 case PublicValue.Constellation.Sco:
                     ret.Add(PublicValue.AstroStar.Plu);
                     ret.Add(PublicValue.AstroStar.Mar);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Ura);
                     break;
                 case PublicValue.Constellation.Sag:
                     ret.Add(PublicValue.AstroStar.Jup);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Nep);
                     break;
                 case PublicValue.Constellation.Cap:
                     ret.Add(PublicValue.AstroStar.Sat);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Mar);
                     break;
                 case PublicValue.Constellation.Aqu:
                     ret.Add(PublicValue.AstroStar.Ura);
                     ret.Add(PublicValue.AstroStar.Sat);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Mer);
                     break;
                 case PublicValue.Constellation.Pis:
                     ret.Add(PublicValue.AstroStar.Jup);
                     ret.Add(PublicValue.AstroStar.Nep);
+                    if (second)
+                        ret.Add(PublicValue.AstroStar.Ven);
                     break;
             }
 
@@ -633,8 +655,9 @@ namespace PPLive
 
                 while (checkingstars.Count > 0)//循环处理当前互溶链组
                 {
-                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation,false);//每次获取顶端的链最后星体所在星座的守护星
                     List<Star> nowline = checkingstars[0];//拿出顶端链
+                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation,false);//获取顶端的链最后星体所在星座的守护星
+                   
                     checkingstars.RemoveAt(0);
                     foreach (PublicValue.AstroStar sh in shouhuxing)//逐一处理守护星
                     {
@@ -676,6 +699,68 @@ namespace PPLive
                 }
 
             }
+            ret.Distinct();
+            return ret;
+        }
+
+        public int GetGongPower(Star[] stars, int gong)
+        {
+            int ret = 0;
+            List<List<PublicValue.AstroStar>> m_hurong = GetHuRong(stars, true);
+            List<PublicValue.AstroStar> m_gongzhu = GetGongMasters(stars, gong, true);
+
+            Dictionary<PublicValue.AstroStar, Star> m_star = new Dictionary<PublicValue.AstroStar, Star>();
+            foreach (Star nowstar in stars)
+            {
+                m_star.Add(nowstar.StarName, nowstar);
+            }
+
+            //金木是否落入宫内
+            if (m_star[PublicValue.AstroStar.Ven].Gong == gong)
+            {
+                ret++;
+            }
+            if (m_star[PublicValue.AstroStar.Jup].Gong == gong)
+            {
+                ret++;
+            }
+
+            
+            foreach (PublicValue.AstroStar tmpgongzhu in m_gongzhu)
+            {
+                //宫主星与金木是否有相位
+                if (tmpgongzhu != PublicValue.AstroStar.Jup && HasAnyMainPhase(m_star[PublicValue.AstroStar.Jup], m_star[tmpgongzhu]))
+                {
+                    ret++;
+                }
+                if (tmpgongzhu != PublicValue.AstroStar.Ven && HasAnyMainPhase(m_star[PublicValue.AstroStar.Ven], m_star[tmpgongzhu]))
+                {
+                    ret++;
+                }
+                
+                //宫主星与金木是否互溶
+                foreach (List<PublicValue.AstroStar> hurong in m_hurong)
+                {
+                    if (tmpgongzhu != PublicValue.AstroStar.Jup)
+                    {
+                        if (hurong.Contains(PublicValue.AstroStar.Jup) && hurong.Contains(tmpgongzhu))
+                        {
+                            ret++;
+                        }
+                    }
+                    if (tmpgongzhu != PublicValue.AstroStar.Ven)
+                    {
+                        if (hurong.Contains(PublicValue.AstroStar.Ven) && hurong.Contains(tmpgongzhu))
+                        {
+                            ret++;
+                        }
+                    }
+                }
+
+            }
+
+            
+
             return ret;
         }
 
