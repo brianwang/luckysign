@@ -255,7 +255,7 @@ namespace WebServiceForApp
             }
             catch
             {
-                throw new BusinessException("该昵称已被占用，请尝试使用其他昵称!");
+                throw new BusinessException("请输入正确的命盘类型号!");
             }
 
             #endregion
@@ -314,7 +314,7 @@ namespace WebServiceForApp
             }
             else
             {
-                throw new Exception();
+                throw new Exception("系统故障，注册失败");
             }
 
         }
