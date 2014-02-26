@@ -707,7 +707,7 @@ namespace PPLive
         {
             int ret = 0;
             List<List<PublicValue.AstroStar>> m_hurong = GetHuRong(stars, true);
-            List<PublicValue.AstroStar> m_gongzhu = GetGongMasters(stars, gong, true);
+            List<PublicValue.AstroStar> m_gongzhu = GetGongMasters(stars, gong, true);//获取宫主星列表，包括第二宫主星
 
             Dictionary<PublicValue.AstroStar, Star> m_star = new Dictionary<PublicValue.AstroStar, Star>();
             foreach (Star nowstar in stars)
@@ -728,7 +728,7 @@ namespace PPLive
             
             foreach (PublicValue.AstroStar tmpgongzhu in m_gongzhu)
             {
-                //宫主星与金木是否有相位
+                //宫主星(非金木)与金木是否有相位
                 if (tmpgongzhu != PublicValue.AstroStar.Jup && HasAnyMainPhase(m_star[PublicValue.AstroStar.Jup], m_star[tmpgongzhu]))
                 {
                     ret++;
@@ -738,7 +738,7 @@ namespace PPLive
                     ret++;
                 }
                 
-                //宫主星与金木是否互溶
+                //宫主星(非金木)与金木是否互溶
                 foreach (List<PublicValue.AstroStar> hurong in m_hurong)
                 {
                     if (tmpgongzhu != PublicValue.AstroStar.Jup)
@@ -757,10 +757,31 @@ namespace PPLive
                     }
                 }
 
+                //宫主星与宫内行星(非金木)是否有相位或互溶
+                foreach (Star tmpstar in stars)
+                {
+                    if (tmpstar.Gong == gong && tmpstar.StarName != tmpgongzhu && tmpstar.StarName != PublicValue.AstroStar.Jup && tmpstar.StarName != PublicValue.AstroStar.Ven)
+                    {
+                        if (HasAnyMainPhase(tmpstar, m_star[tmpgongzhu]))
+                        {
+                            ret++;
+                        }
+                        foreach (List<PublicValue.AstroStar> hurong in m_hurong)
+                        {
+                            if (hurong.Contains(tmpstar.StarName) && hurong.Contains(tmpgongzhu))
+                            {
+                                ret++;
+                            }
+                        }
+                    }
+                }
+
+                //宫主星落在本宫内
+                if (m_star[tmpgongzhu].Gong == gong)
+                {
+                    ret++;
+                }
             }
-
-            
-
             return ret;
         }
 

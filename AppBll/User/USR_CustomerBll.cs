@@ -96,7 +96,14 @@ namespace AppBll.User
             using (SQLData data = new SQLData())
             {
                 StringBuilder builder = new StringBuilder();
-                builder.Append("select SysNo from USR_Customer where Email='").Append(SQLData.SQLFilter(username)).Append("' and Password='").Append(SQLData.SQLFilter(password)).Append("' and Status=").Append((int)AppEnum.State.normal);
+                if (Util.IsEmailAddress(username))
+                {
+                    builder.Append("select SysNo from USR_Customer where Email='").Append(SQLData.SQLFilter(username)).Append("' and Password='").Append(SQLData.SQLFilter(password)).Append("' and Status=").Append((int)AppEnum.State.normal);
+                }
+                else
+                {
+                    builder.Append("select SysNo from USR_Customer where Phone='").Append(SQLData.SQLFilter(username)).Append("' and Password='").Append(SQLData.SQLFilter(password)).Append("' and Status=").Append((int)AppEnum.State.normal);
+                }
                 try
                 {
                     model.SysNo = int.Parse(data.CmdtoDataRow(builder.ToString())["SysNo"].ToString());

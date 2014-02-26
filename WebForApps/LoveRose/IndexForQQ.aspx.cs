@@ -56,14 +56,14 @@ namespace WebForApps.LoveRose
             goodstars.Add(PublicValue.AstroStar.Jup);
             goodstars.Add(PublicValue.AstroStar.Ven);
             //凶星
-            List<PublicValue.AstroStar> badstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 8);
-            List<PublicValue.AstroStar> twelve = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12);
-            foreach(PublicValue.AstroStar tmp in twelve)
+            List<PublicValue.AstroStar> badstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12,false);
+            List<PublicValue.AstroStar> eight = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12,false);
+            foreach (PublicValue.AstroStar tmp in eight)
             {
                 badstars.Add(tmp);
             }
-            List<PublicValue.AstroStar> mingzhu = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 1);
-            foreach(PublicValue.AstroStar tmp in mingzhu)
+            List<PublicValue.AstroStar> mingzhu = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 1,false);
+            foreach (PublicValue.AstroStar tmp in mingzhu)
             {
                 badstars.Add(tmp);
             }
@@ -87,7 +87,7 @@ namespace WebForApps.LoveRose
                     venusEle = (int)PublicDeal.GetInstance().GetConstellationElement(tmpstar.Constellation);
                 }
             }
-            Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation)) +"<br />";
+            Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation)) + "<br />";
             #endregion
 
             #region 红杏
@@ -103,12 +103,12 @@ namespace WebForApps.LoveRose
 
             #region 蜜蜂
             int beecount = 0;
-            List<PublicValue.AstroStar> beestars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7);
+            List<PublicValue.AstroStar> beestars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
             beestars.Add(PublicValue.AstroStar.Des);
             beestars.Add(PublicValue.AstroStar.Jun);
             foreach (PublicValue.AstroStar tmpstar in beestars)
             {
-                if(tmpstar!=goodstars[0] )
+                if (tmpstar != goodstars[0])
                     continue;
                 int tmpflag = 0;
                 if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmpstar], m_star[goodstars[0]]))
@@ -135,14 +135,14 @@ namespace WebForApps.LoveRose
             #region 裂痕
             int breakcount = 0;
 
-             List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7);
+            List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
             breakstars.Add(PublicValue.AstroStar.Ven);
             breakstars.Add(PublicValue.AstroStar.Jun);
             breakstars.Add(PublicValue.AstroStar.Des);
             breakstars.Distinct();
             foreach (PublicValue.AstroStar tmp in breakstars)
             {
-                if(tmp!=goodstars[0] )
+                if (tmp != goodstars[0])
                     continue;
                 int tmpflag = 0;
                 for (int i = 0; i < badstars.Count; i++)
@@ -152,7 +152,7 @@ namespace WebForApps.LoveRose
                         breakcount++;
                         if (tmpflag == 0)
                         {
-                            tmpflag ++;
+                            tmpflag++;
                         }
                         else
                         {
@@ -165,7 +165,42 @@ namespace WebForApps.LoveRose
             Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
             #endregion
 
-            #region 
+            #region 花心指数
+            int flowercount = 0;
+            foreach (PublicValue.AstroStar tmpstar in goodstars)
+            {
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]))
+                {
+                    flowercount++;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Chi], m_star[tmpstar]))
+                {
+                    flowercount++;
+                }
+                foreach (PublicValue.AstroStar tmpstarr in eight)
+                {
+                    if (tmpstar != tmpstarr && PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmpstarr], m_star[tmpstar]))
+                    {
+                        flowercount++;
+                    }
+                }
+            }
+            Label1.Text += "5.花心指数为:" + flowercount + "<br />";
+            #endregion
+
+            #region 对方有钱
+            int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
+            List<List<PublicValue.AstroStar>> hurong = new List<List<PublicValue.AstroStar>>();
+            Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
+            //测试显示互溶关系
+            foreach (List<PublicValue.AstroStar> tmplist in hurong)
+            {
+                foreach (PublicValue.AstroStar tmpstar in tmplist)
+                {
+                    Label1.Text += PublicValue.GetAstroStar(tmpstar) + "->";
+                }
+                Label1.Text += "<br />";
+            }
             #endregion
 
 
