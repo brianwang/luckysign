@@ -65,17 +65,20 @@ namespace WebServiceForApp
             string token = null;
             string app_agent = null;
 
-            Uri uri = null;
-            if (OperationContext.Current.IncomingMessageProperties.ContainsKey(HttpRequestMessageProperty.Name))
-            {
-                if (OperationContext.Current.IncomingMessageProperties.ContainsKey("Via"))
-                {
-                    uri = ((Uri)OperationContext.Current.IncomingMessageProperties["Via"]);
-                }
-            }
+            //Uri uri = null;
+            //if (OperationContext.Current.IncomingMessageProperties.ContainsKey(HttpRequestMessageProperty.Name))
+            //{
+            //    if (OperationContext.Current.IncomingMessageProperties.ContainsKey("Via"))
+            //    {
+            //        uri = ((Uri)OperationContext.Current.IncomingMessageProperties["Via"]);
+            //    }
+            //}
 
 
             #region 计算传入 Restecname 和 token 头
+            
+            
+            
             if (operationContext != null)
             {
                 int headerIndex = operationContext.IncomingMessageHeaders.FindHeader("Restecname", String.Empty);
