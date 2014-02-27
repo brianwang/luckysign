@@ -699,7 +699,7 @@ namespace PPLive
                 }
 
             }
-            ret.Distinct();
+            ret = ret.Distinct().ToList();
             return ret;
         }
 

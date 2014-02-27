@@ -7,7 +7,7 @@
     <title></title>
     <script src="../WebResources/JS/swfobject.js" type="text/javascript"></script>
 </head>
-<body style="background-color:Black;">
+<body style="">
     <form id="form1" runat="server">
     <div>
         <asp:ScriptManager runat="server">

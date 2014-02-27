@@ -50,6 +50,10 @@ namespace WebForApps.LoveRose
 
             AstroBiz.GetInstance().GetParamters(ref m_astro);
             Dictionary<PublicValue.AstroStar, Star> m_star = new Dictionary<PublicValue.AstroStar, Star>();
+            foreach (Star tmpstar in m_astro.Stars)
+            {
+                m_star.Add(tmpstar.StarName, tmpstar);
+            }
 
             //吉星
             List<PublicValue.AstroStar> goodstars = new List<PublicValue.AstroStar>();
@@ -71,7 +75,7 @@ namespace WebForApps.LoveRose
             badstars.Add(PublicValue.AstroStar.Ura);
             badstars.Add(PublicValue.AstroStar.Nep);
             badstars.Add(PublicValue.AstroStar.Plu);
-            badstars.Distinct();
+            badstars = badstars.Distinct().ToList();
 
             #region 花
             Label1.Text = "1.金星星座为：" + PublicValue.GetAstroStar(m_star[PublicValue.AstroStar.Ven].StarName) + "<br/>";
@@ -79,14 +83,7 @@ namespace WebForApps.LoveRose
 
             #region 金星元素
             int venusEle = 0;
-            foreach (Star tmpstar in m_astro.Stars)
-            {
-                m_star.Add(tmpstar.StarName, tmpstar);
-                if (tmpstar.StarName == PublicValue.AstroStar.Ven)
-                {
-                    venusEle = (int)PublicDeal.GetInstance().GetConstellationElement(tmpstar.Constellation);
-                }
-            }
+            venusEle = (int)PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation);
             Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation)) + "<br />";
             #endregion
 
@@ -139,7 +136,7 @@ namespace WebForApps.LoveRose
             breakstars.Add(PublicValue.AstroStar.Ven);
             breakstars.Add(PublicValue.AstroStar.Jun);
             breakstars.Add(PublicValue.AstroStar.Des);
-            breakstars.Distinct();
+            breakstars = breakstars.Distinct().ToList();
             foreach (PublicValue.AstroStar tmp in breakstars)
             {
                 if (tmp != goodstars[0])
@@ -190,7 +187,7 @@ namespace WebForApps.LoveRose
 
             #region 对方有钱
             int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
-            List<List<PublicValue.AstroStar>> hurong = new List<List<PublicValue.AstroStar>>();
+            List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true); ;
             Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
             foreach (List<PublicValue.AstroStar> tmplist in hurong)
