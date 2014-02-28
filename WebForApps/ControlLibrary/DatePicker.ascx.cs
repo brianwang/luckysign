@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.ComponentModel; 
+using System.ComponentModel;
 
 namespace WebForApps.ControlLibrary
 {
     public partial class DatePicker : System.Web.UI.UserControl
     {
         private int type = 5;
+        private DateTime _time = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -56,7 +57,7 @@ namespace WebForApps.ControlLibrary
                     drpHour.DataTextField = "Key";
                     drpHour.DataValueField = "Value";
                     drpHour.DataBind();
-                    drpHour.Style["display"] = "";
+                    drpHour.Visible = true;
                     shi.Text = "时";
 
                     if (type > 4)
@@ -70,106 +71,23 @@ namespace WebForApps.ControlLibrary
                         drpMinute.DataTextField = "Key";
                         drpMinute.DataValueField = "Value";
                         drpMinute.DataBind();
-                        drpMinute.Style["display"] = "";
-                        fen.Text = "分钟";
+                        drpMinute.Visible = true;
+                        fen.Text = "分";
                         if (type > 5)
                         {
                             drpSecond.DataSource = minute;
                             drpSecond.DataTextField = "Key";
                             drpSecond.DataValueField = "Value";
                             drpSecond.DataBind();
-                            drpSecond.Style["display"] = "";
+                            drpSecond.Visible = true;
                             miao.Text = "秒";
                         }
                     }
                 }
-                drpYear.SelectedIndex = drpYear.Items.IndexOf(drpYear.Items.FindByValue(DateTime.Now.Year.ToString()));
-                drpMonth.SelectedIndex = drpMonth.Items.IndexOf(drpMonth.Items.FindByValue(DateTime.Now.Month.ToString()));
-                drpDay.SelectedIndex = drpDay.Items.IndexOf(drpDay.Items.FindByValue(DateTime.Now.Day.ToString()));
-                if (type > 3)
-                {
-                    drpHour.SelectedIndex = drpHour.Items.IndexOf(drpHour.Items.FindByValue(DateTime.Now.Hour.ToString()));
-                }
-                if (type > 4)
-                {
-                    drpMinute.SelectedIndex = drpMinute.Items.IndexOf(drpMinute.Items.FindByValue(DateTime.Now.Minute.ToString()));
-                }
-                if (type > 5)
-                {
-                    drpSecond.SelectedIndex = drpSecond.Items.IndexOf(drpSecond.Items.FindByValue(DateTime.Now.Second.ToString()));
-                }
-                
+                SelectedTime = _time;
+                drpYear.Attributes.Add("onchange",@"setDays(this,"+drpMonth.ClientID+","+drpDay.ClientID+");");
+                drpMonth.Attributes.Add("onchange", @"setDays(" + drpYear.ClientID + ",this," + drpDay.ClientID + ");");
             }
-        }
-
-        protected void drpYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int maxday = 0;
-            if (drpMonth.SelectedValue == "2")
-            {
-                int year = int.Parse(drpYear.SelectedValue);
-                if ((year % 400 == 0) || (year % 100 != 0 && year % 4 == 0))
-                {
-                    maxday = 29;
-                }
-                else
-                {
-                    maxday = 28;
-                }
-                Dictionary<string, string> day = new Dictionary<string, string>();
-                for (int i = 1; i <= maxday; i++)
-                {
-                    day.Add(i.ToString(), i.ToString());
-                }
-                drpDay.DataSource = day;
-                drpDay.DataTextField = "Key";
-                drpDay.DataValueField = "Value";
-                drpDay.DataBind();
-            }
-        }
-
-        protected void drpMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int maxday = 0;
-
-            switch (drpMonth.SelectedValue)
-            {
-                case "1":
-                case "3":
-                case "5":
-                case "7":
-                case "8":
-                case "10":
-                case "12":
-                    maxday = 31;
-                    break;
-                case "4":
-                case "6":
-                case "9":
-                case "11":
-                    maxday = 30;
-                    break;
-                case "2":
-                    int year = int.Parse(drpYear.SelectedValue);
-                    if ((year % 400 == 0) || (year % 100 != 0 && year % 4 == 0))
-                    {
-                        maxday = 29;
-                    }
-                    else
-                    {
-                        maxday = 28;
-                    }
-                    break;
-            }
-            Dictionary<string, string> day = new Dictionary<string, string>();
-            for (int i = 1; i <= maxday; i++)
-            {
-                day.Add(i.ToString(), i.ToString());
-            }
-            drpDay.DataSource = day;
-            drpDay.DataTextField = "Key";
-            drpDay.DataValueField = "Value";
-            drpDay.DataBind();
         }
 
         public int Year
@@ -219,6 +137,25 @@ namespace WebForApps.ControlLibrary
                     ret = new DateTime(Year, Month, Day, Hour, Minute, Second);
                 }
                 return ret;
+            }
+            set
+            {
+                _time = value;
+                drpYear.SelectedIndex = drpYear.Items.IndexOf(drpYear.Items.FindByValue(value.Year.ToString()));
+                drpMonth.SelectedIndex = drpMonth.Items.IndexOf(drpMonth.Items.FindByValue(value.Month.ToString()));
+                drpDay.SelectedIndex = drpDay.Items.IndexOf(drpDay.Items.FindByValue(value.Day.ToString()));
+                if (type > 3)
+                {
+                    drpHour.SelectedIndex = drpHour.Items.IndexOf(drpHour.Items.FindByValue(value.Hour.ToString()));
+                }
+                if (type > 4)
+                {
+                    drpMinute.SelectedIndex = drpMinute.Items.IndexOf(drpMinute.Items.FindByValue(value.Minute.ToString()));
+                }
+                if (type > 5)
+                {
+                    drpSecond.SelectedIndex = drpSecond.Items.IndexOf(drpSecond.Items.FindByValue(value.Second.ToString()));
+                }
             }
         }
 
