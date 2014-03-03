@@ -425,6 +425,85 @@ namespace WebServiceForApp
             return ReturnValue<USR_CustomerMaintain>.Get200OK(rett);
         }
 
+        public ReturnValue<USR_CustomerMaintain> WeiboLoginAlt(string token, long expires)
+        {
+            //新浪微博回调
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(Container.ConfigService.GetAppSetting<string>("ThirdLoginFilePath", ""));
+            XmlNode node = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//AppID");
+            XmlNode node1 = xmlDoc.SelectSingleNode("//ThirdLogin//WeiBo//Key");
+            var oauth = new NetDimension.Weibo.OAuth(node.InnerText, node1.InnerText, Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "Passport/ThirdLogin.aspx");
+            var uid = "";
+            if (!string.IsNullOrEmpty(token))
+            {
+                var Sina = new NetDimension.Weibo.Client(oauth);
+                uid = Sina.API.Account.GetUID(); //调用API中获取UID的方法
+            }
+
+            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetUserByThirdID(uid);
+            if (m_customer != null && m_customer.SysNo != AppConst.IntNull)
+            {
+                m_customer.LastLoginTime = DateTime.Now;
+                USR_CustomerBll.GetInstance().UpDate(m_customer);
+
+                USR_CustomerMaintain ret = new USR_CustomerMaintain();
+                m_customer.MemberwiseCopy(ret);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+            }
+
+            USR_ThirdLoginMod m_third = new USR_ThirdLoginMod();
+            m_third.OpenID = uid;
+            m_third.AccessKey = token;
+            m_third.ThirdType = (int)AppEnum.ThirdLoginType.weibo;
+            USR_CustomerMod m_user = new USR_CustomerMod();
+            try
+            {
+                m_user.Email = "";
+                m_user.FateType = (int)AppEnum.FateType.astro;
+                m_user.GradeSysNo = AppConst.OriginalGrade; ;
+                m_user.NickName = uid;
+                m_user.Password = "";
+                m_user.RegTime = DateTime.Now;
+                m_user.Point = AppConst.OriginalPoint;
+                m_user.Photo = AppConst.OriginalPhoto;
+                m_user.LastLoginTime = DateTime.Now;
+                if (Container.ConfigService.GetAppSetting<string>("RegisterEmailCheck", "false").ToLower() == "true")
+                {
+                    m_user.Status = (int)AppEnum.State.prepare;
+                }
+                else
+                {
+                    m_user.Status = (int)AppEnum.State.normal;
+                }
+
+                m_user.Credit = 0;
+                m_user.birth = AppConst.DateTimeNull;
+                m_user.IsShowBirth = 1;
+                m_user.IsStar = 0;
+                m_user.BestAnswer = 0;
+                m_user.TotalAnswer = 0;
+                m_user.TotalQuest = 0;
+                m_user.HomeTown = AppConst.IntNull;
+                m_user.Intro = AppConst.OriginalIntro;
+                m_user.Signature = AppConst.OriginalSign;
+                m_user.Exp = 0;
+                m_user.TotalReply = 0;
+
+                m_user.SysNo = USR_CustomerBll.GetInstance().Add(m_user);
+
+                m_third.CustomerSysNo = m_user.SysNo;
+                USR_ThirdLoginBll.GetInstance().Add(m_third);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            USR_CustomerMaintain rett = new USR_CustomerMaintain();
+            m_customer.MemberwiseCopy(rett);
+            return ReturnValue<USR_CustomerMaintain>.Get200OK(rett);
+        }
+
         public ReturnValue<USR_CustomerMaintain> QQLogin(string code)
         {
             //QQ回调

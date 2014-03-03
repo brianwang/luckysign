@@ -63,6 +63,10 @@ namespace WebServiceForApp
         [OperationContract, WebGet(UriTemplate = "/WeiboLogin?code={code}")]
         [Description("微博第三方登录,/WeiboLogin?code={code}")]
         ReturnValue<USR_CustomerMaintain> WeiboLogin(string code);
+
+        [OperationContract, WebGet(UriTemplate = "/WeiboLoginAlt?token={token}&expires={expires}")]
+        [Description("微博第三方登录,/WeiboLoginAlt?token={token}&expires={expires}")]
+        ReturnValue<USR_CustomerMaintain> WeiboLoginAlt(string token, long expires);
     }
 
 }
