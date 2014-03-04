@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppMod.WebSys;
+using System.Runtime.Serialization;
 
 namespace PPLive
 {
@@ -129,32 +130,38 @@ namespace PPLive
         private SYS_DistrictMod _area = new SYS_DistrictMod();
         #endregion
 
-        #region 接口
+        #region 属性
+        [DataMember]
         public decimal latitude
         {
             get { return _latitude; }
             set { _latitude = value; }
         }
+        [DataMember]
         public decimal longitude
         {
             get { return _longitude; }
             set { _longitude = value; }
         }
+        [DataMember]
         public string name
         {
             get { return _name; }
             set { _name = value; }
         }
+        [DataMember]
         public string Lat
         {
             get { return _Lat; }
             set { _Lat = value; }
         }
+        [DataMember]
         public string Lng
         {
             get { return _Lng; }
             set { _Lng = value; }
         }
+        [DataMember]
         public SYS_DistrictMod Area
         {
             get { return _area; }

@@ -14,7 +14,7 @@ using AppDal.QA;
 
 namespace WebServiceForApp
 {
-    public partial interface ISSQianService
+    public interface IQAService
     {
         [OperationContract, WebGet(UriTemplate = "/GetCates?parent={parent}")]
         [Description("获取分类列表,/GetCates?parent={parent}")]

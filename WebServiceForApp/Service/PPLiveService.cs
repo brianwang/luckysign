@@ -19,7 +19,7 @@ using AppMod.WebSys;
 
 namespace WebServiceForApp
 {
-    public class QAService : IQAService
+    public class PPLiveService : IPPLiveService
     {
         public ReturnValue<List<QA_CategoryMod>> GetCates(int parent)
         {

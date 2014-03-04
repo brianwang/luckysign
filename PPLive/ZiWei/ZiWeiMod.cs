@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace PPLive.ZiWei
 {
@@ -55,135 +56,157 @@ namespace PPLive.ZiWei
         #endregion
 
         #region 接口
+        [DataMember]
         public DateEntity BirthTime
         {
             get { return birthTime; }
             set { birthTime = value; }
         }
+        [DataMember]
         public DateEntity TransitTime
         {
             get { return transitTime; }
             set { transitTime = value; }
         }
+        [DataMember]
         public AppCmn.AppEnum.Gender Gender
         {
             get { return gender; }
             set { gender = value; }
         }
+        [DataMember]
         public PublicValue.ShuXing ShuXing
         {
             get { return shuxing; }
             set { shuxing = value; }
         }
+        [DataMember]
         public int Age
         {
             get { return age; }
             set { age = value; }
         }
-
+        [DataMember]
         public int Ming
         {
             get { return ming; }
             set { ming = value; }
         }
+        [DataMember]
         public int Shen
         {
             get { return shen; }
             set { shen = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiMingJu MingJu
         {
             get { return mingju; }
             set { mingju = value; }
         }
-
+        [DataMember]
         public ZiWeiGong[] Gong
         {
             get { return gong; }
             set { gong = value; }
         }
-
+        [DataMember]
         public ZiWeiStar[] Xing
         {
             get { return xing; }
             set { xing = value; }
         }
-
+        [DataMember]
         public PublicValue.ZiWeiStar MingZhu
         {
             get { return mingzhu; }
             set { mingzhu = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiStar ShenZhu
         {
             get { return shenzhu; }
             set { shenzhu = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiRunYue RunYue
         {
             get { return runyue; }
             set { runyue = value; }
         }
+        [DataMember]
         public int TmpMonth
         {
             get { return tmpmonth; }
             set { tmpmonth = value; }
         }
+        [DataMember]
         public int TmpLiuMonth
         {
             get { return tmpliumonth; }
             set { tmpliumonth = value; }
         }
+        [DataMember]
         public PublicValue.DiZhi ZiDou
         {
             get { return zidou; }
             set { zidou = value; }
         }
+        [DataMember]
         public PublicValue.DiZhi XiaoXian
         {
             get { return xiaoxian; }
             set { xiaoxian = value; }
         }
+        [DataMember]
         public int YueMa
         {
             get { return yuema; }
             set { yuema = value; }
         }
+        [DataMember]
         public int MingShenZhu
         {
             get { return mingshenzhu; }
             set { mingshenzhu = value; }
         }
+        [DataMember]
         public int ShiShang
         {
             get { return shishang; }
             set { shishang = value; }
         }
+        [DataMember]
         public int HuanYun
         {
             get { return huanyun; }
             set { huanyun = value; }
         }
+        [DataMember]
         public int LiuNianGong
         {
             get { return liuniangong; }
             set { liuniangong = value; }
         }
+        [DataMember]
         public int DaYunGong
         {
             get { return dayungong; }
             set { dayungong = value; }
         }
+        [DataMember]
         public int LiuYueGong
         {
             get { return liuyuegong; }
             set { liuyuegong = value; }
         }
+        [DataMember]
         public int[] LiuYao
         {
             get { return liuyao; }
             set { liuyao = value; }
         }
+        [DataMember]
         public int[] YunYao
         {
             get { return yunyao; }
@@ -213,58 +236,67 @@ namespace PPLive.ZiWei
         #endregion
 
         #region 接口
+        [DataMember]
         public PublicValue.ZiWeiGong GongName
         {
             get { return gongname; }
             set { gongname = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiGong YunGongName
         {
             get { return yungongname; }
             set { yungongname = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiGong LiuGongName
         {
             get { return liugongname; }
             set { liugongname = value; }
         }
+        [DataMember]
         public PublicValue.TianGan TG
         {
             get { return tg; }
             set { tg = value; }
         }
+        [DataMember]
         public PublicValue.DiZhi DZ
         {
             get { return dz; }
             set { dz = value; }
         }
-
+        [DataMember]
         public int TransitA
         {
             get { return transita; }
             set { transita = value; }
         }
+        [DataMember]
         public int TransitB
         {
             get { return transitb; }
             set { transitb = value; }
         }
-
+        [DataMember]
         public PublicValue.ZiWeiChangSheng ChangSheng
         {
             get { return changsheng; }
             set { changsheng = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiTaiSui TaiSui
         {
             get { return taisui; }
             set { taisui = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiJiangQian JiangQian
         {
             get { return jiangqian; }
             set { jiangqian = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiBoShi BoShi
         {
             get { return boshi; }
@@ -288,32 +320,38 @@ namespace PPLive.ZiWei
         private PublicValue.ZiWeiMiaowang wang = new PublicValue.ZiWeiMiaowang();//庙旺
         #endregion
 
-        #region 接口
+        #region 属性
+        [DataMember]
         public PublicValue.ZiWeiStar StarName
         {
             get { return starname; }
             set { starname = value; }
         }
+        [DataMember]
         public int Gong
         {
             get { return gong; }
             set { gong = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiSihua Hua
         {
             get { return hua; }
             set { hua = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiSihua YunHua
         {
             get { return yunhua; }
             set { yunhua = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiSihua LiuHua
         {
             get { return liuhua; }
             set { liuhua = value; }
         }
+        [DataMember]
         public PublicValue.ZiWeiMiaowang Wang
         {
             get { return wang; }

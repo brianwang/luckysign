@@ -13,7 +13,7 @@ using System.Data;
 
 namespace WebServiceForApp
 {
-    public partial class SSQianService : ISSQianService
+    public class CustomerService : ICustomerService
     {
         public ReturnValue<String> Test()
         {

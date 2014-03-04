@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace PPLive
 {
@@ -33,53 +34,62 @@ namespace PPLive
         int nonglimonthdays = 0;//当前农历月总天数
         #endregion
 
-        #region 接口
+        #region 属性
+        [DataMember]
         public DateTime Date
         {
             get { return _date; }
             set { _date = value; Initial(); }
         }
+        [DataMember]
         public DateTime[] BeginMonth
         {
             get { return _BeginMonth; }
             set { _BeginMonth = value;  }
         }
+        [DataMember]
         public DateTime[] BeginZodiac
         {
             get { return _BeginZodiac; }
             set { _BeginZodiac = value; }
         }
-
+        [DataMember]
         public PublicValue.TianGan NongliTG
         {
             get { return nongliTG; }
             set { nongliTG = value; }
         }
+        [DataMember]
         public PublicValue.DiZhi NongliDZ
         {
             get { return nongliDZ; }
             set { nongliDZ = value; }
         }
+        [DataMember]
         public PublicValue.NongliMonth NongliMonth
         {
             get { return nonglimonth; }
             set { nonglimonth = value; }
         }
+        [DataMember]
         public PublicValue.NongliDay NongliDay
         {
             get { return nongliday; }
             set { nongliday = value; }
         }
+        [DataMember]
         public PublicValue.DiZhi NongliHour
         {
             get { return nonglihour; }
             set { nonglihour = value; }
         }
+        [DataMember]
         public bool NongliYearFlag
         {
             get { return nongliyearflag; }
             set { nongliyearflag = value; }
         }
+        [DataMember]
         public int NongliMonthDays
         {
             get { return nonglimonthdays; }
