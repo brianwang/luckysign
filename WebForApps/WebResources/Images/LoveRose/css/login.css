@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{margin:0 auto; background:#fff}
+
+ul,ol,p,h1,h2,h3,form,dd,dl,dt{margin:0;padding:0;list-style:none}
+
+img{border:0;}
+
+.login-list{height:177px; padding-top:277px}
+
+.login-button{width:220px;height:60px; margin:auto;}
+
+.login-button a{display:block;width:220px;height:60px; cursor:pointer}
+
+.login-box{background:url(../img/login_bg.gif);width:780px;height:530px; margin:auto}
+
+.login-list li{ margin-top:19px;height:29px}
+
+.login-list{ margin-left:266px}
+
+.login-list li div.select{ background:#85c4c8; border:2px solid #fff;border-radius:5px; line-height:26px;float:left; padding:0px 5px; margin-right:20px; font-size:13px;color:#000; font-family:"微软雅黑"; cursor:pointer;position:relative}
+
+.login-list li div.select img{ margin-left:6px}
+
+.login-list li div.select .sub-nav{ position:absolute;top:24px;left:-2px; background:#85c4c8; border:solid 2px #fff; z-index:10;height:192px; overflow-y:scroll }
+
+.login-list li div.select .sub-nav a{color:#000; display:block;padding-left:5px; text-decoration:none}
+
+.login-list li div.select .sub-nav a:hover{ background:#fff}

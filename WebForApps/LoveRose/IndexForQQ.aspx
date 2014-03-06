@@ -7,11 +7,10 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>爱情花</title>
-    <link href="css/login.css" type="text/css" rel="stylesheet" />
-    <script src="../WebResources/JS/swfobject.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.pngFix.pack.js"></script>
-    <script type="text/javascript" src="js/default.js"></script>
+    <link href="../WebResources/Images/LoveRose/css/login.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery.pngFix.pack.js"></script>
+    <script type="text/javascript" src="../WebResources/Images/LoveRose/js/default.js"></script>
     <script type="text/javascript">
         $(function () {
             showItem("paopao", 3);  //泡泡等级3 下同
@@ -25,9 +24,18 @@
             showItem("hua", 6);		//第六朵花
             showItem("zhezhi", 0);	//折纸隐藏
         })
-
+        function initialselect() {
+            $(".select").click(function () {
+                if ($(this).parent().children(".sub-nav").css("display") == "none") {
+                    $(this).parent().children(".sub-nav").css("display") = "";
+                }
+                else {
+                    $(this).parent().children(".sub-nav").css("display") = "none";
+                }
+            });
+        }
     </script>
-    <link href="css/common.css" type="text/css" rel="stylesheet" />
+    <link href="../WebResources/Images/LoveRose/css/common.css" type="text/css" rel="stylesheet" />
 </head>
 <body style="">
     <form id="form1" runat="server">
@@ -43,27 +51,38 @@
                                     <ul>
                                         <li>
                                             <div class="select">
-                                                1993<img src="img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" style="width: 56px">
-                                                    <a href="#">1994</a>
-                                                    <a href="#">1995</a>
-                                                    <a href="#">1996</a>
-                                                    <a href="#">1997</a>
-                                                    <a href="#">1998</a>
-                                                    <a href="#">1999</a>
+                                                1995<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="subyear" style="width: 56px">
                                                 </div>
                                             </div>
-                                            <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
-                                            <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
-                                            <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
-                                            <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
+                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="submonth" style="width: 56px">
+                                                </div>
+                                            </div>
+                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="subday" style="width: 56px">
+                                                </div>
+                                            </div>
+                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="subhour" style="width: 56px">
+                                                </div>
+                                            </div>
+                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="subminite" style="width: 56px">
+                                                </div>
+                                            </div>
                                         </li>
                                         <li style="padding-left: 50px">
-                                            <div class="select">新疆<img src="img/arrow.gif" align="absmiddle"></div>
-                                            <div class="select">乌鲁木齐<img src="img/arrow.gif" align="absmiddle"></div>
+                                            <div class="select">新疆<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle"></div>
+                                            <div class="select">乌鲁木齐<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle"></div>
                                         </li>
                                         <li style="padding-left: 110px">
-                                            <div class="select">自动判断<img src="img/arrow.gif" align="absmiddle"></div>
+                                            <div id="drp0" class="select">自动判断<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="sub0" style="width: 56px">
+                                                    <a href="#">是</a>
+                                                    <a href="#">否</a>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -77,7 +96,7 @@
                                 <div class="tip">
                                     <div class="tip-close">
                                         <a href="#">
-                                            <img src="img/close.gif"></a>
+                                            <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
                                     </div>
                                     <div class="tip-box">
                                         <h1>向日葵 ：执着  自信</h1>
