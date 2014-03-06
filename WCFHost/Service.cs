@@ -20,7 +20,10 @@ namespace WCFHost
         {
             InitializeComponent();
 
-            ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.SSQianService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.CustomerService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.QAService));
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.PPLiveService));
+
         }
 
         protected override void OnStart(string[] args)

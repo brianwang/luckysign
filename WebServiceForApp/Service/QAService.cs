@@ -47,7 +47,8 @@ namespace WebServiceForApp
             List<USR_CustomerShow> ret = new List<USR_CustomerShow>();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                USR_CustomerShow tmp_star = MapUSR_CustomerShow(m_dt.Rows[i]);
+                CustomerService m_service = new CustomerService();
+                USR_CustomerShow tmp_star = m_service.MapUSR_CustomerShow(m_dt.Rows[i]);
                 ret.Add(tmp_star);
             }
             return ReturnValue<List<USR_CustomerShow>>.Get200OK(ret);

@@ -42,7 +42,17 @@
                                 <div class="login-list">
                                     <ul>
                                         <li>
-                                            <div class="select">1993<img src="img/arrow.gif" align="absmiddle"></div>
+                                            <div class="select">
+                                                1993<img src="img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" style="width: 56px">
+                                                    <a href="#">1994</a>
+                                                    <a href="#">1995</a>
+                                                    <a href="#">1996</a>
+                                                    <a href="#">1997</a>
+                                                    <a href="#">1998</a>
+                                                    <a href="#">1999</a>
+                                                </div>
+                                            </div>
                                             <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
                                             <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
                                             <div class="select">12<img src="img/arrow.gif" align="absmiddle"></div>
@@ -65,8 +75,10 @@
                         <asp:View ID="View2" runat="server">
                             <div class="f-box">
                                 <div class="tip">
-                                    <div class="tip-close"><a href="#">
-                                        <img src="img/close.gif"></a></div>
+                                    <div class="tip-close">
+                                        <a href="#">
+                                            <img src="img/close.gif"></a>
+                                    </div>
                                     <div class="tip-box">
                                         <h1>向日葵 ：执着  自信</h1>
                                         <div class="tip-content">

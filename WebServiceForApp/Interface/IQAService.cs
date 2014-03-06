@@ -14,6 +14,7 @@ using AppDal.QA;
 
 namespace WebServiceForApp
 {
+     [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
     public interface IQAService
     {
         [OperationContract, WebGet(UriTemplate = "/GetCates?parent={parent}")]

@@ -13,19 +13,20 @@ using PPLive.ZiWei;
 
 namespace WebServiceForApp
 {
+     [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
     public interface IPPLiveService
     {
-        [OperationContract, WebGet(UriTemplate = "/TimeToBaZi")]
-        [Description("排八字命盘,/TimeToBaZi?birthtime={birthtime}&gender={gender}&realtime={realtime}&district={district}")]
-        ReturnValue<BaZiMod> TimeToBaZi();
+        [OperationContract,WebInvoke(UriTemplate = "/TimeToBaZi")]
+        [Description("排八字命盘,/TimeToBaZi")]
+        ReturnValue<BaZiMod> TimeToBaZi(Stream openPageData);
 
-        [OperationContract, WebGet(UriTemplate = "/TimeToZiWei")]
+        [OperationContract, WebInvoke(UriTemplate = "/TimeToZiWei")]
         [Description("排紫薇命盘,/TimeToZiWei")]
-        ReturnValue<ZiWeiMod> TimeToZiWei();
+        ReturnValue<ZiWeiMod> TimeToZiWei(Stream openPageData);
 
-        [OperationContract, WebGet(UriTemplate = "/TimeToAstro")]
+        [OperationContract, WebInvoke(UriTemplate = "/TimeToAstro")]
         [Description("排占星命盘,/TimeToAstro")]
-        ReturnValue<AstroMod> TimeToAstro();
+        ReturnValue<AstroMod> TimeToAstro(Stream openPageData);
 
 
     }
