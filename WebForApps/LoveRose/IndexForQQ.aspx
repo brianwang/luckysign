@@ -33,8 +33,72 @@
                     $(this).parent().children(".sub-nav").css("display") = "none";
                 }
             });
+            $(".sub-nav").children("a").click(function () {
+                $(this).parent().parent().children("span").html($(this).text());
+                $(this).parent().css("display") == "none";
+                if ($(this).parent().attr("id") == "Div1") {
+                    $("#<%#HiddenField3.ClientID%>").val($(this).attr("id"));
+                    $("#<%#Button2.ClientID%>").click();
+                }
+                else if ($(this).parent().attr("id") == "Div2") {
+                    $("#<%#HiddenField2.ClientID%>").val($(this).attr("id"));
+                }
+                else if (!$(this).parent().attr("id") == "sub0")
+                {
+                    setDays($("#yearspan").text, $("#monthspan").text);
+                }
+            });
+
+            $("#subyear").html("");
+            for (var i = 1920; i < 2015; i++)
+            {
+                $("#subyear").html($("#subyear").html() + "<a id='"+i+"'>"+id+"</a>");
+            }
+            $("#submonth").html("");
+            for (var i = 1; i < 13; i++) {
+                $("#submonth").html($("#submonth").html() + "<a id='" + i + "'>" + id + "</a>");
+            }
+            $("#subday").html("");
+            for (var i = 1; i < 32; i++) {
+                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + id + "</a>");
+            }
+            $("#subhour").html("");
+            for (var i = 0; i < 24; i++) {
+                $("#subhour").html($("#subhour").html() + "<a id='" + i + "'>" + id + "</a>");
+            }
+            $("#subminite").html("");
+            for (var i = 0; i < 60; i++) {
+                $("#subminite").html($("#subminite").html() + "<a id='" + i + "'>" + id + "</a>");
+            }
         }
     </script>
+    <script type="text/javascript">
+
+        //设置每个月份的天数
+        function setDays(year, month) {
+
+            var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var yea = year;
+            var mon = month;
+            var num = monthDays[mon - 1];
+            if (mon == 2 && isLeapYear(yea)) {
+                num++;
+            }
+            $("#subday").html("");
+            for (var i = 1; i < num+1; i++) {
+                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + id + "</a>");
+            }
+
+        }
+
+        //判断是否闰年
+        function isLeapYear(year) {
+            return (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0));
+        }
+
+
+
+</script>
     <link href="../WebResources/Images/LoveRose/css/common.css" type="text/css" rel="stylesheet" />
 </head>
 <body style="">
@@ -51,34 +115,67 @@
                                     <ul>
                                         <li>
                                             <div class="select">
-                                                1995<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="subyear" style="width: 56px">
                                                 </div>
                                             </div>
-                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                            <div class="select">
+                                                <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="submonth" style="width: 56px">
                                                 </div>
                                             </div>
-                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                            <div class="select">
+                                                <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="subday" style="width: 56px">
                                                 </div>
                                             </div>
-                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                            <div class="select">
+                                                <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="subhour" style="width: 56px">
                                                 </div>
                                             </div>
-                                            <div class="select">12<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                            <div class="select">
+                                                <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="subminite" style="width: 56px">
                                                 </div>
                                             </div>
                                         </li>
+
                                         <li style="padding-left: 50px">
-                                            <div class="select">新疆<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle"></div>
-                                            <div class="select">乌鲁木齐<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle"></div>
+                                            <div class="select">
+                                                <span>北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="Div1" style="width: 56px">
+                                                    <asp:Repeater ID="Repeater1" runat="server">
+                                                        <ItemTemplate>
+                                                            <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
+                                                            <%--<asp:LinkButton ID="LinkButton2" runat="server" CommandArgument='<%#Eval("sysno")%>'><%#Eval("Name")%></asp:LinkButton>--%>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+                                                </div>
+                                            </div>
+                                            <asp:HiddenField ID="HiddenField3" runat="server" />
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <div class="select">
+                                                        <span id="district2" runat="server">市辖区</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="Div2" style="width: 56px">
+                                                            <asp:Repeater ID="Repeater2" runat="server">
+                                                                <ItemTemplate>
+                                                                    <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </div>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                            <asp:Button ID="Button2" runat="server" Style="display: none;" Text="Button" OnClick="Button2_Click" />
                                         </li>
+                                        <asp:HiddenField ID="HiddenField2" runat="server" />
                                         <li style="padding-left: 110px">
-                                            <div id="drp0" class="select">自动判断<img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                            <div id="drp0" class="select">
+                                                <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="sub0" style="width: 56px">
+                                                    <a href="#">自动判断</a>
                                                     <a href="#">是</a>
                                                     <a href="#">否</a>
                                                 </div>
@@ -87,7 +184,7 @@
                                     </ul>
                                 </div>
                                 <div class="login-button">
-                                    <a href="#"></a>
+                                    <asp:LinkButton ID="LinkButton1" runat="server"></asp:LinkButton>
                                 </div>
                             </div>
                         </asp:View>

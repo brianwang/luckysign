@@ -17,6 +17,14 @@ namespace WebForApps.LoveRose
         protected void Page_Load(object sender, EventArgs e)
         {
             ImageButton1.ImageUrl = "";
+            if (!IsPostBack)
+            {
+                Repeater1.DataSource = SYS_DistrictBll.GetInstance().GetFirstLevel(0);
+                Repeater1.DataBind();
+                HiddenField3.Value = "";
+                Button2_Click(sender, e);
+                MultiView1.ActiveViewIndex = 0;
+            }
         }
 
         protected void Unnamed1_Click(object sender, ImageClickEventArgs e)
@@ -469,6 +477,13 @@ namespace WebForApps.LoveRose
                 }
             }
             #endregion
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Repeater2.DataSource = SYS_DistrictBll.GetInstance().GetSubLevel(int.Parse(HiddenField3.Value));
+            Repeater2.DataBind();
+            district2.InnerText = "请选择";
         }
         
 
