@@ -28,3 +28,5 @@ img{border:0;}
 .login-list li div.select .sub-nav a{color:#000; display:block;padding-left:5px; text-decoration:none}
 
 .login-list li div.select .sub-nav a:hover{ background:#fff}
+
+.select-a{width:50px;height:33px;float:left; margin-right:20px; display:block}

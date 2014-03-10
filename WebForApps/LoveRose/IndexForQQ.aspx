@@ -13,63 +13,99 @@
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/default.js"></script>
     <script type="text/javascript">
         $(function () {
-            showItem("paopao", 3);  //泡泡等级3 下同
-            showItem("mifeng", 2);
-            showItem("chongzi", 2);
-            showItem("cu", 2);
-            showItem("liehen", 2);
-            showItem("huapen", 3);
-            showItem("bingdong", 2);
-            showItem("hongxing", 1);  //红杏显示  隐藏0
-            showItem("hua", 6);		//第六朵花
-            showItem("zhezhi", 0);	//折纸隐藏
+            //showItem("paopao", 3);  //泡泡等级3 下同
+            //showItem("mifeng", 2);
+            //showItem("chongzi", 2);
+            //showItem("cu", 2);
+            //showItem("liehen", 2);
+            //showItem("huapen", 3);
+            //showItem("bingdong", 2);
+            //showItem("hongxing", 1);  //红杏显示  隐藏0
+            //showItem("hua", 6);		//第六朵花
+            //showItem("zhezhi", 0);	//折纸隐藏
         })
-        function initialselect() {
-            $(".select").click(function () {
-                if ($(this).parent().children(".sub-nav").css("display") == "none") {
-                    $(this).parent().children(".sub-nav").css("display") = "";
-                }
-                else {
-                    $(this).parent().children(".sub-nav").css("display") = "none";
-                }
-            });
-            $(".sub-nav").children("a").click(function () {
-                $(this).parent().parent().children("span").html($(this).text());
-                $(this).parent().css("display") == "none";
-                if ($(this).parent().attr("id") == "Div1") {
-                    $("#<%#HiddenField3.ClientID%>").val($(this).attr("id"));
-                    $("#<%#Button2.ClientID%>").click();
-                }
-                else if ($(this).parent().attr("id") == "Div2") {
-                    $("#<%#HiddenField2.ClientID%>").val($(this).attr("id"));
-                }
-                else if (!$(this).parent().attr("id") == "sub0")
-                {
-                    setDays($("#yearspan").text, $("#monthspan").text);
-                }
-            });
 
+        $(function () {
+            $(document).bind("click", function (e) {
+                var target = $(e.target);
+                if (target.closest(".sub-nav").length == 0 && target.closest(".select").length == 0) {
+                    $(".sub-nav").hide();
+                }
+            })
+        })
+
+        function refreshdistrict() {
+            $("#Div1").css("display", "none");
+            $("#Div2").children("a").click(function () {
+                $(this).parent().parent().children("span").text($(this).text());
+                //$(this).parent().css("display","none");
+
+                    $("#HiddenField2").val($(this).attr("id"));
+
+            });
+        }
+
+        function initialselect() {
             $("#subyear").html("");
-            for (var i = 1920; i < 2015; i++)
-            {
-                $("#subyear").html($("#subyear").html() + "<a id='"+i+"'>"+id+"</a>");
+            for (var i = 1920; i < 2015; i++) {
+                $("#subyear").html($("#subyear").html() + "<a id='" + i + "'>" + i + "</a>");
             }
             $("#submonth").html("");
             for (var i = 1; i < 13; i++) {
-                $("#submonth").html($("#submonth").html() + "<a id='" + i + "'>" + id + "</a>");
+                $("#submonth").html($("#submonth").html() + "<a id='" + i + "'>" + i + "</a>");
             }
             $("#subday").html("");
             for (var i = 1; i < 32; i++) {
-                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + id + "</a>");
+                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + i + "</a>");
             }
             $("#subhour").html("");
             for (var i = 0; i < 24; i++) {
-                $("#subhour").html($("#subhour").html() + "<a id='" + i + "'>" + id + "</a>");
+                $("#subhour").html($("#subhour").html() + "<a id='" + i + "'>" + i + "</a>");
             }
             $("#subminite").html("");
             for (var i = 0; i < 60; i++) {
-                $("#subminite").html($("#subminite").html() + "<a id='" + i + "'>" + id + "</a>");
+                $("#subminite").html($("#subminite").html() + "<a id='" + i + "'>" + i + "</a>");
             }
+
+            $(".select").click(function () {
+                if ($(this).children(".sub-nav").css("display") == "none") {
+                    $(".sub-nav").hide();
+                    $(this).children(".sub-nav").css("display", "");
+                }
+                else {
+                    $(".sub-nav").hide();
+                    $(this).children(".sub-nav").css("display", "none");
+                }
+            });
+            //$(".select").children("img").click(function () {
+            //    if ($(this).parent().children(".sub-nav").css("display") == "none") {
+            //        $(this).parent().children(".sub-nav").css("display", "");
+            //    }
+            //    else {
+            //        $(this).parent().children(".sub-nav").css("display", "none");
+            //    }
+            //});
+            $(".sub-nav").children("a").click(function () {
+                $(this).parent().parent().children("span").text($(this).text());
+                //$(this).parent().css("display","none");
+                if ($(this).parent().attr("id") == "Div1") {
+                    $("#HiddenField3").val($(this).attr("id"));
+                    //$(this).parent().css("display", "none");
+                    $("#Button2").click();
+                }
+                else if ($(this).parent().attr("id") == "Div2") {
+                    $("#HiddenField2").val($(this).attr("id"));
+                }
+                else if (($(this).parent().attr("id") == "subyear") || ($(this).parent().attr("id") == "submonth")) {
+                    setDays($("#yearspan").text(), $("#monthspan").text());
+                }
+                else if ($(this).parent().attr("id") == "sub0")
+                {
+                    $("#HiddenField1").val($(this).attr("id"));
+                }
+            });
+
+
         }
     </script>
     <script type="text/javascript">
@@ -85,10 +121,12 @@
                 num++;
             }
             $("#subday").html("");
-            for (var i = 1; i < num+1; i++) {
-                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + id + "</a>");
+            for (var i = 1; i < num + 1; i++) {
+                $("#subday").html($("#subday").html() + "<a id='" + i + "'>" + i + "</a>");
             }
-
+            $("#subday").children("a").click(function () {
+                $(this).parent().parent().children("span").html($(this).text());
+            });
         }
 
         //判断是否闰年
@@ -96,17 +134,15 @@
             return (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0));
         }
 
-
-
-</script>
+    </script>
     <link href="../WebResources/Images/LoveRose/css/common.css" type="text/css" rel="stylesheet" />
 </head>
 <body style="">
     <form id="form1" runat="server">
         <div>
-            <asp:ScriptManager runat="server">
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" >
                 <ContentTemplate>
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
@@ -116,35 +152,35 @@
                                         <li>
                                             <div class="select">
                                                 <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subyear" style="width: 56px">
+                                                <div class="sub-nav" id="subyear" style="width: 56px; display: none;">
                                                 </div>
                                             </div>
-                                            <div class="select">
+                                            <div class="select" style="width:30px;">
                                                 <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="submonth" style="width: 56px">
+                                                <div class="sub-nav" id="submonth" style=" display: none;">
                                                 </div>
                                             </div>
-                                            <div class="select">
+                                            <div class="select" style="width:30px;">
                                                 <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subday" style="width: 56px">
+                                                <div class="sub-nav" id="subday" style=" display: none;">
                                                 </div>
                                             </div>
-                                            <div class="select">
+                                            <div class="select" style="width:30px;">
                                                 <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subhour" style="width: 56px">
+                                                <div class="sub-nav" id="subhour" style=" display: none;">
                                                 </div>
                                             </div>
-                                            <div class="select">
+                                            <div class="select" style="width:30px;">
                                                 <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subminite" style="width: 56px">
+                                                <div class="sub-nav" id="subminite" style=" display: none;">
                                                 </div>
                                             </div>
                                         </li>
 
-                                        <li style="padding-left: 50px">
+                                        <li >
                                             <div class="select">
-                                                <span>北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="Div1" style="width: 56px">
+                                                <span id="district1" runat="server">北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="Div1" style=" display: none;">
                                                     <asp:Repeater ID="Repeater1" runat="server">
                                                         <ItemTemplate>
                                                             <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
@@ -154,43 +190,44 @@
                                                 </div>
                                             </div>
                                             <asp:HiddenField ID="HiddenField3" runat="server" />
-                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-                                                <ContentTemplate>
-                                                    <div class="select">
-                                                        <span id="district2" runat="server">市辖区</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                        <div class="sub-nav" id="Div2" style="width: 56px">
+                                            <div class="select">
+                                                <span id="district2" runat="server">市辖区</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                <div class="sub-nav" id="Div2" style=" display: none;">
+                                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                                                        <ContentTemplate>
                                                             <asp:Repeater ID="Repeater2" runat="server">
                                                                 <ItemTemplate>
                                                                     <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
                                                                 </ItemTemplate>
                                                             </asp:Repeater>
-                                                        </div>
-                                                    </div>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                            <asp:Button ID="Button2" runat="server" Style="display: none;" Text="Button" OnClick="Button2_Click" />
+                                                            <asp:Button ID="Button2" runat="server" Style="display: none;" Text="Button" OnClick="Button2_Click" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </div>
+                                            </div>
                                         </li>
                                         <asp:HiddenField ID="HiddenField2" runat="server" />
                                         <li style="padding-left: 110px">
                                             <div id="drp0" class="select">
                                                 <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="sub0" style="width: 56px">
-                                                    <a href="#">自动判断</a>
-                                                    <a href="#">是</a>
-                                                    <a href="#">否</a>
+                                                <div class="sub-nav" id="sub0" style="width: 56px; display: none;">
+                                                    <a id="2">自动判断</a>
+                                                    <a id="1">是</a>
+                                                    <a id="0">否</a>
                                                 </div>
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul><asp:HiddenField ID="HiddenField1" runat="server" />
                                 </div>
                                 <div class="login-button">
-                                    <asp:LinkButton ID="LinkButton1" runat="server"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed1_Click"></asp:LinkButton>
                                 </div>
                             </div>
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                             <div class="f-box">
-                                <div class="tip">
+
+                                <div class="tip" style="display:none;">
                                     <div class="tip-close">
                                         <a href="#">
                                             <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
@@ -278,42 +315,12 @@
                                 <!--折枝-->
                                 <div class="zhezhi"></div>
                             </div>
+                            <asp:Literal ID="Label1" runat="server"></asp:Literal>
                         </asp:View>
                     </asp:MultiView>
-
-                    <asp:UpdatePanel ID="UpdatePanela" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <span class="fred">*</span><strong>阳历生日：</strong>
-                            <uc1:DatePicker ID="DatePicker1" runat="server" Type="3"></uc1:DatePicker>
-                            <%-- <asp:CheckBox ID="chkDaylight1" runat="server" />
-                <span class="fsred"><strong>夏令时</strong></span>--%>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="UpdatePanelb" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <span class="fred">*</span><strong>出生地点：</strong>
-                            <uc1:District ID="District1" runat="server"></uc1:District>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <asp:ImageButton runat="server" ID="ImageButton1" OnClick="Unnamed1_Click" />
-
-                    <asp:Button ID="Button1" runat="server" Text="统计" OnClick="Button1_Click" />
-
-                    <br />
-                    <br />
-                    <div id="flashmov" align="center">
-
-                        <asp:HiddenField ID="HiddenField1" runat="server" Value="" />
-                        <asp:Literal ID="Label1" runat="server"></asp:Literal>
-
-                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
-
-
     </form>
-
 </body>
 </html>

@@ -22,6 +22,15 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ScriptManager1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// UpdatePanel1 控件。
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl minitespan;
         
         /// <summary>
+        /// district1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl district1;
+        
+        /// <summary>
         /// Repeater1 控件。
         /// </summary>
         /// <remarks>
@@ -112,15 +130,6 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
         
         /// <summary>
-        /// UpdatePanel2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
-        /// <summary>
         /// district2 控件。
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace WebForApps.LoveRose {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl district2;
+        
+        /// <summary>
+        /// UpdatePanel2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// Repeater2 控件。
@@ -157,6 +175,15 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField2;
         
         /// <summary>
+        /// HiddenField1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        
+        /// <summary>
         /// LinkButton1 控件。
         /// </summary>
         /// <remarks>
@@ -173,69 +200,6 @@ namespace WebForApps.LoveRose {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View2;
-        
-        /// <summary>
-        /// UpdatePanela 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanela;
-        
-        /// <summary>
-        /// DatePicker1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::WebForApps.ControlLibrary.DatePicker DatePicker1;
-        
-        /// <summary>
-        /// UpdatePanelb 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelb;
-        
-        /// <summary>
-        /// District1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::WebForApps.ControlLibrary.DistrictPicker District1;
-        
-        /// <summary>
-        /// ImageButton1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
-        
-        /// <summary>
-        /// Button1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// HiddenField1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
         /// Label1 控件。
