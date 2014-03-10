@@ -534,12 +534,20 @@ namespace PPLive
                         ret.Add(tmps);
                     }
                 }
+            }
+            foreach (Star tmpstar in stars)
+            {
                 //劫夺
                 if ((int)tmpstar.StarName == gongafter + 20)
                 {
                     if ((int)tmpstar.Constellation - gongconst == 2 || (int)tmpstar.Constellation - gongconst == -10)
                     {
-                        tmp = GetShouHu((PublicValue.Constellation)(gongconst+1),false);
+                        int gongplus = gongconst + 1;
+                        if (gongplus == 13)
+                        {
+                            gongplus = 1;
+                        }
+                        tmp = GetShouHu((PublicValue.Constellation)(gongplus), false);
                         foreach (PublicValue.AstroStar tmps in tmp)
                         {
                             ret.Add(tmps);

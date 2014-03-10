@@ -71,7 +71,6 @@
     <Content Include="AstroDice\IndexForQQt.aspx" />
     <Content Include="AX\GetTopic.asmx" />
     <Content Include="AX\Index.aspx" />
-    <Content Include="App_Data\astrolog.exe" />
     <Content Include="ControlLibrary\DatePicker.ascx" />
     <Content Include="ControlLibrary\DistrictPicker.ascx" />
     <Content Include="Default.aspx" />
@@ -341,6 +340,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="WebResources\DicePic\" />
   </ItemGroup>
   <PropertyGroup>

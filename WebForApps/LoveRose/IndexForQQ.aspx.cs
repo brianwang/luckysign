@@ -93,7 +93,7 @@ namespace WebForApps.LoveRose
             badstars = badstars.Distinct().ToList();
 
             #region 花
-            Label1.Text = "1.金星星座为：" + PublicValue.GetAstroStar(m_star[PublicValue.AstroStar.Ven].StarName) + "<br/>";
+            Label1.Text = "1.金星星座为：" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Ven].Constellation) + "<br/>";
             jsstr += "showItem('hua', " + (int)m_star[PublicValue.AstroStar.Ven].Constellation + ");";
             #endregion
 
@@ -139,8 +139,13 @@ namespace WebForApps.LoveRose
                     }
                 }
             }
+            Label1.Text +="7宫主：";
+            foreach(PublicValue.AstroStar tmpstar in beestars)
+            {
+                Label1.Text += PublicValue.GetAstroStar(tmpstar);
+            }
             Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
-            jsstr += "showItem('mifeng', " + (beecount>1 ? 2 : beecount) + ");";
+            jsstr += "showItem('mifeng', " + (beecount+1>2 ? 3 : beecount) + ");";
             #endregion
 
             #region 花盆
@@ -150,6 +155,13 @@ namespace WebForApps.LoveRose
 
             #region 裂痕
             int breakcount = 0;
+            Dictionary<string, int> showele = new Dictionary<string, int>();
+            showele.Add("paopao", 0);
+            showele.Add("chongzi", 0);
+            showele.Add("cu", 0);
+            showele.Add("liehen", 0);
+            showele.Add("bingdong", 0);
+            showele.Add("zhezhi", 0);
 
             List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
             breakstars.Add(PublicValue.AstroStar.Ven);
