@@ -147,7 +147,6 @@ namespace PPLive.BaZi
             get { return jiaoyun; }
             set { jiaoyun = value; }
         }
-        [DataMember]
         public TimeSpan QiYun
         {
             get { return qiyun; }
