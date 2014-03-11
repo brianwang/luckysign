@@ -15,8 +15,6 @@ using PPLive;
 namespace WebServiceForApp
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
-    [ServiceKnownType(typeof(BaZiDaYun))]
-    [ServiceKnownType(typeof(DateEntity))]
     [ServiceKnownType(typeof(PublicValue.TianGan))]
     [ServiceKnownType(typeof(PublicValue.DiZhi))]
     [ServiceKnownType(typeof(PublicValue.ShuXing))]
@@ -44,7 +42,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/Hello")]
         [Description("测试,/Hello")]
-        ReturnValue<DateEntity> Hello();
+        ReturnValue<BaZiDaYun> Hello();
     }
 
 }

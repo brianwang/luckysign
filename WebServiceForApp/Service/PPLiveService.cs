@@ -96,9 +96,9 @@ namespace WebServiceForApp
         }
 
 
-        public ReturnValue<DateEntity> Hello()
+        public ReturnValue<BaZiDaYun> Hello()
         {
-            return ReturnValue<DateEntity>.Get200OK(new DateEntity(DateTime.Now));
+            return ReturnValue<BaZiDaYun>.Get200OK(new BaZiDaYun());
         }
     }
 
