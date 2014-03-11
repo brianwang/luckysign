@@ -7,7 +7,18 @@ using System.Runtime.Serialization;
 
 namespace PPLive.BaZi
 {
-    [Serializable]
+    [DataContract]
+    [KnownType(typeof(BaZiDaYun))]
+    [KnownType(typeof(DateEntity))]
+    [KnownType(typeof(PublicValue.TianGan))]
+    [KnownType(typeof(PublicValue.DiZhi))]
+    [KnownType(typeof(PublicValue.ShuXing))]
+    [KnownType(typeof(AppCmn.AppEnum.Gender))]
+    [KnownType(typeof(PublicValue.ZiWeiChangSheng))]
+    [KnownType(typeof(PublicValue.AllJieQi))]
+    [KnownType(typeof(PublicValue.Nayin))]
+    [KnownType(typeof(PublicValue.NongliMonth))]
+    [KnownType(typeof(PublicValue.NongliDay))]
     public class BaZiMod
     {
         public BaZiMod()
@@ -207,7 +218,7 @@ namespace PPLive.BaZi
             get { return longitude; }
             set { longitude = value; }
         }
-        [DataMember]
+        
         public TimeSpan RealTimeSpan
         {
             get { return realtimespan; }
@@ -217,7 +228,13 @@ namespace PPLive.BaZi
 
 
     }
-    [Serializable]
+
+    [DataContract]
+    [KnownType(typeof(PublicValue.TianGan))]
+    [KnownType(typeof(PublicValue.DiZhi))]
+    [KnownType(typeof(PublicValue.ShiShen))]
+    [KnownType(typeof(PublicValue.ZiWeiChangSheng))]
+    [KnownType(typeof(PublicValue.Nayin))]
     public class BaZiDaYun
     {
         public BaZiDaYun()

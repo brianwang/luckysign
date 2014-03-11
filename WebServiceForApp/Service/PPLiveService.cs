@@ -12,6 +12,8 @@ using System.Web;
 using PPLive.BaZi;
 using PPLive.Astro;
 using PPLive.ZiWei;
+using PPLive;
+
 
 namespace WebServiceForApp
 {
@@ -39,7 +41,7 @@ namespace WebServiceForApp
                 input.RealTime = false;
             //}
 
-            BaZiBiz.GetInstance().TimeToBaZi(ref input);
+            //BaZiBiz.GetInstance().TimeToBaZi(ref input);
             return ReturnValue<BaZiMod>.Get200OK(input);
         }
 
@@ -91,6 +93,12 @@ namespace WebServiceForApp
             int[] _paras = {1,1,0,0};
             input = ZiWeiBiz.GetInstance().TimeToZiWei(input.BirthTime, input.Gender, _paras);
             return ReturnValue<ZiWeiMod>.Get200OK(input);
+        }
+
+
+        public ReturnValue<DateEntity> Hello()
+        {
+            return ReturnValue<DateEntity>.Get200OK(new DateEntity(DateTime.Now));
         }
     }
 

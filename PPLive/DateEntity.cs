@@ -9,7 +9,11 @@ namespace PPLive
     /// <summary>
     /// 综合时间实体，包括公历时间，农历日期，农历润年月信息，干支等
     /// </summary>
-    [Serializable]
+    [DataContract]
+    [KnownType(typeof(PublicValue.TianGan))]
+    [KnownType(typeof(PublicValue.DiZhi))]
+    [KnownType(typeof(PublicValue.NongliMonth))]
+    [KnownType(typeof(PublicValue.NongliDay))]
     public class DateEntity
     {
         public DateEntity()

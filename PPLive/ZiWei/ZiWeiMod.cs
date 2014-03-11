@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace PPLive.ZiWei
 {
-    [Serializable]
+    [DataContract]
     public class ZiWeiMod
     {
         public ZiWeiMod()
@@ -214,7 +214,7 @@ namespace PPLive.ZiWei
         }
         #endregion
     }
-    [Serializable]
+    [DataContract]
     public class ZiWeiGong
     {
         public ZiWeiGong(int i)
@@ -304,7 +304,7 @@ namespace PPLive.ZiWei
         }
         #endregion
     }
-    [Serializable]
+    [DataContract]
     public class ZiWeiStar
     {
         public ZiWeiStar(int i)
