@@ -16,9 +16,9 @@ namespace WebServiceForApp
      [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
     public interface IPPLiveService
     {
-        [OperationContract,WebInvoke(UriTemplate = "/TimeToBaZi")]
+        [OperationContract,WebGet(UriTemplate = "/TimeToBaZi")]
         [Description("排八字命盘,/TimeToBaZi")]
-        ReturnValue<BaZiMod> TimeToBaZi(Stream openPageData);
+        ReturnValue<BaZiMod> TimeToBaZi();
 
         [OperationContract, WebInvoke(UriTemplate = "/TimeToZiWei")]
         [Description("排紫薇命盘,/TimeToZiWei")]
