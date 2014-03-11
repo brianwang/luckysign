@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Collections;
+using System.Runtime.Serialization;
 
 namespace AppCmn
 {
@@ -61,12 +62,16 @@ namespace AppCmn
         #endregion
 
         #region 性别
+        [DataContract]
         public enum Gender
         {
+            [EnumMember]
             [Description("女")]
             female = 0,
+            [EnumMember]
             [Description("男")]
             male = 1,
+            [EnumMember]
             [Description("保密")]
             none = 2
         }

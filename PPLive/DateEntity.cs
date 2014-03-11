@@ -9,7 +9,7 @@ namespace PPLive
     /// <summary>
     /// 综合时间实体，包括公历时间，农历日期，农历润年月信息，干支等
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class DateEntity
     {
         public DateEntity()

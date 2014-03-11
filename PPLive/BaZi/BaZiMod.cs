@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace PPLive.BaZi
 {
-    [Serializable]
+    [DataContract]
     public class BaZiMod
     {
         public BaZiMod()
@@ -217,7 +217,7 @@ namespace PPLive.BaZi
 
 
     }
-    [Serializable]
+    [DataContract]
     public class BaZiDaYun
     {
         public BaZiDaYun()
