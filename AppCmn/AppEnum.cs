@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 
 namespace AppCmn
 {
+    [DataContract]
     public static class AppEnum
     {
         #region 工具函数

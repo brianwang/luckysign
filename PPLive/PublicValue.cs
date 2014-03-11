@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 
 namespace PPLive
 {
+    [DataContract]
     public static class PublicValue
     {
         #region 工具函数
