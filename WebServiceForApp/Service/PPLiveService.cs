@@ -96,10 +96,12 @@ namespace WebServiceForApp
         }
 
 
+
         public ReturnValue<BaZiDaYun> Hello()
         {
             return ReturnValue<BaZiDaYun>.Get200OK(new BaZiDaYun());
         }
+
     }
 
 }
