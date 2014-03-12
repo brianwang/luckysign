@@ -41,7 +41,7 @@ namespace WebServiceForApp
                 input.RealTime = false;
             //}
 
-            //BaZiBiz.GetInstance().TimeToBaZi(ref input);
+            BaZiBiz.GetInstance().TimeToBaZi(ref input);
             return ReturnValue<BaZiMod>.Get200OK(input);
         }
 

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.User
 {
-    [Serializable]
+    [DataContract]
     public class USR_SMSMod : IComparable<USR_SMSMod>
     {
         public USR_SMSMod()

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.Spider
 {
-    [Serializable]
+    [DataContract]
     public class SPD_FamousMod : IComparable<SPD_FamousMod>
     {
         public SPD_FamousMod()

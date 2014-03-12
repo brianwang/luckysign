@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
+using System.Runtime.Serialization;
 namespace AppMod.Apps
 {
-    [Serializable]
+    [DataContract]
     public class TopicSendRecordMod : IComparable<TopicSendRecordMod>
     {
         public TopicSendRecordMod()

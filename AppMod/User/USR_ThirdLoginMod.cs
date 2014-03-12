@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.User
 {
-    [Serializable]
+    [DataContract]
     public class USR_ThirdLoginMod : IComparable<USR_ThirdLoginMod>
     {
         public USR_ThirdLoginMod()

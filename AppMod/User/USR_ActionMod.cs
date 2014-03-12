@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
-
+using System.Runtime.Serialization;
 namespace AppMod.User
 {
-    [Serializable]
+    [DataContract]
     public class USR_ActionMod : IComparable<USR_ActionMod>
     {
         public USR_ActionMod()

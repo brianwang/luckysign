@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace AppMod.WebSys
 {
    
-    [Serializable]
+    [DataContract]
     public class PageInfo<T>
     {
         private int _total;

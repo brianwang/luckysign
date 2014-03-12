@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.CMS
 {
-    [Serializable]
+    [DataContract]
     public class SYS_ArticleContentMod : IComparable<SYS_ArticleContentMod>
     {
         public SYS_ArticleContentMod()

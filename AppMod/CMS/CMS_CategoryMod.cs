@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
-
+using System.Runtime.Serialization;
 namespace AppMod.CMS
 {
-    [Serializable]
+    [DataContract]
     public class CMS_CategoryMod : IComparable<CMS_CategoryMod>
     {
         public CMS_CategoryMod()

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace AppMod.Fate
 {
-    [Serializable]
+    [DataContract]
     public class FATE_ChartMod : IComparable<FATE_ChartMod>
     {
         public FATE_ChartMod()

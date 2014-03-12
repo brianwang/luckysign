@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.Fate
 {
-    [Serializable]
+    [DataContract]
     public class FATE_AstroMod : IComparable<FATE_AstroMod>
     {
         public FATE_AstroMod()

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.WebSys
 {
-    [Serializable]
+    [DataContract]
     public class SYS_PrivilegeMod : IComparable<SYS_PrivilegeMod>
     {
         public SYS_PrivilegeMod()

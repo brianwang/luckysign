@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace AppMod.QA
 {
-    [Serializable]
+    [DataContract]
     public class  QA_QuestionShowMini: QA_QuestionMod
     {
 

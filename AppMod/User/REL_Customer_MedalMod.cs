@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.User
 {
-    [Serializable]
+    [DataContract]
     public class REL_Customer_MedalMod : IComparable<REL_Customer_MedalMod>
     {
         public REL_Customer_MedalMod()

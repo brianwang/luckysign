@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
-
+using System.Runtime.Serialization;
 namespace AppMod.WebSys
 {
-    [Serializable]
+    [DataContract]
     public class REL_Famous_KeyWordMod : IComparable<REL_Famous_KeyWordMod>
     {
         public REL_Famous_KeyWordMod()

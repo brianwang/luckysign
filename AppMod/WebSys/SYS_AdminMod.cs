@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace AppMod.WebSys
 {
-    [Serializable]
+    [DataContract]
     public class SYS_AdminMod : IComparable<SYS_AdminMod>
     {
         public SYS_AdminMod()

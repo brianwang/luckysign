@@ -7,7 +7,7 @@ using AppMod.User;
 
 namespace AppMod.QA
 {
-    [Serializable]
+    [DataContract]
     public class QA_AnswerShow : QA_AnswerMod
     {
 

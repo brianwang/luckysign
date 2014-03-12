@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace AppMod.BLG
 {
-    [Serializable]
+    [DataContract]
     public class BLG_CommentMod : IComparable<BLG_CommentMod>
     {
         public BLG_CommentMod()

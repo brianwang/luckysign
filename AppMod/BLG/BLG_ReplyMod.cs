@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AppCmn;
+using System.Runtime.Serialization;
 
 namespace AppMod.BLG
 {
-    [Serializable]
+    [DataContract]
     public class BLG_ReplyMod : IComparable<BLG_ReplyMod>
     {
         public BLG_ReplyMod()

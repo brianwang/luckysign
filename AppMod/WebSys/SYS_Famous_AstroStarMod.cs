@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
-
+using System.Runtime.Serialization;
 namespace AppMod.WebSys
 {
-    [Serializable]
+    [DataContract]
     public class SYS_Famous_AstroStarMod : IComparable<SYS_Famous_AstroStarMod>
     {
         public SYS_Famous_AstroStarMod()

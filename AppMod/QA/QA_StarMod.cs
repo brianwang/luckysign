@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
-
+using System.Runtime.Serialization;
 namespace AppMod.QA
 {
-    [Serializable]
+    [DataContract]
     public class QA_StarMod : IComparable<QA_StarMod>
     {
         public QA_StarMod()

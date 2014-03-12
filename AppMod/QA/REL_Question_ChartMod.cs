@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using AppCmn;
 using System.Text;
-
+using System.Runtime.Serialization;
 namespace AppMod.QA
 {
-    [Serializable]
+    [DataContract]
     public class REL_Question_ChartMod : IComparable<REL_Question_ChartMod>
     {
         public REL_Question_ChartMod()

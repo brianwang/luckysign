@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace AppMod.QA
 {
-    [Serializable]
+    [DataContract]
     public class QA_AnswerMod : IComparable<QA_AnswerMod>
     {
         public QA_AnswerMod()
