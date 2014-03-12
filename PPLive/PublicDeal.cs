@@ -664,7 +664,7 @@ namespace PPLive
                 while (checkingstars.Count > 0)//循环处理当前互溶链组
                 {
                     List<Star> nowline = checkingstars[0];//拿出顶端链
-                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation,false);//获取顶端的链最后星体所在星座的守护星
+                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation, isWang);//获取顶端的链最后星体所在星座的守护星
                    
                     checkingstars.RemoveAt(0);
                     foreach (PublicValue.AstroStar sh in shouhuxing)//逐一处理守护星

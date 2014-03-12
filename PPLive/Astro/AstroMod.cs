@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace PPLive.Astro
 {
-    [Serializable]
+    [DataContract]
     public class AstroMod
     {
         #region 私有变量
@@ -155,7 +156,7 @@ namespace PPLive.Astro
 
     }
 
-    [Serializable]
+    [DataContract]
     public class Star
     {
         public Star(int i)

@@ -24,6 +24,7 @@ namespace WebForApps.LoveRose
                 Repeater1.DataSource = SYS_DistrictBll.GetInstance().GetFirstLevel(1);
                 Repeater1.DataBind();
                 HiddenField3.Value = "1";
+                HiddenField4.Value = "1995-1-1 12:0:0";
                 Button2_Click(sender, e);
                 MultiView1.ActiveViewIndex = 0;
                 ScriptManager.RegisterStartupScript(Page, this.GetType(), "", "initialselect();", true);
@@ -35,7 +36,7 @@ namespace WebForApps.LoveRose
             AstroMod m_astro = new AstroMod();
             m_astro.type = PublicValue.AstroType.benming;
             #region 设置实体各种参数
-            m_astro.birth = new DateTime(int.Parse(yearspan.InnerText), int.Parse(monthspan.InnerText), int.Parse(dayspan.InnerText), int.Parse(hourspan.InnerText), int.Parse(minitespan.InnerText),0);
+            m_astro.birth = DateTime.Parse(HiddenField4.Value);
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(int.Parse(HiddenField2.Value)));
             if (HiddenField1.Value=="1")
             {
@@ -118,6 +119,12 @@ namespace WebForApps.LoveRose
             #region 蜜蜂
             int beecount = 0;
             List<PublicValue.AstroStar> beestars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
+            Label1.Text +="7宫主：";
+            foreach(PublicValue.AstroStar tmpstar in beestars)
+            {
+                Label1.Text += PublicValue.GetAstroStar(tmpstar);
+            }
+            Label1.Text += "<br />";
             beestars.Add(PublicValue.AstroStar.Des);
             beestars.Add(PublicValue.AstroStar.Jun);
             foreach (PublicValue.AstroStar tmpstar in beestars)
@@ -139,11 +146,7 @@ namespace WebForApps.LoveRose
                     }
                 }
             }
-            Label1.Text +="7宫主：";
-            foreach(PublicValue.AstroStar tmpstar in beestars)
-            {
-                Label1.Text += PublicValue.GetAstroStar(tmpstar);
-            }
+            
             Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
             jsstr += "showItem('mifeng', " + (beecount+1>2 ? 3 : beecount) + ");";
             #endregion
@@ -509,12 +512,14 @@ namespace WebForApps.LoveRose
             DataTable m_dt =SYS_DistrictBll.GetInstance().GetSubLevel(int.Parse(HiddenField3.Value));
             Repeater2.DataSource = m_dt;
             Repeater2.DataBind();
-            if(m_dt.Rows.Count>0)
-            district2.InnerText = m_dt.Rows[0]["name"].ToString();
-            HiddenField2.Value = m_dt.Rows[0]["sysno"].ToString();
+            if (m_dt.Rows.Count > 0)
+            {
+                district2.InnerText = m_dt.Rows[0]["name"].ToString();
+                HiddenField2.Value = m_dt.Rows[0]["sysno"].ToString();
+            }
             if (IsPostBack)
             {
-                ScriptManager.RegisterStartupScript(Page, this.GetType(), "refresh", "refreshdistrict();", true);
+                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "refresh", "refreshdistrict();$('#subday').html('" + m_dt.Rows[0]["name"].ToString() + "')", true);
             }
             //UpdatePanel2.Update();
         }

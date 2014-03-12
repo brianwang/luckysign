@@ -147,7 +147,6 @@ namespace PPLive.BaZi
             get { return jiaoyun; }
             set { jiaoyun = value; }
         }
-        [DataMember]
         public TimeSpan QiYun
         {
             get { return qiyun; }
@@ -207,7 +206,7 @@ namespace PPLive.BaZi
             get { return longitude; }
             set { longitude = value; }
         }
-        [DataMember]
+        
         public TimeSpan RealTimeSpan
         {
             get { return realtimespan; }
@@ -217,6 +216,7 @@ namespace PPLive.BaZi
 
 
     }
+
     [DataContract]
     public class BaZiDaYun
     {
