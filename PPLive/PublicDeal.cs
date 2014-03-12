@@ -582,8 +582,6 @@ namespace PPLive
                     break;
                 case PublicValue.Constellation.Gem:
                     ret.Add(PublicValue.AstroStar.Mer);
-                    if (second)
-                        ret.Add(PublicValue.AstroStar.Mer);
                     break;
                 case PublicValue.Constellation.Can:
                     ret.Add(PublicValue.AstroStar.Moo);
@@ -664,13 +662,13 @@ namespace PPLive
                 while (checkingstars.Count > 0)//循环处理当前互溶链组
                 {
                     List<Star> nowline = checkingstars[0];//拿出顶端链
-                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation, isWang);//获取顶端的链最后星体所在星座的守护星
+                    List<PublicValue.AstroStar> shouhuxing = GetShouHu(checkingstars[0].Last().Constellation, isWang);//获取当前链最后星体所在星座的守护星
                    
                     checkingstars.RemoveAt(0);
                     foreach (PublicValue.AstroStar sh in shouhuxing)//逐一处理守护星
                     {
                         checkedstar.Add(sh);//守护星加入已排查队列
-                        if (sh == nowline.Last().StarName)//互溶链中最后一个星体入庙，排除该守护星
+                        if (sh == nowline.Last().StarName)//当前互溶链中最后一个星体入庙，排除该守护星
                         {
                             continue;
                         }
@@ -692,11 +690,15 @@ namespace PPLive
                         }
                         if (!isexist)
                         {
-                            foreach (Star tmps in stars)//原互溶链中不存在该守护星，将该链完善重新加入当前互溶链组中
+                            foreach (Star tmps in stars)//原互溶链中不存在该守护星，将该链完善重新加入待处理互溶链组中
                             {
                                 if (tmps.StarName == sh)
                                 {
-                                    List<Star> tmplist = nowline;
+                                    List<Star> tmplist = new List<Star>();
+                                    foreach (Star ttmp in nowline)
+                                    {
+                                        tmplist.Add(ttmp);
+                                    }
                                     tmplist.Add(tmps);
                                     checkingstars.Add(tmplist);
                                     break;
@@ -707,7 +709,18 @@ namespace PPLive
                 }
 
             }
-            ret = ret.Distinct().ToList();
+
+            for (int i = 0; i < ret.Count; i++)
+            {
+                for (int j = i + 1; j < ret.Count; j++)
+                {
+                    if (ret[i].Except(ret[j]).Count() == 0 && ret[j].Except(ret[i]).Count() == 0)
+                    {
+                        ret.RemoveAt(j);
+                        j--;
+                    }
+                }
+            }
             return ret;
         }
 

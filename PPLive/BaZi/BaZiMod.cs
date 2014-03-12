@@ -142,7 +142,7 @@ namespace PPLive.BaZi
             get { return dayun; }
             set { dayun = value; }
         }
-
+        [DataMember]
         public DateTime JiaoYun
         {
             get { return jiaoyun; }
@@ -172,7 +172,7 @@ namespace PPLive.BaZi
             get { return wangshuai; }
             set { wangshuai = value; }
         }
-
+        [DataMember]
         public DateTime[] JieQi
         {
             get { return jieqi; }
@@ -217,12 +217,12 @@ namespace PPLive.BaZi
         #endregion
 
         #region api扩展属性
-        [DataMember]
-        public long JiaoYunShow
-        {
-            get { return jiaoyun.ToMilliSecondsFrom1970L(); }
-            set { jiaoyun = value.MilliSecondsFrom1970ToDateTime(); }
-        }
+        //[DataMember]
+        //public long JiaoYunShow
+        //{
+        //    get { return jiaoyun.ToMilliSecondsFrom1970L(); }
+        //    set { jiaoyun = value.MilliSecondsFrom1970ToDateTime(); }
+        //}
         [DataMember]
         public long QiYunShow
         {
@@ -258,27 +258,27 @@ namespace PPLive.BaZi
             }
         }
 
-        [DataMember]
-        public long[] JieQiShow
-        {
+        //[DataMember]
+        //public long[] JieQiShow
+        //{
 
-            get
-            {
-                long[] ret = new long[jieqi.Length];
-                for (int i = 0; i < jieqi.Length; i++)
-                {
-                    ret[i] = jieqi[i].ToMilliSecondsFrom1970L();
-                }
-                return ret;
-            }
-            set
-            {
-                for (int i = 0; i < jieqi.Length; i++)
-                {
-                    jieqi[i] = value[i].MilliSecondsFrom1970ToDateTime();
-                }
-            }
-        }
+        //    get
+        //    {
+        //        long[] ret = new long[jieqi.Length];
+        //        for (int i = 0; i < jieqi.Length; i++)
+        //        {
+        //            ret[i] = jieqi[i].ToMilliSecondsFrom1970L();
+        //        }
+        //        return ret;
+        //    }
+        //    set
+        //    {
+        //        for (int i = 0; i < jieqi.Length; i++)
+        //        {
+        //            jieqi[i] = value[i].MilliSecondsFrom1970ToDateTime();
+        //        }
+        //    }
+        //}
         [DataMember]
         public long RealTimeSpanShow
         {

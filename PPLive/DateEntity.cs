@@ -36,19 +36,19 @@ namespace PPLive
         #endregion
 
         #region 基础属性
-        
+        [DataMember]
         public DateTime Date
         {
             get { return _date; }
             set { _date = value; Initial(); }
         }
-        
+        [DataMember]
         public DateTime[] BeginMonth
         {
             get { return _BeginMonth; }
             set { _BeginMonth = value;  }
         }
-        
+        [DataMember]
         public DateTime[] BeginZodiac
         {
             get { return _BeginZodiac; }
@@ -97,54 +97,54 @@ namespace PPLive
             set { nonglimonthdays = value; }
         }
         #endregion
-        #region API扩展属性
-        [DataMember]
-        public long DateShow
-        {
-            get { return _date.ToMilliSecondsFrom1970L(); }
-            set { _date = value.MilliSecondsFrom1970ToDateTime();Initial(); }
-        }
-        [DataMember]
-        public long[] BeginMonthShow
-        {
-            get
-            {
-                long[] ret = new long[_BeginMonth.Length];
-                for (int i = 0; i < _BeginMonth.Length; i++)
-                {
-                    ret[i] = _BeginMonth[i].ToMilliSecondsFrom1970L();
-                }
-                return ret;
-            }
-            set
-            {
-                for (int i = 0; i < _BeginMonth.Length; i++)
-                {
-                    _BeginMonth[i] = value[i].MilliSecondsFrom1970ToDateTime();
-                }
-            }
-        }
-        [DataMember]
-        public long[] BeginZodiacShow
-        {
-            get
-            {
-                long[] ret = new long[_BeginZodiac.Length];
-                for (int i = 0; i < _BeginZodiac.Length; i++)
-                {
-                    ret[i] = _BeginZodiac[i].ToMilliSecondsFrom1970L();
-                }
-                return ret;
-            }
-            set
-            {
-                for (int i = 0; i < _BeginZodiac.Length; i++)
-                {
-                    _BeginZodiac[i] = value[i].MilliSecondsFrom1970ToDateTime();
-                }
-            }
-        }
-        #endregion
+        //#region API扩展属性
+        //[DataMember]
+        //public long DateShow
+        //{
+        //    get { return _date.ToMilliSecondsFrom1970L(); }
+        //    set { _date = value.MilliSecondsFrom1970ToDateTime(); Initial(); }
+        //}
+        //[DataMember]
+        //public long[] BeginMonthShow
+        //{
+        //    get
+        //    {
+        //        long[] ret = new long[_BeginMonth.Length];
+        //        for (int i = 0; i < _BeginMonth.Length; i++)
+        //        {
+        //            ret[i] = _BeginMonth[i].ToMilliSecondsFrom1970L();
+        //        }
+        //        return ret;
+        //    }
+        //    set
+        //    {
+        //        for (int i = 0; i < _BeginMonth.Length; i++)
+        //        {
+        //            _BeginMonth[i] = value[i].MilliSecondsFrom1970ToDateTime();
+        //        }
+        //    }
+        //}
+        //[DataMember]
+        //public long[] BeginZodiacShow
+        //{
+        //    get
+        //    {
+        //        long[] ret = new long[_BeginZodiac.Length];
+        //        for (int i = 0; i < _BeginZodiac.Length; i++)
+        //        {
+        //            ret[i] = _BeginZodiac[i].ToMilliSecondsFrom1970L();
+        //        }
+        //        return ret;
+        //    }
+        //    set
+        //    {
+        //        for (int i = 0; i < _BeginZodiac.Length; i++)
+        //        {
+        //            _BeginZodiac[i] = value[i].MilliSecondsFrom1970ToDateTime();
+        //        }
+        //    }
+        //}
+        //#endregion
 
         public void Initial()
         {
