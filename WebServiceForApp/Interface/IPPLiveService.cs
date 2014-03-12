@@ -40,6 +40,7 @@ namespace WebServiceForApp
         ReturnValue<AstroMod> TimeToAstro(Stream openPageData);
 
 
+
         [OperationContract, WebGet(UriTemplate = "/Hello")]
         [Description("测试,/Hello")]
         ReturnValue<BaZiDaYun> Hello();

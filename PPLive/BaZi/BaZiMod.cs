@@ -217,6 +217,7 @@ namespace PPLive.BaZi
 
     }
 
+
     [DataContract]
     public class BaZiDaYun
     {
