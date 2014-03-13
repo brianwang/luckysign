@@ -489,7 +489,7 @@ namespace PPLive.BaZi
             ret += b("公历：") + fa(bazi.BirthTime.Date.Year.ToString("0000")) + "年" + fa(bazi.BirthTime.Date.Month.ToString("00")) + "月" +
                 fa(bazi.BirthTime.Date.Day.ToString("00")) + "日" + fa(bazi.BirthTime.Date.Hour.ToString("00")) + "时" + fa(bazi.BirthTime.Date.Minute.ToString("00")) + "分" + "<br />";
             ret += b("阴历：") + PublicValue.GetTianGan(bazi.BirthTime.NongliTG) + PublicValue.GetDiZhi(bazi.BirthTime.NongliDZ) + "年[" + PublicValue.GetNayin(10000+(int)bazi.BirthTime.NongliTG * 100 + (int)bazi.BirthTime.NongliDZ) + "]" +
-                PublicValue.GetNongliMonth(bazi.BirthTime.NongliMonth) + PublicValue.GetNongliDay(bazi.BirthTime.NongliDay) + PublicValue.GetDiZhi(bazi.BirthTime.NongliHour) + "时<br /><br />";
+                PublicValue.GetNongliMonth(bazi.BirthTime.NongliMonth) +"月"+ PublicValue.GetNongliDay(bazi.BirthTime.NongliDay) + PublicValue.GetDiZhi(bazi.BirthTime.NongliHour) + "时<br /><br />";
             ret += PublicValue.GetAllJieQi(bazi.JieQiName[0]) + "：" +fa(bazi.JieQi[0].Year.ToString("0000")) + "年" + fa(bazi.JieQi[0].Month.ToString("00")) + "月" +fa(bazi.JieQi[0].Day.ToString("00")) + "日"
                  + fa(bazi.JieQi[0].Hour.ToString("00")) + "时" + fa(bazi.JieQi[0].Minute.ToString("00")) + "分" + fa(bazi.JieQi[0].Second.ToString("00")) + "秒" + "　(高精度天文算法)<br />";
             ret += PublicValue.GetAllJieQi(bazi.JieQiName[1]) + "：" + fa(bazi.JieQi[1].Year.ToString("0000")) + "年" + fa(bazi.JieQi[1].Month.ToString("00")) + "月" + fa(bazi.JieQi[1].Day.ToString("00")) + "日"

@@ -1455,7 +1455,7 @@ namespace PPLive.ZiWei
             }
             if ((int)mod.TransitTime.NongliMonth > 100)
             {
-                tmpTransit = new DateTime(tmpTransit.Year, tmpTransit.Month + 1, 1, 0, 0, 0);
+                tmpTransit = new DateTime(tmpTransit.Year, tmpTransit.Month, 1, 0, 0, 0).AddMonths(1);
             }
             mod.DaYunGong = mod.Ming;
             //计算农历生日
@@ -1466,7 +1466,7 @@ namespace PPLive.ZiWei
             }
             if ((int)mod.BirthTime.NongliMonth > 100)
             {
-                tmpbirth = new DateTime(tmpbirth.Year, tmpbirth.Month + 1, 1, 0, 0, 0);
+                tmpbirth = new DateTime(tmpbirth.Year, tmpbirth.Month, 1, 0, 0, 0).AddMonths(1);
             }
             if (mod.HuanYun == 1)//按农历新年换运
             {
@@ -1483,7 +1483,9 @@ namespace PPLive.ZiWei
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    if (tmpbirth.AddYears(mod.Gong[i].TransitA - 1) <= tmpTransit && tmpTransit <= tmpbirth.AddYears(mod.Gong[i].TransitB - 1))
+                    DateTime tmpbottom = new DateTime(tmpbirth.Year, tmpbirth.Month, tmpbirth.Day, tmpbirth.Hour, tmpbirth.Minute, tmpbirth.Second).AddYears(mod.Gong[i].TransitA - 1);
+                    DateTime tmpup = new DateTime(tmpbirth.Year, tmpbirth.Month, tmpbirth.Day, tmpbirth.Hour, tmpbirth.Minute, tmpbirth.Second).AddYears(mod.Gong[i].TransitB - 1);
+                    if (tmpbottom <= tmpTransit && tmpTransit <= tmpup)
                     {
                         mod.DaYunGong = i;
                     }

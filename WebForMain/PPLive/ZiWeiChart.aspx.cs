@@ -62,6 +62,7 @@ namespace WebForMain.PPLive
                           int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTransit")).SelectedValue)};
             #endregion
             ZiWei1.m_ziwei = m_ziwei;
+            ZiWei1.Paras = paras;
         }
         //流限盘排盘
         protected void SetLiuXian()
@@ -90,6 +91,7 @@ namespace WebForMain.PPLive
             ViewState["args"] = args;
             #endregion
             ZiWei1.m_ziwei = m_ziwei;
+            ZiWei1.Paras = paras;
             ZiWei1.Trans = true;
         }
 

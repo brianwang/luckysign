@@ -15,25 +15,25 @@ using PPLive;
 namespace WebServiceForApp
 {
     [ServiceContract(Namespace = "http://api.ssqian.com/QA")]
-    [ServiceKnownType(typeof(PublicValue.TianGan))]
-    [ServiceKnownType(typeof(PublicValue.DiZhi))]
-    [ServiceKnownType(typeof(PublicValue.ShuXing))]
-    [ServiceKnownType(typeof(AppCmn.AppEnum.Gender))]
-    [ServiceKnownType(typeof(PublicValue.ZiWeiChangSheng))]
-    [ServiceKnownType(typeof(PublicValue.AllJieQi))]
-    [ServiceKnownType(typeof(PublicValue.Nayin))]
-    [ServiceKnownType(typeof(PublicValue.ShiShen))]
-    [ServiceKnownType(typeof(PublicValue.NongliMonth))]
-    [ServiceKnownType(typeof(PublicValue.NongliDay))]
+    //[ServiceKnownType(typeof(PublicValue.TianGan))]
+    //[ServiceKnownType(typeof(PublicValue.DiZhi))]
+    //[ServiceKnownType(typeof(PublicValue.ShuXing))]
+    //[ServiceKnownType(typeof(AppCmn.AppEnum.Gender))]
+    //[ServiceKnownType(typeof(PublicValue.ZiWeiChangSheng))]
+    //[ServiceKnownType(typeof(PublicValue.AllJieQi))]
+    //[ServiceKnownType(typeof(PublicValue.Nayin))]
+    //[ServiceKnownType(typeof(PublicValue.ShiShen))]
+    //[ServiceKnownType(typeof(PublicValue.NongliMonth))]
+    //[ServiceKnownType(typeof(PublicValue.NongliDay))]
     public interface IPPLiveService
     {
         [OperationContract, WebGet(UriTemplate = "/TimeToBaZi")]
         [Description("排八字命盘,/TimeToBaZi")]
         ReturnValue<BaZiMod> TimeToBaZi();
 
-        [OperationContract, WebInvoke(UriTemplate = "/TimeToZiWei")]
+        [OperationContract, WebGet(UriTemplate = "/TimeToZiWei")]
         [Description("排紫薇命盘,/TimeToZiWei")]
-        ReturnValue<ZiWeiMod> TimeToZiWei(Stream openPageData);
+        ReturnValue<ZiWeiMod> TimeToZiWei();
 
         [OperationContract, WebInvoke(UriTemplate = "/TimeToAstro")]
         [Description("排占星命盘,/TimeToAstro")]

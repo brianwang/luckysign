@@ -44,7 +44,7 @@ namespace WebForMain.ControlLibrary
 
         private FATE_ChartMod _input = null;
         private ZiWeiMod _m_ziwei =null;
-        private int[] _paras = {1,1,0,0};
+        private int[] _paras = {1,1,0,1};
         private bool _trans = false;
         private bool hepan = false;
         private bool _realtime = true;
