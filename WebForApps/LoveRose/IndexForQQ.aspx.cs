@@ -48,7 +48,7 @@ namespace WebForApps.LoveRose
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDaylight = (AppEnum.BOOL)Convert.ToInt16(PublicDeal.GetInstance().IsDayLight(m_astro.birth, 0));
             }
             
             m_astro.zone = -8;
@@ -157,7 +157,6 @@ namespace WebForApps.LoveRose
             #endregion
 
             #region 裂痕
-            int breakcount = 0;
             Dictionary<string, int> showele = new Dictionary<string, int>();
             showele.Add("paopao", 0);
             showele.Add("chongzi", 0);
@@ -173,14 +172,40 @@ namespace WebForApps.LoveRose
             breakstars = breakstars.Distinct().ToList();
             foreach (PublicValue.AstroStar tmp in breakstars)
             {
-                if (tmp != goodstars[0])
-                    continue;
+                //if (tmp != goodstars[0])
+                //    continue;
                 int tmpflag = 0;
                 for (int i = 0; i < badstars.Count; i++)
                 {
                     if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmp], m_star[badstars[i]]))
                     {
-                        breakcount++;
+                        switch (tmp)
+                        {
+                            case PublicValue.AstroStar.Mar:
+                                showele["zhezhi"]++;
+                                break;
+                            case PublicValue.AstroStar.Jup:
+                                //showele["zhezhi"]++;
+                                break;
+                            case PublicValue.AstroStar.Sat:
+                                showele["liehen"]++;
+                                break;
+                            case PublicValue.AstroStar.Ven:
+                                //showele["liehen"]++;
+                                break;
+                            case PublicValue.AstroStar.Ura:
+                                showele["bingdong"]++;
+                                break;
+                            case PublicValue.AstroStar.Nep:
+                                showele["paopao"]++;
+                                break;
+                            case PublicValue.AstroStar.Plu:
+                                showele["cu"]++;
+                                break;
+                            case PublicValue.AstroStar.Mer:
+                                showele["chongzi"]++;
+                                break;
+                        }
                         if (tmpflag == 0)
                         {
                             tmpflag++;
@@ -188,13 +213,44 @@ namespace WebForApps.LoveRose
                         else
                         {
                             tmpflag = 0;
-                            breakcount++;
+                            switch (tmp)
+                            {
+                                case PublicValue.AstroStar.Mar:
+                                    showele["zhezhi"]++;
+                                    break;
+                                case PublicValue.AstroStar.Jup:
+                                    //showele["zhezhi"]++;
+                                    break;
+                                case PublicValue.AstroStar.Sat:
+                                    showele["liehen"]++;
+                                    break;
+                                case PublicValue.AstroStar.Ven:
+                                    //showele["liehen"]++;
+                                    break;
+                                case PublicValue.AstroStar.Ura:
+                                    showele["bingdong"]++;
+                                    break;
+                                case PublicValue.AstroStar.Nep:
+                                    showele["paopao"]++;
+                                    break;
+                                case PublicValue.AstroStar.Plu:
+                                    showele["cu"]++;
+                                    break;
+                                case PublicValue.AstroStar.Mer:
+                                    showele["chongzi"]++;
+                                    break;
+                            }
                         }
                     }
                 }
             }
-            Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
-            jsstr += "showItem('liehen', " + (breakcount > 1 ? 2 : breakcount) + ");";
+            //Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
+            jsstr += "showItem('liehen', " + (showele["liehen"] > 2 ? 3 : showele["liehen"]) + ");";
+            jsstr += "showItem('paopao', " + (showele["paopao"] > 2 ? 3 : showele["paopao"]) + ");";
+            jsstr += "showItem('chongzi', " + (showele["chongzi"] > 2 ? 3 : showele["liehen"]) + ");";
+            jsstr += "showItem('cu', " + (showele["cu"] > 2 ? 3 : showele["cu"]) + ");";
+            jsstr += "showItem('bingdong', " + (showele["bingdong"] > 2 ? 3 : showele["bingdong"]) + ");";
+            jsstr += "showItem('zhezhi', " + (showele["zhezhi"] > 0 ? 1 : 0) + ");";
             #endregion
 
             #region 花心指数
@@ -519,7 +575,7 @@ namespace WebForApps.LoveRose
             }
             if (IsPostBack)
             {
-                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "refresh", "refreshdistrict();$('#subday').html('" + m_dt.Rows[0]["name"].ToString() + "')", true);
+                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "refresh", "refreshdistrict();", true);
             }
             //UpdatePanel2.Update();
         }

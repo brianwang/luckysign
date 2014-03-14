@@ -55,7 +55,7 @@
 
         function initialselect() {
             $("#subyear").html("");
-            for (var i = 1920; i < 2015; i++) {
+            for (var i = 2010; i > 1920; i--) {
                 $("#subyear").html($("#subyear").html() + "<a id='" + i + "'>" + i + "</a>");
             }
             $("#submonth").html("");
@@ -220,7 +220,8 @@
                                             </asp:UpdatePanel>
                                         </li>
 
-                                        <li style="padding-left: 110px">
+                                        <li style="padding-left: 40px">
+                                            <a href="#" title="夏令时" class="select-a"></a>
                                             <div id="drp0" class="select">
                                                 <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                 <div class="sub-nav" id="sub0" style="width: 56px; display: none;">

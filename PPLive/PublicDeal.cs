@@ -807,6 +807,37 @@ namespace PPLive
         }
 
         #endregion
+
+        #region 公共
+/// <summary>
+/// 
+/// </summary>
+/// <param name="input"></param>
+/// <param name="type">国家类型0为中国大陆</param>
+/// <returns></returns>
+        public bool IsDayLight(DateTime input, int type)
+        {
+            bool ret = false;
+            if (type == 0 && type == AppConst.IntNull)
+            {
+                if (input.Year >= 1945 && input.Year <= 1949 && input.Month >= 5 && input.Month <= 9)
+                {
+                    ret = true;
+                }
+                else if (input >= new DateTime(1986, 5, 4, 0, 0, 0) && input <= new DateTime(1986, 9, 14, 23, 59, 59)
+                    && input >= new DateTime(1987, 4, 12, 0, 0, 0) && input <= new DateTime(1987, 9, 13, 23, 59, 59)
+                    && input >= new DateTime(1988, 4, 10, 0, 0, 0) && input <= new DateTime(1988, 9, 11, 23, 59, 59)
+                    && input >= new DateTime(1989, 4, 16, 0, 0, 0) && input <= new DateTime(1989, 9, 17, 23, 59, 59)
+                    && input >= new DateTime(1990, 4, 15, 0, 0, 0) && input <= new DateTime(1990, 9, 16, 23, 59, 59)
+                    && input >= new DateTime(1991, 4, 14, 0, 0, 0) && input <= new DateTime(1991, 9, 15, 23, 59, 59)
+                    )
+                {
+                    ret = true;
+                }
+            }
+            return ret;
+        }
+        #endregion
     }
 
     public class WuXingRelation
