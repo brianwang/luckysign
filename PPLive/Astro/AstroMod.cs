@@ -20,14 +20,14 @@ namespace PPLive.Astro
         private Dictionary<int, string> _startsShow = new Dictionary<int, string>(); //星体显示
         private Dictionary<int, decimal> _aspectsShow = new Dictionary<int, decimal>();//相位容许度
 
-        private PublicValue.AstroType _type = new PublicValue.AstroType();
-        private PublicValue.AstroZuhe _compose = new PublicValue.AstroZuhe();
+        private PublicValue.AstroType _type = PublicValue.AstroType.benming;
+        private PublicValue.AstroZuhe _compose = PublicValue.AstroZuhe.bijiao;
         private LatLng _position1 = new LatLng();
         private DateTime _birth1 = DateTime.Now;
         private int _zone1 = 0;//时区
         private AppCmn.AppEnum.BOOL _isDaylight1 = AppCmn.AppEnum.BOOL.False;
 
-        private PublicValue.AstroTuiyun _transit = new PublicValue.AstroTuiyun();//推运类型
+        private PublicValue.AstroTuiyun _transit = PublicValue.AstroTuiyun.xingyun;//推运类型
         private DateTime _transitTime = DateTime.Now;//推运时间
         private LatLng _transitPosition = new LatLng();
 
@@ -41,112 +41,133 @@ namespace PPLive.Astro
         #endregion
 
         #region 接口
+        [DataMember]
         public LatLng position
         {
             get { return _position; }
             set { _position = value; }
         }
+        [DataMember]
         public DateTime birth
         {
             get { return _birth; }
             set { _birth = value; }
         }
+        [DataMember]
         public int zone
         {
             get { return _zone; }
             set { _zone = value; }
         }
+        [DataMember]
         public string graphicID
         {
             get { return _graphicID; }
             set { _graphicID = value; }
         }
+        [DataMember]
         public AppCmn.AppEnum.BOOL IsDaylight
         {
             get { return _isDaylight; }
             set { _isDaylight = value; }
         }
+        [DataMember]
         public AppCmn.AppEnum.Gender Gender
         {
             get { return _gender; }
             set { _gender = value; }
         }
+        [DataMember]
         public AppCmn.AppEnum.Gender Gender1
         {
             get { return _gender1; }
             set { _gender1 = value; }
         }
+        [DataMember]
         public int houseSystem
         {
             get { return _houseSystem; }
             set { _houseSystem = value; }
         }
+        [DataMember]
         public Dictionary<int, string> startsShow
         {
             get { return _startsShow; }
             set { _startsShow = value; }
         }
+        [DataMember]
         public Dictionary<int, decimal> aspectsShow
         {
             get { return _aspectsShow; }
             set { _aspectsShow = value; }
         }
+        [DataMember]
         public PublicValue.AstroType type
         {
             get { return _type; }
             set { _type = value; }
         }
+        [DataMember]
         public PublicValue.AstroTuiyun transit
         {
             get { return _transit; }
             set { _transit = value; }
         }
+        [DataMember]
         public PublicValue.AstroZuhe compose
         {
             get { return _compose; }
             set { _compose = value; }
         }
+        [DataMember]
         public DateTime transitTime
         {
             get { return _transitTime; }
             set { _transitTime = value; }
         }
+        [DataMember]
         public LatLng position1
         {
             get { return _position1; }
             set { _position1 = value; }
         }
+        [DataMember]
         public DateTime birth1
         {
             get { return _birth1; }
             set { _birth1 = value; }
         }
+        [DataMember]
         public int zone1
         {
             get { return _zone1; }
             set { _zone1 = value; }
         }
+        [DataMember]
         public AppCmn.AppEnum.BOOL IsDaylight1
         {
             get { return _isDaylight1; }
             set { _isDaylight1 = value; }
         }
+        [DataMember]
         public string composeFile1
         {
             get { return _composeFile1; }
             set { _composeFile1 = value; }
         }
+        [DataMember]
         public string composeFile2
         {
             get { return _composeFile2; }
             set { _composeFile2 = value; }
         }
+        [DataMember]
         public LatLng transitPosition
         {
             get { return _transitPosition; }
             set { _transitPosition = value; }
         }
-
+        [DataMember]
         public Star[] Stars
         {
             get { return xing; }
@@ -173,31 +194,37 @@ namespace PPLive.Astro
         #endregion
 
         #region 接口
+        [DataMember]
         public PublicValue.AstroStar StarName
         {
             get { return starname; }
             set { starname = value; }
         }
+        [DataMember]
         public int Gong
         {
             get { return gong; }
             set { gong = value; }
         }
+        [DataMember]
         public int Degree
         {
             get { return degree; }
             set { degree = value; }
         }
+        [DataMember]
         public decimal Cent
         {
             get { return cent; }
             set { cent = value; }
         }
+        [DataMember]
         public PublicValue.Constellation Constellation
         {
             get { return constellation; }
             set { constellation = value; }
         }
+        [DataMember]
         public decimal Progress
         {
             get { return progress; }

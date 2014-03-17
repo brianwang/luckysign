@@ -27,66 +27,65 @@ namespace AppMod.WebSys
         private string _longitude;
         private int _TopSysNo;
 
+        [DataMember]
         public int SysNo
         {
             set { _SysNo = value; }
             get { return _SysNo; }
         }
-
+        [DataMember]
         public int UpSysNo
         {
             set { _UpSysNo = value; }
             get { return _UpSysNo; }
         }
-
+        [DataMember]
         public string Name
         {
             set { _Name = value; }
             get { return _Name; }
         }
-
+        [DataMember]
         public string EnglishName
         {
             set { _EnglishName = value; }
             get { return _EnglishName; }
         }
-
+        [DataMember]
         public int Level
         {
             set { _Level = value; }
             get { return _Level; }
         }
-
+        [DataMember]
         public int UseType
         {
             set { _UseType = value; }
             get { return _UseType; }
         }
-
         public int DR
         {
             set { _DR = value; }
             get { return _DR; }
         }
-
         public DateTime TS
         {
             set { _TS = value; }
             get { return _TS; }
         }
-
+        [DataMember]
         public string Latitude
         {
             set { _Latitude = value; }
             get { return _Latitude; }
         }
-
+        [DataMember]
         public string longitude
         {
             set { _longitude = value; }
             get { return _longitude; }
         }
-
+        [DataMember]
         public int TopSysNo
         {
             set { _TopSysNo = value; }

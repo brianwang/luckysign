@@ -272,8 +272,8 @@ namespace PPLive.Astro
             argument = argument.Replace("file1", mod.composeFile1);
             argument = argument.Replace("file2", mod.composeFile2);
 
-            try
-            {
+            //try
+            //{
                 string[] args = argument.Split(new char[] { '$' });
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -299,12 +299,12 @@ namespace PPLive.Astro
                 {
                     File.Delete(mod.composeFile2);
                 }
-            }
-            catch (Exception ex)
-            {
-                LogManagement.getInstance().WriteException(ex, "PPLive.Astro", "");
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogManagement.getInstance().WriteException(ex, "PPLive.Astro", "");
+            //    return;
+            //}
         }
 
 
@@ -327,8 +327,8 @@ namespace PPLive.Astro
             argument = argument.Replace("file1", mod.composeFile1);
             argument = argument.Replace("file2", mod.composeFile2);
 
-            try
-            {
+            //try
+            //{
                 string[] args = argument.Split(new char[] { '$' });
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -347,12 +347,12 @@ namespace PPLive.Astro
                 {
                     File.Delete(mod.composeFile2);
                 }
-            }
-            catch (Exception ex)
-            {
-                LogManagement.getInstance().WriteException(ex, "PPLive.Astro", "");
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogManagement.getInstance().WriteException(ex, "PPLive.Astro", "");
+            //    return;
+            //}
         }
 
         public void RunAstrolog(string argument)
@@ -384,7 +384,7 @@ namespace PPLive.Astro
             }
             else
             {
-                LogManagement.getInstance().WriteException("Astrolog程序文件不存在");
+                //LogManagement.getInstance().WriteException("Astrolog程序文件不存在");
                 return;
             }
         }
