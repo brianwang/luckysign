@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace PPLive.Astro
 {
+    [Serializable]
     [DataContract]
     public class AstroMod
     {
@@ -177,6 +178,7 @@ namespace PPLive.Astro
 
     }
 
+    [Serializable]
     [DataContract]
     public class Star
     {

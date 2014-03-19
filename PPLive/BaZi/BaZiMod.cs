@@ -8,6 +8,7 @@ using XMS.Core;
 
 namespace PPLive.BaZi
 {
+    [Serializable]
     [DataContract]
     public class BaZiMod
     {
@@ -289,7 +290,7 @@ namespace PPLive.BaZi
         #endregion
     }
 
-
+    [Serializable]
     [DataContract]
     public class BaZiDaYun
     {

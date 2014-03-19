@@ -6,6 +6,7 @@ using AppCmn;
 using System.Runtime.Serialization;
 namespace AppMod.WebSys
 {
+    [Serializable]
     [DataContract]
     public class SYS_DistrictMod : IComparable<SYS_DistrictMod>
     {

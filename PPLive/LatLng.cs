@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 
 namespace PPLive
 {
+    [Serializable]
     [DataContract]
     public class LatLng
     {
