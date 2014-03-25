@@ -385,7 +385,7 @@ namespace PPLive.Astro
             else
             {
                 //LogManagement.getInstance().WriteException("Astrolog程序文件不存在");
-                return;
+                throw new Exception("Astrolog程序文件不存在");
             }
         }
 
