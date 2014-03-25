@@ -8,9 +8,9 @@ namespace AstroCSharpLib
 {
     public partial class CALC
     {
-        double[] spacex = new double[oNorm + 1];
-        double[] spacey = new double[oNorm + 1];
-        double[] spacez = new double[oNorm + 1];
+        public double[] spacex = new double[oNorm + 1];
+        public double[] spacey = new double[oNorm + 1];
+        public double[] spacez = new double[oNorm + 1];
         double[] force = new double[objMax];
         /*
         ******************************************************************************
