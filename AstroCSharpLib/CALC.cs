@@ -475,16 +475,16 @@ namespace AstroCSharpLib
             return i;
         }
 
-        /* Convert an inputed fractional degrees/minutes value to a true decimal   */
-        /* degree quantity. For example, the user enters the decimal value "10.30" */
+        /* Convert an inputed fractional degrees/minutes value to a true double   */
+        /* degree quantity. For example, the user enters the double value "10.30" */
         /* to mean 10 degrees and 30 minutes; this will return 10.5, i.e. 10       */
-        /* degrees and 30 minutes expressed as a floating point degree value.      */
+        /* degrees and 30 minutes expressed as a doubleing point degree value.      */
         double DecToDeg(double d)
         {
             return Math.Sign(d) * (Math.Floor(Math.Abs(d)) + RFract(Math.Abs(d)) * 100.0 / 60.0);
         }
 
-        /* This is the inverse of the above function. Given a true decimal value */
+        /* This is the inverse of the above function. Given a true double value */
         /* for a zodiac degree, adjust it so the degrees are in the integer part */
         /* and the minute expressed as hundredths, e.g. 10.5 degrees -> 10.30    */
         double DegToDec(double d)

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Text;
+using PPLive.Astro;
 
 namespace UnitTestProject1
 {
@@ -73,7 +74,7 @@ namespace UnitTestProject1
         public void CastChartTest()
         {
             CALC target = new CALC(); // TODO: 初始化为适当的值
-            DateTime dt = DateTime.Now;
+            DateTime dt = new System.DateTime(2014, 3, 25, 14, 12, 13);
             target.ciCore = new AstroCSharpLib.Model.ChartInfo
             {
                 mon = dt.Month,
@@ -92,27 +93,41 @@ namespace UnitTestProject1
             double actual;
             actual = target.CastChart(fDate);
 
-            StringBuilder sb = new StringBuilder();
-            //fprintf(file, "@0203  ; %s chart positions.\n", szAppName);
-            //fprintf(file, "%czi \"%s\" \"%s\"\n", chSwitch, ciMain.nam, ciMain.loc);
-            //for (i = 1; i <= 32; i++)
-            //{
-            //    if (i <= oNorm)
-            //        fprintf(file, "%c%c%c", chObj3(i));
-            //    rT = FBetween(i, cuspLo - 1 + 4, cuspLo - 1 + 9) ?
-            //      chouse[i - (cuspLo - 1)] : planet[i];
-            //    j = (int)rT;
-            //    fprintf(file, ":%3d %c%c%c%13.9f,%4d%13.9f,",
-            //      j % 30, chSig3(j / 30 + 1), RFract(rT) * 60.0,
-            //      (int)planetalt[i], RFract(RAbs(planetalt[i])) * 60.0);
-            //    rT = i > oNorm ? 999.0 : (i == oMoo && !us.fPlacalc ? 0.0026 :
-            //      RSqr(spacex[i] * spacex[i] + spacey[i] * spacey[i] + spacez[i] * spacez[i]));
-            //    fprintf(file, "%14.9f%14.9f\n", DFromR(ret[i]), rT);
-            //}
+            using (StreamWriter sw = new StreamWriter("D:\\456"))
+            {
+                //fprintf(file, "@0203  ; %s chart positions.\n", szAppName);
+                //fprintf(file, "%czi \"%s\" \"%s\"\n", chSwitch, ciMain.nam, ciMain.loc);
+                for (int i = 1; i <= 32; i++)
+                {
 
-            XMS.Core.Container.LogService.Info(XMS.Core.Json.JsonSerializer.Serialize(target.cp));
+                    double rT = 0;
+                    if (i >= 24 && i <= 29)
+                    {
+                        rT = target.cp.cusp[i - 20];
+                    }
+                    else
+                    {
+                        rT = target.cp.obj[i];
+                    }
+
+                    int j = (int)rT;
+                    sw.Write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t,", i,
+                      j % 30, (j / 30 + 1), Math.Round((RFract(rT) * 60.0), 9),
+                      (int)target.cp.alt[i], Math.Round((RFract(Math.Abs(target.cp.alt[i])) * 60.0), 9));
+                    if (false)
+                    {
+                        rT = Math.Sqrt(target.spacex[i] * target.spacex[i] + target.spacey[i] * target.spacey[i] + target.spacez[i] * target.spacez[i]);
+                    }
+                    sw.WriteLine("{0}\t{1}", Math.Round(target.DFromR(target.cp.dir[i]),9), Math.Round(rT,9));
+                }
+            }
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("验证此测试方法的正确性。");
+        }
+
+        private double RFract(double rT)
+        {
+            return rT - (int)rT;
         }
     }
 }

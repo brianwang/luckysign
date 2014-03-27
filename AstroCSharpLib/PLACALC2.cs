@@ -182,7 +182,7 @@ namespace AstroCSharpLib
         //** with 32 bit reals, because ampl and phase have only
         //** four to five significant digits.
         //** While saving constant space, it is costing execution time due
-        //** to float/double conversions.
+        //** to double/double conversions.
         //**
         //** In basic, all correction terms for sun, mercury, venus and mars
         //** were contained in one array K(0..142,0..6); Nk(N,0) contained
@@ -830,7 +830,7 @@ namespace AstroCSharpLib
         //** This function returns the absolute Julian day number (JD)
         //** for a given calendar date.
         //** The aruguments are a calendar date: day, month, year as integers,
-        //** hour as double with decimal fraction.
+        //** hour as double with double fraction.
         //** If gregflag = 1, Gregorian calendar is assumed, gregflag = 0
         //** Julian calendar is assumed.
         //**
@@ -898,7 +898,7 @@ namespace AstroCSharpLib
         //** revjul() is the inverse function to julday(), see the description there.
         //** Arguments are julian day number, calendar flag (0=julian, 1=gregorian)
         //** return values are the calendar day, month, year and the hour of
-        //** the day with decimal fraction (0 .. 23.999999).
+        //** the day with double fraction (0 .. 23.999999).
         //**
         //** Original author Mark Pottenger, Los Angeles.
         //** with bug fix for year < -4711 16-aug-88 Alois Treindl
