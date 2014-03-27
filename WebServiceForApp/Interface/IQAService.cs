@@ -19,7 +19,7 @@ namespace WebServiceForApp
     {
         [OperationContract, WebGet(UriTemplate = "/GetCates?parent={parent}")]
         [Description("获取分类列表,/GetCates?parent={parent}")]
-        ReturnValue<List<QA_CategoryMod>> GetCates(int parent);
+        ReturnValue<List<QA_CategoryShow>> GetCates(int parent);
 
         [OperationContract, WebGet(UriTemplate = "/GetStarsList?catesysno={catesysno}")]
         [Description("获取明星列表,/GetStarsList?catesysno={catesysno}")]

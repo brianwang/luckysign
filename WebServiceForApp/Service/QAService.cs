@@ -21,20 +21,45 @@ namespace WebServiceForApp
 {
     public class QAService : IQAService
     {
-        public ReturnValue<List<QA_CategoryMod>> GetCates(int parent)
+        public ReturnValue<List<QA_CategoryShow>> GetCates(int parent)
         {
             DataTable m_dt = QA_CategoryBll.GetInstance().GetCates(parent);
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
                 throw new BusinessException("该分类下无子分类");
             }
-            List<QA_CategoryMod> ret = new List<QA_CategoryMod>();
+            List<QA_CategoryShow> ret = new List<QA_CategoryShow>();
+            DataTable questnum = QA_CategoryBll.GetInstance().GetCatesPostNum().Tables[0];
+            DataTable postnum = QA_CategoryBll.GetInstance().GetCatesPostNum().Tables[1];
+
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                QA_CategoryMod tmp_cate = MapQA_Category(m_dt.Rows[i]);
+                QA_CategoryShow tmp_cate = MapQA_Category(m_dt.Rows[i]);
+                if (!string.IsNullOrEmpty(tmp_cate.Pic))
+                {
+                    tmp_cate.Pic = Container.ConfigService.GetAppSetting<string>("WebResourcesPath","") + "img/CatePic/" + tmp_cate.Pic;
+                }
+                for (int j = 0; j < questnum.Rows.Count; j++)
+                {
+                    if (questnum.Rows[j]["CateSysNo"].ToString() == tmp_cate.SysNo.ToString())
+                    {
+                        tmp_cate.QuestNum = tmp_cate.QuestNum + int.Parse(questnum.Rows[j]["questnum"].ToString());
+                        if (questnum.Rows[j]["IsSolved"].ToString() == "1")
+                        {
+                            tmp_cate.SolvedNum = tmp_cate.QuestNum;
+                        }
+                    }
+                }
+                for (int j = 0; j < postnum.Rows.Count; j++)
+                {
+                    if (postnum.Rows[j]["CateSysNo"].ToString() == tmp_cate.SysNo.ToString())
+                    {
+                        tmp_cate.Replys = int.Parse(tmp_cate.QuestNum.ToString()) + int.Parse(postnum.Rows[j]["AnswerNum"].ToString()) + int.Parse(postnum.Rows[j]["CommentNum"].ToString());
+                    }
+                }
                 ret.Add(tmp_cate);
             }
-            return ReturnValue<List<QA_CategoryMod>>.Get200OK(ret);
+            return ReturnValue<List<QA_CategoryShow>>.Get200OK(ret);
         }
 
         public ReturnValue<List<USR_CustomerShow>> GetStarsList(int catesysno)
@@ -320,15 +345,18 @@ namespace WebServiceForApp
 
         #region map方法
 
-        public QA_CategoryMod MapQA_Category(DataRow input)
+        public QA_CategoryShow MapQA_Category(DataRow input)
         {
-            QA_CategoryMod ret = new QA_CategoryMod();
+            QA_CategoryShow ret = new QA_CategoryShow();
             ret.DR = int.Parse(input["DR"].ToString());
             ret.Name = input["Name"].ToString();
             ret.ParentSysNo = int.Parse(input["ParentSysNo"].ToString());
             ret.SysNo = int.Parse(input["SysNo"].ToString());
             ret.TopSysNo = int.Parse(input["TopSysNo"].ToString());
             ret.TS = DateTime.Parse(input["TS"].ToString());
+            ret.Pic = input["Pic"].ToString();
+            ret.Intro = input["Intro"].ToString();
+            ret.OrderID = int.Parse(input["OrderID"].ToString());
             return ret;
         }
 

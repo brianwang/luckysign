@@ -76,6 +76,7 @@ namespace AppBll.QA
                               ,[TopSysNo]
                               ,[Pic]
                               ,[Intro]
+                              ,[OrderID]
                               ,[DR]
                               ,[TS]
                           FROM [QA_Category] where dr=").Append((int)AppEnum.State.normal)
