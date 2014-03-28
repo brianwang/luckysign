@@ -150,94 +150,133 @@
 </head>
 <body style="">
     <form id="form1" runat="server">
-        <div>
+        <div class="x-box">
+            <div class="x-top"></div>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
-                            <div class="login-box">
-                                <div class="login-list">
-                                    <ul>
-                                        <li>
-                                            <div class="select">
-                                                <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subyear" style="width: 56px; display: none;">
-                                                </div>
-                                            </div>
-                                            <div class="select" style="width: 30px;">
-                                                <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="submonth" style="display: none;">
-                                                </div>
-                                            </div>
-                                            <div class="select" style="width: 30px;">
-                                                <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subday" style="display: none;">
-                                                </div>
-                                            </div>
-                                            <div class="select" style="width: 30px;">
-                                                <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subhour" style="display: none;">
-                                                </div>
-                                            </div>
-                                            <div class="select" style="width: 30px;">
-                                                <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="subminite" style="display: none;">
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <asp:HiddenField ID="HiddenField4" runat="server" />
-                                        <li style="padding-left: 50px">
-                                            <div class="select" style="width: 120px;">
-                                                <span id="district1" runat="server">北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="Div1" style="display: none;">
-                                                    <asp:Repeater ID="Repeater1" runat="server">
-                                                        <ItemTemplate>
-                                                            <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
-                                                            <%--<asp:LinkButton ID="LinkButton2" runat="server" CommandArgument='<%#Eval("sysno")%>'><%#Eval("Name")%></asp:LinkButton>--%>
-                                                        </ItemTemplate>
-                                                    </asp:Repeater>
-                                                </div>
-                                            </div>
-                                            <asp:HiddenField ID="HiddenField3" runat="server" />
-                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" RenderMode="Inline">
-                                                <ContentTemplate>
-                                                    <div class="select" style="width: 100px;">
-                                                        <span id="district2" runat="server"></span>
-                                                        <img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                        <div class="sub-nav" id="Div2" style="display: none;">
-                                                            <asp:Repeater ID="Repeater2" runat="server">
-                                                                <ItemTemplate>
-                                                                    <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
-                                                            <asp:Button ID="Button2" runat="server" Style="display: none;" Text="Button" OnClick="Button2_Click" />
-                                                            <asp:HiddenField ID="HiddenField2" runat="server" />
+                            <div class="x-left">
+                                <div class="flash">
+                                    <div class="login-box">
+                                        <div class="login-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="select">
+                                                        <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="subyear" style="width: 56px; display: none;">
                                                         </div>
                                                     </div>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
-                                        </li>
+                                                    <div class="select" style="width: 30px;">
+                                                        <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="submonth" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="select" style="width: 30px;">
+                                                        <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="subday" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="select" style="width: 30px;">
+                                                        <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="subhour" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="select" style="width: 30px;">
+                                                        <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="subminite" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <asp:HiddenField ID="HiddenField4" runat="server" />
+                                                <li style="padding-left: 50px">
+                                                    <div class="select" style="width: 120px;">
+                                                        <span id="district1" runat="server">北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="Div1" style="display: none;">
+                                                            <asp:Repeater ID="Repeater1" runat="server">
+                                                                <ItemTemplate>
+                                                                    <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
+                                                                    <%--<asp:LinkButton ID="LinkButton2" runat="server" CommandArgument='<%#Eval("sysno")%>'><%#Eval("Name")%></asp:LinkButton>--%>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </div>
+                                                    </div>
+                                                    <asp:HiddenField ID="HiddenField3" runat="server" />
+                                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" RenderMode="Inline">
+                                                        <ContentTemplate>
+                                                            <div class="select" style="width: 100px;">
+                                                                <span id="district2" runat="server"></span>
+                                                                <img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                                <div class="sub-nav" id="Div2" style="display: none;">
+                                                                    <asp:Repeater ID="Repeater2" runat="server">
+                                                                        <ItemTemplate>
+                                                                            <a id='<%#Eval("sysno")%>'><%#Eval("Name")%></a>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+                                                                    <asp:Button ID="Button2" runat="server" Style="display: none;" Text="Button" OnClick="Button2_Click" />
+                                                                    <asp:HiddenField ID="HiddenField2" runat="server" />
+                                                                </div>
+                                                            </div>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </li>
 
-                                        <li style="padding-left: 40px">
-                                            <a href="#" title="夏令时" class="select-a"></a>
-                                            <div id="drp0" class="select">
-                                                <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
-                                                <div class="sub-nav" id="sub0" style="width: 56px; display: none;">
-                                                    <a id="2">自动判断</a>
-                                                    <a id="1">是</a>
-                                                    <a id="0">否</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <asp:HiddenField ID="HiddenField1" runat="server" />
+                                                <li style="padding-left: 40px">
+                                                    <a href="#" title="夏令时" class="select-a"></a>
+                                                    <div id="drp0" class="select">
+                                                        <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <div class="sub-nav" id="sub0" style="width: 56px; display: none;">
+                                                            <a id="2">自动判断</a>
+                                                            <a id="1">是</a>
+                                                            <a id="0">否</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <asp:HiddenField ID="HiddenField1" runat="server" />
+                                        </div>
+                                        <div class="login-button">
+                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed1_Click"></asp:LinkButton>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="login-button">
-                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed1_Click"></asp:LinkButton>
-                                </div>
+
                             </div>
+
+                            <div class="x-right">
+
+
+
+                                <div class="x-right-t">爱情攻略</div>
+                                <div class="x-right-c">
+                                    <ul>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="shouting">
+                                    <div class="shouting-t">更多爱情占星攻略请关注</div>
+                                    <div class="shouting-c">
+                                        <ul>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="clear"></div>
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                             <div class="f-box">
