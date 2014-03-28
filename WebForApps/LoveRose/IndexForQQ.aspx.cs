@@ -304,6 +304,20 @@ namespace WebForApps.LoveRose
             m_record.TS = DateTime.Now;
             LoveRoseBll.GetInstance().Add(m_record);
             #endregion
+
+            #region 显示信息
+            ltrInfo.Text = m_astro.birth.ToString("yyyy年MM月dd日 HH:mm") + @"
+                    <br />
+                    所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
+                    夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
+                    <br />
+                    性别： "+ AppEnum.GetGender(m_astro.Gender)+@"
+                    <br />
+                    出生地： " + m_astro.position.name + @"
+                    <br />
+                    (经度" + m_astro.position.Lng + @"&nbsp;纬度" + m_astro.position.Lat + @")
+                    <br />";
+            #endregion
         }
 
         //protected void Button1_Click(object sender, EventArgs e)

@@ -7,13 +7,21 @@ ul,ol,p,h1,h2,h3,form,dd,dl,dt{margin:0;padding:0;list-style:none}
 
 img{border:0;}
 
+.clear{clear:both}
+
 .level-1,.level-2,.level-3{display:none}
 
 .hongxing,.zhezhi{display:none}
 
 .hua div{display:none}
 
-.f-box{background:url(../img/bg.jpg);width:780px;height:530px; margin:auto; position:relative}
+.f-box{
+	background:url(../img/bg.jpg);
+	width:780px;
+	height:584px;
+	margin:auto;
+	position:relative
+}
 
 .paopao,.mifeng,.chongzi,.huapen,.bingdong,.hongxing,.hua,.zhezhi,.cu,.liehen{position:absolute}
 
@@ -111,10 +119,75 @@ img{border:0;}
 
 .tip-box h1{ font-size:18px; color:#059301}
 
+/*星座*/
+.x-box{width:960px; margin:auto; background:#ece2bd}
 
+.x-top{ background:url(../img/top.gif);height:65px}
 
+.x-left{width:750px;float:left; overflow:hidden;background:#eecdbe}
 
+.x-right{width:196px;float:right; padding:11px 0px 0px 14px}
 
+.flash{width:750px;height:584px; overflow:hidden}
 
+.yuansu{height:353px; padding-top:30px}
 
+.yuansu-t{ background:url(../img/l_bg.gif);width:685px;height:40px; margin:auto}
 
+.yuansu-c{width:685px; margin:20px auto 0px auto}
+
+.yuansu-c li{width:342px;float:left;height:52px; margin-top:8px;font:14px/22px "微软雅黑";color:#3c2519}
+
+.yuansu-c li span{width:53px;height:52px; display:block;float:left; margin-right:11px; background:url(../img/ico.png) no-repeat}
+
+.yuansu-c li a{display:block; text-decoration:underline;color:#ff2400}
+
+.x-right-t{ background:url(../img/r_t.gif);width:170px;height:22px;font:bold 14px/22px "微软雅黑";color:#fff; padding-left:11px}
+
+.x-right-c{font:13px/18px "微软雅黑";color:#3c2519; padding:10px 13px 10px 13px}
+
+.per{padding:5px 0px; font-size:14px}
+
+.per div{width:128px;height:14px; border-style:solid; border-width:1px; margin-top:6px}
+
+.per div span{display:block;height:14px;background:url(../img/r_bg.gif) repeat-x}
+
+.per div.c1{ border-color:#91ae66}
+
+.per div.c2{ border-color:#ac7ab0}
+
+.per div.c3{ border-color:#498fbe}
+
+.per div.c4{ border-color:#bb7489}
+
+.per div.c5{ border-color:#c09963}
+
+.per div.c1 span{ background-position:0px 0px }
+
+.per div.c2 span{ background-position:0px -20px }
+
+.per div.c3 span{ background-position:0px -40px }
+
+.per div.c4 span{ background-position:0px -60px }
+
+.per div.c5 span{ background-position:0px -80px }
+
+.x-right-c ul li{height:30px; background:url(../img/love.gif) no-repeat 0px 7px; padding-left:17px}
+
+.x-right-c ul li a{color:#3c2519}
+
+.shouting{width:158px;height:282px; border:solid 1px; border-left-color:#d9c4a4; border-top-color:#d9c4a4;border-right-color:#f7f3e3;border-bottom-color:#f7f3e3; padding:15px}
+
+.shouting-t{ font-family:"微软雅黑"; font-size:14px}
+
+.shouting-c li{width:67px;height:119px; text-align:center;float:left; padding-top:10px}
+
+.shouting-c li img{width:54px;height:59px; display:block; margin:auto; border:solid 3px #fff}
+
+.shouting-c li span{display:block; font:14px/28px "微软雅黑";color:#7e6d58}
+
+.shouting-c li a{display:block;width:67px;height:26px;color:#fff;font:12px/26px "微软雅黑";color:#fff; background:#5aa793; text-decoration:none}
+
+.f-a-box{position:absolute;left:225px;top:517px}
+
+.f-a{width:158px;height:51px;float:left; margin-right:30px; text-indent:-999px; overflow:hidden}

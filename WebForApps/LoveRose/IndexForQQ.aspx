@@ -279,102 +279,185 @@
                             <div class="clear"></div>
                         </asp:View>
                         <asp:View ID="View2" runat="server">
-                            <div class="f-box">
+                            <div class="x-left">
+                                <div class="flash">
+                                    <div class="f-box">
 
-                                <div class="tip" style="display: none;">
-                                    <div class="tip-close">
-                                        <a href="#">
-                                            <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
-                                    </div>
-                                    <div class="tip-box">
-                                        <h1>向日葵 ：执着  自信</h1>
-                                        <div class="tip-content">
-                                            让我们先来看一个关于向日葵的美丽传说：克丽泰是一位水泽仙女。一天，她在树林里遇见了正在狩猎的太阳神阿波罗，疯狂地爱上了他。可是，阿波罗连正眼也不瞧她一下就走了。克丽泰热切地盼望有一天阿波罗能对她说说话，但她却再也没有遇见过他。她只能每天仰望天空，看着阿波罗驾着金碧辉煌的太阳轮划过天空，直到他下山。后来，众神怜悯她，把她了一朵很大的向日葵，永远向着太阳，诉说她永远不变的爱慕。<br>
-                                            <br>
-                                            因此，向日葵寓意传说中的高富帅才是你的梦中情人，犹如太阳神阿波罗，是古希腊神话中的花样美男，超高的音乐才华，九头身的完美身材，以至于古希腊的雕刻艺术常借他的形象来表现男性之美，并且家世显赫，是众神之王宙斯与暗夜女神之子。向日葵也代表你是很有品味的人，所以对待异性的要求自然不低。就性格而言，你也喜欢心智成熟，霸道一点的异性，一定要是超自信超幽默的，唯唯诺诺，害羞胆怯的男生是难入你法眼的。<br>
-                                            <br>
-                                            向日葵也代表你对爱情的忠诚与专一，不管你以什么方式开始一段感情，你都希望能有一个好的结果，对对方也是尽心尽力，关怀备至。但时间长了，你可能会比较迟钝，明明你们的感情已经出现了问题，但你还是一如既往的认为你们感情很好很恩爱，所以裂痕一旦显露出来，就会让你难以接受，伤心复原期通常会是别人的两倍。 
+                                        <div class="tip" style="display: none;">
+                                            <div class="tip-close">
+                                                <a href="#">
+                                                    <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
+                                            </div>
+                                            <div class="tip-box">
+                                                <h1>向日葵 ：执着  自信</h1>
+                                                <div class="tip-content">
+                                                    让我们先来看一个关于向日葵的美丽传说：克丽泰是一位水泽仙女。一天，她在树林里遇见了正在狩猎的太阳神阿波罗，疯狂地爱上了他。可是，阿波罗连正眼也不瞧她一下就走了。克丽泰热切地盼望有一天阿波罗能对她说说话，但她却再也没有遇见过他。她只能每天仰望天空，看着阿波罗驾着金碧辉煌的太阳轮划过天空，直到他下山。后来，众神怜悯她，把她了一朵很大的向日葵，永远向着太阳，诉说她永远不变的爱慕。<br>
+                                                    <br>
+                                                    因此，向日葵寓意传说中的高富帅才是你的梦中情人，犹如太阳神阿波罗，是古希腊神话中的花样美男，超高的音乐才华，九头身的完美身材，以至于古希腊的雕刻艺术常借他的形象来表现男性之美，并且家世显赫，是众神之王宙斯与暗夜女神之子。向日葵也代表你是很有品味的人，所以对待异性的要求自然不低。就性格而言，你也喜欢心智成熟，霸道一点的异性，一定要是超自信超幽默的，唯唯诺诺，害羞胆怯的男生是难入你法眼的。<br>
+                                                    <br>
+                                                    向日葵也代表你对爱情的忠诚与专一，不管你以什么方式开始一段感情，你都希望能有一个好的结果，对对方也是尽心尽力，关怀备至。但时间长了，你可能会比较迟钝，明明你们的感情已经出现了问题，但你还是一如既往的认为你们感情很好很恩爱，所以裂痕一旦显露出来，就会让你难以接受，伤心复原期通常会是别人的两倍。 
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="f-a-box">
+                                            <asp:LinkButton ID="LinkButton2"  CssClass="f-a" runat="server">转发到微博</asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton3" CssClass="f-a" runat="server">再测一次</asp:LinkButton>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!--泡泡-->
+                                        <div class="paopao">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--蜜蜂-->
+                                        <div class="mifeng">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--虫子-->
+                                        <div class="chongzi">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--醋-->
+                                        <div class="cu">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--裂痕-->
+                                        <div class="liehen">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--花盆-->
+                                        <div class="huapen">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--冰冻-->
+                                        <div class="bingdong">
+                                            <div class="level-1"></div>
+                                            <div class="level-2"></div>
+                                            <div class="level-3"></div>
+                                        </div>
+
+                                        <!--红杏-->
+                                        <div class="hongxing"></div>
+
+                                        <!--花-->
+                                        <div class="hua">
+                                            <div class="f-1"></div>
+                                            <div class="f-2"></div>
+                                            <div class="f-3"></div>
+                                            <div class="f-4"></div>
+                                            <div class="f-5"></div>
+                                            <div class="f-6"></div>
+                                            <div class="f-7"></div>
+                                            <div class="f-8"></div>
+                                            <div class="f-9"></div>
+                                            <div class="f-10"></div>
+                                            <div class="f-11"></div>
+                                            <div class="f-12"></div>
+                                        </div>
+
+                                        <!--折枝-->
+                                        <div class="zhezhi"></div>
+                                    </div>
+                                </div>
+                                <div class="yuansu">
+                                    <div class="yuansu-t"></div>
+                                    <div class="yuansu-c">
+                                        <ul>
+                                            <li><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果同时出现蝴蝶说明你是桃花很旺的人。</li>
+                                            <li><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，看错人，并在感情中存在不切实际的幻想。</li>
+                                            <li><span style="background-position: -10px -70px"></span>泡泡代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                            <li><span style="background-position: -70px -70px"></span>泡泡代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                            <li><span style="background-position: -10px -130px"></span>红杏代表你遭遇被劈腿的可能性很大。<a href="#">转运秘籍</a></li>
+                                            <li><span style="background-position: -70px -130px"></span>泡泡代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                            <li><span style="background-position: -10px -190px"></span>泡泡代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                            <li><span style="background-position: -70px -190px"></span>泡泡代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="x-right">
+                                <div class="x-right-t">个人信息</div>
+                                <div class="x-right-c">
+                                    <asp:Literal ID="ltrInfo" runat="server"></asp:Literal>
+                                </div>
+
+                                <div class="x-right-t">辅助分析</div>
+                                <div class="x-right-c">
+                                    <div class="per">
+                                        稳定指数：70%
+                <div class="c1"><span style="width: 90px"></span></div>
+                                    </div>
+                                    <div class="per">
+                                        魅力指数：70%
+                <div class="c2"><span style="width: 90px"></span></div>
+                                    </div>
+                                    <div class="per">
+                                        旺夫指数：70%
+                <div class="c3"><span style="width: 90px"></span></div>
+                                    </div>
+                                    <div class="per">
+                                        花心指数：70%
+                <div class="c4"><span style="width: 90px"></span></div>
+                                    </div>
+                                    <div class="per">
+                                        嫁个有钱人指数：70%
+                <div class="c5"><span style="width: 90px"></span></div>
                                     </div>
                                 </div>
 
-                                <!--泡泡-->
-                                <div class="paopao">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
+                                <div class="x-right-t">爱情攻略</div>
+                                <div class="x-right-c">
+                                    <ul>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                        <li><a href="#">如何打动金星双子座？</a></li>
+                                    </ul>
                                 </div>
 
-                                <!--蜜蜂-->
-                                <div class="mifeng">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
+                                <div class="shouting">
+                                    <div class="shouting-t">更多爱情占星攻略请关注</div>
+                                    <div class="shouting-c">
+                                        <ul>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                            <li>
+                                                <img src="img/img.jpg"><span>蓝雪鳳兒</span><a href="#">+收听</a></li>
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
                                 </div>
 
-                                <!--虫子-->
-                                <div class="chongzi">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
-                                </div>
-
-                                <!--醋-->
-                                <div class="cu">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
-                                </div>
-
-                                <!--裂痕-->
-                                <div class="liehen">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
-                                </div>
-
-                                <!--花盆-->
-                                <div class="huapen">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
-                                </div>
-
-                                <!--冰冻-->
-                                <div class="bingdong">
-                                    <div class="level-1"></div>
-                                    <div class="level-2"></div>
-                                    <div class="level-3"></div>
-                                </div>
-
-                                <!--红杏-->
-                                <div class="hongxing"></div>
-
-                                <!--花-->
-                                <div class="hua">
-                                    <div class="f-1"></div>
-                                    <div class="f-2"></div>
-                                    <div class="f-3"></div>
-                                    <div class="f-4"></div>
-                                    <div class="f-5"></div>
-                                    <div class="f-6"></div>
-                                    <div class="f-7"></div>
-                                    <div class="f-8"></div>
-                                    <div class="f-9"></div>
-                                    <div class="f-10"></div>
-                                    <div class="f-11"></div>
-                                    <div class="f-12"></div>
-                                </div>
-
-                                <!--折枝-->
-                                <div class="zhezhi"></div>
                             </div>
-                            <asp:Literal ID="Label1" runat="server"></asp:Literal>
+
+                            <div class="clear"></div>
                         </asp:View>
                     </asp:MultiView>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+        <asp:Literal ID="Label1" runat="server"></asp:Literal>
     </form>
 </body>
 </html>

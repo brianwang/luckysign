@@ -19,6 +19,12 @@ img{border:0;}
 
 .login-list{ margin-left:266px}
 
+.login-list li .select{ line-height:26px;float:left; margin-right:24px; font-size:13px;color:#000; font-family:"微软雅黑"; cursor:pointer; margin-top:3px}
+
+
+
+.select-a{width:50px;height:33px;float:left; margin-right:20px; display:block}
+
 .login-list li div.select{ background:#85c4c8; border:2px solid #fff;border-radius:5px; line-height:26px;float:left; padding:0px 5px; margin-right:20px; font-size:13px;color:#000; font-family:"微软雅黑"; cursor:pointer;position:relative}
 
 .login-list li div.select img{ margin-left:6px}
@@ -28,5 +34,3 @@ img{border:0;}
 .login-list li div.select .sub-nav a{color:#000; display:block;padding-left:5px; text-decoration:none}
 
 .login-list li div.select .sub-nav a:hover{ background:#fff}
-
-.select-a{width:50px;height:33px;float:left; margin-right:20px; display:block}

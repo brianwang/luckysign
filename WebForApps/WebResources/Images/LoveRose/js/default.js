@@ -1,6 +1,9 @@
 // JavaScript Document
 //png ie6兼容
 $(function(){
+	if($(".shouting-c").length!==0)
+	{$(".shouting-c li:odd").css("margin-left","20px")}
+	
 $(document).pngFix();
 })
 
