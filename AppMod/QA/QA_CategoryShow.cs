@@ -7,16 +7,16 @@ using System.Runtime.Serialization;
 namespace AppMod.QA
 {
     [DataContract]
-    public class QA_CategoryMod : IComparable<QA_CategoryMod>
+    public class QA_CategoryShow : IComparable<QA_CategoryShow>
     {
-        public QA_CategoryMod()
+        public QA_CategoryShow()
         {
             Init();
         }
 
 
 
-        #region 成员变量和公共属性
+        #region 基础属性
         private int _SysNo;
         private string _Name;
         private int _ParentSysNo;
@@ -93,6 +93,33 @@ namespace AppMod.QA
 
         #endregion
 
+        #region 扩展属性
+        private int _QuestNum;
+        [DataMember]
+        public int QuestNum
+        {
+            set { _QuestNum = value; }
+            get { return _QuestNum; }
+        }
+
+        private int _SolvedNum;
+        [DataMember]
+        public int SolvedNum
+        {
+            set { _SolvedNum = value; }
+            get { return _SolvedNum; }
+        }
+
+        private int _Replys;
+        [DataMember]
+        public int Replys
+        {
+            set { _Replys = value; }
+            get { return _Replys; }
+        }
+
+        #endregion
+
         public void Init()
         {
             SysNo = AppConst.IntNull;
@@ -113,7 +140,7 @@ namespace AppMod.QA
         /// </sumary> 
         /// <param name="other"></param> 
         /// <returns></returns> 
-        public int CompareTo(QA_CategoryMod other)
+        public int CompareTo(QA_CategoryShow other)
         {
             return SysNo.CompareTo(other.SysNo);
         }

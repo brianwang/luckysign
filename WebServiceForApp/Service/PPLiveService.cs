@@ -106,11 +106,11 @@ namespace WebServiceForApp
             //{
                 input.BirthTime = new PPLive.DateEntity(DateTime.Now);
                 input.Gender = AppEnum.Gender.male;
-                input.TransitTime = new DateEntity(DateTime.Now);
+                input.TransitTime = new DateEntity(new DateTime(2020,1,1));
             //}
 
             int[] _paras = {1,1,0,1};
-            input = ZiWeiBiz.GetInstance().TimeToZiWei(input.BirthTime, input.Gender, _paras);
+            input = ZiWeiBiz.GetInstance().TransitToZiWei(input.BirthTime,input.TransitTime, input.Gender, _paras);
             return ReturnValue<ZiWeiMod>.Get200OK(input);
         }
 

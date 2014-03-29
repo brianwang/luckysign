@@ -28,9 +28,9 @@ namespace AppDal.QA
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into QA_Category(");
-            strSql.Append("Name,ParentSysNo,TopSysNo,DR,TS)");
+            strSql.Append("Name,ParentSysNo,TopSysNo,DR,TS,Pic,Intro,OrderID)");
             strSql.Append(" values (");
-            strSql.Append("@Name,@ParentSysNo,@TopSysNo,@DR,@TS)");
+            strSql.Append("@Name,@ParentSysNo,@TopSysNo,@DR,@TS,@Pic,@Intro,@OrderID)");
             strSql.Append(";select @@IDENTITY");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -39,6 +39,9 @@ namespace AppDal.QA
                  new SqlParameter("@TopSysNo",SqlDbType.Int,4),
                  new SqlParameter("@DR",SqlDbType.TinyInt,1),
                  new SqlParameter("@TS",SqlDbType.DateTime),
+                 new SqlParameter("@Pic",SqlDbType.NVarChar,500),
+                 new SqlParameter("@Intro",SqlDbType.NVarChar,1000),
+                 new SqlParameter("@OrderID",SqlDbType.Int,4),
              };
             if (model.Name != AppConst.StringNull)
                 parameters[0].Value = model.Name;
@@ -65,7 +68,21 @@ namespace AppDal.QA
             else
                 parameters[4].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[4]);
-
+            if (model.Pic != AppConst.StringNull)
+                parameters[5].Value = model.Pic;
+            else
+                parameters[5].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[5]);
+            if (model.Intro != AppConst.StringNull)
+                parameters[6].Value = model.Intro;
+            else
+                parameters[6].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[6]);
+            if (model.OrderID != AppConst.IntNull)
+                parameters[7].Value = model.OrderID;
+            else
+                parameters[7].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[7]);
             return SqlHelper.ExecuteNonQuery(cmd,parameters);
         }
         /// <summary>
@@ -81,6 +98,9 @@ namespace AppDal.QA
             strSql.Append("TopSysNo=@TopSysNo,");
             strSql.Append("DR=@DR,");
             strSql.Append("TS=@TS");
+            strSql.Append("Pic=@Pic");
+            strSql.Append("Intro=@Intro");
+            strSql.Append("OrderID=@OrderID");
             strSql.Append(" where SysNo=@SysNo ");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -89,7 +109,10 @@ namespace AppDal.QA
                  new SqlParameter("@ParentSysNo",SqlDbType.Int,4),
                  new SqlParameter("@TopSysNo",SqlDbType.Int,4),
                  new SqlParameter("@DR",SqlDbType.TinyInt,1),
-                 new SqlParameter("@TS",SqlDbType.DateTime)
+                 new SqlParameter("@TS",SqlDbType.DateTime),
+                 new SqlParameter("@Pic",SqlDbType.NVarChar,500),
+                 new SqlParameter("@Intro",SqlDbType.NVarChar,1000),
+                 new SqlParameter("@OrderID",SqlDbType.Int,4),
              };
             if (model.SysNo != AppConst.IntNull)
                 parameters[0].Value = model.SysNo;
@@ -121,7 +144,22 @@ namespace AppDal.QA
             else
                 parameters[5].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[5]);
-            return SqlHelper.ExecuteNonQuery(cmd,parameters);
+            if (model.Pic != AppConst.StringNull)
+                parameters[6].Value = model.Pic;
+            else
+                parameters[6].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[6]);
+            if (model.Intro != AppConst.StringNull)
+                parameters[7].Value = model.Intro;
+            else
+                parameters[7].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[7]);
+            if (model.OrderID != AppConst.IntNull)
+                parameters[8].Value = model.OrderID;
+            else
+                parameters[8].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[8]);
+            return SqlHelper.ExecuteNonQuery(cmd, parameters);
         }
         /// <summary>
         /// 删除一条数据
@@ -145,7 +183,7 @@ namespace AppDal.QA
         public QA_CategoryMod GetModel(int SysNo)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select SysNo, Name, ParentSysNo, TopSysNo, DR, TS from  QA_Category");
+            strSql.Append("select SysNo, Name, ParentSysNo, TopSysNo, DR, TS, Pic, Intro, OrderID from QA_Category");
             strSql.Append(" where SysNo=@SysNo ");
             SqlParameter[] parameters = { 
 		new SqlParameter("@SysNo", SqlDbType.Int,4 )
@@ -175,6 +213,12 @@ namespace AppDal.QA
                 if (ds.Tables[0].Rows[0]["TS"].ToString() != "")
                 {
                     model.TS = DateTime.Parse(ds.Tables[0].Rows[0]["TS"].ToString());
+                }
+                model.Pic = ds.Tables[0].Rows[0]["Pic"].ToString();
+                model.Intro = ds.Tables[0].Rows[0]["Intro"].ToString();
+                if (ds.Tables[0].Rows[0]["OrderID"].ToString() != "")
+                {
+                    model.OrderID = int.Parse(ds.Tables[0].Rows[0]["OrderID"].ToString());
                 }
                 return model;
             }

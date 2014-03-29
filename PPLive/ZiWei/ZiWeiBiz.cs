@@ -2018,6 +2018,10 @@ namespace PPLive.ZiWei
                 int firstdaygong = mod.LiuYueGong + (int)mod.TransitTime.NongliMonth % 100 - 1;
                 int xun = (int)mod.TransitTime.NongliDay / 12;
                 int thisday = (i - firstdaygong + 12) % 12 + 1 + xun * 12;
+                if (thisday <= 0)
+                {
+                    thisday += 12;
+                }
                 if (thisday > mod.TransitTime.NongliMonthDays)
                 {
                     thisday -= 12;
