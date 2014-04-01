@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using PPLive.Astro;
 using PPLive;
 using AppCmn;
+using AppMod.WebSys;
 using AppBll.WebSys;
 using AppBll.Apps;
 using AppMod.Apps;
@@ -37,7 +38,14 @@ namespace WebForApps.LoveRose
             m_astro.type = PublicValue.AstroType.benming;
             #region 设置实体各种参数
             m_astro.birth = DateTime.Parse(HiddenField4.Value);
-            m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(int.Parse(HiddenField2.Value)));
+            SYS_DistrictMod dis = SYS_DistrictBll.GetInstance().GetModel(int.Parse(HiddenField2.Value));
+            if (string.IsNullOrEmpty(dis.Latitude) || string.IsNullOrEmpty(dis.longitude))
+            {
+                SYS_DistrictMod tmp = SYS_DistrictBll.GetInstance().GetModel(dis.UpSysNo);
+                dis.Latitude = tmp.Latitude;
+                dis.longitude = tmp.longitude;
+            }
+            m_astro.position = new LatLng(dis);
             if (HiddenField1.Value=="1")
             {
                 m_astro.IsDaylight = AppEnum.BOOL.True;
@@ -114,6 +122,10 @@ namespace WebForApps.LoveRose
             }
             Label1.Text += "3.是否有红杏:" + (hongxing ? "有" : "没有") + "<br />";
             jsstr += "showItem('hongxing', " + (hongxing ? "1" : "0") + ");";
+            if (hongxing)
+            {
+                li5.Style["display"] = "";
+            }
             #endregion
 
             #region 蜜蜂
@@ -148,7 +160,8 @@ namespace WebForApps.LoveRose
             }
             
             Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
-            jsstr += "showItem('mifeng', " + (beecount+1>2 ? 3 : beecount) + ");";
+            jsstr += "showItem('mifeng', " + (beecount+1>2 ? 3 : beecount+1) + ");";
+            li1.Style["display"] = "";
             #endregion
 
             #region 花盆
@@ -246,11 +259,35 @@ namespace WebForApps.LoveRose
             }
             //Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
             jsstr += "showItem('liehen', " + (showele["liehen"] > 2 ? 3 : showele["liehen"]) + ");";
+            if (showele["liehen"] > 0)
+            {
+                li7.Style["display"] = "";
+            }
             jsstr += "showItem('paopao', " + (showele["paopao"] > 2 ? 3 : showele["paopao"]) + ");";
+            if (showele["paopao"] > 0)
+            {
+                li2.Style["display"] = "";
+            }
             jsstr += "showItem('chongzi', " + (showele["chongzi"] > 2 ? 3 : showele["liehen"]) + ");";
+            if (showele["chongzi"] > 0)
+            {
+                li4.Style["display"] = "";
+            }
             jsstr += "showItem('cu', " + (showele["cu"] > 2 ? 3 : showele["cu"]) + ");";
+            if (showele["cu"] > 0)
+            {
+                li8.Style["display"] = "";
+            }
             jsstr += "showItem('bingdong', " + (showele["bingdong"] > 2 ? 3 : showele["bingdong"]) + ");";
+            if (showele["bingdong"] > 0)
+            {
+                li6.Style["display"] = "";
+            }
             jsstr += "showItem('zhezhi', " + (showele["zhezhi"] > 0 ? 1 : 0) + ");";
+            if (showele["zhezhi"] > 0)
+            {
+                li3.Style["display"] = "";
+            }
             #endregion
 
             #region 花心指数
@@ -311,9 +348,7 @@ namespace WebForApps.LoveRose
                     所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
                     夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
                     <br />
-                    性别： "+ AppEnum.GetGender(m_astro.Gender)+@"
-                    <br />
-                    出生地： " + m_astro.position.name + @"
+                    出生地： " + m_astro.position.name.Remove(m_astro.position.name.LastIndexOf("-")) + @"
                     <br />
                     (经度" + m_astro.position.Lng + @"&nbsp;纬度" + m_astro.position.Lat + @")
                     <br />";
@@ -592,6 +627,19 @@ namespace WebForApps.LoveRose
                 ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "refresh", "refreshdistrict();", true);
             }
             //UpdatePanel2.Update();
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ltrTipTitle.Text = "天王星：冰冻";
+            ltrTipContent.Text = "冰冻是影响你恋爱与婚姻的不利因素，代表你在恋爱或婚姻中可能出现以下问题：恋爱次数较多，容易频繁的分手，每一次都轰轰烈烈，但都难有完美的结局；试图改造对方，忽略对方的感受；遇到问题，固执己见，不沟通冷暴力，不想问对方也懒得听解释；突然的分手或离婚。如果只是少量冰冻，并无大碍，需要增进与对方的沟通交流，彼此分享快乐，分担忧愁；如果爱情花中还同时出现醋瓶，折枝，裂痕，泡泡，虫子，黄叶等其他不利因素（出现的越多暗示你的婚姻问题就越严重），可能情路坎坷，婚姻不幸，渐行渐远，难以圆满。";
+            tip.Style["display"] = "";
+
         }
 
         

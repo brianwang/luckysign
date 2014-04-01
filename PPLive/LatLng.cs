@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using AppMod.WebSys;
 using System.Runtime.Serialization;
+using System.Data;
+using AppBll.WebSys;
 
 namespace PPLive
 {
@@ -36,7 +38,18 @@ namespace PPLive
                 {
                     Lng = longitude.ToString("0.00").Replace(".", "E");
                 }
-                name = area.EnglishName;
+                DataTable m_dt = SYS_DistrictBll.GetInstance().GetTreeDetail(area.SysNo);
+                StringBuilder m_sb = new StringBuilder();
+                m_sb.Append(m_dt.Rows[0]["Name1"].ToString());
+                if (!string.IsNullOrEmpty(m_dt.Rows[0]["Name2"].ToString()))
+                {
+                    m_sb.Append("-").Append(m_dt.Rows[0]["Name2"].ToString());
+                }
+                if (!string.IsNullOrEmpty(m_dt.Rows[0]["Name3"].ToString()))
+                {
+                    m_sb.Append("-").Append(m_dt.Rows[0]["Name3"].ToString());
+                }
+                name = m_sb.ToString();
             }
             catch { }
         }
