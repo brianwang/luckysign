@@ -295,7 +295,7 @@
                                         <asp:HiddenField ID="HiddenField5" runat="server" />
                                         <asp:Button ID="Button1" runat="server" Text="" OnClick="Button1_Click" style="display:none;" />
                                         <!--泡泡-->
-                                        <div onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" class="paopao" style="cursor:pointer" >
+                                        <div onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" class="paopao" style="cursor:pointer" >
                                             <div class="level-1"></div>
                                             <div class="level-2"></div>
                                             <div class="level-3"></div>
@@ -309,21 +309,21 @@
                                         </div>
 
                                         <!--虫子-->
-                                        <div class="chongzi">
+                                        <div class="chongzi" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();" style="cursor:pointer">
                                             <div class="level-1"></div>
                                             <div class="level-2"></div>
                                             <div class="level-3"></div>
                                         </div>
 
                                         <!--醋-->
-                                        <div class="cu">
+                                        <div class="cu" onclick="javascript:<%=HiddenField5.ClientID %>.value='17';<%=Button1.ClientID %>.click();" style="cursor:pointer">
                                             <div class="level-1"></div>
                                             <div class="level-2"></div>
                                             <div class="level-3"></div>
                                         </div>
 
                                         <!--裂痕-->
-                                        <div class="liehen">
+                                        <div class="liehen" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor:pointer">
                                             <div class="level-1"></div>
                                             <div class="level-2"></div>
                                             <div class="level-3"></div>
@@ -337,17 +337,17 @@
                                         </div>
 
                                         <!--冰冻-->
-                                        <div class="bingdong">
+                                        <div class="bingdong" onclick="javascript:<%=HiddenField5.ClientID %>.value='11';<%=Button1.ClientID %>.click();" style="cursor:pointer">
                                             <div class="level-1"></div>
                                             <div class="level-2"></div>
                                             <div class="level-3"></div>
                                         </div>
 
                                         <!--红杏-->
-                                        <div class="hongxing"></div>
+                                        <div class="hongxing" onclick="javascript:<%=HiddenField5.ClientID %>.value='3';<%=Button1.ClientID %>.click();" style="cursor:pointer"></div>
 
                                         <!--花-->
-                                        <div class="hua">
+                                        <div class="hua" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor:pointer">
                                             <div class="f-1"></div>
                                             <div class="f-2"></div>
                                             <div class="f-3"></div>
@@ -363,7 +363,7 @@
                                         </div>
 
                                         <!--折枝-->
-                                        <div class="zhezhi"></div>
+                                        <div class="zhezhi" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();" style="cursor:pointer"></div>
                                     </div>
                                 </div>
                                 <div class="yuansu">
