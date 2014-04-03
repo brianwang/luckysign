@@ -170,7 +170,7 @@ namespace WebForApps.LoveRose
             jsstr += "showItem('huapen', " + (int)m_star[PublicValue.AstroStar.Jun].Constellation % 3 + 1 + ");";
             #endregion
 
-            #region 裂痕
+            #region 负面
             Dictionary<string, int> showele = new Dictionary<string, int>();
             showele.Add("paopao", 0);
             showele.Add("chongzi", 0);
@@ -289,6 +289,8 @@ namespace WebForApps.LoveRose
             {
                 li3.Style["display"] = "";
             }
+
+            Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
             #endregion
 
             #region 花心指数
@@ -634,6 +636,7 @@ namespace WebForApps.LoveRose
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "", "initialselect();", true);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
