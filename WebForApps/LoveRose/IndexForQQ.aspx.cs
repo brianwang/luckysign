@@ -84,22 +84,54 @@ namespace WebForApps.LoveRose
             goodstars.Add(PublicValue.AstroStar.Jup);
             goodstars.Add(PublicValue.AstroStar.Ven);
             //凶星
-            List<PublicValue.AstroStar> badstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12, false);
-            List<PublicValue.AstroStar> eight = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12, false);
+            Dictionary<PublicValue.AstroStar, int> badstars = new Dictionary<PublicValue.AstroStar, int>();
+            List<PublicValue.AstroStar> tmpbad = new List<PublicValue.AstroStar>();
+            tmpbad.Add(PublicValue.AstroStar.Mar);
+            tmpbad.Add(PublicValue.AstroStar.Sat);
+            tmpbad.Add(PublicValue.AstroStar.Ura);
+            tmpbad.Add(PublicValue.AstroStar.Nep);
+            tmpbad.Add(PublicValue.AstroStar.Plu);
+            List<PublicValue.AstroStar> twelve = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12, false);
+            List<PublicValue.AstroStar> eight = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 8, false);
+            foreach (PublicValue.AstroStar tmp in tmpbad)
+            {
+                badstars.Add(tmp, 1);
+            }
             foreach (PublicValue.AstroStar tmp in eight)
             {
-                badstars.Add(tmp);
+                if (!tmpbad.Contains(tmp))
+                {
+                    badstars.Add(tmp, 1);
+                }
+                else
+                {
+                    badstars[tmp]++;
+                }
+            }
+            foreach (PublicValue.AstroStar tmp in twelve)
+            {
+                if (!tmpbad.Contains(tmp))
+                {
+                    badstars.Add(tmp, 1);
+                }
+                else
+                {
+                    badstars[tmp]++;
+                }
             }
             List<PublicValue.AstroStar> mingzhu = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 1, false);
             foreach (PublicValue.AstroStar tmp in mingzhu)
             {
-                badstars.Add(tmp);
+                if (!tmpbad.Contains(tmp))
+                {
+                    badstars.Add(tmp, 1);
+                }
+                else
+                {
+                    badstars[tmp]++;
+                }
             }
-            badstars.Add(PublicValue.AstroStar.Sat);
-            badstars.Add(PublicValue.AstroStar.Ura);
-            badstars.Add(PublicValue.AstroStar.Nep);
-            badstars.Add(PublicValue.AstroStar.Plu);
-            badstars = badstars.Distinct().ToList();
+            
 
             #region 花
             Label1.Text = "1.金星星座为：" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Ven].Constellation) + "<br/>";
@@ -115,14 +147,16 @@ namespace WebForApps.LoveRose
 
             #region 红杏
             bool hongxing = false;
-            if (PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.he, AppConst.IntNull)
-                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.chong, AppConst.IntNull)
-                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.xing, AppConst.IntNull))
+            if (PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.he, AppConst.DecimalNull)
+                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.chong, AppConst.DecimalNull)
+                || PublicDeal.GetInstance().HasPhase(m_star[PublicValue.AstroStar.Ven], m_star[PublicValue.AstroStar.Jun], PublicValue.Phase.xing, AppConst.DecimalNull))
             {
                 hongxing = true;
             }
-            Label1.Text += "3.是否有红杏:" + (hongxing ? "有" : "没有") + "<br />";
-            jsstr += "showItem('hongxing', " + (hongxing ? "1" : "0") + ");";
+            //Label1.Text += "金星：" + ((int)m_star[PublicValue.AstroStar.Ven].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Ven].Degree + " " + m_star[PublicValue.AstroStar.Ven].Cent / 60 * 100;
+            //Label1.Text += "婚神：" + ((int)m_star[PublicValue.AstroStar.Jun].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Jun].Degree + " " + m_star[PublicValue.AstroStar.Jun].Cent / 60 * 100;
+            Label1.Text += "3.是否有红杏:" + (hongxing==true ? "有" : "没有") + "<br />";
+            jsstr += "showItem('hongxing', " + (hongxing == true ? "1" : "0") + ");";
             if (hongxing)
             {
                 li5.Style["display"] = "";
@@ -134,6 +168,12 @@ namespace WebForApps.LoveRose
             List<PublicValue.AstroStar> beestars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
             Label1.Text += "7宫主：";
             foreach (PublicValue.AstroStar tmpstar in beestars)
+            {
+                Label1.Text += PublicValue.GetAstroStar(tmpstar);
+            }
+            Label1.Text += "<br />";
+            Label1.Text += "凶星：";
+            foreach (PublicValue.AstroStar tmpstar in badstars.Keys)
             {
                 Label1.Text += PublicValue.GetAstroStar(tmpstar);
             }
@@ -167,7 +207,7 @@ namespace WebForApps.LoveRose
 
             #region 花盆
             Label1.Text += "5.花盆为:" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Jun].Constellation) + "<br />";
-            jsstr += "showItem('huapen', " + (int)m_star[PublicValue.AstroStar.Jun].Constellation % 3 + 1 + ");";
+            jsstr += "showItem('huapen', " + ((int)m_star[PublicValue.AstroStar.Jun].Constellation % 3 + 1) + ");";
             #endregion
 
             #region 负面
@@ -184,62 +224,74 @@ namespace WebForApps.LoveRose
             breakstars.Add(PublicValue.AstroStar.Jun);
             breakstars.Add(PublicValue.AstroStar.Des);
             breakstars = breakstars.Distinct().ToList();
-            foreach (PublicValue.AstroStar tmp in breakstars)
+            foreach (PublicValue.AstroStar tmp in badstars.Keys)
             {
                 //if (tmp != goodstars[0])
                 //    continue;
                 int tmpflag = 0;
-                for (int i = 0; i < badstars.Count; i++)
+                for (int i = 0; i < breakstars.Count; i++)
                 {
-                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[tmp], m_star[badstars[i]]))
+                    if (PublicDeal.GetInstance().HasAnyBadPhase(m_star[tmp], m_star[breakstars[i]]))
                     {
+                        bool Exact = false;
+                        if (PublicDeal.GetInstance().HasAnyBadPhase(m_star[tmp], m_star[breakstars[i]], 1))
+                        {
+                            Exact = true;
+                        }
                         switch (tmp)
                         {
                             case PublicValue.AstroStar.Mar:
-                                showele["zhezhi"]++;
+                            case PublicValue.AstroStar.Sun:
+                                showele["zhezhi"]+=badstars[tmp];
+                                if (Exact)
+                                    showele["zhezhi"]++;
                                 break;
                             case PublicValue.AstroStar.Jup:
+                            case PublicValue.AstroStar.Ven:
                                 //showele["zhezhi"]++;
                                 break;
                             case PublicValue.AstroStar.Sat:
-                                showele["liehen"]++;
-                                break;
-                            case PublicValue.AstroStar.Ven:
-                                //showele["liehen"]++;
+                                showele["liehen"] += badstars[tmp];
+                                if (Exact)
+                                    showele["liehen"]++;
                                 break;
                             case PublicValue.AstroStar.Ura:
-                                showele["bingdong"]++;
+                                showele["bingdong"] += badstars[tmp];
+                                if (Exact)
+                                    showele["bingdong"]++;
                                 break;
                             case PublicValue.AstroStar.Nep:
-                                showele["paopao"]++;
+                                showele["paopao"] += badstars[tmp];
+                                if (Exact)
+                                    showele["paopao"]++;
                                 break;
                             case PublicValue.AstroStar.Plu:
-                                showele["cu"]++;
+                            case PublicValue.AstroStar.Moo:
+                                showele["cu"] += badstars[tmp];
+                                if (Exact)
+                                    showele["cu"]++;
                                 break;
                             case PublicValue.AstroStar.Mer:
-                                showele["chongzi"]++;
+                                showele["chongzi"] += badstars[tmp];
+                                if (Exact)
+                                    showele["chongzi"]++;
                                 break;
                         }
-                        if (tmpflag == 0)
+                        tmpflag++;
+                        if(tmpflag > 1)
                         {
-                            tmpflag++;
-                        }
-                        else
-                        {
-                            tmpflag = 0;
                             switch (tmp)
                             {
                                 case PublicValue.AstroStar.Mar:
+                                case PublicValue.AstroStar.Sun:
                                     showele["zhezhi"]++;
                                     break;
                                 case PublicValue.AstroStar.Jup:
+                                case PublicValue.AstroStar.Ven:
                                     //showele["zhezhi"]++;
                                     break;
                                 case PublicValue.AstroStar.Sat:
                                     showele["liehen"]++;
-                                    break;
-                                case PublicValue.AstroStar.Ven:
-                                    //showele["liehen"]++;
                                     break;
                                 case PublicValue.AstroStar.Ura:
                                     showele["bingdong"]++;
@@ -248,6 +300,7 @@ namespace WebForApps.LoveRose
                                     showele["paopao"]++;
                                     break;
                                 case PublicValue.AstroStar.Plu:
+                                case PublicValue.AstroStar.Moo:
                                     showele["cu"]++;
                                     break;
                                 case PublicValue.AstroStar.Mer:
@@ -255,11 +308,12 @@ namespace WebForApps.LoveRose
                                     break;
                             }
                         }
+                        
                     }
                 }
             }
             //Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
-            jsstr += "showItem('liehen', " + (showele["liehen"] > 2 ? 3 : showele["liehen"]) + ");";
+            jsstr += "showItem('liehen', " + (showele["liehen"] > 1 ? 2 : showele["liehen"]) + ");";
             if (showele["liehen"] > 0)
             {
                 li7.Style["display"] = "";
@@ -269,7 +323,7 @@ namespace WebForApps.LoveRose
             {
                 li2.Style["display"] = "";
             }
-            jsstr += "showItem('chongzi', " + (showele["chongzi"] > 2 ? 3 : showele["liehen"]) + ");";
+            jsstr += "showItem('chongzi', " + (showele["chongzi"] > 2 ? 3 : showele["chongzi"]) + ");";
             if (showele["chongzi"] > 0)
             {
                 li4.Style["display"] = "";

@@ -451,25 +451,25 @@ namespace PPLive
                 switch (phase)
                 {
                     case PublicValue.Phase.he:
-                        offset = 5;
+                        offset = 10;
                         break;
                     case PublicValue.Phase.xing:
-                        offset = 4;
+                        offset = 8;
                         break;
                     case PublicValue.Phase.chong:
-                        offset = 4;
+                        offset = 8;
                         break;
                     case PublicValue.Phase.gong:
-                        offset = 4;
+                        offset = 8;
                         break;
                     case PublicValue.Phase.bangong:
-                        offset = (decimal)2.5;
+                        offset = 5;
                         break;
                 }
             }
 
-            decimal degreeA = ((int)a.Constellation) * 30 + a.Degree + a.Cent / 60 * 100;
-            decimal degreeB = ((int)b.Constellation) * 30 + b.Degree + b.Cent / 60 * 100;
+            decimal degreeA = ((int)a.Constellation-1) * 30 + a.Degree + a.Cent / 60;
+            decimal degreeB = ((int)b.Constellation-1) * 30 + b.Degree + b.Cent / 60;
 
             decimal angle = Math.Abs(degreeA - degreeB);
             if (angle > 180)
@@ -506,6 +506,51 @@ namespace PPLive
                 return false;
             }
         }
+        public bool HasAnyMainPhase(Star a, Star b, decimal offset)
+        {
+            if (HasPhase(a, b, PublicValue.Phase.he, offset) || HasPhase(a, b, PublicValue.Phase.chong, offset)
+                || HasPhase(a, b, PublicValue.Phase.xing, offset) || HasPhase(a, b, PublicValue.Phase.gong, offset)
+                || HasPhase(a, b, PublicValue.Phase.bangong, offset))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 是否有任何负相位，0,90,180
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public bool HasAnyBadPhase(Star a, Star b)
+        {
+            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull)
+                || HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool HasAnyBadPhase(Star a, Star b, decimal offset)
+        {
+            if (HasPhase(a, b, PublicValue.Phase.he, offset) || HasPhase(a, b, PublicValue.Phase.chong, offset)
+                || HasPhase(a, b, PublicValue.Phase.xing, offset))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// 获取宫主星
