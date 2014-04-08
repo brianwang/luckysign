@@ -101,6 +101,7 @@ namespace WebForApps.LoveRose
             {
                 if (!tmpbad.Contains(tmp))
                 {
+                    if (!badstars.ContainsKey(tmp))
                     badstars.Add(tmp, 1);
                 }
                 else
@@ -112,6 +113,7 @@ namespace WebForApps.LoveRose
             {
                 if (!tmpbad.Contains(tmp))
                 {
+                    if (!badstars.ContainsKey(tmp))
                     badstars.Add(tmp, 1);
                 }
                 else
@@ -124,6 +126,7 @@ namespace WebForApps.LoveRose
             {
                 if (!tmpbad.Contains(tmp))
                 {
+                    if (!badstars.ContainsKey(tmp))
                     badstars.Add(tmp, 1);
                 }
                 else
@@ -216,6 +219,7 @@ namespace WebForApps.LoveRose
             showele.Add("liehen", 0);
             showele.Add("bingdong", 0);
             showele.Add("zhezhi", 0);
+            showele.Add("kuye", 0);
 
             List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
             breakstars.Add(PublicValue.AstroStar.Ven);
@@ -246,7 +250,9 @@ namespace WebForApps.LoveRose
                                 break;
                             case PublicValue.AstroStar.Jup:
                             case PublicValue.AstroStar.Ven:
-                                //showele["zhezhi"]++;
+                                showele["kuye"] += badstars[tmp];
+                                    if (Exact)
+                                        showele["kuye"]++;
                                 break;
                             case PublicValue.AstroStar.Sat:
                                 showele["liehen"] += badstars[tmp];
@@ -286,7 +292,7 @@ namespace WebForApps.LoveRose
                                     break;
                                 case PublicValue.AstroStar.Jup:
                                 case PublicValue.AstroStar.Ven:
-                                    //showele["zhezhi"]++;
+                                    showele["kuye"]++;
                                     break;
                                 case PublicValue.AstroStar.Sat:
                                     showele["liehen"]++;
