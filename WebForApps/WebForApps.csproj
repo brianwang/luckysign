@@ -77,6 +77,7 @@
     <Content Include="LoveRose\IndexForQQ.aspx" />
     <Content Include="LoveRose\LoveRose.swf" />
     <Content Include="AstroDice\RecievePic.aspx" />
+    <Content Include="LoveRose\Count.aspx" />
     <Content Include="Venus\IndexForQQt.aspx" />
     <Content Include="WebResources\Images\AstroDice\2_06.jpg" />
     <Content Include="WebResources\Images\AstroDice\3_06.jpg" />
@@ -190,6 +191,7 @@
     <Content Include="WebResources\Images\LoveRose\img\hp1.png" />
     <Content Include="WebResources\Images\LoveRose\img\hp2.png" />
     <Content Include="WebResources\Images\LoveRose\img\hp3.png" />
+    <Content Include="WebResources\Images\LoveRose\img\iamsnowsnow.jpg" />
     <Content Include="WebResources\Images\LoveRose\img\ico.png" />
     <Content Include="WebResources\Images\LoveRose\img\img.jpg" />
     <Content Include="WebResources\Images\LoveRose\img\kuang.png" />
@@ -207,7 +209,9 @@
     <Content Include="WebResources\Images\LoveRose\img\r_bg.gif" />
     <Content Include="WebResources\Images\LoveRose\img\r_t.gif" />
     <Content Include="WebResources\Images\LoveRose\img\top.gif" />
+    <Content Include="WebResources\Images\LoveRose\img\txxz.jpg" />
     <Content Include="WebResources\Images\LoveRose\img\zhezhi.png" />
+    <Content Include="WebResources\Images\LoveRose\img\zxxt.jpg" />
     <Content Include="WebResources\Images\LoveRose\js\default.js" />
     <Content Include="WebResources\Images\LoveRose\js\jquery-1.3.2.min.js" />
     <Content Include="WebResources\Images\LoveRose\js\jquery.pngFix.pack.js" />
@@ -292,6 +296,13 @@
     </Compile>
     <Compile Include="LoveRose\IndexForQQ.aspx.designer.cs">
       <DependentUpon>IndexForQQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoveRose\Count.aspx.cs">
+      <DependentUpon>Count.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoveRose\Count.aspx.designer.cs">
+      <DependentUpon>Count.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master\MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

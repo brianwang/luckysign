@@ -258,7 +258,7 @@
                                             <li>
                                                 <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/img.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
@@ -433,7 +433,7 @@
                                             <li>
                                                 <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/img.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
