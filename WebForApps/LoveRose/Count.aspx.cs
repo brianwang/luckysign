@@ -25,7 +25,7 @@ namespace WebForApps.LoveRose
         protected void Button1_Click(object sender, EventArgs e)
         {
             DateTime now = DatePicker1.SelectedTime;
-            Dictionary<string, Dictionary<int, int>> result = new Dictionary<string, Dictionary<int, int>>();
+            Dictionary<string, SortedDictionary<int, int>> result = new Dictionary<string, SortedDictionary<int, int>>();
             int count = 0;
             for (DateTime tmpnow = now; tmpnow < now.AddYears(1); tmpnow = tmpnow.AddHours(1))
             {
@@ -86,7 +86,7 @@ namespace WebForApps.LoveRose
                 {
                     if (!tmpbad.Contains(tmp))
                     {
-                        if (badstars.ContainsKey(tmp))
+                        if (!badstars.ContainsKey(tmp))
                             badstars.Add(tmp, 1);
                     }
                     else
@@ -98,7 +98,7 @@ namespace WebForApps.LoveRose
                 {
                     if (!tmpbad.Contains(tmp))
                     {
-                        if (badstars.ContainsKey(tmp))
+                        if (!badstars.ContainsKey(tmp))
                             badstars.Add(tmp, 1);
                     }
                     else
@@ -111,7 +111,7 @@ namespace WebForApps.LoveRose
                 {
                     if (!tmpbad.Contains(tmp))
                     {
-                        if (badstars.ContainsKey(tmp))
+                        if (!badstars.ContainsKey(tmp))
                             badstars.Add(tmp, 1);
                     }
                     else
@@ -131,7 +131,7 @@ namespace WebForApps.LoveRose
                 }
                 if (!result.ContainsKey("红杏"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     tmpdic.Add(0, 0);
                     tmpdic.Add(1, 0);
                     result.Add("红杏", tmpdic);
@@ -172,7 +172,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("蜜蜂"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("蜜蜂", tmpdic);
                 }
                 if (!result["蜜蜂"].ContainsKey(beecount))
@@ -194,6 +194,7 @@ namespace WebForApps.LoveRose
                 showele.Add("liehen", 0);
                 showele.Add("bingdong", 0);
                 showele.Add("zhezhi", 0);
+                showele.Add("kuye", 0);
 
                 List<PublicValue.AstroStar> breakstars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
                 breakstars.Add(PublicValue.AstroStar.Ven);
@@ -224,7 +225,9 @@ namespace WebForApps.LoveRose
                                     break;
                                 case PublicValue.AstroStar.Jup:
                                 case PublicValue.AstroStar.Ven:
-                                    //showele["zhezhi"]++;
+                                    showele["kuye"] += badstars[tmp];
+                                    if (Exact)
+                                        showele["kuye"]++;
                                     break;
                                 case PublicValue.AstroStar.Sat:
                                     showele["liehen"] += badstars[tmp];
@@ -264,7 +267,7 @@ namespace WebForApps.LoveRose
                                         break;
                                     case PublicValue.AstroStar.Jup:
                                     case PublicValue.AstroStar.Ven:
-                                        //showele["zhezhi"]++;
+                                        showele["kuye"]++;
                                         break;
                                     case PublicValue.AstroStar.Sat:
                                         showele["liehen"]++;
@@ -290,7 +293,7 @@ namespace WebForApps.LoveRose
                 }
                 if (!result.ContainsKey("泡泡"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("泡泡", tmpdic);
                 }
                 if (!result["泡泡"].ContainsKey(showele["paopao"]))
@@ -301,7 +304,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("虫子"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("虫子", tmpdic);
                 }
                 if (!result["虫子"].ContainsKey(showele["chongzi"]))
@@ -312,7 +315,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("醋"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("醋", tmpdic);
                 }
                 if (!result["醋"].ContainsKey(showele["cu"]))
@@ -323,7 +326,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("裂痕"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("裂痕", tmpdic);
                 }
                 if (!result["裂痕"].ContainsKey(showele["liehen"]))
@@ -334,7 +337,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("冰冻"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("冰冻", tmpdic);
                 }
                 if (!result["冰冻"].ContainsKey(showele["bingdong"]))
@@ -345,7 +348,7 @@ namespace WebForApps.LoveRose
 
                 if (!result.ContainsKey("折枝"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("折枝", tmpdic);
                 }
                 if (!result["折枝"].ContainsKey(showele["zhezhi"]))
@@ -354,12 +357,23 @@ namespace WebForApps.LoveRose
                 }
                 result["折枝"][showele["zhezhi"]]++;
 
+                if (!result.ContainsKey("枯叶"))
+                {
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
+                    result.Add("枯叶", tmpdic);
+                }
+                if (!result["枯叶"].ContainsKey(showele["kuye"]))
+                {
+                    result["枯叶"].Add(showele["kuye"], 0);
+                }
+                result["枯叶"][showele["kuye"]]++;
+
                 if (!result.ContainsKey("总负面"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("总负面", tmpdic);
                 }
-                int tmpbadd = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"];
+                int tmpbadd = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"] + showele["kuye"];
                 if (!result["总负面"].ContainsKey(tmpbadd))
                 {
                     result["总负面"].Add(tmpbadd, 0);
@@ -391,7 +405,7 @@ namespace WebForApps.LoveRose
                 }
                 if (!result.ContainsKey("花心"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("花心", tmpdic);
                 }
                 if (!result["花心"].ContainsKey(flowercount))
@@ -406,7 +420,7 @@ namespace WebForApps.LoveRose
                 List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true); ;
                 if (!result.ContainsKey("对方有钱"))
                 {
-                    Dictionary<int, int> tmpdic = new Dictionary<int, int>();
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
                     result.Add("对方有钱", tmpdic);
                 }
                 if (!result["对方有钱"].ContainsKey(richcount))
@@ -420,11 +434,12 @@ namespace WebForApps.LoveRose
             }
             #region 打印
             Label1.Text = now.ToString("yyyy-MM-dd") + "至" + DatePicker1.SelectedTime.ToString("yyyy-MM-dd") + "<br />";
-            foreach (KeyValuePair<string, Dictionary<int, int>> s in result)
+            foreach (KeyValuePair<string, SortedDictionary<int, int>> s in result)
             {
                 Label1.Text += s.Key + "：<br />";
                 foreach (KeyValuePair<int, int> ss in s.Value)
                 {
+                    
                     Label1.Text += ss.Key + "：" + ss.Value + "个<br />";
                 }
             }
