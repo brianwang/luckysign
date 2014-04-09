@@ -55,14 +55,12 @@ namespace AppMod.QA
             get { return _TopSysNo; }
         }
 
-        [DataMember]
         public int DR
         {
             set { _DR = value; }
             get { return _DR; }
         }
 
-        [DataMember]
         public DateTime TS
         {
             set { _TS = value; }
