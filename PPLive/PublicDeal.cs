@@ -488,16 +488,18 @@ namespace PPLive
         }
 
         /// <summary>
-        /// 是否有任何主相位，0,60,90,120,180
+        /// 是否有任何主相位，0,60,90,120,180，四轴只判定合相
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
         public bool HasAnyMainPhase(Star a, Star b)
         {
-            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull)
-                || HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.gong, AppConst.DecimalNull)
-                || HasPhase(a, b, PublicValue.Phase.bangong, AppConst.DecimalNull))
+            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) 
+                || (HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.gong, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.bangong, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33)))
             {
                 return true;
             }
@@ -508,9 +510,11 @@ namespace PPLive
         }
         public bool HasAnyMainPhase(Star a, Star b, decimal offset)
         {
-            if (HasPhase(a, b, PublicValue.Phase.he, offset) || HasPhase(a, b, PublicValue.Phase.chong, offset)
-                || HasPhase(a, b, PublicValue.Phase.xing, offset) || HasPhase(a, b, PublicValue.Phase.gong, offset)
-                || HasPhase(a, b, PublicValue.Phase.bangong, offset))
+            if (HasPhase(a, b, PublicValue.Phase.he, offset) 
+                || (HasPhase(a, b, PublicValue.Phase.chong, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.xing, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.gong, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.bangong, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33)))
             {
                 return true;
             }
@@ -521,15 +525,15 @@ namespace PPLive
         }
 
         /// <summary>
-        /// 是否有任何负相位，0,90,180
+        /// 是否有任何负相位，0,90,180，四轴只判定合相
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
         public bool HasAnyBadPhase(Star a, Star b)
         {
-            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) || HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull)
-                || HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull))
+            if (HasPhase(a, b, PublicValue.Phase.he, AppConst.DecimalNull) || (HasPhase(a, b, PublicValue.Phase.chong, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.xing, AppConst.DecimalNull) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33)))
             {
                 return true;
             }
@@ -540,8 +544,8 @@ namespace PPLive
         }
         public bool HasAnyBadPhase(Star a, Star b, decimal offset)
         {
-            if (HasPhase(a, b, PublicValue.Phase.he, offset) || HasPhase(a, b, PublicValue.Phase.chong, offset)
-                || HasPhase(a, b, PublicValue.Phase.xing, offset))
+            if (HasPhase(a, b, PublicValue.Phase.he, offset) || (HasPhase(a, b, PublicValue.Phase.chong, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33))
+                || (HasPhase(a, b, PublicValue.Phase.xing, offset) && !((int)a.StarName > 20 && (int)a.StarName < 33) && !((int)b.StarName > 20 && (int)b.StarName < 33)))
             {
                 return true;
             }
