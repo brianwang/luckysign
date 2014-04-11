@@ -82,6 +82,7 @@ namespace AppBll.QA
                       ,[LastReplyTime]
                       ,[LastReplyUser]
                       ,[ReplyCount]
+                      ,[ReadCount]
                       ,QA_Question.[DR]
                       ,QA_Question.[TS]
                       ,a.NickName
@@ -90,7 +91,7 @@ namespace AppBll.QA
                       ,b.Photo as ReplyPhoto";
             tables = "QA_Question left join USR_Customer a on CustomerSysNo=a.SysNo left join USR_Customer b on LastReplyUser=b.SysNo";
             where = "dr=" + (int)AppEnum.State.normal;
-            if (key != "")
+            if (!string.IsNullOrEmpty(key))
             {
                 where += " and (";
                 string[] tmpstr = key.Split(new char[] { ' ' });
@@ -137,6 +138,10 @@ namespace AppBll.QA
             else if (orderby == "pointup")
             {
                 order = "Award asc";
+            }
+            else
+            {
+                order = "QA_Question.LastReplyTime desc";
             }
             
             #endregion

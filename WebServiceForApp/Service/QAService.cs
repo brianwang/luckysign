@@ -39,6 +39,10 @@ namespace WebServiceForApp
                 {
                     tmp_cate.Pic = Container.ConfigService.GetAppSetting<string>("WebResourcesPath","") + "img/CatePic/" + tmp_cate.Pic;
                 }
+                if (tmp_cate.TopSysNo == 1)
+                {
+                    tmp_cate.Pic = tmp_cate.Pic.Replace("pp", "p");
+                }
                 for (int j = 0; j < questnum.Rows.Count; j++)
                 {
                     if (questnum.Rows[j]["CateSysNo"].ToString() == tmp_cate.SysNo.ToString())
@@ -348,15 +352,33 @@ namespace WebServiceForApp
         public QA_CategoryShow MapQA_Category(DataRow input)
         {
             QA_CategoryShow ret = new QA_CategoryShow();
-            ret.DR = int.Parse(input["DR"].ToString());
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
             ret.Name = input["Name"].ToString();
-            ret.ParentSysNo = int.Parse(input["ParentSysNo"].ToString());
-            ret.SysNo = int.Parse(input["SysNo"].ToString());
-            ret.TopSysNo = int.Parse(input["TopSysNo"].ToString());
-            ret.TS = DateTime.Parse(input["TS"].ToString());
+            if (input["ParentSysNo"].ToString()!="")
+            {
+                ret.ParentSysNo = int.Parse(input["ParentSysNo"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["TopSysNo"].ToString() != "")
+            {
+                ret.TopSysNo = int.Parse(input["TopSysNo"].ToString());
+            }
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
             ret.Pic = input["Pic"].ToString();
             ret.Intro = input["Intro"].ToString();
-            ret.OrderID = int.Parse(input["OrderID"].ToString());
+            if (input["OrderID"].ToString() != "")
+            {
+                ret.OrderID = int.Parse(input["OrderID"].ToString());
+            }
             return ret;
         }
 
@@ -364,23 +386,56 @@ namespace WebServiceForApp
         {
             QA_QuestionShowMini ret = new QA_QuestionShowMini();
             USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
-            ret.Award = int.Parse(input["Award"].ToString());
-            ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
+            if (input["Award"].ToString() != "")
+            {
+                ret.Award = int.Parse(input["Award"].ToString());
+            }
+            if (input["CateSysNo"].ToString() != "")
+            {
+                ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
+            }
             ret.Chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
             ret.Context = input["Context"].ToString();
             ret.CustomerNickName = m_customer.NickName;
             ret.CustomerPhoto = m_customer.Photo;
-            ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
             ret.DR = int.Parse(input["DR"].ToString());
-            ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
-            ret.IsSecret = int.Parse(input["IsSecret"].ToString());
-            ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
-            ret.LastReplyUser = int.Parse(input["LastReplyUser"].ToString());
-            ret.ReadCount = int.Parse(input["ReadCount"].ToString());
-            ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
-            ret.SysNo = int.Parse(input["SysNo"].ToString());
+            if (input["EndTime"].ToString() != "")
+            {
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+            }
+            if (input["IsSecret"].ToString() != "")
+            {
+                ret.IsSecret = int.Parse(input["IsSecret"].ToString());
+            }
+            if (input["LastReplyTime"].ToString() != "")
+            {
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+            }
+            if (input["LastReplyUser"].ToString() != "")
+            {
+                ret.LastReplyUser = int.Parse(input["LastReplyUser"].ToString());
+            }
+            if (input["ReadCount"].ToString() != "")
+            {
+                ret.ReadCount = int.Parse(input["ReadCount"].ToString());
+            }
+            if (input["ReplyCount"].ToString() != "")
+            {
+                ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
             ret.Title = input["Title"].ToString();
-            ret.TS = DateTime.Parse(input["TS"].ToString());
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
 
             return ret;
         }
@@ -388,31 +443,71 @@ namespace WebServiceForApp
         public QA_AnswerShow MapQA_AnswerShow(DataRow input)
         {
             QA_AnswerShow ret = new QA_AnswerShow();
-            ret.Award = int.Parse(input["Award"].ToString());
+            if (input["Award"].ToString() != "")
+            {
+                ret.Award = int.Parse(input["Award"].ToString());
+            }
             ret.Context = input["Context"].ToString();
-            ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
-            ret.DR = int.Parse(input["DR"].ToString());
-            ret.Hate = int.Parse(input["Hate"].ToString());
-            ret.Love = int.Parse(input["Love"].ToString());
-            ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
-            ret.SysNo = int.Parse(input["SysNo"].ToString());
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
+            if (input["Hate"].ToString() != "")
+            {
+                ret.Hate = int.Parse(input["Hate"].ToString());
+            }
+            if (input["Love"].ToString() != "")
+            {
+                ret.Love = int.Parse(input["Love"].ToString());
+            }
+            if (input["QuestionSysNo"].ToString() != "")
+            {
+                ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
             ret.Title = input["Title"].ToString();
-            ret.TS = DateTime.Parse(input["TS"].ToString());
-
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
             return ret;
         }
 
         public QA_CommentShow MapQA_CommentShow(DataRow input)
         {
             QA_CommentShow ret = new QA_CommentShow();
-            ret.AnswerSysNo = int.Parse(input["AnswerSysNo"].ToString());
+            if (input["AnswerSysNo"].ToString() != "")
+            {
+                ret.AnswerSysNo = int.Parse(input["AnswerSysNo"].ToString());
+            }
             ret.Context = input["Context"].ToString();
-            ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
-            ret.DR = int.Parse(input["DR"].ToString());
-            ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
-            ret.SysNo = int.Parse(input["SysNo"].ToString());
-            ret.TS = DateTime.Parse(input["TS"].ToString());
-
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
+            if (input["QuestionSysNo"].ToString() != "")
+            {
+                ret.QuestionSysNo = int.Parse(input["QuestionSysNo"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
             return ret;
         }
 

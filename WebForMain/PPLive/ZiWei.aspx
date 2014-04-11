@@ -87,8 +87,8 @@
                         </asp:DropDownList>
                         &nbsp;<strong>换大运界线：</strong>
                         <asp:DropDownList ID="drpTransit" runat="server" CssClass="sel_0">
-                            <asp:ListItem Text="按农历新年换运" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="按农历生日换运" Value="0" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="按农历新年换运" Value="1" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="按农历生日换运" Value="0"></asp:ListItem>
                         </asp:DropDownList>
                         <div class="line_02">
                         </div>

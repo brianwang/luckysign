@@ -206,6 +206,12 @@
     <Content Include="WebResources\img\CatePic\i5.jpg" />
     <Content Include="WebResources\img\CatePic\i6.jpg" />
     <Content Include="WebResources\img\CatePic\i7.jpg" />
+    <Content Include="WebResources\img\CatePic\p1.png" />
+    <Content Include="WebResources\img\CatePic\p2.png" />
+    <Content Include="WebResources\img\CatePic\p3.png" />
+    <Content Include="WebResources\img\CatePic\p4.png" />
+    <Content Include="WebResources\img\CatePic\p5.png" />
+    <Content Include="WebResources\img\CatePic\p6.png" />
     <Content Include="WebResources\img\CatePic\pp1.jpg" />
     <Content Include="WebResources\img\CatePic\pp2.jpg" />
     <Content Include="WebResources\img\CatePic\pp3.jpg" />

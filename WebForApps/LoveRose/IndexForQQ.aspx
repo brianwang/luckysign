@@ -394,23 +394,23 @@
                                 <div class="x-right-c">
                                     <div class="per">
                                         稳定指数：70%
-                <div class="c1"><span style="width: 90px"></span></div>
+                <div class="c1"><span id="span1" runat="server" style="width: 90px"></span></div>
                                     </div>
                                     <div class="per">
                                         魅力指数：70%
-                <div class="c2"><span style="width: 90px"></span></div>
+                <div class="c2"><span id="span2" runat="server" style="width: 90px"></span></div>
                                     </div>
-                                    <div class="per">
+                                    <%--<div class="per">
                                         旺夫指数：70%
-                <div class="c3"><span style="width: 90px"></span></div>
-                                    </div>
+                <div class="c3"><span id="span1" runat="server" style="width: 90px"></span></div>
+                                    </div>--%>
                                     <div class="per">
                                         花心指数：70%
-                <div class="c4"><span style="width: 90px"></span></div>
+                <div class="c4"><span id="span3" runat="server" style="width: 90px"></span></div>
                                     </div>
                                     <div class="per">
-                                        嫁个有钱人指数：70%
-                <div class="c5"><span style="width: 90px"></span></div>
+                                        嫁个有钱人指数：<asp:Literal ID="ltr4" runat="server"></asp:Literal>%
+                <div class="c5"><span id="span4" runat="server" style="width: 90px"></span></div>
                                     </div>
                                 </div>
 

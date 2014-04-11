@@ -376,9 +376,11 @@ namespace WebForApps.LoveRose
 
             #region 对方有钱
             int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
-            List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true); ;
+            span4.Style[""] = "";
+                ltr4.Text = 
             Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
+            List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true);
             foreach (List<PublicValue.AstroStar> tmplist in hurong)
             {
                 foreach (PublicValue.AstroStar tmpstar in tmplist)

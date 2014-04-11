@@ -1448,55 +1448,56 @@ namespace PPLive.ZiWei
         public void SetXingGong(ref ZiWeiMod mod)
         {
             //计算推运时间的农历日期
-            DateTime tmpTransit = new DateTime(mod.TransitTime.Date.Year, (int)mod.TransitTime.NongliMonth % 100, (int)mod.TransitTime.NongliDay);
+            DateTime TransitNongli = new DateTime(mod.TransitTime.Date.Year, (int)mod.TransitTime.NongliMonth % 100, (int)mod.TransitTime.NongliDay);
             if (mod.TransitTime.NongliYearFlag)
             {
-                tmpTransit = tmpTransit.AddYears(-1);
+                TransitNongli = TransitNongli.AddYears(-1);
             }
             if ((int)mod.TransitTime.NongliMonth > 100)
             {
-                tmpTransit = new DateTime(tmpTransit.Year, tmpTransit.Month, 1, 0, 0, 0).AddMonths(1);
+                TransitNongli = new DateTime(TransitNongli.Year, TransitNongli.Month, 1, 0, 0, 0).AddMonths(1);
             }
             mod.DaYunGong = mod.Ming;
+
             //计算农历生日
-            DateTime tmpbirth = new DateTime(mod.BirthTime.Date.Year, (int)mod.TransitTime.NongliMonth % 100, (int)mod.TransitTime.NongliDay);
+            DateTime LiuNongliBirth = new DateTime(mod.BirthTime.Date.Year, (int)mod.TransitTime.NongliMonth % 100, (int)mod.TransitTime.NongliDay);
             if (mod.BirthTime.NongliYearFlag)
             {
-                tmpbirth = tmpbirth.AddYears(-1);
+                LiuNongliBirth = LiuNongliBirth.AddYears(-1);
             }
             if ((int)mod.BirthTime.NongliMonth > 100)
             {
-                tmpbirth = new DateTime(tmpbirth.Year, tmpbirth.Month, 1, 0, 0, 0).AddMonths(1);
+                LiuNongliBirth = new DateTime(LiuNongliBirth.Year, LiuNongliBirth.Month, 1, 0, 0, 0).AddMonths(1);
             }
             if (mod.HuanYun == 1)//按农历新年换运
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    if (mod.Gong[i].TransitA - 1 + tmpbirth.Year <= tmpTransit.Year && tmpTransit.Year >= mod.Gong[i].TransitB - 1 + tmpbirth.Year)
+                    if (mod.Gong[i].TransitA - 1 + LiuNongliBirth.Year <= TransitNongli.Year && TransitNongli.Year <= mod.Gong[i].TransitB - 1 + LiuNongliBirth.Year)
                     {
                         mod.DaYunGong = i;
                     }
                 }
-                mod.Age = tmpTransit.Year - tmpbirth.Year + 1;
+                mod.Age = TransitNongli.Year - LiuNongliBirth.Year + 1;
             }
             else//按农历生日换运
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    DateTime tmpbottom = new DateTime(tmpbirth.Year, tmpbirth.Month, tmpbirth.Day, tmpbirth.Hour, tmpbirth.Minute, tmpbirth.Second).AddYears(mod.Gong[i].TransitA - 1);
-                    DateTime tmpup = new DateTime(tmpbirth.Year, tmpbirth.Month, tmpbirth.Day, tmpbirth.Hour, tmpbirth.Minute, tmpbirth.Second).AddYears(mod.Gong[i].TransitB - 1);
-                    if (tmpbottom <= tmpTransit && tmpTransit <= tmpup)
+                    DateTime tmpbottom = new DateTime(LiuNongliBirth.Year, LiuNongliBirth.Month, LiuNongliBirth.Day, LiuNongliBirth.Hour, LiuNongliBirth.Minute, LiuNongliBirth.Second).AddYears(mod.Gong[i].TransitA - 1);
+                    DateTime tmpup = new DateTime(LiuNongliBirth.Year, LiuNongliBirth.Month, LiuNongliBirth.Day, LiuNongliBirth.Hour, LiuNongliBirth.Minute, LiuNongliBirth.Second).AddYears(mod.Gong[i].TransitB - 1);
+                    if (tmpbottom <= TransitNongli && TransitNongli <= tmpup)
                     {
                         mod.DaYunGong = i;
                     }
                 }
-                if(new DateTime(tmpTransit.Year,tmpbirth.Month,tmpbirth.Day)<tmpTransit)
+                if (new DateTime(TransitNongli.Year, LiuNongliBirth.Month, LiuNongliBirth.Day) < TransitNongli)
                 {
-                    mod.Age = tmpTransit.Year - tmpbirth.Year + 1;
+                    mod.Age = TransitNongli.Year - LiuNongliBirth.Year + 1;
                 }
                 else
                 {
-                    mod.Age = tmpTransit.Year - tmpbirth.Year;
+                    mod.Age = TransitNongli.Year - LiuNongliBirth.Year;
                 }
             }
             for (int i = 0; i < 12; i++)
