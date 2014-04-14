@@ -169,17 +169,178 @@ namespace WebServiceForApp
             return ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>>.Get200OK(rett);
         }
 
-        public ReturnValue<QA_QuestionShow> GetQuestion(int sysno)
+        public ReturnValue<QA_QuestionShow<AstroMod>> GetQuestionForAstro(int sysno)
         {
             QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
-            QA_QuestionShow ret = new QA_QuestionShow();
+            QA_QuestionShow<AstroMod> ret = new QA_QuestionShow<AstroMod>();
             tmp.MemberwiseCopy(ret);
 
             USR_CustomerShow tmpu = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
-            ret.Chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
-            return ReturnValue<QA_QuestionShow>.Get200OK(ret);
+            #region 设置星盘
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
+            if (m_chart != null)
+            {
+                AstroMod tmpastro = new AstroMod();
+
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.personal).ToString())
+                {
+                    #region 设置实体各种参数
+
+                    tmpastro.type = PublicValue.AstroType.benming;
+                    tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                    tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                    string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                    if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+
+                    #endregion
+                }
+                else if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    #region 设置实体各种参数
+                    tmpastro.type = PublicValue.AstroType.hepan;
+                    tmpastro.compose = PublicValue.AstroZuhe.bijiao;
+                    tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                    tmpastro.Gender1 = (AppEnum.Gender)m_chart.SecondGender;
+                    tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                    string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                    if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+                    tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
+                    if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight1 = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight1 = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
+
+                    #endregion
+                }
+                tmpastro.startsShow.Clear();
+                for (int i = 1; i <= 30; i++)
+                {
+                    tmpastro.startsShow.Add(i, PublicValue.GetAstroStar((PublicValue.AstroStar)i));
+                }
+                tmpastro.aspectsShow.Clear();
+                tmpastro.aspectsShow.Add(1, 0);
+                tmpastro.aspectsShow.Add(2, 180);
+                tmpastro.aspectsShow.Add(4, 120);
+                tmpastro.aspectsShow.Add(3, 90);
+                tmpastro.aspectsShow.Add(5, 60);
+                tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
+                AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                ret.Chart.Add(tmpastro);
+            }
+            #endregion
+            return ReturnValue<QA_QuestionShow<AstroMod>>.Get200OK(ret);
+        }
+
+        public ReturnValue<QA_QuestionShow<BaZiMod>> GetQuestionForBaZi(int sysno)
+        {
+            QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
+            QA_QuestionShow<BaZiMod> ret = new QA_QuestionShow<BaZiMod>();
+            tmp.MemberwiseCopy(ret);
+
+            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
+            ret.Customer = tmpu;
+            #region 设置命盘
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
+            if (m_chart != null)
+            {
+                BaZiMod m_bazi = new BaZiMod();
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                m_bazi.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+                m_bazi.AreaName = m_chart.FirstPoiName.ToString();
+                m_bazi.Longitude = tmplatlng[0];
+                m_bazi.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi);
+                ret.Chart.Add(m_bazi);
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    BaZiMod m_bazi1 = new BaZiMod();
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    m_bazi1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                        new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                    m_bazi1.AreaName = m_chart.SecondPoiName.ToString();
+                    m_bazi1.Longitude = tmplatlng[0];
+                    m_bazi1.Gender = (AppEnum.Gender)m_chart.SecondGender;
+                    BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi1);
+                    ret.Chart.Add(m_bazi1);
+                }
+            }
+            #endregion
+            return ReturnValue<QA_QuestionShow<BaZiMod>>.Get200OK(ret);
+        }
+
+        public ReturnValue<QA_QuestionShow<ZiWeiMod>> GetQuestionForZiWei(int sysno)
+        {
+            QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
+            QA_QuestionShow<ZiWeiMod> ret = new QA_QuestionShow<ZiWeiMod>();
+            tmp.MemberwiseCopy(ret);
+
+            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
+            ret.Customer = tmpu;
+            #region 设置命盘
+            int[] _paras = { 1, 1, 0, 1 };
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(ret.SysNo);
+            if (m_chart != null)
+            {
+                ZiWeiMod m_ziwei = new ZiWeiMod();
+                #region 设置实体各种参数
+                //默认做太阳时修正
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                m_ziwei.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+                m_ziwei.Gender = (AppEnum.Gender)int.Parse(m_chart.FirstGender.ToString());
+                m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+                m_ziwei.TransitTime = new DateEntity(DateTime.Now);
+                #endregion
+                m_ziwei = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+                ret.Chart.Add(m_ziwei);
+
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    ZiWeiMod m_ziwei1 = new ZiWeiMod();
+                    #region 设置实体各种参数
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    m_ziwei1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                        new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                    m_ziwei1.Gender = (AppEnum.Gender)int.Parse(m_chart.SecondGender.ToString());
+                    m_ziwei1.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+                    m_ziwei1.TransitTime = new DateEntity(DateTime.Now);
+                    #endregion
+                    m_ziwei1 = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+                    ret.Chart.Add(m_ziwei1);
+                }
+            }
+            #endregion
+            return ReturnValue<QA_QuestionShow<ZiWeiMod>>.Get200OK(ret);
         }
 
         public ReturnValue<PageInfo<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno)
@@ -251,7 +412,7 @@ namespace WebServiceForApp
 
         public ReturnValue<USR_CustomerShow> AddQuestion(Stream openPageData)
         {
-            QA_QuestionShow input;
+            QA_QuestionShow<FATE_ChartMod> input;
             try
             {
                 int nReadCount = 0;
@@ -264,7 +425,7 @@ namespace WebServiceForApp
                 byte[] byteJson = ms.ToArray();
                 string textJson = System.Text.Encoding.Default.GetString(byteJson);
 
-                input = (QA_QuestionShow)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow));
+                input = (QA_QuestionShow<FATE_ChartMod>)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow<FATE_ChartMod>));
 
                 if (input == null)
                 {
@@ -315,37 +476,39 @@ namespace WebServiceForApp
 
                 QA_QuestionBll.GetInstance().AddQuest(ref m_quest, true);
                 sysno = m_quest.SysNo;
-
-                FATE_ChartMod m_chart = new FATE_ChartMod();
-                m_chart.CharType = input.Chart.CharType; ;
-                if (m_chart.CharType != (int)AppEnum.ChartType.nochart)
+                if (input.Chart.Count > 0)
                 {
-                    m_chart.FirstBirth = input.Chart.FirstBirth;
-                    m_chart.FirstPoi = input.Chart.FirstPoi;
-                    m_chart.Transit = DateTime.Now;
-                    m_chart.TransitPoi = input.Chart.FirstPoi;
-                    m_chart.TheoryType = 0;
-                    m_chart.FirstPoiName = input.Chart.FirstPoiName;
-                    m_chart.FirstTimeZone = -8;
-                    m_chart.FirstGender = input.Chart.FirstGender;
-                    m_chart.FirstDayLight = input.Chart.FirstDayLight;
-                    if (m_chart.CharType == (int)AppEnum.ChartType.relation)
+                    FATE_ChartMod m_chart = new FATE_ChartMod();
+                    m_chart.CharType = input.Chart[0].CharType; ;
+                    if (m_chart.CharType != (int)AppEnum.ChartType.nochart)
                     {
-                        m_chart.SecondBirth = input.Chart.SecondBirth;
-                        m_chart.SecondPoi = input.Chart.SecondPoi;
-                        m_chart.SecondPoiName = input.Chart.SecondPoiName;
-                        m_chart.SecondTimeZone = -8;
-                        m_chart.SecondGender = input.Chart.SecondGender;
-                        m_chart.SecondDayLight = input.Chart.SecondDayLight;
-                    }
-                    m_chart.TS = DateTime.Now;
-                    m_chart.DR = (int)AppEnum.State.normal;
-                    int fatesysno = FATE_ChartBll.GetInstance().Add(m_chart);
+                        m_chart.FirstBirth = input.Chart[0].FirstBirth;
+                        m_chart.FirstPoi = input.Chart[0].FirstPoi;
+                        m_chart.Transit = DateTime.Now;
+                        m_chart.TransitPoi = input.Chart[0].FirstPoi;
+                        m_chart.TheoryType = 0;
+                        m_chart.FirstPoiName = input.Chart[0].FirstPoiName;
+                        m_chart.FirstTimeZone = -8;
+                        m_chart.FirstGender = input.Chart[0].FirstGender;
+                        m_chart.FirstDayLight = input.Chart[0].FirstDayLight;
+                        if (m_chart.CharType == (int)AppEnum.ChartType.relation)
+                        {
+                            m_chart.SecondBirth = input.Chart[0].SecondBirth;
+                            m_chart.SecondPoi = input.Chart[0].SecondPoi;
+                            m_chart.SecondPoiName = input.Chart[0].SecondPoiName;
+                            m_chart.SecondTimeZone = -8;
+                            m_chart.SecondGender = input.Chart[0].SecondGender;
+                            m_chart.SecondDayLight = input.Chart[0].SecondDayLight;
+                        }
+                        m_chart.TS = DateTime.Now;
+                        m_chart.DR = (int)AppEnum.State.normal;
+                        int fatesysno = FATE_ChartBll.GetInstance().Add(m_chart);
 
-                    REL_Question_ChartMod m_qchart = new REL_Question_ChartMod();
-                    m_qchart.Chart_SysNo = fatesysno;
-                    m_qchart.Question_SysNo = sysno;
-                    REL_Question_ChartBll.GetInstance().Add(m_qchart);
+                        REL_Question_ChartMod m_qchart = new REL_Question_ChartMod();
+                        m_qchart.Chart_SysNo = fatesysno;
+                        m_qchart.Question_SysNo = sysno;
+                        REL_Question_ChartBll.GetInstance().Add(m_qchart);
+                    }
                 }
             }
             catch (Exception ex)
@@ -395,12 +558,12 @@ namespace WebServiceForApp
             return ReturnValue<USR_CustomerShow>.Get200OK(ret);
         }
 
-        public ReturnValue<QA_QuestionShow> SetAward(int answersysno, int score, string msg)
+        public ReturnValue<QA_QuestionShow<AstroMod>> SetAward(int answersysno, int score, string msg)
         { 
             QA_AnswerMod m_anser = QA_AnswerBll.GetInstance().GetModel(answersysno);
             QA_AnswerBll.GetInstance().SetAward(m_anser, QA_QuestionBll.GetInstance().GetModel(m_anser.QuestionSysNo), score);
 
-            return GetQuestion(m_anser.SysNo);
+            return GetQuestionForAstro(m_anser.SysNo);
         }
 
 
@@ -453,68 +616,81 @@ namespace WebServiceForApp
                 ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
             }
             #region 设置星盘
-            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
-            
-            AstroMod tmpastro = new AstroMod();
-
-            if(m_chart.CharType.ToString()==((int)AppEnum.ChartType.personal).ToString())
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(int.Parse(input["SysNo"].ToString()));
+            if (m_chart != null)
             {
-                #region 设置实体各种参数
+                AstroMod tmpastro = new AstroMod();
 
-                tmpastro.type = PublicValue.AstroType.benming;
-                tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
-                tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
-                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
-                tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
-                if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.personal).ToString())
                 {
-                    tmpastro.IsDaylight = AppEnum.BOOL.True;
-                }
-                else
-                {
-                    tmpastro.IsDaylight = AppEnum.BOOL.False;
-                }
-                tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+                    #region 设置实体各种参数
 
-                #endregion
+                    tmpastro.type = PublicValue.AstroType.benming;
+                    tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                    tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                    string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                    if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+
+                    #endregion
+                }
+                else if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    #region 设置实体各种参数
+                    tmpastro.type = PublicValue.AstroType.hepan;
+                    tmpastro.compose = PublicValue.AstroZuhe.bijiao;
+                    tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                    tmpastro.Gender1 = (AppEnum.Gender)m_chart.SecondGender;
+                    tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                    string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                    if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+                    tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
+                    if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                    {
+                        tmpastro.IsDaylight1 = AppEnum.BOOL.True;
+                    }
+                    else
+                    {
+                        tmpastro.IsDaylight1 = AppEnum.BOOL.False;
+                    }
+                    tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
+
+                    #endregion
+                }
+                tmpastro.startsShow.Clear();
+                for (int i = 1; i <= 30; i++)
+                {
+                    tmpastro.startsShow.Add(i, PublicValue.GetAstroStar((PublicValue.AstroStar)i));
+                }
+                tmpastro.aspectsShow.Clear();
+                tmpastro.aspectsShow.Add(1, 0);
+                tmpastro.aspectsShow.Add(2, 180);
+                tmpastro.aspectsShow.Add(4, 120);
+                tmpastro.aspectsShow.Add(3, 90);
+                tmpastro.aspectsShow.Add(5, 60);
+                tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
+                AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                ret.Chart.Add(tmpastro);
             }
-            else if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
-            {
-                #region 设置实体各种参数
-                tmpastro.type = PublicValue.AstroType.hepan;
-                tmpastro.compose = PublicValue.AstroZuhe.bijiao;
-                tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
-                tmpastro.Gender1 = (AppEnum.Gender)m_chart.SecondGender;
-                tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
-                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
-                tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
-                if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
-                {
-                    tmpastro.IsDaylight = AppEnum.BOOL.True;
-                }
-                else
-                {
-                    tmpastro.IsDaylight = AppEnum.BOOL.False;
-                }
-                tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
-                tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
-                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
-                tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
-                if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
-                {
-                    tmpastro.IsDaylight1 = AppEnum.BOOL.True;
-                }
-                else
-                {
-                    tmpastro.IsDaylight1 = AppEnum.BOOL.False;
-                }
-                tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
-
-                #endregion
-            }
-            tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
-            AstroBiz.GetInstance().GetParamters(ref tmpastro);
-            ret.Chart.Add(tmpastro);
             #endregion
             ret.Context = input["Context"].ToString();
             ret.CustomerNickName = m_customer.NickName;
@@ -526,7 +702,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L()/1000;
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -534,7 +710,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -555,7 +731,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString());
+                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
 
             return ret;
@@ -573,28 +749,30 @@ namespace WebServiceForApp
                 ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
             }
             #region 设置命盘
-            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
-            
-            BaZiMod m_bazi = new BaZiMod();
-            string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
-            m_bazi.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
-                new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
-            m_bazi.AreaName = m_chart.FirstPoiName.ToString();
-            m_bazi.Longitude = tmplatlng[0];
-            m_bazi.Gender = (AppEnum.Gender)m_chart.FirstGender;
-            BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi);
-            ret.Chart.Add(m_bazi);
-            if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(int.Parse(input["SysNo"].ToString()));
+            if (m_chart != null)
             {
-                BaZiMod m_bazi1 = new BaZiMod();
-                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
-                m_bazi1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
-                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
-                m_bazi1.AreaName = m_chart.SecondPoiName.ToString();
-                m_bazi1.Longitude = tmplatlng[0];
-                m_bazi1.Gender = (AppEnum.Gender)m_chart.SecondGender;
-                BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi1);
-                ret.Chart.Add(m_bazi1);
+                BaZiMod m_bazi = new BaZiMod();
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                m_bazi.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+                m_bazi.AreaName = m_chart.FirstPoiName.ToString();
+                m_bazi.Longitude = tmplatlng[0];
+                m_bazi.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi);
+                ret.Chart.Add(m_bazi);
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    BaZiMod m_bazi1 = new BaZiMod();
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    m_bazi1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                        new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                    m_bazi1.AreaName = m_chart.SecondPoiName.ToString();
+                    m_bazi1.Longitude = tmplatlng[0];
+                    m_bazi1.Gender = (AppEnum.Gender)m_chart.SecondGender;
+                    BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi1);
+                    ret.Chart.Add(m_bazi1);
+                }
             }
             #endregion
             ret.Context = input["Context"].ToString();
@@ -607,7 +785,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -615,7 +793,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -636,7 +814,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString());
+                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
 
             return ret;
@@ -655,33 +833,36 @@ namespace WebServiceForApp
             }
             #region 设置命盘
             int[] _paras = {1,1,0,1};
-            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
-            ZiWeiMod m_ziwei = new ZiWeiMod();
-            #region 设置实体各种参数
-            //默认做太阳时修正
-            string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
-            m_ziwei.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
-                new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
-            m_ziwei.Gender = (AppEnum.Gender)int.Parse(m_chart.FirstGender.ToString());
-            m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
-            m_ziwei.TransitTime = new DateEntity(DateTime.Now);
-            #endregion
-            m_ziwei = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
-            ret.Chart.Add(m_ziwei);
-
-            if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+            FATE_ChartMod m_chart = QA_QuestionBll.GetInstance().GetChartByQuest(int.Parse(input["SysNo"].ToString()));
+            if (m_chart != null)
             {
-                ZiWeiMod m_ziwei1 = new ZiWeiMod();
+                ZiWeiMod m_ziwei = new ZiWeiMod();
                 #region 设置实体各种参数
-                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
-                m_ziwei1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
-                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
-                m_ziwei1.Gender = (AppEnum.Gender)int.Parse(m_chart.SecondGender.ToString());
-                m_ziwei1.RunYue = PublicValue.ZiWeiRunYue.dangxia;
-                m_ziwei1.TransitTime = new DateEntity(DateTime.Now);
+                //默认做太阳时修正
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                m_ziwei.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+                m_ziwei.Gender = (AppEnum.Gender)int.Parse(m_chart.FirstGender.ToString());
+                m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+                m_ziwei.TransitTime = new DateEntity(DateTime.Now);
                 #endregion
-                m_ziwei1 = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
-                ret.Chart.Add(m_ziwei1);
+                m_ziwei = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+                ret.Chart.Add(m_ziwei);
+
+                if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+                {
+                    ZiWeiMod m_ziwei1 = new ZiWeiMod();
+                    #region 设置实体各种参数
+                    tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                    m_ziwei1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                        new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                    m_ziwei1.Gender = (AppEnum.Gender)int.Parse(m_chart.SecondGender.ToString());
+                    m_ziwei1.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+                    m_ziwei1.TransitTime = new DateEntity(DateTime.Now);
+                    #endregion
+                    m_ziwei1 = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+                    ret.Chart.Add(m_ziwei1);
+                }
             }
             #endregion
             ret.Context = input["Context"].ToString();
@@ -694,7 +875,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -702,7 +883,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -723,7 +904,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString());
+                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
 
             return ret;
@@ -764,7 +945,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString());
+                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L()/1000;
             }
             return ret;
         }
@@ -795,7 +976,7 @@ namespace WebServiceForApp
             }
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString());
+                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
             }
             return ret;
         }

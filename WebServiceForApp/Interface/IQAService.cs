@@ -40,9 +40,17 @@ namespace WebServiceForApp
         [Description("获取问题列表（紫薇）,/GetQuestionListForZiWei?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
         ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>> GetQuestionListForZiWei(int pagesize, int pageindex, string key, int cate, string orderby);
 
-        [OperationContract, WebGet(UriTemplate = "/GetQuestion?sysno={sysno}")]
-        [Description("获取问题详情,/GetQuestion?sysno={sysno}")]
-        ReturnValue<QA_QuestionShow> GetQuestion(int sysno);
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionForAstro?sysno={sysno}")]
+        [Description("获取问题详情(占星),/GetQuestionForAstro?sysno={sysno}")]
+        ReturnValue<QA_QuestionShow<AstroMod>> GetQuestionForAstro(int sysno);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionForBaZi?sysno={sysno}")]
+        [Description("获取问题详情（八字）,/GetQuestionForBaZi?sysno={sysno}")]
+        ReturnValue<QA_QuestionShow<BaZiMod>> GetQuestionForBaZi(int sysno);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionForZiWei?sysno={sysno}")]
+        [Description("获取问题详情（紫薇）,/GetQuestionForZiWei?sysno={sysno}")]
+        ReturnValue<QA_QuestionShow<ZiWeiMod>> GetQuestionForZiWei(int sysno);
 
         [OperationContract, WebInvoke(UriTemplate = "/AddQuestion")]
         [Description("发布问题,/AddQuestion")]
@@ -58,7 +66,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
         [Description("设置悬赏,/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
-        ReturnValue<QA_QuestionShow> SetAward(int answersysno, int score, string msg);
+        ReturnValue<QA_QuestionShow<AstroMod>> SetAward(int answersysno, int score, string msg);
 
         [OperationContract, WebGet(UriTemplate = "/AddComment?CustomerSysNo={CustomerSysNo}&AnswerSysNo={AnswerSysNo}&QuestionSysNo={QuestionSysNo}&Context={Context}")]
         [Description("发布评论,/AddComment?sysno={sysno}")]

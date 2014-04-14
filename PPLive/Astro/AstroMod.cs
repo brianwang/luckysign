@@ -150,13 +150,13 @@ namespace PPLive.Astro
             get { return _isDaylight1; }
             set { _isDaylight1 = value; }
         }
-        [DataMember]
+        //[DataMember]
         public string composeFile1
         {
             get { return _composeFile1; }
             set { _composeFile1 = value; }
         }
-        [DataMember]
+        //[DataMember]
         public string composeFile2
         {
             get { return _composeFile2; }
