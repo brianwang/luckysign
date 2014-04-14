@@ -16,6 +16,10 @@ using AppMod.Fate;
 using System.Data;
 using System.Web;
 using AppMod.WebSys;
+using PPLive.Astro;
+using PPLive.BaZi;
+using PPLive.ZiWei;
+using PPLive;
 
 namespace WebServiceForApp
 {
@@ -83,7 +87,7 @@ namespace WebServiceForApp
             return ReturnValue<List<USR_CustomerShow>>.Get200OK(ret);
         }
 
-        public ReturnValue<PageInfo<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby)
+        public ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListForAstro(int pagesize, int pageindex, string key, int cate, string orderby)
         {
             int total = 0;
             DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex,key,cate,orderby,ref total);
@@ -91,13 +95,13 @@ namespace WebServiceForApp
             {
                 throw new BusinessException("没有符合条件的数据项");
             }
-            List<QA_QuestionShowMini> ret = new List<QA_QuestionShowMini>();
+            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                QA_QuestionShowMini tmp_quest = MapQA_QuestionShowMini(m_dt.Rows[i]);
+                QA_QuestionShowMini<AstroMod> tmp_quest = MapQA_QuestionShowMiniForAstro(m_dt.Rows[i]);
                 ret.Add(tmp_quest);
             }
-            PageInfo<QA_QuestionShowMini> rett = new PageInfo<QA_QuestionShowMini>();
+            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
             rett.List = ret;
             rett.Total = total;
             if (pagesize * pageindex >= total)
@@ -108,7 +112,61 @@ namespace WebServiceForApp
             {
                 rett.HasNextPage = true;
             }
-            return ReturnValue<PageInfo<QA_QuestionShowMini>>.Get200OK(rett);
+            return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+        }
+        public ReturnValue<PageInfo<QA_QuestionShowMini<BaZiMod>>> GetQuestionListForBaZi(int pagesize, int pageindex, string key, int cate, string orderby)
+        {
+            int total = 0;
+            DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex, key, cate, orderby, ref total);
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                throw new BusinessException("没有符合条件的数据项");
+            }
+            List<QA_QuestionShowMini<BaZiMod>> ret = new List<QA_QuestionShowMini<BaZiMod>>();
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_QuestionShowMini<BaZiMod> tmp_quest = MapQA_QuestionShowMiniForBaZi(m_dt.Rows[i]);
+                ret.Add(tmp_quest);
+            }
+            PageInfo<QA_QuestionShowMini<BaZiMod>> rett = new PageInfo<QA_QuestionShowMini<BaZiMod>>();
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<QA_QuestionShowMini<BaZiMod>>>.Get200OK(rett);
+        }
+        public ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>> GetQuestionListForZiWei(int pagesize, int pageindex, string key, int cate, string orderby)
+        {
+            int total = 0;
+            DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex, key, cate, orderby, ref total);
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                throw new BusinessException("没有符合条件的数据项");
+            }
+            List<QA_QuestionShowMini<ZiWeiMod>> ret = new List<QA_QuestionShowMini<ZiWeiMod>>();
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_QuestionShowMini<ZiWeiMod> tmp_quest = MapQA_QuestionShowMiniForZiWei(m_dt.Rows[i]);
+                ret.Add(tmp_quest);
+            }
+            PageInfo<QA_QuestionShowMini<ZiWeiMod>> rett = new PageInfo<QA_QuestionShowMini<ZiWeiMod>>();
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>>.Get200OK(rett);
         }
 
         public ReturnValue<QA_QuestionShow> GetQuestion(int sysno)
@@ -382,9 +440,9 @@ namespace WebServiceForApp
             return ret;
         }
 
-        public QA_QuestionShowMini MapQA_QuestionShowMini(DataRow input)
+        public QA_QuestionShowMini<AstroMod> MapQA_QuestionShowMiniForAstro(DataRow input)
         {
-            QA_QuestionShowMini ret = new QA_QuestionShowMini();
+            QA_QuestionShowMini<AstroMod> ret = new QA_QuestionShowMini<AstroMod>();
             USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
             if (input["Award"].ToString() != "")
             {
@@ -394,7 +452,238 @@ namespace WebServiceForApp
             {
                 ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
             }
-            ret.Chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
+            #region 设置星盘
+            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
+            
+            AstroMod tmpastro = new AstroMod();
+
+            if(m_chart.CharType.ToString()==((int)AppEnum.ChartType.personal).ToString())
+            {
+                #region 设置实体各种参数
+
+                tmpastro.type = PublicValue.AstroType.benming;
+                tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                {
+                    tmpastro.IsDaylight = AppEnum.BOOL.True;
+                }
+                else
+                {
+                    tmpastro.IsDaylight = AppEnum.BOOL.False;
+                }
+                tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+
+                #endregion
+            }
+            else if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+            {
+                #region 设置实体各种参数
+                tmpastro.type = PublicValue.AstroType.hepan;
+                tmpastro.compose = PublicValue.AstroZuhe.bijiao;
+                tmpastro.Gender = (AppEnum.Gender)m_chart.FirstGender;
+                tmpastro.Gender1 = (AppEnum.Gender)m_chart.SecondGender;
+                tmpastro.birth = DateTime.Parse(m_chart.FirstBirth.ToString());
+                string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+                tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
+                if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                {
+                    tmpastro.IsDaylight = AppEnum.BOOL.True;
+                }
+                else
+                {
+                    tmpastro.IsDaylight = AppEnum.BOOL.False;
+                }
+                tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
+                tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
+                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
+                if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
+                {
+                    tmpastro.IsDaylight1 = AppEnum.BOOL.True;
+                }
+                else
+                {
+                    tmpastro.IsDaylight1 = AppEnum.BOOL.False;
+                }
+                tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
+
+                #endregion
+            }
+            tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
+            AstroBiz.GetInstance().GetParamters(ref tmpastro);
+            ret.Chart.Add(tmpastro);
+            #endregion
+            ret.Context = input["Context"].ToString();
+            ret.CustomerNickName = m_customer.NickName;
+            ret.CustomerPhoto = m_customer.Photo;
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
+            ret.DR = int.Parse(input["DR"].ToString());
+            if (input["EndTime"].ToString() != "")
+            {
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+            }
+            if (input["IsSecret"].ToString() != "")
+            {
+                ret.IsSecret = int.Parse(input["IsSecret"].ToString());
+            }
+            if (input["LastReplyTime"].ToString() != "")
+            {
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+            }
+            if (input["LastReplyUser"].ToString() != "")
+            {
+                ret.LastReplyUser = int.Parse(input["LastReplyUser"].ToString());
+            }
+            if (input["ReadCount"].ToString() != "")
+            {
+                ret.ReadCount = int.Parse(input["ReadCount"].ToString());
+            }
+            if (input["ReplyCount"].ToString() != "")
+            {
+                ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            ret.Title = input["Title"].ToString();
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
+
+            return ret;
+        }
+        public QA_QuestionShowMini<BaZiMod> MapQA_QuestionShowMiniForBaZi(DataRow input)
+        {
+            QA_QuestionShowMini<BaZiMod> ret = new QA_QuestionShowMini<BaZiMod>();
+            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+            if (input["Award"].ToString() != "")
+            {
+                ret.Award = int.Parse(input["Award"].ToString());
+            }
+            if (input["CateSysNo"].ToString() != "")
+            {
+                ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
+            }
+            #region 设置命盘
+            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
+            
+            BaZiMod m_bazi = new BaZiMod();
+            string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+            m_bazi.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+            m_bazi.AreaName = m_chart.FirstPoiName.ToString();
+            m_bazi.Longitude = tmplatlng[0];
+            m_bazi.Gender = (AppEnum.Gender)m_chart.FirstGender;
+            BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi);
+            ret.Chart.Add(m_bazi);
+            if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+            {
+                BaZiMod m_bazi1 = new BaZiMod();
+                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                m_bazi1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                m_bazi1.AreaName = m_chart.SecondPoiName.ToString();
+                m_bazi1.Longitude = tmplatlng[0];
+                m_bazi1.Gender = (AppEnum.Gender)m_chart.SecondGender;
+                BaZiBiz.GetInstance().TimeToBaZi(ref m_bazi1);
+                ret.Chart.Add(m_bazi1);
+            }
+            #endregion
+            ret.Context = input["Context"].ToString();
+            ret.CustomerNickName = m_customer.NickName;
+            ret.CustomerPhoto = m_customer.Photo;
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
+            ret.DR = int.Parse(input["DR"].ToString());
+            if (input["EndTime"].ToString() != "")
+            {
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
+            }
+            if (input["IsSecret"].ToString() != "")
+            {
+                ret.IsSecret = int.Parse(input["IsSecret"].ToString());
+            }
+            if (input["LastReplyTime"].ToString() != "")
+            {
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+            }
+            if (input["LastReplyUser"].ToString() != "")
+            {
+                ret.LastReplyUser = int.Parse(input["LastReplyUser"].ToString());
+            }
+            if (input["ReadCount"].ToString() != "")
+            {
+                ret.ReadCount = int.Parse(input["ReadCount"].ToString());
+            }
+            if (input["ReplyCount"].ToString() != "")
+            {
+                ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            ret.Title = input["Title"].ToString();
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
+
+            return ret;
+        }
+        public QA_QuestionShowMini<ZiWeiMod> MapQA_QuestionShowMiniForZiWei(DataRow input)
+        {
+            QA_QuestionShowMini<ZiWeiMod> ret = new QA_QuestionShowMini<ZiWeiMod>();
+            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+            if (input["Award"].ToString() != "")
+            {
+                ret.Award = int.Parse(input["Award"].ToString());
+            }
+            if (input["CateSysNo"].ToString() != "")
+            {
+                ret.CateSysNo = int.Parse(input["CateSysNo"].ToString());
+            }
+            #region 设置命盘
+            int[] _paras = {1,1,0,1};
+            FATE_ChartMod m_chart = FATE_ChartBll.GetInstance().GetModel(int.Parse(input["CateSysNo"].ToString()));
+            ZiWeiMod m_ziwei = new ZiWeiMod();
+            #region 设置实体各种参数
+            //默认做太阳时修正
+            string[] tmplatlng = m_chart.FirstPoi.ToString().Split(new char[] { '|' });
+            m_ziwei.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.FirstBirth.ToString()),
+                new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName)));
+            m_ziwei.Gender = (AppEnum.Gender)int.Parse(m_chart.FirstGender.ToString());
+            m_ziwei.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+            m_ziwei.TransitTime = new DateEntity(DateTime.Now);
+            #endregion
+            m_ziwei = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+            ret.Chart.Add(m_ziwei);
+
+            if (m_chart.CharType.ToString() == ((int)AppEnum.ChartType.relation).ToString())
+            {
+                ZiWeiMod m_ziwei1 = new ZiWeiMod();
+                #region 设置实体各种参数
+                tmplatlng = m_chart.SecondPoi.ToString().Split(new char[] { '|' });
+                m_ziwei1.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(DateTime.Parse(m_chart.SecondBirth.ToString()),
+                    new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName)));
+                m_ziwei1.Gender = (AppEnum.Gender)int.Parse(m_chart.SecondGender.ToString());
+                m_ziwei1.RunYue = PublicValue.ZiWeiRunYue.dangxia;
+                m_ziwei1.TransitTime = new DateEntity(DateTime.Now);
+                #endregion
+                m_ziwei1 = ZiWeiBiz.GetInstance().TimeToZiWei(m_ziwei.BirthTime, m_ziwei.Gender, _paras);
+                ret.Chart.Add(m_ziwei1);
+            }
+            #endregion
             ret.Context = input["Context"].ToString();
             ret.CustomerNickName = m_customer.NickName;
             ret.CustomerPhoto = m_customer.Photo;

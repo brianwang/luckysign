@@ -11,6 +11,9 @@ using AppMod.User;
 using AppMod.QA;
 using AppMod.WebSys;
 using AppDal.QA;
+using PPLive.Astro;
+using PPLive.BaZi;
+using PPLive.ZiWei;
 
 namespace WebServiceForApp
 {
@@ -25,9 +28,17 @@ namespace WebServiceForApp
         [Description("获取明星列表,/GetStarsList?catesysno={catesysno}")]
         ReturnValue<List<USR_CustomerShow>> GetStarsList(int catesysno);
 
-        [OperationContract, WebGet(UriTemplate = "/GetQuestList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
-        [Description("获取问题列表,/GetQuestionList?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
-        ReturnValue<PageInfo<QA_QuestionShowMini>> GetQuestionList(int pagesize, int pageindex, string key, int cate, string orderby);
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionListForAstro?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        [Description("获取问题列表(占星),/GetQuestionListForAstro?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListForAstro(int pagesize, int pageindex, string key, int cate, string orderby);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionListForBaZi?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        [Description("获取问题列表（八字）,/GetQuestionListForBaZi?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        ReturnValue<PageInfo<QA_QuestionShowMini<BaZiMod>>> GetQuestionListForBaZi(int pagesize, int pageindex, string key, int cate, string orderby);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionListForZiWei?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        [Description("获取问题列表（紫薇）,/GetQuestionListForZiWei?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
+        ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>> GetQuestionListForZiWei(int pagesize, int pageindex, string key, int cate, string orderby);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestion?sysno={sysno}")]
         [Description("获取问题详情,/GetQuestion?sysno={sysno}")]

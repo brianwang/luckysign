@@ -21,8 +21,6 @@ namespace AppMod.User
 
         #region 成员变量和公共属性
         private int _SysNo;
-        private string _Email;
-        private string _Password;
         private int _GradeSysNo;
         private string _NickName;
         private int _Gender;
@@ -42,13 +40,11 @@ namespace AppMod.User
         private int _BestAnswer;
         private int _HomeTown;
         private string _Intro;
-        private string _Icons;
         private int _IsShowBirth;
         private int _TotalReply;
         private int _HasNewInfo;
         private int _TotalTalk;
         private int _TotalTalkReply;
-        private string _Phone;
 
         [DataMember]
         public int SysNo

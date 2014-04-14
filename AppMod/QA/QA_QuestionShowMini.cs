@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace AppMod.QA
 {
     [DataContract]
-    public class  QA_QuestionShowMini: QA_QuestionMod
+    public class  QA_QuestionShowMini<T>: QA_QuestionMod
     {
 
         #region 父类属性
@@ -104,12 +104,11 @@ namespace AppMod.QA
         #endregion
 
         #region 扩展属性
-
-        private FATE_ChartMod _chart;
+        private List<T> _chart = new List<T>();
         [DataMember]
-        public FATE_ChartMod Chart
+        public List<T> Chart
         {
-            get { return _chart ; }
+            get { return _chart; }
             set { _chart = value; }
         }
         [DataMember]

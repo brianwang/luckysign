@@ -13,7 +13,7 @@ namespace AppMod.WebSys
     {
         private int _total;
         private bool _hasNextPage;
-        private List<T> _list;
+        private List<T> _list = new List<T>();
 
         /// <summary>
         /// 总数
