@@ -58,6 +58,14 @@ namespace WebForApps.LoveRose
             {
                 m_astro.IsDaylight = (AppEnum.BOOL)Convert.ToInt16(PublicDeal.GetInstance().IsDayLight(m_astro.birth, 0));
             }
+            if (HiddenField6.Value == "g1")
+            {
+                m_astro.Gender = AppEnum.Gender.male;
+            }
+            else
+            {
+                m_astro.Gender = AppEnum.Gender.female;
+            }
 
             m_astro.zone = -8;
 
@@ -202,7 +210,7 @@ namespace WebForApps.LoveRose
             }
 
             Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
-            jsstr += "showItem('mifeng', " + (beecount + 1 > 2 ? 3 : beecount + 1) + ");";
+            jsstr += "showItem('mifeng', " + (beecount + 1 > 3 ? 4 : beecount + 1) + ");";
             li1.Style["display"] = "";
             #endregion
 
@@ -317,12 +325,12 @@ namespace WebForApps.LoveRose
                 }
             }
             //Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
-            jsstr += "showItem('liehen', " + (showele["liehen"] > 1 ? 2 : showele["liehen"]) + ");";
+            jsstr += "showItem('liehen', " + (showele["liehen"] > 3 ? 4 : showele["liehen"]) + ");";
             if (showele["liehen"] > 0)
             {
                 li7.Style["display"] = "";
             }
-            jsstr += "showItem('paopao', " + (showele["paopao"] > 2 ? 3 : showele["paopao"]) + ");";
+            jsstr += "showItem('paopao', " + (showele["paopao"] > 3 ? 4 : showele["paopao"]) + ");";
             if (showele["paopao"] > 0)
             {
                 li2.Style["display"] = "";
@@ -347,6 +355,14 @@ namespace WebForApps.LoveRose
             {
                 li3.Style["display"] = "";
             }
+            jsstr += "showItem('kuye', " + (showele["kuye"] > 0 ? 1 : 0) + ");";
+            if (showele["kuye"] > 0)
+            {
+                li9.Style["display"] = "";
+            }
+            int totalbad = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"] + showele["kuye"];
+            span1.Style["width"] = ((12800 -totalbad * 128) / 50).ToString() + "px";
+            ltr1.Text = ((10000-totalbad * 100) / 50).ToString();
 
             Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
             #endregion
@@ -371,13 +387,47 @@ namespace WebForApps.LoveRose
                     }
                 }
             }
+            if(m_star[PublicValue.AstroStar.Moo].Constellation==PublicValue.Constellation.Gem ||
+                m_star[PublicValue.AstroStar.Moo].Constellation==PublicValue.Constellation.Sag ||
+                m_star[PublicValue.AstroStar.Moo].Constellation==PublicValue.Constellation.Pis )
+            {
+                flowercount++;
+            }
+            if (m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Gem ||
+                m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Sag ||
+                m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Pis)
+            {
+                flowercount++;
+            }
+            if (m_star[PublicValue.AstroStar.Moo].Gong == 12 )
+            {
+                flowercount++;
+            }
+            if (m_star[PublicValue.AstroStar.Ven].Gong == 12)
+            {
+                flowercount++;
+            }
+            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind)
+            {
+                flowercount++;
+            }
+            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
+            {
+                flowercount++;
+            }
+            if (m_astro.Gender == AppEnum.Gender.male)
+            {
+                flowercount++;
+            }
+            span3.Style["width"] = (flowercount * 128 / 10).ToString() + "px";
+            ltr3.Text = (flowercount * 100 / 10).ToString();
             Label1.Text += "5.花心指数为:" + flowercount + "<br />";
             #endregion
 
             #region 对方有钱
             int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
-            span4.Style[""] = "";
-                ltr4.Text = 
+            span4.Style["width"] = (richcount * 128 / 70).ToString() + "px";
+            ltr4.Text = (richcount * 100 / 70).ToString();
             Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
             List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true);
@@ -409,6 +459,7 @@ namespace WebForApps.LoveRose
             #region 显示信息
             ltrInfo.Text = m_astro.birth.ToString("yyyy年MM月dd日 HH:mm") + @"
                     <br />
+                    性别："+AppEnum.GetGender(m_astro.Gender)+@"<br />
                     所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
                     夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
                     <br />

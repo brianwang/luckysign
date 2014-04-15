@@ -403,6 +403,38 @@ namespace WebForApps.LoveRose
                         }
                     }
                 }
+                if (m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Gem ||
+                m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Sag ||
+                m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Pis)
+                {
+                    flowercount++;
+                }
+                if (m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Gem ||
+                    m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Sag ||
+                    m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Pis)
+                {
+                    flowercount++;
+                }
+                if (m_star[PublicValue.AstroStar.Moo].Gong == 12)
+                {
+                    flowercount++;
+                }
+                if (m_star[PublicValue.AstroStar.Ven].Gong == 12)
+                {
+                    flowercount++;
+                }
+                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind)
+                {
+                    flowercount++;
+                }
+                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
+                {
+                    flowercount++;
+                }
+                if (m_astro.Gender == AppEnum.Gender.male)
+                {
+                    flowercount++;
+                }
                 if (!result.ContainsKey("花心"))
                 {
                     SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();

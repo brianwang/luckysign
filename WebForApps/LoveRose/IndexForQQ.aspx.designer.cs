@@ -193,6 +193,15 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
+        /// HiddenField6 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField6;
+        
+        /// <summary>
         /// LinkButton1 控件。
         /// </summary>
         /// <remarks>
@@ -346,6 +355,15 @@ namespace WebForApps.LoveRose {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li8;
         
         /// <summary>
+        /// li9 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li9;
+        
+        /// <summary>
         /// ltrInfo 控件。
         /// </summary>
         /// <remarks>
@@ -353,6 +371,15 @@ namespace WebForApps.LoveRose {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltrInfo;
+        
+        /// <summary>
+        /// ltr1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltr1;
         
         /// <summary>
         /// span1 控件。
@@ -371,6 +398,15 @@ namespace WebForApps.LoveRose {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl span2;
+        
+        /// <summary>
+        /// ltr3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltr3;
         
         /// <summary>
         /// span3 控件。

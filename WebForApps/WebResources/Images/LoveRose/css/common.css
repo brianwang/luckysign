@@ -23,11 +23,11 @@ img{border:0;}
 	position:relative
 }
 
-.paopao,.mifeng,.chongzi,.huapen,.bingdong,.hongxing,.hua,.zhezhi,.cu,.liehen{position:absolute}
+.paopao,.mifeng,.chongzi,.huapen,.bingdong,.hongxing,.hua,.zhezhi,.cu,.liehen,.kuzhi{position:absolute}
 
 .hongxing{ background:url(../img/hongxing.png) no-repeat;width:89px;height:175px;top:195px;left:482px; display:block; z-index:1}
 
-.zhezhi{ background:url(../img/zhezhi.png) no-repeat;width:118px;height:62px;top:207px;left:367px; display:block; z-index:1}
+.zhezhi{z-index:1;width:480px;height:300px;left:6px;top:209px; display:block}
 
 .paopao{top:0;left:0px; z-index:3}
 
@@ -41,7 +41,9 @@ img{border:0;}
 
 .liehen{left:433px;top:400px;z-index:4}
 
-.bingdong{left:397px;top:275px;z-index:2}
+.bingdong{left:397px;top:275px;z-index:3}
+
+.kuzhi{left:333px;top:270px;z-index:2}
 
 .hua{z-index:0;left:298px;top:24px}
 
@@ -51,17 +53,21 @@ img{border:0;}
 
 .paopao div.level-3{ background:url(../img/pp3.png) no-repeat;width:757px;height:130px}
 
+.paopao div.level-4{ background:url(../img/pp4.png) no-repeat;width:757px;height:130px}
+
 .mifeng div.level-1{ background:url(../img/mf1.png) no-repeat;width:480px;height:150px}
 
 .mifeng div.level-2{ background:url(../img/mf2.png) no-repeat;width:480px;height:150px}
 
-.mifeng div.level-3{ background:url(../img/mf3.png) no-repeat;width:480px;height:150px}
+.mifeng div.level-3{ background:url(../img/mf3.png) no-repeat;width:480px;height:200px}
 
-.chongzi div.level-1{ background:url(../img/cz1.png) no-repeat;width:200px;height:450px}
+.mifeng div.level-3{ background:url(../img/mf4.png) no-repeat;width:480px;height:200px}
 
-.chongzi div.level-2{ background:url(../img/cz2.png) no-repeat;width:200px;height:450px}
+.chongzi div.level-1{ background:url(../img/cz1.png) no-repeat;width:250px;height:450px}
 
-.chongzi div.level-3{ background:url(../img/cz3.png) no-repeat;width:200px;height:450px}
+.chongzi div.level-2{ background:url(../img/cz2.png) no-repeat;width:250px;height:450px}
+
+.chongzi div.level-3{ background:url(../img/cz3.png) no-repeat;width:250px;height:450px}
 
 .huapen div.level-1{ background:url(../img/hp1.png) no-repeat;width:330px;height:150px}
 
@@ -79,7 +85,9 @@ img{border:0;}
 
 .liehen div.level-2{ background:url(../img/lh2.png) no-repeat;width:80px;height:74px; margin-left:18px; margin-top:2px}
 
-.liehen div.level-3{ background:url(../img/lh3.png) no-repeat;width:80px;height:74px}
+.liehen div.level-3{ background:url(../img/lh3.png) no-repeat;width:80px;height:74px; margin-left:10px; margin-top:2px}
+
+.liehen div.level-4{ background:url(../img/lh4.png) no-repeat;width:80px;height:74px; margin-left:8px; margin-top:2px}
 
 .bingdong div.level-1{ background:url(../img/bd1.png) no-repeat;width:150px;height:180px; margin-left:18px; margin-top:30px}
 
@@ -109,11 +117,28 @@ img{border:0;}
 
 .hua div.f-11{ background:url(../img/f11.png);width:188px;height:365px; margin-left:90px;margin-top:44px}
 
+.hua div.f-12{ background:url(../img/f12.png);width:114px;height:293px; margin-left:110px;margin-top:64px}
+
+.zhezhi .level-1{background:url(../img/zz1.png);width:480px;height:300px}
+
+.zhezhi .level-2{background:url(../img/zz2.png);width:480px;height:300px}
+
+.zhezhi .level-3{background:url(../img/zz3.png);width:480px;height:300px}
+
+.zhezhi .level-4{background:url(../img/zz4.png);width:480px;height:300px}
+
+.kuzhi .level-1{background:url(../img/kz1.png);width:130px;height:120px}
+
+.kuzhi .level-2{background:url(../img/kz2.png);width:130px;height:120px}
+
+.kuzhi .level-3{background:url(../img/kz3.png);width:130px;height:120px}
+
+
 .tip{ background:url(../img/kuang.png) no-repeat;width:567px;height:380px; position:absolute;top:83px;left:114px; z-index:10}
 
 .tip-close{width:34px;height:33px;float:right; margin:13px 25px 0px 0px}
 
-.tip-box{ padding:30px 18px 10px 30px; font-family:"微软雅黑"}
+.tip-box{ padding:30px 38px 10px 40px; font-family:"微软雅黑"}
 
 .tip-content{height:267px; overflow-y: scroll; font-size:14px; margin-top:5px}
 
