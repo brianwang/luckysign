@@ -447,6 +447,37 @@ namespace WebForApps.LoveRose
                 result["花心"][flowercount]++;
                 #endregion
 
+                #region 魅力指数
+                int meilicount = beecount;
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Ura], m_star[PublicValue.AstroStar.For]))
+                {
+                    meilicount++;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Ura], m_star[PublicValue.AstroStar.Ven]))
+                {
+                    meilicount++;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[PublicValue.AstroStar.Ven]))
+                {
+                    meilicount++;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.For]))
+                {
+                    meilicount++;
+                }
+
+                if (!result.ContainsKey("魅力"))
+                {
+                    SortedDictionary<int, int> tmpdic = new SortedDictionary<int, int>();
+                    result.Add("魅力", tmpdic);
+                }
+                if (!result["魅力"].ContainsKey(meilicount))
+                {
+                    result["魅力"].Add(meilicount, 0);
+                }
+                result["魅力"][meilicount]++;
+                #endregion
+
                 #region 对方有钱
                 int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
                 List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true); ;

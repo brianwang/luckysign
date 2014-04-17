@@ -361,8 +361,8 @@ namespace WebForApps.LoveRose
                 li9.Style["display"] = "";
             }
             int totalbad = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"] + showele["kuye"];
-            span1.Style["width"] = ((12800 -totalbad * 128) / 50).ToString() + "px";
-            ltr1.Text = ((10000-totalbad * 100) / 50).ToString();
+            span1.Style["width"] = ((6400 -totalbad * 128) / 50).ToString() + "px";
+            ltr1.Text = ((5000-totalbad * 100) / 50).ToString();
 
             Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
             #endregion
@@ -422,6 +422,26 @@ namespace WebForApps.LoveRose
             span3.Style["width"] = (flowercount * 128 / 10).ToString() + "px";
             ltr3.Text = (flowercount * 100 / 10).ToString();
             Label1.Text += "5.花心指数为:" + flowercount + "<br />";
+            #endregion
+
+            #region 魅力指数
+            int meilicount = beecount;
+            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Ura], m_star[PublicValue.AstroStar.For]))
+            {
+                meilicount++;
+            }
+            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Ura], m_star[PublicValue.AstroStar.Ven]))
+            {
+                meilicount++;
+            }
+            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[PublicValue.AstroStar.Ven]))
+            {
+                meilicount++;
+            }
+            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.For]))
+            {
+                meilicount++;
+            }
             #endregion
 
             #region 对方有钱
