@@ -45,7 +45,7 @@ namespace WebServiceForApp
                 }
                 if (tmp_cate.TopSysNo == 1)
                 {
-                    tmp_cate.Pic = tmp_cate.Pic.Replace("pp", "p");
+                    tmp_cate.Pic = tmp_cate.Pic.Replace("pp", "p").Replace("jpg", "png");
                 }
                 for (int j = 0; j < questnum.Rows.Count; j++)
                 {

@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 body{margin:0 auto; background:#333}
@@ -35,9 +35,9 @@ img{border:0;}
 
 .chongzi{top:54px;left:327px; z-index:4}
 
-.huapen{top:355px;left:406px;z-index:3}
+.huapen{top:355px;left:406px;z-index:4}
 
-.cu{left:169px;top:328px}
+.cu{left:169px;top:328px;z-index:4}
 
 .liehen{left:433px;top:400px;z-index:4}
 
@@ -103,21 +103,21 @@ img{border:0;}
 
 .hua div.f-4{ background:url(../img/f4.png);width:228px;height:332px; margin-left:75px;margin-top:60px}
 
-.hua div.f-5{ background:url(../img/f5.png);width:242px;height:413px; margin-left:45px;margin-top:28px}
+.hua div.f-5{ background:url(../img/f5.png);width:188px;height:365px; margin-left:90px;margin-top:44px}
 
-.hua div.f-6{ background:url(../img/f6.png);width:302px;height:345px; margin-left:51px;}
+.hua div.f-6{ background:url(../img/f6.png);width:233px;height:349px; margin-left:55px;margin-top:33px}
 
-.hua div.f-7{ background:url(../img/f7.png);width:244px;height:348px; margin-left:55px;margin-top:32px}
+.hua div.f-7{ background:url(../img/f7.png);width:202px;height:349px; margin-left:61px;margin-top:35px}
 
-.hua div.f-8{ background:url(../img/f8.png);width:233px;height:349px; margin-left:55px;margin-top:33px}
+.hua div.f-8{ background:url(../img/f8.png);width:242px;height:413px; margin-left:45px;margin-top:28px;}
 
-.hua div.f-9{ background:url(../img/f9.png);width:202px;height:349px; margin-left:61px;margin-top:35px}
+.hua div.f-9{ background:url(../img/f9.png);width:286px;height:360px; margin-left:54px;margin-top:25px}
 
-.hua div.f-10{ background:url(../img/f10.png);width:286px;height:360px; margin-left:54px;margin-top:25px}
+.hua div.f-10{ background:url(../img/f10.png);width:244px;height:348px; margin-left:55px;margin-top:32px;}
 
-.hua div.f-11{ background:url(../img/f11.png);width:188px;height:365px; margin-left:90px;margin-top:44px}
+.hua div.f-11{ background:url(../img/f11.png);width:114px;height:293px; margin-left:110px;margin-top:64px}
 
-.hua div.f-12{ background:url(../img/f12.png);width:114px;height:293px; margin-left:110px;margin-top:64px}
+.hua div.f-12{ background:url(../img/f12.png);width:302px;height:345px; margin-left:51px;}
 
 .zhezhi .level-1{background:url(../img/zz1.png);width:480px;height:300px}
 

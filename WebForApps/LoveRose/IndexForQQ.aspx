@@ -415,7 +415,7 @@
                 <div class="c1"><span id="span1" runat="server" style="width: 90px"></span></div>
                                     </div>
                                     <div class="per">
-                                        魅力指数：70%
+                                        魅力指数：<asp:Literal ID="ltr2" runat="server"></asp:Literal>%
                 <div class="c2"><span id="span2" runat="server" style="width: 90px"></span></div>
                                     </div>
                                     <%--<div class="per">

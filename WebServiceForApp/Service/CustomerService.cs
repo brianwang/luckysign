@@ -643,32 +643,94 @@ namespace WebServiceForApp
         public USR_CustomerShow MapUSR_CustomerShow(DataRow input)
         {
             USR_CustomerShow ret = new USR_CustomerShow();
-            ret.BestAnswer = int.Parse(input["BestAnswer"].ToString());
-            ret.birth = (DateTime.Parse(input["birth"].ToString()).ToMilliSecondsFrom1970L())/1000;
-            ret.Credit = int.Parse(input["Credit"].ToString());
-            ret.Exp = int.Parse(input["Exp"].ToString());
-            ret.FateType = int.Parse(input["FateType"].ToString());
-            ret.Gender = int.Parse(input["Gender"].ToString());
-            ret.GradeSysNo = int.Parse(input["GradeSysNo"].ToString());
-            ret.HasNewInfo = int.Parse(input["HasNewInfo"].ToString());
-            ret.HomeTown = int.Parse(input["HomeTown"].ToString());
+            if (input["BestAnswer"].ToString() != "")
+            {
+                ret.BestAnswer = int.Parse(input["BestAnswer"].ToString());
+            }
+            if (input["birth"].ToString() != "")
+            {
+                ret.birth = (DateTime.Parse(input["birth"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+            }
+            if (input["Credit"].ToString() != "")
+            {
+                ret.Credit = int.Parse(input["Credit"].ToString());
+            }
+            if (input["Exp"].ToString() != "")
+            {
+                ret.Exp = int.Parse(input["Exp"].ToString());
+            }
+            if (input["FateType"].ToString() != "")
+            {
+                ret.FateType = int.Parse(input["FateType"].ToString());
+            }
+            if (input["Gender"].ToString() != "")
+            {
+                ret.Gender = int.Parse(input["Gender"].ToString());
+            }
+            if (input["GradeSysNo"].ToString() != "")
+            {
+                ret.GradeSysNo = int.Parse(input["GradeSysNo"].ToString());
+            }
+            if (input["HasNewInfo"].ToString() != "")
+            {
+                ret.HasNewInfo = int.Parse(input["HasNewInfo"].ToString());
+            }
+            if (input["HomeTown"].ToString() != "")
+            {
+                ret.HomeTown = int.Parse(input["HomeTown"].ToString());
+            }
             ret.Intro = input["Intro"].ToString();
-            ret.IsShowBirth = int.Parse(input["IsShowBirth"].ToString());
-            ret.IsStar = int.Parse(input["IsStar"].ToString());
-            ret.LastLoginTime = (DateTime.Parse(input["LastLoginTime"].ToString()).ToMilliSecondsFrom1970L())/1000;
+            if (input["IsShowBirth"].ToString() != "")
+            {
+                ret.IsShowBirth = int.Parse(input["IsShowBirth"].ToString());
+            }
+            if (input["IsStar"].ToString() != "")
+            {
+                ret.IsStar = int.Parse(input["IsStar"].ToString());
+            }
+            if (input["LastLoginTime"].ToString() != "")
+            {
+                ret.LastLoginTime = (DateTime.Parse(input["LastLoginTime"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+            }
             ret.NickName = input["NickName"].ToString();
             ret.Photo = input["Photo"].ToString();
-            ret.Point = int.Parse(input["Point"].ToString());
-            ret.RegTime = (DateTime.Parse(input["RegTime"].ToString()).ToMilliSecondsFrom1970L())/1000;
+            if (input["Point"].ToString() != "")
+            {
+                ret.Point = int.Parse(input["Point"].ToString());
+            }
+            if (input["RegTime"].ToString() != "")
+            {
+                ret.RegTime = (DateTime.Parse(input["RegTime"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+            }
             ret.Signature = input["Signature"].ToString();
-            ret.Status = int.Parse(input["Status"].ToString());
-            ret.SysNo = int.Parse(input["SysNo"].ToString());
-            ret.TotalAnswer = int.Parse(input["TotalAnswer"].ToString());
-            ret.TotalQuest = int.Parse(input["TotalQuest"].ToString());
-            ret.TotalReply = int.Parse(input["TotalReply"].ToString());
-            ret.TotalTalk = int.Parse(input["TotalTalk"].ToString());
-            ret.TotalTalkReply = int.Parse(input["TotalTalkReply"].ToString());
-
+            if (input["Status"].ToString() != "")
+            {
+                ret.Status = int.Parse(input["Status"].ToString());
+            }
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["TotalAnswer"].ToString() != "")
+            {
+                ret.TotalAnswer = int.Parse(input["TotalAnswer"].ToString());
+            }
+            if (input["TotalQuest"].ToString() != "")
+            {
+                ret.TotalQuest = int.Parse(input["TotalQuest"].ToString());
+            }
+            if (input["TotalReply"].ToString() != "")
+            {
+                ret.TotalReply = int.Parse(input["TotalReply"].ToString());
+            }
+            if (input["TotalTalk"].ToString() != "")
+            {
+                ret.TotalTalk = int.Parse(input["TotalTalk"].ToString());
+            }
+            if (input["TotalTalkReply"].ToString() != "")
+            {
+                ret.TotalTalkReply = int.Parse(input["TotalTalkReply"].ToString());
+            }
             return ret;
         }
         #endregion

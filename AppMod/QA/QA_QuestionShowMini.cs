@@ -6,6 +6,7 @@ using AppMod.Fate;
 using AppMod.User;
 using System.Runtime.Serialization;
 using XMS.Core;
+using System.Web;
 
 namespace AppMod.QA
 {
@@ -158,17 +159,17 @@ namespace AppMod.QA
             set { _CustomerNickName = value; }
         }
 
-        [DataMember]
-        public string BigPhotoShow
-        {
-            get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + CustomerPhoto; }
-            set { }
-        }
+        //[DataMember]
+        //public string BigPhotoShow
+        //{
+        //    get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + HttpUtility.UrlEncode(CustomerPhoto); }
+        //    set { }
+        //}
 
         [DataMember]
         public string smallPhotoShow
         {
-            get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + CustomerPhoto; }
+            get { return AppConfig.HomeUrl() + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + HttpUtility.UrlEncode(CustomerPhoto); }
             set { }
         }
 

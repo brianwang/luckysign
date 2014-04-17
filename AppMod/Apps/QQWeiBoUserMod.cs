@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 namespace AppMod.Apps
 {
     [DataContract]
+    [Serializable]
     public class QQWeiBoUserMod : IComparable<QQWeiBoUserMod>
     {
         public QQWeiBoUserMod()

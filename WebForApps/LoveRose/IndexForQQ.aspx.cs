@@ -363,7 +363,11 @@ namespace WebForApps.LoveRose
             int totalbad = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"] + showele["kuye"];
             span1.Style["width"] = ((6400 -totalbad * 128) / 50).ToString() + "px";
             ltr1.Text = ((5000-totalbad * 100) / 50).ToString();
-
+            if (ltr1.Text == "0")
+            {
+                span1.Style["width"] = (1 * 128 / 100).ToString() + "px";
+                ltr1.Text = "1";
+            }
             Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
             #endregion
 
@@ -421,6 +425,11 @@ namespace WebForApps.LoveRose
             }
             span3.Style["width"] = (flowercount * 128 / 10).ToString() + "px";
             ltr3.Text = (flowercount * 100 / 10).ToString();
+            if (ltr3.Text == "0")
+            {
+                span3.Style["width"] = (1 * 128 / 100).ToString() + "px";
+                ltr3.Text = "1";
+            }
             Label1.Text += "5.花心指数为:" + flowercount + "<br />";
             #endregion
 
@@ -442,12 +451,25 @@ namespace WebForApps.LoveRose
             {
                 meilicount++;
             }
+            span2.Style["width"] = (flowercount * 128 / 12).ToString() + "px";
+            ltr2.Text = (flowercount * 100 / 12).ToString();
+            if (ltr2.Text == "0")
+            {
+                span2.Style["width"] = (1 * 128 / 100).ToString() + "px";
+                ltr2.Text = "1";
+            }
+
             #endregion
 
             #region 对方有钱
             int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
             span4.Style["width"] = (richcount * 128 / 70).ToString() + "px";
             ltr4.Text = (richcount * 100 / 70).ToString();
+            if (ltr4.Text == "0")
+            {
+                span4.Style["width"] = (1 * 128 / 100).ToString() + "px";
+                ltr4.Text = "1";
+            }
             Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
             List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true);

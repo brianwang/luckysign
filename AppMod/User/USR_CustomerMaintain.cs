@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using AppCmn;
 using XMS.Core;
+using System.Web;
 
 namespace AppMod.User
 {
@@ -271,14 +272,14 @@ namespace AppMod.User
         [DataMember]
         public string BigPhotoShow
         {
-            get { return Container.ConfigService.GetAppSetting<string>("HomeUrl","") + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + _Photo; }
+            get { return Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "ControlLibrary/ShowPhoto.aspx?type=t&id=" + HttpUtility.UrlEncode(_Photo); }
             set { }
         }
 
         [DataMember]
         public string smallPhotoShow
         {
-            get { return Container.ConfigService.GetAppSetting<string>("HomeUrl","") + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + _Photo; }
+            get { return Container.ConfigService.GetAppSetting<string>("HomeUrl", "") + "ControlLibrary/ShowPhoto.aspx?type=o&id=" + HttpUtility.UrlEncode(_Photo); }
             set { }
         }
 
