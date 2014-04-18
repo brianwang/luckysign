@@ -17,7 +17,7 @@ img{border:0;}
 
 .f-box{
 	background:url(../img/bg.jpg);
-	width:780px;
+	width:750px;
 	height:584px;
 	margin:auto;
 	position:relative
@@ -25,13 +25,13 @@ img{border:0;}
 
 .paopao,.mifeng,.chongzi,.huapen,.bingdong,.hongxing,.hua,.zhezhi,.cu,.liehen,.kuzhi{position:absolute}
 
-.hongxing{ background:url(../img/hongxing.png) no-repeat;width:89px;height:175px;top:195px;left:482px; display:block; z-index:1}
+.hongxing{ background:url(../img/hongxing.png) no-repeat;width:89px;height:175px;top:195px;left:482px; z-index:2}
 
-.zhezhi{z-index:1;width:480px;height:300px;left:6px;top:209px; display:block}
+.zhezhi{z-index:0;width:480px;height:300px;left:6px;top:209px;}
 
-.paopao{top:0;left:0px; z-index:3}
+.paopao{top:0;left:0px; z-index:0}
 
-.mifeng{top:113px;left:230px}
+.mifeng{z-index:0;top:113px;left:230px}
 
 .chongzi{top:54px;left:327px; z-index:4}
 
@@ -39,13 +39,13 @@ img{border:0;}
 
 .cu{left:169px;top:328px;z-index:4}
 
-.liehen{left:433px;top:400px;z-index:4}
+.liehen{left:433px;top:400px;z-index:5}
 
 .bingdong{left:397px;top:275px;z-index:3}
 
 .kuzhi{left:333px;top:270px;z-index:2}
 
-.hua{z-index:0;left:298px;top:24px}
+.hua{z-index:1;left:298px;top:24px}
 
 .paopao div.level-1{ background:url(../img/pp1.png) no-repeat;width:757px;height:120px}
 
@@ -61,13 +61,31 @@ img{border:0;}
 
 .mifeng div.level-3{ background:url(../img/mf3.png) no-repeat;width:480px;height:200px}
 
-.mifeng div.level-3{ background:url(../img/mf4.png) no-repeat;width:480px;height:200px}
+.mifeng div.level-4{ background:url(../img/mf4.png) no-repeat;width:480px;height:200px}
+
+.mifeng a{ display:block; position:absolute;width:50px;height:50px; cursor:pointer}
+
+.mifeng a.mf_a1{left:383px;top:21px}
+
+.mifeng a.mf_a2{left:428px;top:95px}
+
+.mifeng a.mf_a3{left:63px;top:125px}
+
+.mifeng a.mf_a4{left:0px;top:0px;width:114px;height:89px}
 
 .chongzi div.level-1{ background:url(../img/cz1.png) no-repeat;width:250px;height:450px}
 
 .chongzi div.level-2{ background:url(../img/cz2.png) no-repeat;width:250px;height:450px}
 
 .chongzi div.level-3{ background:url(../img/cz3.png) no-repeat;width:250px;height:450px}
+
+.chongzi a{ display:block; position:absolute;cursor:pointer}
+
+.chongzi a.cz_a1{width:108px;height:52px;left:0px;top:398px}
+
+.chongzi a.cz_a2{width:60px;height:30px;left:183px;top:278px}
+
+
 
 .huapen div.level-1{ background:url(../img/hp1.png) no-repeat;width:330px;height:150px}
 
@@ -89,11 +107,11 @@ img{border:0;}
 
 .liehen div.level-4{ background:url(../img/lh4.png) no-repeat;width:80px;height:74px; margin-left:8px; margin-top:2px}
 
-.bingdong div.level-1{ background:url(../img/bd1.png) no-repeat;width:150px;height:180px; margin-left:18px; margin-top:30px}
+.bingdong div.level-1{ background:url(../img/bd1.png) no-repeat;width:81px;height:84px; margin-left:18px; margin-top:30px}
 
-.bingdong div.level-2{ background:url(../img/bd2.png) no-repeat;width:150px;height:180px; margin-left:18px}
+.bingdong div.level-2{ background:url(../img/bd2.png) no-repeat;width:95px;height:115px; margin-left:18px}
 
-.bingdong div.level-3{ background:url(../img/bd3.png) no-repeat;width:150px;height:180px}
+.bingdong div.level-3{ background:url(../img/bd3.png) no-repeat;width:112px;height:135px}
 
 .hua div.f-1{ background:url(../img/f1.png);width:192px;height:367px;  margin-left:95px; margin-top:2px}
 
@@ -126,6 +144,14 @@ img{border:0;}
 .zhezhi .level-3{background:url(../img/zz3.png);width:480px;height:300px}
 
 .zhezhi .level-4{background:url(../img/zz4.png);width:480px;height:300px}
+
+.zhezhi a{ display:block; position:absolute;cursor:pointer}
+
+.zz_a1{width:115px;height:58px;left:360px;top:0px}
+
+.zz_a2{width:106px;height:91px;left:226px;top:206px}
+
+.zz_a3{width:123px;height:71px;left:0px;top:217px}
 
 .kuzhi .level-1{background:url(../img/kz1.png);width:130px;height:120px}
 

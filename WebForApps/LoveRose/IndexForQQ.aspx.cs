@@ -214,10 +214,7 @@ namespace WebForApps.LoveRose
             li1.Style["display"] = "";
             #endregion
 
-            #region 花盆
-            Label1.Text += "5.花盆为:" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Jun].Constellation) + "<br />";
-            jsstr += "showItem('huapen', " + ((int)m_star[PublicValue.AstroStar.Jun].Constellation % 3 + 1) + ");";
-            #endregion
+
 
             #region 负面
             Dictionary<string, int> showele = new Dictionary<string, int>();
@@ -361,14 +358,34 @@ namespace WebForApps.LoveRose
                 li9.Style["display"] = "";
             }
             int totalbad = showele["paopao"] + showele["chongzi"] + showele["cu"] + showele["liehen"] + showele["bingdong"] + showele["zhezhi"] + showele["kuye"];
-            span1.Style["width"] = ((6400 -totalbad * 128) / 50).ToString() + "px";
-            ltr1.Text = ((5000-totalbad * 100) / 50).ToString();
+            span1.Style["width"] = ((4096 -totalbad * 128) / 32).ToString() + "px";
+            ltr1.Text = ((3200-totalbad * 100) / 32).ToString();
             if (ltr1.Text == "0")
             {
                 span1.Style["width"] = (1 * 128 / 100).ToString() + "px";
                 ltr1.Text = "1";
             }
+            if (hongxing && int.Parse(ltr1.Text) >= 70)
+            {
+                ltr1.Text = (int.Parse(ltr1.Text) - 15).ToString();
+                span1.Style["width"] = (int.Parse(ltr1.Text) * 128 / 100).ToString() + "px";
+            }
+
             Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
+            #endregion
+
+            #region 花盆
+            int huapen = 1;
+            if (totalbad >= 20)
+            {
+                huapen = 3;
+            }
+            else if ((totalbad >= 13 && totalbad < 20) || (hongxing && totalbad > 6))
+            {
+                huapen = 2;
+            }
+            Label1.Text += "5.花盆为:" + huapen + "<br />";
+            jsstr += "showItem('huapen', " + huapen + ");";
             #endregion
 
             #region 花心指数
@@ -462,7 +479,7 @@ namespace WebForApps.LoveRose
             #endregion
 
             #region 对方有钱
-            int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
+            int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 8);
             span4.Style["width"] = (richcount * 128 / 70).ToString() + "px";
             ltr4.Text = (richcount * 100 / 70).ToString();
             if (ltr4.Text == "0")
@@ -577,6 +594,8 @@ namespace WebForApps.LoveRose
             "木星（金星）：黄叶子",
             "土星：裂痕",
             "冥王（月亮）：醋瓶",
+            "蜜蜂：文案呢？！",
+            "红杏：文案呢？！",
         };
         string[] content = { 
             "犹如一串红甜甜的花蕊，跟你恋爱也是一件快乐的事。你一旦发现心仪的对象，就会毫不犹豫地发起热烈的攻势，无论男生女生都有主动表白的勇气，不管是情敌的挑衅，还是家人的反对，在你看来这都不是事儿。但你也较缺乏耐心，一旦久攻不破，难保你不会打消念头，因为你就是干净利落绝不多话，率直又有个性。一串红代表你喜欢个性开朗，独立单纯的异性，很容易一见钟情，并容易将爱情理想化，“我也许喜欢怀念你，多于看见你。我也许喜欢想象你，多于得到你” 有时候，与其说你爱着对方，不如说是你与自己的精神在谈恋爱。正因如此，你在爱情中常给人三分钟热情的感觉，你希望你们永远都是快乐的，缺乏为对方排忧解难的耐心，不想太操心，可能关注自己比关注对方更多一些，如果对方的负能量太多，会成为导致感情危机的定时炸弹，说不定哪天就爆发了。",
@@ -603,6 +622,8 @@ namespace WebForApps.LoveRose
             "黄叶是影响你恋爱与婚姻的不利因素，代表你在两性关系中过于主观，想当然，可能先结婚后恋爱；认为自己可以改变对方，结果却不行；高估了自己，轻视了困难，因为过度自信，而忽略了很多问题；神经大条，大大咧咧，觉得一切都很好，你们之间没什么问题，而恰恰掩饰了很多问题；当问题真正暴露出来的时候，你会采取半放弃的状态，原本积极努力可以改变的事情，你也懒得采取行动，这种疏忽和怠慢的态度常常让你的伴侣觉得你不在乎ta，因此导致关系的破裂。如果只是少量的黄叶，说明症状轻微，你需要更客观的看待你的伴侣和你们的未来，凡事多个心眼。如果黄叶较多，爱情花中又同时出现冰冻，醋瓶，泡泡，裂痕，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），就需要特别注意了，否则婚姻不幸，难以圆满。",
             "裂痕是影响你恋爱与婚姻的不利因素，代表你在恋爱与婚姻关系中可能出现以下问题：容易晚恋，晚婚，甚至不婚；在感情方面缺乏自信，总是害怕自己不会幸福，对待感情想而不敢；比较苛刻和严厉，对方怎么做都难让你满意；不会换位思考，老是挑剔对方；让对方觉得你不够温柔，争吵不断，感情不睦。如果只是轻微的裂痕，大多婚前波折，缺乏甜蜜感。如遇到较大的裂痕，并且爱情花中同时出现冰冻，醋瓶，泡泡，黄叶，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），会严重影响夫妻感情，毫无快乐可言，导致离婚。",
             "醋瓶的出现代表你是一个比较敏感，容易生气容易吃醋的人，控制欲和占有欲比较强，容易觉得对方背叛了自己；缺乏耐性，情绪化；比较强势和任性，想做的一定要做，原本理智一点可以避免的冲突却因一时任性后悔莫及。如果只是少量的醋，或许你只是容易产生嫉妒的情绪而已，对方并没什么过错，你需要调节自己的心态，减少一些不必要的负能量。但如果是满瓶的醋，就极大的增强了对一段感情的破坏性，遭遇第三者，被劈腿的可能性很大。如果爱情花中还同时出现冰冻，裂痕，泡泡，黄叶，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），会完全无法信任对方，极度缺乏安全感，导致离婚。",
+            "",
+            "",
         };
         #endregion
 

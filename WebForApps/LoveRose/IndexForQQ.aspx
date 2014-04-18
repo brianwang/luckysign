@@ -296,41 +296,62 @@
                                         <asp:HiddenField ID="HiddenField5" runat="server" />
                                         <asp:Button ID="Button1" runat="server" Text="" OnClick="Button1_Click" Style="display: none;" />
                                         <!--泡泡-->
-                                        <div onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" class="paopao" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
-                                            <div class="level-4"></div>
+                                        <div class="paopao">
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-4" onclick="javascript:<%=HiddenField5.ClientID %>.value='13';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--蜜蜂-->
-                                        <div onclick="javascript:<%=HiddenField5.ClientID %>.value='2';<%=Button1.ClientID %>.click();" class="mifeng" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
-                                            <div class="level-4"></div>
+                                        <div class="mifeng">
+                                            <div class="level-1">
+                                                <a class="mf_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-2">
+                                                <a class="mf_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-3">
+                                                <a class="mf_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a3" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-4">
+                                                <a class="mf_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a3" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="mf_a4" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
                                         </div>
 
                                         <!--虫子-->
-                                        <div class="chongzi" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
+                                        <div class="chongzi">
+                                            <div class="level-1">
+                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-2">
+                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-3">
+                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="cz_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
                                         </div>
 
                                         <!--醋-->
-                                        <div class="cu" onclick="javascript:<%=HiddenField5.ClientID %>.value='17';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
+                                        <div class="cu">
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='17';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='17';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='17';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--裂痕-->
-                                        <div class="liehen" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
-                                            <div class="level-4"></div>
+                                        <div class="liehen">
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-4" onclick="javascript:<%=HiddenField5.ClientID %>.value='16';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--花盆-->
@@ -341,44 +362,56 @@
                                         </div>
 
                                         <!--冰冻-->
-                                        <div class="bingdong" onclick="javascript:<%=HiddenField5.ClientID %>.value='11';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
+                                        <div class="bingdong">
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='11';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='11';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='11';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--红杏-->
-                                        <div class="hongxing" onclick="javascript:<%=HiddenField5.ClientID %>.value='3';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                        <div class="hongxing" onclick="javascript:<%=HiddenField5.ClientID %>.value='19';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
 
                                         <!--花-->
-                                        <div class="hua" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="f-1"></div>
-                                            <div class="f-2"></div>
-                                            <div class="f-3"></div>
-                                            <div class="f-4"></div>
-                                            <div class="f-5"></div>
-                                            <div class="f-6"></div>
-                                            <div class="f-7"></div>
-                                            <div class="f-8"></div>
-                                            <div class="f-9"></div>
-                                            <div class="f-10"></div>
-                                            <div class="f-11"></div>
-                                            <div class="f-12"></div>
+                                        <div class="hua">
+                                            <div class="f-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-4" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-5" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-6" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-7" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-8" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-9" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-10" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-11" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="f-12" onclick="javascript:<%=HiddenField5.ClientID %>.value='1';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--折枝-->
-                                        <div class="zhezhi" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
-                                            <div class="level-4"></div>
+                                        <div class="zhezhi">
+                                            <div class="level-1">
+                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-2">
+                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-3">
+                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
+                                            <div class="level-4">
+                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a3"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                            </div>
                                         </div>
 
                                         <!--枯枝-->
-                                        <div class="kuzhi" onclick="javascript:<%=HiddenField5.ClientID %>.value='18';<%=Button1.ClientID %>.click();" style="cursor: pointer">
-                                            <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
+                                        <div class="kuzhi">
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='15';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='15';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='15';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                     </div>
