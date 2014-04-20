@@ -101,6 +101,8 @@ namespace WebForApps.LoveRose
             tmpbad.Add(PublicValue.AstroStar.Plu);
             List<PublicValue.AstroStar> twelve = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12, false);
             List<PublicValue.AstroStar> eight = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 8, false);
+            List<PublicValue.AstroStar> seven = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
+            List<PublicValue.AstroStar> two = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 2, false);
             foreach (PublicValue.AstroStar tmp in tmpbad)
             {
                 badstars.Add(tmp, 1);
@@ -370,6 +372,11 @@ namespace WebForApps.LoveRose
                 ltr1.Text = (int.Parse(ltr1.Text) - 15).ToString();
                 span1.Style["width"] = (int.Parse(ltr1.Text) * 128 / 100).ToString() + "px";
             }
+            if (int.Parse(ltr1.Text) > 100)
+            {
+                span1.Style["width"] = "128px";
+                ltr1.Text = "100";
+            }
 
             Label1.Text += "5.泡泡：" + showele["paopao"] +"; 虫子："+showele["chongzi"] + "; 醋："+ showele["cu"] + "; 裂痕："+ showele["liehen"] + "; 冰冻："+showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "<br />";
             #endregion
@@ -414,6 +421,12 @@ namespace WebForApps.LoveRose
             {
                 flowercount++;
             }
+            if (m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Gem ||
+               m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Sag ||
+               m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Pis)
+            {
+                flowercount++;
+            }
             if (m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Gem ||
                 m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Sag ||
                 m_star[PublicValue.AstroStar.Des].Constellation == PublicValue.Constellation.Pis)
@@ -428,11 +441,11 @@ namespace WebForApps.LoveRose
             {
                 flowercount++;
             }
-            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind)
+            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind && PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
             {
                 flowercount++;
             }
-            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
+            if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.fire && PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.wind)
             {
                 flowercount++;
             }
@@ -446,6 +459,11 @@ namespace WebForApps.LoveRose
             {
                 span3.Style["width"] = (1 * 128 / 100).ToString() + "px";
                 ltr3.Text = "1";
+            }
+            if (int.Parse(ltr3.Text) > 100)
+            {
+                span3.Style["width"] = "128px";
+                ltr3.Text = "100";
             }
             Label1.Text += "5.花心指数为:" + flowercount + "<br />";
             #endregion
@@ -464,28 +482,88 @@ namespace WebForApps.LoveRose
             {
                 meilicount++;
             }
-            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.For]))
+            if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.Jup]))
             {
                 meilicount++;
             }
-            span2.Style["width"] = (flowercount * 128 / 12).ToString() + "px";
-            ltr2.Text = (flowercount * 100 / 12).ToString();
+            span2.Style["width"] = (meilicount * 128 / 12).ToString() + "px";
+            ltr2.Text = (meilicount * 100 / 12).ToString();
             if (ltr2.Text == "0")
             {
                 span2.Style["width"] = (1 * 128 / 100).ToString() + "px";
                 ltr2.Text = "1";
+            }
+            if (int.Parse(ltr2.Text) > 100)
+            {
+                span2.Style["width"] = "128px";
+                ltr2.Text = "100";
             }
 
             #endregion
 
             #region 对方有钱
             int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 8);
-            span4.Style["width"] = (richcount * 128 / 70).ToString() + "px";
-            ltr4.Text = (richcount * 100 / 70).ToString();
+            if (richcount > 15)
+            {
+                richcount = 15;
+            }
+            foreach (PublicValue.AstroStar tmpstar in seven)
+            {
+                if (m_star[tmpstar].Gong == 8||m_star[tmpstar].Gong == 7)
+                {
+                    richcount = richcount + 5;
+                }
+            }
+            foreach (PublicValue.AstroStar tmpstar in eight)
+            {
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]))
+                {
+                    richcount=richcount+5;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                {
+                    richcount = richcount + 5;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                {
+                    richcount = richcount + 5;
+                }
+            }
+            foreach (PublicValue.AstroStar tmpstar in two)
+            {
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]))
+                {
+                    richcount = richcount + 5;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                {
+                    richcount = richcount + 5;
+                }
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                {
+                    richcount = richcount + 5;
+                }
+            }
+            if (m_star[PublicValue.AstroStar.Jun].Gong==11)
+            {
+                richcount = richcount + 5;
+            }
+            if (m_star[PublicValue.AstroStar.Ura].Gong==8)
+            {
+                richcount = richcount + 5;
+            }
+
+            span4.Style["width"] = (richcount * 128 / 30).ToString() + "px";
+            ltr4.Text = (richcount * 100 / 30).ToString();
             if (ltr4.Text == "0")
             {
                 span4.Style["width"] = (1 * 128 / 100).ToString() + "px";
                 ltr4.Text = "1";
+            }
+            if (int.Parse(ltr4.Text) > 100)
+            {
+                span4.Style["width"] = "128px";
+                ltr4.Text = "100";
             }
             Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
@@ -587,15 +665,16 @@ namespace WebForApps.LoveRose
             "金星摩羯非洲菊，花语：负责任，互敬互爱，不畏艰难",
             "金星水瓶郁金香  花语：",
             "金星双鱼紫罗兰，花语：在梦境中爱上你",
-            "天王星：冰冻",
-            "水星：虫子",
-            "海王：泡泡",
-            "火星（太阳）：折枝",
-            "木星（金星）：黄叶子",
-            "土星：裂痕",
-            "冥王（月亮）：醋瓶",
-            "蜜蜂：文案呢？！",
-            "红杏：文案呢？！",
+            "冰冻",
+            "虫子",
+            "泡泡",
+            "折枝",
+            "黄叶子",
+            "裂痕",
+            "醋瓶",
+            "蜜蜂",
+            "红杏",
+            "花盆",
         };
         string[] content = { 
             "犹如一串红甜甜的花蕊，跟你恋爱也是一件快乐的事。你一旦发现心仪的对象，就会毫不犹豫地发起热烈的攻势，无论男生女生都有主动表白的勇气，不管是情敌的挑衅，还是家人的反对，在你看来这都不是事儿。但你也较缺乏耐心，一旦久攻不破，难保你不会打消念头，因为你就是干净利落绝不多话，率直又有个性。一串红代表你喜欢个性开朗，独立单纯的异性，很容易一见钟情，并容易将爱情理想化，“我也许喜欢怀念你，多于看见你。我也许喜欢想象你，多于得到你” 有时候，与其说你爱着对方，不如说是你与自己的精神在谈恋爱。正因如此，你在爱情中常给人三分钟热情的感觉，你希望你们永远都是快乐的，缺乏为对方排忧解难的耐心，不想太操心，可能关注自己比关注对方更多一些，如果对方的负能量太多，会成为导致感情危机的定时炸弹，说不定哪天就爆发了。",
@@ -622,9 +701,12 @@ namespace WebForApps.LoveRose
             "黄叶是影响你恋爱与婚姻的不利因素，代表你在两性关系中过于主观，想当然，可能先结婚后恋爱；认为自己可以改变对方，结果却不行；高估了自己，轻视了困难，因为过度自信，而忽略了很多问题；神经大条，大大咧咧，觉得一切都很好，你们之间没什么问题，而恰恰掩饰了很多问题；当问题真正暴露出来的时候，你会采取半放弃的状态，原本积极努力可以改变的事情，你也懒得采取行动，这种疏忽和怠慢的态度常常让你的伴侣觉得你不在乎ta，因此导致关系的破裂。如果只是少量的黄叶，说明症状轻微，你需要更客观的看待你的伴侣和你们的未来，凡事多个心眼。如果黄叶较多，爱情花中又同时出现冰冻，醋瓶，泡泡，裂痕，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），就需要特别注意了，否则婚姻不幸，难以圆满。",
             "裂痕是影响你恋爱与婚姻的不利因素，代表你在恋爱与婚姻关系中可能出现以下问题：容易晚恋，晚婚，甚至不婚；在感情方面缺乏自信，总是害怕自己不会幸福，对待感情想而不敢；比较苛刻和严厉，对方怎么做都难让你满意；不会换位思考，老是挑剔对方；让对方觉得你不够温柔，争吵不断，感情不睦。如果只是轻微的裂痕，大多婚前波折，缺乏甜蜜感。如遇到较大的裂痕，并且爱情花中同时出现冰冻，醋瓶，泡泡，黄叶，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），会严重影响夫妻感情，毫无快乐可言，导致离婚。",
             "醋瓶的出现代表你是一个比较敏感，容易生气容易吃醋的人，控制欲和占有欲比较强，容易觉得对方背叛了自己；缺乏耐性，情绪化；比较强势和任性，想做的一定要做，原本理智一点可以避免的冲突却因一时任性后悔莫及。如果只是少量的醋，或许你只是容易产生嫉妒的情绪而已，对方并没什么过错，你需要调节自己的心态，减少一些不必要的负能量。但如果是满瓶的醋，就极大的增强了对一段感情的破坏性，遭遇第三者，被劈腿的可能性很大。如果爱情花中还同时出现冰冻，裂痕，泡泡，黄叶，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），会完全无法信任对方，极度缺乏安全感，导致离婚。",
-            "",
-            "",
-        };
+            @"蜜蜂的数量代表了你的异性缘，如果只出现了一只蜜蜂，说明你的异性缘比较弱，很少有人追求，或是总也追不到自己喜欢的人，可能一直单身很多年。或许你的条件也不差，但就是少有人追，说出去都没人信。看见别人总是出双入对，难免会有些羡慕。逢年过节，更是各种被逼相亲催婚，非常的无奈苦恼。如果出现了两只到三只蜜蜂，说明你的异性缘中等或偏上，不愁找不到男（女）朋友，遇到桃花运好的年份，更是桃花朵朵开，小心挑花了眼哦，只是偶尔苦恼，烂桃花太多，何时是正缘？<br />
+如果还出现了蝴蝶，说明你的异性缘真是超好的，可谓人见人爱，花见花开，从来不乏追求者，以致众多的追求者让你难以抉择，甚至是众人的男神女神。即使你已经名花有主了，还会有人对你表达爱慕之情。如果你还单身，那么桃花朵朵，多多益善；如果你已经结婚，就需要意志坚定的抵制那些烂桃花，减少一些不必要的麻烦，才能让爱情之花长久常开。",
+            "红杏是影响你恋爱与婚姻的不利因素，所谓一枝红杏出墙来，代表你伴侣出轨的可能性很大，也就是你很可能被劈腿。这对任何一段感情来说，都无疑是一种打击。但具体情况还需结合爱情花的其他因素而定，如果爱情花中并无其他不利因素，那么婚姻还是可以维持稳定的，只是中途可能会有一些不愉快的插曲，你不一定会知道，也不一定很在意。如果爱情花中还同时出现冰冻，裂痕，泡泡，黄叶，虫子，折枝等不利因素（出现的越多暗示你的婚姻问题就越严重），那么暗示你的婚姻困难重重，危机四伏，遇到运势不好是流年，就很可能会离婚。",
+            @"花盆代表了你的另一半以及婚姻的状况。如果出现了两个花盆，说明你的婚姻存在一些隐患，问题比较严重，遇到运势不好的流年，有可能会离婚。具体问题，可以参考爱情花中出现的其他不利因素（冰冻，裂痕，泡泡，黄叶，虫子，折枝，醋瓶）进行分析，对症下药，未雨绸缪，多加防范。<br /> 
+如果出现了三个花盆，说明你的婚姻存在一些隐患，问题很严重，三婚不足为奇，在感情和婚姻方面很受挫折，甚至一度对爱和婚姻失去信心。具体问题，可以参考爱情花中出现的其他不利因素（冰冻，裂痕，泡泡，黄叶，虫子，折枝，醋瓶）进行分析，对症下药，未雨绸缪，时刻警惕。"
+                           };
         #endregion
 
 

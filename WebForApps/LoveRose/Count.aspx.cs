@@ -78,6 +78,8 @@ namespace WebForApps.LoveRose
                 tmpbad.Add(PublicValue.AstroStar.Plu);
                 List<PublicValue.AstroStar> twelve = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 12, false);
                 List<PublicValue.AstroStar> eight = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 8, false);
+                List<PublicValue.AstroStar> seven = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
+                List<PublicValue.AstroStar> two = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 2, false);
                 foreach (PublicValue.AstroStar tmp in tmpbad)
                 {
                     badstars.Add(tmp, 1);
@@ -404,8 +406,14 @@ namespace WebForApps.LoveRose
                     }
                 }
                 if (m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Gem ||
-                m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Sag ||
-                m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Pis)
+                    m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Sag ||
+                    m_star[PublicValue.AstroStar.Moo].Constellation == PublicValue.Constellation.Pis)
+                {
+                    flowercount++;
+                }
+                if (m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Gem ||
+                   m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Sag ||
+                   m_star[PublicValue.AstroStar.Ven].Constellation == PublicValue.Constellation.Pis)
                 {
                     flowercount++;
                 }
@@ -423,11 +431,11 @@ namespace WebForApps.LoveRose
                 {
                     flowercount++;
                 }
-                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind)
+                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.wind && PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
                 {
                     flowercount++;
                 }
-                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.earth)
+                if (PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Sun].Constellation) == PublicValue.Element.fire && PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Moo].Constellation) == PublicValue.Element.wind)
                 {
                     flowercount++;
                 }
@@ -461,7 +469,7 @@ namespace WebForApps.LoveRose
                 {
                     meilicount++;
                 }
-                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.For]))
+                if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Sun], m_star[PublicValue.AstroStar.Jup]))
                 {
                     meilicount++;
                 }
@@ -479,7 +487,62 @@ namespace WebForApps.LoveRose
                 #endregion
 
                 #region 对方有钱
-                int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 7);
+                int richcount = PublicDeal.GetInstance().GetGongPower(m_astro.Stars, 8);
+                if (richcount > 15)
+                {
+                    richcount = 15;
+                }
+                foreach (PublicValue.AstroStar tmpstar in seven)
+                {
+                    if (m_star[tmpstar].Gong == 8 || m_star[tmpstar].Gong == 7)
+                    {
+                        richcount = richcount + 5;
+                    }
+                }
+                foreach (PublicValue.AstroStar tmpstar in eight)
+                {
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                }
+                foreach (PublicValue.AstroStar tmpstar in two)
+                {
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.For], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                    if (PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[tmpstar]) && PublicDeal.GetInstance().HasAnyMainPhase(m_star[PublicValue.AstroStar.Jun], m_star[PublicValue.AstroStar.For]))
+                    {
+                        richcount = richcount + 5;
+                    }
+                }
+                if (m_star[PublicValue.AstroStar.Jun].Gong == 11)
+                {
+                    richcount = richcount + 5;
+                }
+                if (m_star[PublicValue.AstroStar.Ura].Gong == 8)
+                {
+                    richcount = richcount + 5;
+                }
+                if (richcount >= 60)
+                {
+                    Label1.Text += m_astro.birth.ToString("yyyy-MM-dd HH:mm:ss") + "<br />";
+                    //return;
+                }
+
                 List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true); ;
                 if (!result.ContainsKey("对方有钱"))
                 {
@@ -496,7 +559,7 @@ namespace WebForApps.LoveRose
                 count++;
             }
             #region 打印
-            Label1.Text = now.ToString("yyyy-MM-dd") + "至" + DatePicker1.SelectedTime.ToString("yyyy-MM-dd") + "<br />";
+            Label1.Text += now.ToString("yyyy-MM-dd") + "至" + DatePicker1.SelectedTime.ToString("yyyy-MM-dd") + "<br />";
             foreach (KeyValuePair<string, SortedDictionary<int, int>> s in result)
             {
                 Label1.Text += s.Key + "：<br />";

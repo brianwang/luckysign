@@ -202,19 +202,20 @@
                         <div class="box_t">骰子案例</div>
                         <div class="box_c al" style="padding-top: 8px">
                             <div class="al_l">
-                                <ul>
+                                <img src="../WebResources/Images/AstroDice/img03.jpg">
+                                <%--<ul>
                                     <li>
                                         <img src="../WebResources/Images/AstroDice/img1.jpg">冥王星</li>
                                     <li>
                                         <img src="../WebResources/Images/AstroDice/img2.jpg">10宫</li>
                                     <li>
                                         <img src="../WebResources/Images/AstroDice/img3.jpg">狮子座</li>
-                                </ul>
+                                </ul>--%>
                             </div>
 
                             <div class="al_r">
                                 问：分手后能不能复合？<br>
-                                答：可能性不大。冥王（不满），10宫（压力），狮子座（一意孤行）。可见这段感情让双方并不是很愉快，可能一方太过强势，忽略了对方对感受，太多的埋怨，愤怒，让对方心意已决，复合会比较困难。
+                                答：可能性不大。天王（疏离），10宫（压力），狮子座（一意孤行）。可见这段感情让双方并不是很愉快，可能一方太过强势，忽略了对方对感受，太多的埋怨，愤怒，让对方心意已决，复合会比较困难。
                             </div>
                             <div class="clear"></div>
                         </div>

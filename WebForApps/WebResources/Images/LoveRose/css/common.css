@@ -25,25 +25,25 @@ img{border:0;}
 
 .paopao,.mifeng,.chongzi,.huapen,.bingdong,.hongxing,.hua,.zhezhi,.cu,.liehen,.kuzhi{position:absolute}
 
-.hongxing{ background:url(../img/hongxing.png) no-repeat;width:89px;height:175px;top:195px;left:482px; z-index:2}
+.hongxing{ background:url(../img/hongxing.png) no-repeat;width:89px;height:175px;top:195px;left:482px; z-index:6}
 
-.zhezhi{z-index:0;width:480px;height:300px;left:6px;top:209px;}
+.zhezhi{z-index:2;width:480px;height:300px;left:6px;top:209px;}
 
 .paopao{top:0;left:0px; z-index:0}
 
 .mifeng{z-index:0;top:113px;left:230px}
 
-.chongzi{top:54px;left:327px; z-index:4}
+.chongzi{top:54px;left:327px; z-index:0}
 
-.huapen{top:355px;left:406px;z-index:4}
+.huapen{top:355px;left:406px;z-index:3}
 
-.cu{left:169px;top:328px;z-index:4}
+.cu{left:169px;top:328px;z-index:1}
 
-.liehen{left:433px;top:400px;z-index:5}
+.liehen{left:433px;top:400px;z-index:4}
 
-.bingdong{left:397px;top:275px;z-index:3}
+.bingdong{left:397px;top:275px;z-index:5}
 
-.kuzhi{left:333px;top:270px;z-index:2}
+.kuzhi{left:333px;top:270px;z-index:3}
 
 .hua{z-index:1;left:298px;top:24px}
 

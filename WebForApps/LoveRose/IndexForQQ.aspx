@@ -357,8 +357,8 @@
                                         <!--花盆-->
                                         <div class="huapen">
                                             <div class="level-1"></div>
-                                            <div class="level-2"></div>
-                                            <div class="level-3"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
                                         <!--冰冻-->
@@ -420,15 +420,15 @@
                                     <div class="yuansu-t"></div>
                                     <div class="yuansu-c">
                                         <ul>
-                                            <li runat="server" id="li1" style="display: none;"><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果同时出现蝴蝶说明你是桃花很旺的人。</li>
-                                            <li runat="server" id="li2" style="display: none;"><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，看错人，并在感情中存在不切实际的幻想。</li>
-                                            <li runat="server" id="li3" style="display: none;"><span style="background-position: -10px -70px"></span>折枝代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
-                                            <li runat="server" id="li4" style="display: none;"><span style="background-position: -70px -70px"></span>虫子代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
-                                            <li runat="server" id="li5" style="display: none;"><span style="background-position: -10px -130px"></span>红杏代表你遭遇被劈腿的可能性很大。<a href="#" target="_blank">转运秘籍</a></li>
-                                            <li runat="server" id="li6" style="display: none;"><span style="background-position: -70px -130px"></span>冰冻代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
-                                            <li runat="server" id="li7" style="display: none;"><span style="background-position: -10px -190px"></span>裂痕代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
-                                            <li runat="server" id="li8" style="display: none;"><span style="background-position: -70px -190px"></span>醋代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
-                                        <li runat="server" id="li9" style="display: none;"><span style="background-position: -70px -190px"></span>枯叶代表你在爱情或婚姻中受到了海王星的负面影响，容易看走眼，遇人不淑。</li>
+                                            <li runat="server" id="li1" style="display: none;"><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果还同时出现蝴蝶，说明你是桃花很旺的人噢。</li>
+                                            <li runat="server" id="li2" style="display: none;"><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，选错人，并在感情中存在一些不切实际的幻想。</li>
+                                            <li runat="server" id="li3" style="display: none;"><span style="background-position: -10px -70px"></span>折枝代表你在婚恋关系中比较敏感，常因个性偏强而争吵较多，感情难称心。</li>
+                                            <li runat="server" id="li4" style="display: none;"><span style="background-position: -70px -70px"></span>虫子代表感情常因外力因素而破裂，被迫的分开，自己很难改变。</li>
+                                            <li runat="server" id="li5" style="display: none;"><span style="background-position: -10px -130px"></span>红杏代表你在结婚后被劈腿的可能性比较大。<%--<a href="#" target="_blank">转运秘籍</a>--%></li>
+                                            <li runat="server" id="li6" style="display: none;"><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
+                                            <li runat="server" id="li7" style="display: none;"><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
+                                            <li runat="server" id="li8" style="display: none;"><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
+                                        <li runat="server" id="li9" style="display: none;"><span style="background-position: -70px -190px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
