@@ -270,6 +270,42 @@
                         <asp:View ID="View2" runat="server">
                             <script type="text/javascript">
                                 function initialselect() { }
+                                function hoverinit() {
+                                    alert("initialselect");
+                                    //if ($(".shouting-c").length !== 0)
+                                    //{ $(".shouting-c li:odd").css("margin-left", "20px") }
+
+                                    //$(".f-box").children("div").hide();
+
+                                    //$(document).pngFix();
+
+                                    $(".f-box").children("div:not(0)").children("div").each(function () {
+                                        if (!$(this).is(':has(a)')) {
+                                            $(this).bind("mouseenter", function () {
+                                                $(this).css("cursor", "pointer")
+                                                var bgimg = $(this).css("background-image");//取背景
+                                                bgimg = bgimg.replace(".", "_on.");//字符替换
+                                                $(this).css("background-image", bgimg)//加on
+                                            }).bind("mouseleave", function () {
+                                                $(this).attr("style", "");//去除属性
+                                                $(this).css("display", "block");
+                                            })
+                                        }
+                                        else {
+                                            //蜜蜂等区域热点
+                                            $(this).children("a").bind("mouseenter", function () {
+                                                var bgimg = $(this).parent().css("background-image");//取背景
+                                                bgimg = bgimg.replace(".", "_on.");
+                                                $(this).parent().css("background-image", bgimg)//加on
+                                            }).bind("mouseleave", function () {
+                                                $(this).parent().attr("style", "");//去除属性
+                                            })
+
+                                        }
+
+                                    })
+                                }
+                                   
                             </script>
                             <div class="x-left">
                                 <div class="flash">
@@ -356,9 +392,14 @@
 
                                         <!--花盆-->
                                         <div class="huapen">
-                                            <div class="level-1"></div>
-                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
-                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                            <div id="nohover" class="level-1"></div>
+                                            <div class="level-2">
+                                                <a class="hp_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></a>
+
+                                            </div>
+                                            <div class="level-3" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer">
+                                                <a class="hp_a3" onclick="javascript:<%=HiddenField5.ClientID %>.value='20';<%=Button1.ClientID %>.click();" style="cursor: pointer"></a>
+                                            </div>
                                         </div>
 
                                         <!--冰冻-->

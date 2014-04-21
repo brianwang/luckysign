@@ -577,6 +577,32 @@ namespace WebForApps.LoveRose
                 Label1.Text += "<br />";
             }
             #endregion
+            jsstr += @"$("".f-box"").children(""div:not(0)"").children(""div"").each(function () {
+                                        if (!$(this).is(':has(a)')&&$(this).attr(""id"")!='nohover') {
+                                            $(this).bind(""mouseenter"", function () {
+                                                $(this).css(""cursor"", ""pointer"")
+                                                var bgimg = $(this).css(""background-image"");
+                                                bgimg = bgimg.replace("".png"", ""_on.png"");
+                                                $(this).css(""background-image"", bgimg);
+                                            }).bind(""mouseleave"", function () { 
+                                                $(this).attr(""style"", "" "");
+                                                $(this).css(""display"", ""block"");
+                                            })
+                                        }
+                                        else {
+                                            //蜜蜂等区域热点
+                                            $(this).children(""a"").bind(""mouseenter"", function () {
+                                                var bgimg = $(this).parent().css(""background-image"");
+                                                bgimg = bgimg.replace("".png"", ""_on.png"");
+                                                $(this).parent().css(""background-image"", bgimg);
+                                            }).bind(""mouseleave"", function () {
+                                                $(this).parent().attr(""style"", "" "");
+                                                $(this).parent().css(""display"", ""block"");
+                                            })
+
+                                        }
+
+                                    })";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "show", jsstr, true);
             ViewState["jsstr"] = jsstr;
             MultiView1.ActiveViewIndex = 1;
