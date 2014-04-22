@@ -867,7 +867,7 @@ namespace PPLive
         public bool IsDayLight(DateTime input, int type)
         {
             bool ret = false;
-            if (type == 0 && type == AppConst.IntNull)
+            if (type == 0 || type == AppConst.IntNull)
             {
                 if (input.Year >= 1945 && input.Year <= 1949 && input.Month >= 5 && input.Month <= 9)
                 {

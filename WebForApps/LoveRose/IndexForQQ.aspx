@@ -208,7 +208,7 @@
 
                                                 <li>
                                                     <a href="#" title="夏令时" class="select-a"></a>
-                                                    <div id="drp0" class="select">
+                                                    <div id="drp0" class="select" style="width: 70px;">
                                                         <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="sub0">
                                                             <a id="2">自动判断</a>
@@ -410,7 +410,9 @@
                                         </div>
 
                                         <!--红杏-->
-                                        <div class="hongxing" onclick="javascript:<%=HiddenField5.ClientID %>.value='19';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                        <div class="hongxing" >
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='19';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
+                                        </div>
 
                                         <!--花-->
                                         <div class="hua">
@@ -469,7 +471,7 @@
                                             <li runat="server" id="li6" style="display: none;"><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
                                             <li runat="server" id="li7" style="display: none;"><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
                                             <li runat="server" id="li8" style="display: none;"><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
-                                        <li runat="server" id="li9" style="display: none;"><span style="background-position: -70px -190px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
+                                        <li runat="server" id="li9" style="display: none;"><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
