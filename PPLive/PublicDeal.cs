@@ -873,12 +873,12 @@ namespace PPLive
                 {
                     ret = true;
                 }
-                else if (input >= new DateTime(1986, 5, 4, 0, 0, 0) && input <= new DateTime(1986, 9, 14, 23, 59, 59)
-                    && input >= new DateTime(1987, 4, 12, 0, 0, 0) && input <= new DateTime(1987, 9, 13, 23, 59, 59)
-                    && input >= new DateTime(1988, 4, 10, 0, 0, 0) && input <= new DateTime(1988, 9, 11, 23, 59, 59)
-                    && input >= new DateTime(1989, 4, 16, 0, 0, 0) && input <= new DateTime(1989, 9, 17, 23, 59, 59)
-                    && input >= new DateTime(1990, 4, 15, 0, 0, 0) && input <= new DateTime(1990, 9, 16, 23, 59, 59)
-                    && input >= new DateTime(1991, 4, 14, 0, 0, 0) && input <= new DateTime(1991, 9, 15, 23, 59, 59)
+                else if ((input >= new DateTime(1986, 5, 4, 0, 0, 0) && input <= new DateTime(1986, 9, 14, 23, 59, 59))
+                    || (input >= new DateTime(1987, 4, 12, 0, 0, 0) && input <= new DateTime(1987, 9, 13, 23, 59, 59))
+                    || (input >= new DateTime(1988, 4, 10, 0, 0, 0) && input <= new DateTime(1988, 9, 11, 23, 59, 59))
+                    || (input >= new DateTime(1989, 4, 16, 0, 0, 0) && input <= new DateTime(1989, 9, 17, 23, 59, 59))
+                    || (input >= new DateTime(1990, 4, 15, 0, 0, 0) && input <= new DateTime(1990, 9, 16, 23, 59, 59))
+                    || (input >= new DateTime(1991, 4, 14, 0, 0, 0) && input <= new DateTime(1991, 9, 15, 23, 59, 59))
                     )
                 {
                     ret = true;
