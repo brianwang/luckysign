@@ -305,7 +305,7 @@
 
                                     })
                                 }
-                                   
+
                             </script>
                             <div class="x-left">
                                 <div class="flash">
@@ -363,16 +363,8 @@
 
                                         <!--虫子-->
                                         <div class="chongzi">
-                                            <div class="level-1">
-                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                            </div>
-                                            <div class="level-2">
-                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                            </div>
-                                            <div class="level-3">
-                                                <a class="cz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                                <a class="cz_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                            </div>
+                                            <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();"></div>
+                                            <div class="level-2" onclick="javascript:<%=HiddenField5.ClientID %>.value='12';<%=Button1.ClientID %>.click();"></div>
                                         </div>
 
                                         <!--醋-->
@@ -410,7 +402,7 @@
                                         </div>
 
                                         <!--红杏-->
-                                        <div class="hongxing" >
+                                        <div class="hongxing">
                                             <div class="level-1" onclick="javascript:<%=HiddenField5.ClientID %>.value='19';<%=Button1.ClientID %>.click();" style="cursor: pointer"></div>
                                         </div>
 
@@ -433,20 +425,20 @@
                                         <!--折枝-->
                                         <div class="zhezhi">
                                             <div class="level-1">
-                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
                                             </div>
                                             <div class="level-2">
-                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
                                             </div>
                                             <div class="level-3">
-                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
                                             </div>
                                             <div class="level-4">
-                                                <a class="zz_a1"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                                <a class="zz_a2"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
-                                                <a class="zz_a3"  onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a1" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a2" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
+                                                <a class="zz_a3" onclick="javascript:<%=HiddenField5.ClientID %>.value='14';<%=Button1.ClientID %>.click();">&nbsp;</a>
                                             </div>
                                         </div>
 
@@ -471,7 +463,7 @@
                                             <li runat="server" id="li6" style="display: none;"><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
                                             <li runat="server" id="li7" style="display: none;"><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
                                             <li runat="server" id="li8" style="display: none;"><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
-                                        <li runat="server" id="li9" style="display: none;"><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
+                                            <li runat="server" id="li9" style="display: none;"><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
