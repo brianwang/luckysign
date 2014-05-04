@@ -164,9 +164,7 @@ namespace AstroCSharpLib
             public double calculation_time, lng, rad, zet, lngspeed, radspeed, zetspeed;
         }
 
-        elements[] el = new elements[MARS + 1];
-        eledata[] pd = new eledata[MARS + 1];
-        m45dat[] m45 = new m45dat[NUM_MOON_CORR];
+        elements[] el = new elements[MARS + 1] { new elements(), new elements(), new elements(), new elements(), new elements() };
 
         double meanekl, ekl, nut;
 

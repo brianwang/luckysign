@@ -12,12 +12,12 @@ namespace AstroCSharpLib
         rememberdat moonrem = new rememberdat();
         double thelup = HUGE8;  /* is initialized only once at load time */
 
-        int calc(int planet, double jd_ad, int flag, ref double alng, ref double arad, ref double alat, ref double alngspeed)
+        unsafe int calc(int planet, double jd_ad, int flag, double* alng, double* arad, double* alat, double* alngspeed)
         {
 
             double c, s, x, knn, knv;
             double rp = 0.0, zp = 0.0; /* needed to call hel! */
-            double azet = alat;
+            double *azet = alat;
             bool calc_geo, calc_helio, calc_apparent, calc_speed, calc_nut;
 
             /* helup checks whether it was already called with same time */
@@ -42,12 +42,12 @@ namespace AstroCSharpLib
             {
                 if (earthrem.calculation_time != jd_ad)
                 {
-                    hel(EARTH, jd_ad, ref alng, ref arad, ref azet, ref alngspeed, ref rp, ref zp);
+                    hel(EARTH, jd_ad, alng, arad, azet, alngspeed, &rp, &zp);
                     /* store earthdata for geocentric calculation: */
-                    earthrem.lng = alng;
-                    earthrem.rad = arad;
-                    earthrem.zet = azet;
-                    earthrem.lngspeed = alngspeed;
+                    earthrem.lng = *alng;
+                    earthrem.rad = *arad;
+                    earthrem.zet = *azet;
+                    earthrem.lngspeed = *alngspeed;
                     earthrem.radspeed = rp;
                     earthrem.zetspeed = zp;
                     earthrem.calculation_time = jd_ad;
@@ -57,47 +57,43 @@ namespace AstroCSharpLib
             {
 
                 case EARTH: /* has been already computed */
-                    alng = earthrem.lng;
-                    arad = earthrem.rad;
-                    azet = earthrem.zet;
-                    alngspeed = earthrem.lngspeed;
+                    *alng = earthrem.lng;
+                    *arad = earthrem.rad;
+                    *azet = earthrem.zet;
+                    *alngspeed = earthrem.lngspeed;
                     rp = earthrem.radspeed;
                     zp = earthrem.zetspeed;
-                    if (calc_geo)
-                    { /* SUN seen from earth */
-                        alng = smod8360(alng + 180.0);
-                        azet = -azet;
+                    if (calc_geo) { /* SUN seen from earth */
+                      *alng = smod8360(*alng + 180.0);
+                      *azet = - *azet;
                     }
                     if (calc_apparent)
-                        alng = alng - 0.0057683 * (arad) * (alngspeed);
+                      *alng = *alng - 0.0057683 * (*arad) * (*alngspeed);
                     break;
-
                 case MOON:
-                    moon(ref alng, ref arad, ref azet);
-                    moonrem.lng = alng;  /* moonrem will be used for TRUE_NODE */
-                    moonrem.rad = arad;
-                    moonrem.zet = azet;
-                    alngspeed = 12;
+                    moon(alng, arad, azet);
+                    moonrem.lng = *alng;  /* moonrem will be used for TRUE_NODE */
+                    moonrem.rad = *arad;
+                    moonrem.zet = *azet;
+                    *alngspeed = 12;
                     moonrem.calculation_time = jd_ad;
-                    if (calc_helio || calc_speed)
-                    {/* get a second moon position */
-                        double lng2 = 0.0, rad2 = 0.0, zet2 = 0.0;
-                        helup(jd_ad + MOON_SPEED_INTERVAL);
-                        moon(ref lng2, ref rad2, ref zet2);
-                        helup(jd_ad);
-                        if (calc_helio)
-                        { /* moon as seen from sun */
-                            togeo(earthrem.lng, -earthrem.rad, moonrem.lng, moonrem.rad,
-                            moonrem.zet, ref alng, ref arad);
-                            togeo(earthrem.lng + MOON_SPEED_INTERVAL * earthrem.lngspeed,
-                            -(earthrem.rad + MOON_SPEED_INTERVAL * earthrem.radspeed),
-                            lng2, rad2, zet2, ref lng2, ref rad2);
-                        }
-                        alngspeed = diff8360(lng2, alng) / MOON_SPEED_INTERVAL;
-                        /* rp = (rad2 - *arad) / MOON_SPEED_INTERVAL;       */
-                        /* zp = (zet2 - moonrem.zet) / MOON_SPEED_INTERVAL; */
+                    if (calc_helio || calc_speed) {/* get a second moon position */
+                      double lng2, rad2, zet2;
+                      helup(jd_ad + MOON_SPEED_INTERVAL);
+                      moon(&lng2, &rad2, &zet2);
+                      helup(jd_ad);
+                      if (calc_helio) { /* moon as seen from sun */
+                        togeo(earthrem.lng, -earthrem.rad, moonrem.lng, moonrem.rad,
+                        moonrem.zet, alng, arad);
+                        togeo(earthrem.lng + MOON_SPEED_INTERVAL * earthrem.lngspeed,
+                        -(earthrem.rad + MOON_SPEED_INTERVAL * earthrem.radspeed),
+                        lng2, rad2, zet2, &lng2, &rad2);
+                      }
+                      *alngspeed =  diff8360(lng2, *alng) / MOON_SPEED_INTERVAL;
+                      /* rp = (rad2 - *arad) / MOON_SPEED_INTERVAL;       */
+                      /* zp = (zet2 - moonrem.zet) / MOON_SPEED_INTERVAL; */
                     }
-                    alat = RADTODEG * Math.Asin(azet / arad);
+                    *alat = RADTODEG * Math.Asin(*azet / *arad);
                     /*
                     ** light time correction, not applied for moon or nodes;
                     ** moon would have only term of ca. 0.02", see Expl.Sup.1961 p.109
@@ -117,34 +113,34 @@ namespace AstroCSharpLib
                 case PALLAS:
                 case JUNO:
                 case VESTA:
-                    if (hel(planet, jd_ad, ref alng, ref arad, ref azet, ref alngspeed, ref rp, ref zp) != 0)
+                    if (hel(planet, jd_ad, alng, arad, azet, alngspeed, &rp, &zp) != 0)
                         return -1; /* outer planets can fail if out of ephemeris range */
                     if (calc_geo)
                     {       /* geocentric */
                         double lng1 = 0.0, rad1 = 0.0, lng2 = 0.0, rad2 = 0.0;
-                        togeo(earthrem.lng, earthrem.rad, alng, arad, azet, ref lng1, ref rad1);
+                        togeo(earthrem.lng, earthrem.rad, *alng, *arad, *azet, &lng1, &rad1);
                         togeo(earthrem.lng + earthrem.lngspeed,
                         earthrem.rad + earthrem.radspeed,
-                        alng + alngspeed, arad + rp, azet + zp, ref lng2, ref rad2);
-                        alng = lng1;
-                        arad = rad1;
-                        alngspeed = diff8360(lng2, lng1);
+                        *alng + *alngspeed, *arad + rp, *azet + zp, &lng2, &rad2);
+                        *alng = lng1;
+                        *arad = rad1;
+                        *alngspeed = diff8360(lng2, lng1);
                         /* rp = rad2 - rad1; */
                     }
-                    alat = RADTODEG * Math.Asin(azet / arad);
+                    *alat = RADTODEG * Math.Asin(*azet / *arad);
                     if (calc_apparent)
-                        alng = alng - 0.0057683 * arad * alngspeed;
+                        *alng = *alng - 0.0057683 * (*arad) * (*alngspeed);
                     break;
 
                 case MEAN_NODE:
-                    alng = smod8360(el[MOON].kn);
+                    *alng = smod8360(el[MOON].kn);
                     /*
                     * the distance of the node is the 'orbital parameter' p = a (1-e^2);
                     * Our current use of the axis a is wrong, but is never used.
                     */
-                    arad = pd[MOON].axis;
-                    alat = 0.0;
-                    alngspeed = -0.053;
+                    *arad = pd[MOON].axis;
+                    *alat = 0.0;
+                    *alngspeed = -0.053;
                     break;
 
                 case TRUE_NODE:
@@ -156,12 +152,12 @@ namespace AstroCSharpLib
                         xn, yn, xv, yv, r0, x0, y0;
 
                         helup(jd_ad + NODE_INTERVAL);
-                        moon(ref ln, ref rn, ref zn);
+                        moon(&ln, &rn, &zn);
                         helup(jd_ad - NODE_INTERVAL);
-                        moon(ref lv, ref rv, ref zv);
+                        moon(&lv, &rv, &zv);
                         helup(jd_ad);
                         if (moonrem.calculation_time != jd_ad)
-                            moon(ref l1, ref r1, ref z1);
+                            moon(&l1, &r1, &z1);
                         else
                         {  /* moon is already calculated */
                             l1 = moonrem.lng;
@@ -185,14 +181,14 @@ namespace AstroCSharpLib
                         s = (yv * z1 - zv * y0) / x;
                         c = test_near_zero((xv * z1 - zv * x0) / x);
                         knv = smod8360(RADTODEG * Math.Atan2(s, c));
-                        alng = smod8360((knv + knn) / 2);
+                        *alng = smod8360((knv + knn) / 2);
                         /*
                         ** the distance of the node is the 'orbital parameter' p = a (1-e^2);
                         ** Our current use of the axis a is wrong.
                         */
-                        arad = pd[MOON].axis;
-                        alat = 0.0;
-                        alngspeed = diff8360(knn, knv) / NODE_INTERVAL;
+                        *arad = pd[MOON].axis;
+                        *alat = 0.0;
+                        *alngspeed = diff8360(knn, knv) / NODE_INTERVAL;
                     }
                     break;
 
@@ -235,15 +231,15 @@ namespace AstroCSharpLib
                             if (arg_lat > 90.0 && arg_lat < 270.0) lon += 180.0;
                         }
                         lon = degnorm(lon + e.kn);
-                        alng = lon;
-                        alngspeed = 0.111404;  /* 6'41.05" per day */
-                        arad = 2 * pd[MOON].axis * e.ex;
+                        *alng = lon;
+                        *alngspeed = 0.111404;  /* 6'41.05" per day */
+                        *arad = 2 * pd[MOON].axis * e.ex;
                         /*
                         ** To test Gravalaines error, return unprojected long in alat.
                         ** the correct latitude would be:
                         ** *alat = RADTODEG * ASIN8(SINDEG(arg_lat) * SINDEG(e->in));
                         */
-                        alat = RADTODEG * Math.Sin(SINDEG(arg_lat) * SINDEG(e.inc));
+                        *alat = RADTODEG * Math.Sin(SINDEG(arg_lat) * SINDEG(e.inc));
                     }
                     break;
 
@@ -252,23 +248,23 @@ namespace AstroCSharpLib
             } /* end switch */
 
             if (calc_nut)
-                alng += nut;
-            alng = smod8360(alng);  /* normalize to circle */
+                *alng += nut;
+            *alng = smod8360(*alng);  /* normalize to circle */
             return 0;
         }
 
 
         /* helio to geocentric conversion */
-        void togeo(double lngearth, double radearth, double lng, double rad, double zet, ref double alnggeo, ref double aradgeo)
+        unsafe void togeo(double lngearth, double radearth, double lng, double rad, double zet, double* alnggeo, double* aradgeo)
         {
             double r1, x, y;
 
             r1 = Math.Sqrt(rad * rad - zet * zet);
             x = r1 * Math.Cos(DEGTORAD * lng) - radearth * Math.Cos(DEGTORAD * lngearth);
             y = r1 * Math.Sin(DEGTORAD * lng) - radearth * Math.Sin(DEGTORAD * lngearth);
-            aradgeo = Math.Sqrt(x * x + y * y + zet * zet);
+            *aradgeo = Math.Sqrt(x * x + y * y + zet * zet);
             x = test_near_zero(x);
-            alnggeo = smod8360(RADTODEG * Math.Atan2(y, x));
+            *alnggeo = smod8360(RADTODEG * Math.Atan2(y, x));
         }
 
         /*
@@ -387,129 +383,133 @@ namespace AstroCSharpLib
         //REAL8 *alp;   /* speed in longitude, degrees per day */
         //REAL8 *arp;   /* speed in radius, AU per day */
         //REAL8 *azp;   /* speed in z, AU per day */
-        int hel(int planet, double t, ref double al, ref double ar, ref double az, ref double alp, ref double arp, ref double azp)
+        unsafe int hel(int planet, double t, double *al, double *ar, double *az, double *alp, double *arp, double *azp)
         {
-            //elements e;
-            //eledata  d;
-            //double lk = 0.0;
-            //double rk = 0.0;
-            //double b, h1, sini, sinv, cosi, cosu, cosv, man, truanom, esquare,
-            //  k8, u, up, v, vp;
+            elements e;
+            eledata d;
+            double lk = 0.0;
+            double rk = 0.0;
+            double b, h1, sini, sinv, cosi, cosu, cosv, man, truanom, esquare,
+              k8, u, up, v, vp;
 
-            //if (planet >= JUPITER)
-            //  return (outer_hel(planet, t, al, ar, az, alp, arp, azp));
-            //if (planet < SUN || planet == MOON)
-            //  return -1;
+            if (planet >= JUPITER)
+                return (outer_hel(planet, t, al, ar, az, alp, arp, azp));
+            if (planet < SUN || planet == MOON)
+                return -1;
 
-            //e = el[planet];
-            //d = pd[planet];
-            //sini = Math.Sin(DEGTORAD * e.inc);
-            //cosi = Math.Cos(DEGTORAD * e.inc);
-            //esquare = Math.Sqrt((1.0 + e.ex) / (1.0 - e.ex)); /* H6 in old version */
-            //man = e.ma;
-            //if (planet == EARTH)  /* some longperiodic terms in mean longitude */
-            //  man += (0.266 * Math.Sin (DEGTORAD * (31.8 + 119.0 * e.tj))
-            //    + 6.40 * Math.Sin(DEGTORAD * (231.19 + 20.2 * e.tj))
-            //    + (1.882-0.016*e.tj) * Math.Sin(DEGTORAD * (57.24 + 150.27 * e.tj))
-            //    ) / 3600.0;
-            //if (planet == MARS)  /* some longperiodic terms */
-            //  man += (0.606 * Math.Sin(DEGTORAD * (212.87 + e.tj * 119.051))
-            //    + 52.490 * Math.Sin(DEGTORAD * (47.48 + e.tj * 19.771))
-            //    +  0.319 * Math.Sin(DEGTORAD * (116.88 + e.tj * 773.444))
-            //    +  0.130 * Math.Sin(DEGTORAD * (74 + e.tj * 163))
-            //    +  0.280 * Math.Sin(DEGTORAD * (300 + e.tj * 40.8))
-            //    -  (37.05 +13.5 * e.tj)
-            //    ) / 3600.0;
-            //u = fnu (man, e.ex, 0.0000003); /* error 0.001" returns radians */
-            //cosu = Math.Cos(u);
-            //h1 = 1 - e.ex * cosu;
-            //ar = d.axis * h1;
-            //if (Math.Abs(rPi - u) < TANERRLIMIT)
-            //  truanom = u; /* very close to aphel */
-            //else
-            //  truanom = 2.0 * ATAN8(esquare * TAN8(u * 0.5)); /* true anomaly, rad*/
-            //v = smod8360(truanom * RADTODEG + e->pe - e->kn); /* argument of latitude */
-            //if (sini == 0.0 || ABS8(v -  90.0) < TANERRLIMIT
-            //  || ABS8(v - 270.0) < TANERRLIMIT) {
-            //  *al = v;
-            //} else {
-            //  *al = RADTODEG * ATAN8(TAN8(v * DEGTORAD) * cosi);
-            //  if (v > 90.0 && v < 270.0)  *al += 180.0;
-            //}
-            //*al = smod8360(*al + e->kn);
-            //sinv = SIN8(v * DEGTORAD);
-            //cosv = COS8(v * DEGTORAD);
-            //*az = *ar * sinv * sini;
-            //b = ASIN8(sinv * sini);     /* latitude in radians */
-            //k8 = cosv / COS8(b) * sini;
-            //up = 360.0 / d->period / h1;    /* du/dt degrees/day */
-            //if (ABS8(rPi - u) < TANERRLIMIT)
-            //  vp = up / esquare;  /* speed at aphel */
-            //else
-            //  vp = up * esquare * (1 + COS8 (truanom)) / (1 + cosu);
-            ///* dv/dt degrees/day */
-            //*arp = d->axis * up * DEGTORAD * SIN8(u) * e->ex;
-            ///* dr/dt AU/day */
-            //*azp = *arp * sinv * sini + *ar * vp * DEGTORAD * cosv * sini;  /* dz/dt */
-            //*alp = vp / cosi * (1 - k8 * k8);
+            e = el[planet];
+            d = pd[planet];
+            sini = Math.Sin(DEGTORAD * e.inc);
+            cosi = Math.Cos(DEGTORAD * e.inc);
+            esquare = Math.Sqrt((1.0 + e.ex) / (1.0 - e.ex)); /* H6 in old version */
+            man = e.ma;
+            if (planet == EARTH)  /* some longperiodic terms in mean longitude */
+                man += (0.266 * Math.Sin(DEGTORAD * (31.8 + 119.0 * e.tj))
+                  + 6.40 * Math.Sin(DEGTORAD * (231.19 + 20.2 * e.tj))
+                  + (1.882 - 0.016 * e.tj) * Math.Sin(DEGTORAD * (57.24 + 150.27 * e.tj))
+                  ) / 3600.0;
+            if (planet == MARS)  /* some longperiodic terms */
+                man += (0.606 * Math.Sin(DEGTORAD * (212.87 + e.tj * 119.051))
+                  + 52.490 * Math.Sin(DEGTORAD * (47.48 + e.tj * 19.771))
+                  + 0.319 * Math.Sin(DEGTORAD * (116.88 + e.tj * 773.444))
+                  + 0.130 * Math.Sin(DEGTORAD * (74 + e.tj * 163))
+                  + 0.280 * Math.Sin(DEGTORAD * (300 + e.tj * 40.8))
+                  - (37.05 + 13.5 * e.tj)
+                  ) / 3600.0;
+            u = fnu(man, e.ex, 0.0000003); /* error 0.001" returns radians */
+            cosu = Math.Cos(u);
+            h1 = 1 - e.ex * cosu;
+            *ar = d.axis * h1;
+            if (Math.Abs(rPi - u) < TANERRLIMIT)
+                truanom = u; /* very close to aphel */
+            else
+                truanom = 2.0 * Math.Atan(esquare * Math.Tan(u * 0.5)); /* true anomaly, rad*/
+            v = smod8360(truanom * RADTODEG + e.pe - e.kn); /* argument of latitude */
+            if (sini == 0.0 || Math.Abs(v - 90.0) < TANERRLIMIT
+              || Math.Abs(v - 270.0) < TANERRLIMIT)
+            {
+                *al = v;
+            }
+            else
+            {
+                *al = RADTODEG * Math.Atan(Math.Tan(v * DEGTORAD) * cosi);
+                if (v > 90.0 && v < 270.0) *al += 180.0;
+            }
+            *al = smod8360(*al + e.kn);
+            sinv = Math.Sin(v * DEGTORAD);
+            cosv = Math.Cos(v * DEGTORAD);
+            *az = *ar * sinv * sini;
+            b = Math.Asin(sinv * sini);     /* latitude in radians */
+            k8 = cosv / Math.Cos(b) * sini;
+            up = 360.0 / d.period / h1;    /* du/dt degrees/day */
+            if (Math.Abs(rPi - u) < TANERRLIMIT)
+                vp = up / esquare;  /* speed at aphel */
+            else
+                vp = up * esquare * (1 + Math.Cos(truanom)) / (1 + cosu);
+            /* dv/dt degrees/day */
+            *arp = d.axis * up * DEGTORAD * Math.Sin(u) * e.ex;
+            /* dr/dt AU/day */
+            *azp = *arp * sinv * sini + *ar * vp * DEGTORAD * cosv * sini;  /* dz/dt */
+            *alp = vp / cosi * (1 - k8 * k8);
 
-            ///* now come the disturbations */
-            //      double am, mma, ema, u2;
-            //switch (planet) {
+            /* now come the disturbations */
+            double am, mma, ema, u2;
+            switch (planet)
+            {
 
 
-            //case EARTH:
-            //  /*
-            //  ** earth has some special moon values and a disturbation series due to the
-            //  ** planets. The moon stuff is due to the fact, that the mean elements
-            //  ** give the coordinates of the earth-moon barycenter. By adding the
-            //  ** corrections we effectively reduce to the center of the earth.
-            //  ** We neglect the correction in latitude, which is about 0.5", because
-            //  ** for astrological purposes we want the Sun to have latitude zero.
-            //  */
-            //  am = DEGTORAD * smod8360(el[MOON].lg - e->lg + 180.0); /* degrees */
-            //  mma = DEGTORAD * el[MOON].ma;
-            //  ema = DEGTORAD * e->ma;
-            //  u2 = 2.0 * DEGTORAD * (e->lg - 180.0 - el[MOON].kn); /* 2u' */
-            //  lk = 6.454 * SIN8(am)
-            //    + 0.013 * SIN8(3.0 * am)
-            //    + 0.177 * SIN8(am + mma)
-            //    - 0.424 * SIN8(am - mma)
-            //    + 0.039 * SIN8(3.0 * am - mma)
-            //    - 0.064 * SIN8(am + ema)
-            //    + 0.172 * SIN8(am - ema)
-            //    - 0.013 * SIN8(am - mma - ema)
-            //    - 0.013 * SIN8(u2);
-            //  rk = 13360 * COS8(am)
-            //    + 30    * COS8(3.0 * am)
-            //    + 370   * COS8(am + mma)
-            //    - 1330  * COS8(am - mma)
-            //    + 80    * COS8(3.0 * am - mma)
-            //    - 140   * COS8(am + ema)
-            //    + 360   * COS8(am - ema)
-            //    - 30    * COS8(am - mma - ema)
-            //    + 30    * COS8(u2);
-            //  /* long periodic term from mars 15g''' - 8g'', Vol 6 p19, p24 */
-            //  lk += 0.202 * SIN8(DEGTORAD * (315.6 + 893.3 * e->tj));
-            //  disturb(earthkor, al, ar, lk, rk, man);
-            //  break;
+                case EARTH:
+                    /*
+                    ** earth has some special moon values and a disturbation series due to the
+                    ** planets. The moon stuff is due to the fact, that the mean elements
+                    ** give the coordinates of the earth-moon barycenter. By adding the
+                    ** corrections we effectively reduce to the center of the earth.
+                    ** We neglect the correction in latitude, which is about 0.5", because
+                    ** for astrological purposes we want the Sun to have latitude zero.
+                    */
+                    am = DEGTORAD * smod8360(el[MOON].lg - e.lg + 180.0); /* degrees */
+                    mma = DEGTORAD * el[MOON].ma;
+                    ema = DEGTORAD * e.ma;
+                    u2 = 2.0 * DEGTORAD * (e.lg - 180.0 - el[MOON].kn); /* 2u' */
+                    lk = 6.454 * Math.Sin(am)
+                      + 0.013 * Math.Sin(3.0 * am)
+                      + 0.177 * Math.Sin(am + mma)
+                      - 0.424 * Math.Sin(am - mma)
+                      + 0.039 * Math.Sin(3.0 * am - mma)
+                      - 0.064 * Math.Sin(am + ema)
+                      + 0.172 * Math.Sin(am - ema)
+                      - 0.013 * Math.Sin(am - mma - ema)
+                      - 0.013 * Math.Sin(u2);
+                    rk = 13360 * Math.Cos(am)
+                      + 30 * Math.Cos(3.0 * am)
+                      + 370 * Math.Cos(am + mma)
+                      - 1330 * Math.Cos(am - mma)
+                      + 80 * Math.Cos(3.0 * am - mma)
+                      - 140 * Math.Cos(am + ema)
+                      + 360 * Math.Cos(am - ema)
+                      - 30 * Math.Cos(am - mma - ema)
+                      + 30 * Math.Cos(u2);
+                    /* long periodic term from mars 15g''' - 8g'', Vol 6 p19, p24 */
+                    lk += 0.202 * Math.Sin(DEGTORAD * (315.6 + 893.3 * e.tj));
+                    disturb(earthkor, al, ar, lk, rk, man);
+                    break;
 
-            //case MERCURY:  /* only normal disturbation series */
-            //  disturb(mercurykor, al, ar, 0.0, 0.0, man);
-            //  break;
+                case MERCURY:  /* only normal disturbation series */
+                    disturb(mercurykor, al, ar, 0.0, 0.0, man);
+                    break;
 
-            //case VENUS:  /* some longperiod terms and normal series */
-            //  lk = (2.761 - 0.22*e->tj) * SIN8(DEGTORAD * (237.24 + 150.27 * e->tj))
-            //  + 0.269 * SIN8(DEGTORAD * (212.2  + 119.05 * e->tj))
-            //  - 0.208 * SIN8(DEGTORAD * (175.8  + 1223.5 * e->tj));
-            //  /* make seconds */
-            //  disturb(venuskor, al, ar, lk, 0.0, man);
-            //  break;
+                case VENUS:  /* some longperiod terms and normal series */
+                    lk = (2.761 - 0.22 * e.tj) * Math.Sin(DEGTORAD * (237.24 + 150.27 * e.tj))
+                    + 0.269 * Math.Sin(DEGTORAD * (212.2 + 119.05 * e.tj))
+                    - 0.208 * Math.Sin(DEGTORAD * (175.8 + 1223.5 * e.tj));
+                    /* make seconds */
+                    disturb(venuskor, al, ar, lk, 0.0, man);
+                    break;
 
-            //case MARS:  /* only normal disturbation series */
-            //  disturb(marskor, al, ar, 0.0, 0.0, man);
-            //  break;
-            //}
+                case MARS:  /* only normal disturbation series */
+                    disturb(marskor, al, ar, 0.0, 0.0, man);
+                    break;
+            }
             return 0;
         }
 
@@ -521,20 +521,20 @@ namespace AstroCSharpLib
         //              != 0, but no value is returned */
         //rk,        /* radius correction in units of 9th place of log r */
         //man;       /* mean anomaly of planet */
-        void disturb(kor[] k, ref double al, ref double ar, double lk, double rk, double man)
+        unsafe void disturb(List<kor> k, double* al, double* ar, double lk, double rk, double man)
         {
             double arg;
-            for (int i = 0; i < k.Length; i++)
+            for (int i = 0; i < k.Count; i++)
             {
                 arg = k[i].j * sa[k[i].k] + k[i].i * man;
                 lk += k[i].lampl * Math.Cos(DEGTORAD * (k[i].lphase - arg));
                 rk += k[i].rampl * Math.Cos(DEGTORAD * (k[i].rphase - arg));
             }
-            ar *= Math.Pow(10.0f, rk * 1.0E-9);  /* 10^rk */
-            al += lk / 3600.0;
+            *ar *= Math.Pow(10.0f, rk * 1.0E-9);  /* 10^rk */
+            *al += lk / 3600.0;
         }
 
-        int moon(ref double al, ref double ar, ref double az)  /* return OK or ERR */
+        unsafe int moon(double* al, double* ar, double* az)  /* return OK or ERR */
         {
             double a1, a2, a3, a4, a5, a6, a7, a8, a9, c2, c4, arg, b, d, f, dgc, dlm, dpm, dkm, dls;
             double ca, cb, cd, f_2d, f_4d, g1c, lk, lk1, man, ms, nib, s, sinarg, sinp, sk;
@@ -576,7 +576,7 @@ namespace AstroCSharpLib
             lk = lk1 = sk = sinp = nib = g1c = 0;
             i1corr = 1.0 - 6.8320E-8 * t;
             i2corr = dgc * dgc; /* i2 occurs only as -2, 2 */
-            for (i = 0; i < m45.Length; i++)
+            for (i = 0; i < m45.Count; i++)
             {
                 /* arg = mp->i0 * man + mp->i1 * ms + mp->i2 * f + mp->i3 * d; */
                 arg = m45[i].i0 * man;
@@ -618,7 +618,7 @@ namespace AstroCSharpLib
             dlid += 0.327 * Math.Sin(r2rad * (0.97639 + 0.0001734910 * t));
 
             /* without nutation */
-            al = smod8360(e.lg + (dlm + lk + lk1 + dlid) / 3600.0);
+            *al = smod8360(e.lg + (dlm + lk + lk1 + dlid) / 3600.0);
 
             /* solar Terms in latitude Nibeta */
             f_2d = f - 2.0 * d;
@@ -679,8 +679,8 @@ namespace AstroCSharpLib
             ** s = 0.0796 + 0.272446 * p
             */
 
-            ar = 8.794 / sinp;
-            az = ar * Math.Sin(DEGTORAD * b);
+            *ar = 8.794 / sinp;
+            *az = *ar * Math.Sin(DEGTORAD * b);
             return 0;
         }
 
@@ -712,7 +712,7 @@ namespace AstroCSharpLib
         Int32[,] chicoord = new Int32[6, 3];
         Int32[, ,] ascoord = new Int32[6, 4, 3];
         double j0, jd, jfrac;
-        int outer_hel(int planet, double jd_ad, ref double al, ref double ar, ref double az, ref double alp, ref double arp, ref double azp)
+        unsafe int outer_hel(int planet, double jd_ad, double *al, double *ar, double *az, double *alp, double *arp, double *azp)
         {
             string outerfp, chironfp, asterfp;
 
@@ -742,7 +742,7 @@ namespace AstroCSharpLib
                             byte[] buffer = new byte[4];
                             for (int i = 0; i < 3; i++)
                             {
-                                fs.Read(buffer, i * buffer.Length, buffer.Length);
+                                fs.Read(buffer, 0, buffer.Length);
                                 chicoord[n, i] = BitConverter.ToInt32(longreorder(buffer), 0);
                             }
                         }
@@ -770,8 +770,8 @@ namespace AstroCSharpLib
                             byte[] buffer = new byte[4];
                             for (int i = 0; i < 12; i++)
                             {
-                                fs.Read(buffer, i * buffer.Length, buffer.Length);
-                                ascoord[n, i / 4, i % 4] = BitConverter.ToInt32(longreorder(buffer), 0);
+                                fs.Read(buffer, 0, buffer.Length);
+                                ascoord[n, i / 3, i % 3] = BitConverter.ToInt32(longreorder(buffer), 0);
                             }
                         }
                     }
@@ -799,8 +799,8 @@ namespace AstroCSharpLib
                             byte[] buffer = new byte[4];
                             for (int i = 0; i < 15; i++)
                             {
-                                fs.Read(buffer, i * buffer.Length, buffer.Length);
-                                ascoord[n, i / 5, i % 5] = BitConverter.ToInt32(longreorder(buffer), 0);
+                                fs.Read(buffer, 0, buffer.Length);
+                                icoord[n, i / 3, i % 3] = BitConverter.ToInt32(longreorder(buffer), 0);
                             }
                         }
                     }
@@ -818,12 +818,12 @@ namespace AstroCSharpLib
                 order = 3;
             else
                 order = 5;
-            inpolq(2, order, jfrac, l, ref al, ref alp);
-            alp /= EPHE_STEP;
-            inpolq(2, order, jfrac, r, ref ar, ref arp);
-            arp /= EPHE_STEP;
-            inpolq(2, order, jfrac, z, ref az, ref azp);
-            azp /= EPHE_STEP;
+            inpolq(2, order, jfrac, l, al, alp);
+            *alp /= EPHE_STEP;
+            inpolq(2, order, jfrac, r, ar, arp);
+            *arp /= EPHE_STEP;
+            inpolq(2, order, jfrac, z, az, azp);
+            *azp /= EPHE_STEP;
             return 0;
         }
 
@@ -838,7 +838,7 @@ namespace AstroCSharpLib
         //x[],       /* array of function values, x[n-o]..x[n+o] must exist */
         //*axu,      /* pointer for storage of result */
         //*adxu;     /* pointer for storage of dx/dt  */
-        int inpolq(int n, int o, double p, double[] x, ref double axu, ref double adxu)
+        unsafe int inpolq(int n, int o, double p, double[] x, double* axu, double* adxu)
         {
             double q, q2, q3, q4, q5, p2, p3, p4, p5, u, u0, u1, u2;
             double dm2, dm1, d0, dp1, dp2,
@@ -885,8 +885,8 @@ namespace AstroCSharpLib
 
             /* Everett interpolation 3rd order */
 
-            axu = q * (x[n] + offset) + q3 * d20 + p * x[n + 1] + p3 * d2p1;
-            adxu = d0 + u * d2p1 - u0 * d20;
+            *axu = q * (x[n] + offset) + q3 * d20 + p * x[n + 1] + p3 * d2p1;
+            *adxu = d0 + u * d2p1 - u0 * d20;
             if (o > 3)
             {    /* 5th order */
                 dm2 = x[n - 1] - x[n - 2];
@@ -906,8 +906,8 @@ namespace AstroCSharpLib
                 d3p2 = d2p2 - d2p1;
                 d4p1 = d3p1 - d30;     /* f7 */
                 d4p2 = d3p2 - d3p1;    /* f */
-                axu += p5 * d4p2 + q5 * d4p1;
-                adxu += u1 * d4p2 - u2 * d4p1;
+                *axu += p5 * d4p2 + q5 * d4p1;
+                *adxu += u1 * d4p2 - u2 * d4p1;
             }
             return 0;
         }

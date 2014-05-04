@@ -68,7 +68,7 @@ namespace AstroCSharpLib
         {
             double Off, Ln;
 
-            ciCore.tim = RSgn(ciCore.tim) * Math.Floor(Math.Abs(ciCore.tim)) + RFract(Math.Abs(ciCore.tim)) * 100.0 / 60.0 +
+            ciCore.tim = Math.Sign(ciCore.tim) * Math.Floor(Math.Abs(ciCore.tim)) + RFract(Math.Abs(ciCore.tim)) * 100.0 / 60.0 +
               (DecToDeg(ciCore.zon) - DecToDeg(ciCore.dst));
             ciCore.lon = DecToDeg(ciCore.lon);
             ciCore.lat = Math.Min(ciCore.lat, 89.9999);        /* Make sure the chart isn't being cast */
@@ -677,7 +677,7 @@ namespace AstroCSharpLib
             MB += 117.0 * RSinD(T1 + Y) + 62.0 * RSinD(2.0 * L + T1) -
               33.0 * RSinD(T1 - Y - L) - 32.0 * RSinD(T1 - 2.0 * L) - 30.0 * RSinD(L1 + T1 - Y);
             moonla = MB =
-              RSgn(MB) * ((Math.Abs(MB) / M) / rDegMax - Math.Floor((Math.Abs(MB) / M) / rDegMax)) * rDegMax;
+               Math.Sign(MB) * ((Math.Abs(MB) / M) / rDegMax - Math.Floor((Math.Abs(MB) / M) / rDegMax)) * rDegMax;
 
             /* Compute position of the North Lunar Node, either True or Mean. */
 
