@@ -92,6 +92,7 @@
     </None>
     <None Include="conf\Cache.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="conf\ConnectionStrings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

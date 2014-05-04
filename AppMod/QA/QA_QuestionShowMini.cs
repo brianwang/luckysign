@@ -66,7 +66,7 @@ namespace AppMod.QA
             set { _Award = value; }
             get { return _Award; }
         }
-        [DataMember]
+        
         public DateTime EndTime
         {
             set { _EndTime = value; }

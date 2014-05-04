@@ -702,7 +702,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L()/1000;
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -710,7 +710,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -731,7 +731,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.TS = DateTime.Parse(input["TS"].ToString());
             }
 
             return ret;
@@ -785,7 +785,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -793,7 +793,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -814,7 +814,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.TS = DateTime.Parse(input["TS"].ToString());
             }
 
             return ret;
@@ -875,7 +875,7 @@ namespace WebServiceForApp
             ret.DR = int.Parse(input["DR"].ToString());
             if (input["EndTime"].ToString() != "")
             {
-                ret.EndTime = DateTime.Parse(input["EndTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
             }
             if (input["IsSecret"].ToString() != "")
             {
@@ -883,7 +883,7 @@ namespace WebServiceForApp
             }
             if (input["LastReplyTime"].ToString() != "")
             {
-                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -904,7 +904,7 @@ namespace WebServiceForApp
             ret.Title = input["Title"].ToString();
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.TS = DateTime.Parse(input["TS"].ToString());
             }
 
             return ret;
