@@ -98,7 +98,7 @@ namespace AstroCSharpLib
         /* such as Moon and Node velocities not available without -b are. (This is  */
         /* the one place in Astrolog which calls the Placalc package functions.)    */
 
-        void ComputePlacalc(double t)
+        unsafe void ComputePlacalc(double t)
         {
             int i;
             double r1 = 0.0, r2 = 0.0, r3 = 0.0, r4 = 0.0;
@@ -113,7 +113,7 @@ namespace AstroCSharpLib
                 //  (us.fPlacalcAst && FBetween(i, oCer, oVes)))
                 //  continue;
                 if (FPlacalcPlanet(i, t * 36525.0 + 2415020.0, us.objCenter != oEar,
-                  ref r1, ref r2, ref r3, ref r4))
+                  &r1, &r2, &r3, &r4))
                 {
 
                     /* Note that this can't compute charts with central planets other */
@@ -201,7 +201,7 @@ namespace AstroCSharpLib
 
             /* Compute more accurate ephemeris positions for certain objects. */
 
-            if (us.fPlacalc)
+            if (true/*us.fPlacalc*/)
             {
                 ComputePlacalc(iset.T);
             }
@@ -218,7 +218,7 @@ namespace AstroCSharpLib
             if (us.nArabicNight < 0 ||
               (us.nArabicNight == 0 && HousePlaceIn(cp.obj[oSun]) < sLib))
                 j = -j;
-            j = Math.Abs(j) < rDegQuad ? j : j - RSgn(j) * rDegMax;
+            j = Math.Abs(j) < rDegQuad ? j : j - Math.Sign(j) * rDegMax;
             cp.obj[oFor] = Mod(j + iset.Asc);
 
             /* Fill in "planet" positions corresponding to house cusps. */
@@ -410,7 +410,7 @@ namespace AstroCSharpLib
 
             if (Math.Abs(ciCore.lat) > RFromD(rDegQuad - rAxis) && housesystem < 2)
             {
-                ciCore.lat = RSgn(ciCore.lat) * RFromD(rDegQuad - rAxis);
+                ciCore.lat = Math.Sign(ciCore.lat) * RFromD(rDegQuad - rAxis);
                 throw new Exception(string.Format("The {0} system of houses is not defined at extreme latitudes.",
                 housesystem));
 
@@ -501,11 +501,6 @@ namespace AstroCSharpLib
             return i < rDegHalf ? i : rDegMax - i;
         }
 
-        public double RSgn(double r)
-        {
-            return r.CompareTo(0.0f) >= 0 ? 1.0f : -1.0f;
-        }
-
         public double RFract(double r)
         {
             return r - Math.Floor(r);
@@ -585,7 +580,7 @@ namespace AstroCSharpLib
         }
 
         /* Transform spherical to rectangular coordinates in x, y, z. */
-        void SphToRec(double r, double azi, double alt, ref double rx, ref double ry, ref double rz)
+        unsafe void SphToRec(double r, double azi, double alt, ref double rx, ref double ry, ref double rz)
         {
             double rT;
             rz = r * RSinD(alt);
