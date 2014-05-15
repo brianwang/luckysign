@@ -325,7 +325,8 @@
                                             </div>
                                         </div>
                                         <div class="f-a-box">
-                                            <asp:LinkButton ID="LinkButton2" CssClass="f-a" runat="server" OnClientClick="javascript:document.forms[0].target='_blank';setTimeout('document.forms[0].action= document.location.href;',500);" PostBackUrl="http://share.v.t.qq.com/index.php?c=share&a=index&url=http://astro.fashion.qq.com/app/loverose.htm&pic=&appkey=801402959&title=腾讯星座爱情花&line1=&line2=&line3=">转发到微博</asp:LinkButton>
+                                            <asp:HyperLink ID="HyperLink1" CssClass="f-a" runat="server" NavigateUrl="http://share.v.t.qq.com/index.php?c=share&a=index&url=http://astro.fashion.qq.com/app/loverose.htm&pic=&appkey=801402959&title=腾讯星座爱情花&line1=&line2=&line3=" onclick="javascript:document.forms[0].target='_blank';setTimeout('document.forms[0].action= document.location.href;',500);" >转发到微博</asp:HyperLink>
+                                            <%--<asp:LinkButton ID="LinkButton2" CssClass="f-a" runat="server"  OnClientClick="javascript:document.forms[0].target='_blank';setTimeout('document.forms[0].action= document.location.href;',500);" PostBackUrl="http://share.v.t.qq.com/index.php?c=share&a=index&url=http://astro.fashion.qq.com/app/loverose.htm&pic=&appkey=801402959&title=腾讯星座爱情花&line1=&line2=&line3=">转发到微博</asp:LinkButton>--%>
                                             <asp:LinkButton ID="LinkButton3" CssClass="f-a" runat="server" OnClick="LinkButton3_Click">再测一次</asp:LinkButton>
                                             <div class="clear"></div>
                                         </div>
