@@ -147,7 +147,7 @@ namespace WebForApps.LoveRose
             
 
             #region 花
-            Label1.Text = "1.金星星座为：" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Ven].Constellation) + "<br/>";
+            //Label1.Text = "1.金星星座为：" + PublicValue.GetConstellation(m_star[PublicValue.AstroStar.Ven].Constellation) + "<br/>";
             jsstr += "showItem('hua', " + (int)m_star[PublicValue.AstroStar.Ven].Constellation + ");";
             ViewState["hua"] = (int)m_star[PublicValue.AstroStar.Ven].Constellation;
             #endregion
@@ -155,7 +155,7 @@ namespace WebForApps.LoveRose
             #region 金星元素
             int venusEle = 0;
             venusEle = (int)PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation);
-            Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation)) + "<br />";
+            //Label1.Text += "2.金星星座元素为：" + PublicValue.GetElement(PublicDeal.GetInstance().GetConstellationElement(m_star[PublicValue.AstroStar.Ven].Constellation)) + "<br />";
             #endregion
 
             #region 红杏
@@ -166,9 +166,9 @@ namespace WebForApps.LoveRose
             {
                 hongxing = true;
             }
-            //Label1.Text += "金星：" + ((int)m_star[PublicValue.AstroStar.Ven].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Ven].Degree + " " + m_star[PublicValue.AstroStar.Ven].Cent / 60 * 100;
-            //Label1.Text += "婚神：" + ((int)m_star[PublicValue.AstroStar.Jun].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Jun].Degree + " " + m_star[PublicValue.AstroStar.Jun].Cent / 60 * 100;
-            Label1.Text += "3.是否有红杏:" + (hongxing==true ? "有" : "没有") + "<br />";
+            ////Label1.Text += "金星：" + ((int)m_star[PublicValue.AstroStar.Ven].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Ven].Degree + " " + m_star[PublicValue.AstroStar.Ven].Cent / 60 * 100;
+            ////Label1.Text += "婚神：" + ((int)m_star[PublicValue.AstroStar.Jun].Constellation) * 30 + " " + m_star[PublicValue.AstroStar.Jun].Degree + " " + m_star[PublicValue.AstroStar.Jun].Cent / 60 * 100;
+            //Label1.Text += "3.是否有红杏:" + (hongxing==true ? "有" : "没有") + "<br />";
             jsstr += "showItem('hongxing', " + (hongxing == true ? "1" : "0") + ");";
             if (hongxing)
             {
@@ -179,18 +179,18 @@ namespace WebForApps.LoveRose
             #region 蜜蜂
             int beecount = 0;
             List<PublicValue.AstroStar> beestars = PublicDeal.GetInstance().GetGongMasters(m_astro.Stars, 7, false);
-            Label1.Text += "7宫主：";
+            //Label1.Text += "7宫主：";
             foreach (PublicValue.AstroStar tmpstar in beestars)
             {
-                Label1.Text += PublicValue.GetAstroStar(tmpstar);
+                //Label1.Text += PublicValue.GetAstroStar(tmpstar);
             }
-            Label1.Text += "<br />";
-            Label1.Text += "凶星：";
+            //Label1.Text += "<br />";
+            //Label1.Text += "凶星：";
             foreach (PublicValue.AstroStar tmpstar in badstars.Keys)
             {
-                Label1.Text += PublicValue.GetAstroStar(tmpstar);
+                //Label1.Text += PublicValue.GetAstroStar(tmpstar);
             }
-            Label1.Text += "<br />";
+            //Label1.Text += "<br />";
             beestars.Add(PublicValue.AstroStar.Des);
             beestars.Add(PublicValue.AstroStar.Jun);
             foreach (PublicValue.AstroStar tmpstar in beestars)
@@ -211,7 +211,7 @@ namespace WebForApps.LoveRose
                 }
             }
 
-            Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
+            //Label1.Text += "4.蜜蜂指数为:" + beecount + "<br />";
             jsstr += "showItem('mifeng', " + (beecount + 1 > 3 ? 4 : beecount + 1) + ");";
             li1.Style["display"] = "";
             ViewState["bee"] = beecount;
@@ -324,7 +324,7 @@ namespace WebForApps.LoveRose
                     }
                 }
             }
-            //Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
+            ////Label1.Text += "4.裂痕指数为:" + breakcount + "<br />";
             jsstr += "showItem('liehen', " + (showele["liehen"] > 3 ? 4 : showele["liehen"]) + ");";
             if (showele["liehen"] > 0)
             {
@@ -379,7 +379,7 @@ namespace WebForApps.LoveRose
                 ltr1.Text = "100";
             }
             ViewState["fumian"] = showele;
-            Label1.Text += "5.泡泡：" + showele["paopao"] + "; 虫子：" + showele["chongzi"] + "; 醋：" + showele["cu"] + "; 裂痕：" + showele["liehen"] + "; 冰冻：" + showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "; 枯叶：" + showele["kuye"] + "<br />";
+            ////Label1.Text += "5.泡泡：" + showele["paopao"] + "; 虫子：" + showele["chongzi"] + "; 醋：" + showele["cu"] + "; 裂痕：" + showele["liehen"] + "; 冰冻：" + showele["bingdong"] + "; 折枝：" + showele["zhezhi"] + "; 枯叶：" + showele["kuye"] + "<br />";
             #endregion
 
             #region 花盆
@@ -392,7 +392,7 @@ namespace WebForApps.LoveRose
             {
                 huapen = 2;
             }
-            Label1.Text += "5.花盆为:" + huapen + "<br />";
+            //Label1.Text += "5.花盆为:" + huapen + "<br />";
             jsstr += "showItem('huapen', " + huapen + ");";
             #endregion
 
@@ -466,7 +466,7 @@ namespace WebForApps.LoveRose
                 span3.Style["width"] = "128px";
                 ltr3.Text = "100";
             }
-            Label1.Text += "5.花心指数为:" + flowercount + "<br />";
+            //Label1.Text += "5.花心指数为:" + flowercount + "<br />";
             #endregion
 
             #region 魅力指数
@@ -566,16 +566,16 @@ namespace WebForApps.LoveRose
                 span4.Style["width"] = "128px";
                 ltr4.Text = "100";
             }
-            Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
+            //Label1.Text += "6.对方有钱指数为:" + richcount + "<br />";
             //测试显示互溶关系
             List<List<PublicValue.AstroStar>> hurong = PublicDeal.GetInstance().GetHuRong(m_astro.Stars, true);
             foreach (List<PublicValue.AstroStar> tmplist in hurong)
             {
                 foreach (PublicValue.AstroStar tmpstar in tmplist)
                 {
-                    Label1.Text += PublicValue.GetAstroStar(tmpstar) + "->";
+                    //Label1.Text += PublicValue.GetAstroStar(tmpstar) + "->";
                 }
-                Label1.Text += "<br />";
+                //Label1.Text += "<br />";
             }
             #endregion
             jsstr += @"$("".f-box"").children(""div:not(0)"").children(""div"").each(function () {
@@ -605,6 +605,7 @@ namespace WebForApps.LoveRose
 
                                     })";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "show", jsstr, true);
+            tip.Style["display"] = "none";
             ViewState["jsstr"] = jsstr;
             MultiView1.ActiveViewIndex = 1;
 
@@ -634,7 +635,7 @@ namespace WebForApps.LoveRose
             #endregion
 
             HyperLink1.NavigateUrl = "http://share.v.t.qq.com/index.php?c=share&a=index&url=" + Server.UrlEncode("http://astro.fashion.qq.com/app/aiqinghua.htm") +
-                    "&pic=" + Server.UrlEncode("http://app.ssqian.com/WebResources/Images/LoveRose/img/1.jpg") + "&appkey=801402959&title="+ Server.UrlEncode("#腾讯星座爱情花# " + AppCmn.CommonTools.CutStr(content[int.Parse(ViewState["hua"].ToString()) - 1, 0],50) + "... 快来测测你的爱情花") + "&line1=&line2=&line3=";
+                    "&pic=" + Server.UrlEncode("http://app.ssqian.com/WebResources/Images/LoveRose/img/1.jpg") + "&appkey=801402959&title=" + Server.UrlEncode("#腾讯星座爱情花# " + AppCmn.CommonTools.CutStr(content[int.Parse(ViewState["hua"].ToString()) - 1, 0], 50) + " 好玩好准的占星术婚恋测试应用“爱情花”，小伙伴们快来试试吧~") + "&line1=&line2=&line3=";
             
         }
 
@@ -676,10 +677,10 @@ namespace WebForApps.LoveRose
             }
             ltrTipTitle.Text = title[i];
             ltrTipContent.Text = content[i,0];
-            if (i == 18)
+            if (i == 19)
             {
                 int tmpbee = int.Parse(ViewState["bee"].ToString());
-                ltrTipContent.Text = content[i, tmpbee-1];
+                ltrTipContent.Text = content[i, tmpbee];
             }
             tip.Style["display"] = "";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "showtmp", ViewState["jsstr"].ToString(), true);
@@ -705,7 +706,7 @@ namespace WebForApps.LoveRose
             "虫子",
             "泡泡",
             "折枝",
-            "黄叶子",
+            "枯叶",
             "裂痕",
             "醋瓶",
             "蜜蜂",

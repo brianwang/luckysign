@@ -530,7 +530,7 @@
 
                             <div class="clear"></div>
                         </asp:View>
-                    </asp:MultiView><asp:Literal ID="Label1" runat="server"></asp:Literal>
+                    </asp:MultiView><%--<asp:Literal ID="Label1" runat="server"></asp:Literal>--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
