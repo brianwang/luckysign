@@ -96,9 +96,9 @@ namespace AppMod.QA
         //    set { }
         //}
 
-        private USR_CustomerShow _Customer;
+        private USR_CustomerMaintain _Customer;
         [DataMember]
-        public USR_CustomerShow Customer
+        public USR_CustomerMaintain Customer
         {
             get { return _Customer; }
             set { _Customer = value; }

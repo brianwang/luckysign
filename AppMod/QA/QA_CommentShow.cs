@@ -58,10 +58,10 @@ namespace AppMod.QA
             get { return _DR; }
         }
         [DataMember]
-        public long TS
+        public DateTime TS
         {
-            set { _TS = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _TS.ToMilliSecondsFrom1970L() / 1000; }
+            set { _TS = value; }
+            get { return _TS; }
         }
 
 
@@ -71,9 +71,9 @@ namespace AppMod.QA
         #region 扩展成员属性
 
 
-        private USR_CustomerShow _Customer;
+        private USR_CustomerMaintain _Customer;
         [DataMember]
-        public USR_CustomerShow Customer
+        public USR_CustomerMaintain Customer
         {
             get { return _Customer; }
             set { _Customer = value; }
