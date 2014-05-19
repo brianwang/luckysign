@@ -704,6 +704,10 @@ namespace WebServiceForApp
             {
                 ret.EndTime = DateTime.Parse(input["EndTime"].ToString());
             }
+            else
+            {
+                ret.EndTime = AppConst.DateTimeNull;
+            }
             if (input["IsSecret"].ToString() != "")
             {
                 ret.IsSecret = int.Parse(input["IsSecret"].ToString());
@@ -711,6 +715,10 @@ namespace WebServiceForApp
             if (input["LastReplyTime"].ToString() != "")
             {
                 ret.LastReplyTime = DateTime.Parse(input["LastReplyTime"].ToString());
+            }
+            else
+            {
+                ret.LastReplyTime = AppConst.DateTimeNull;
             }
             if (input["LastReplyUser"].ToString() != "")
             {
@@ -733,7 +741,10 @@ namespace WebServiceForApp
             {
                 ret.TS = DateTime.Parse(input["TS"].ToString());
             }
-
+            else
+            {
+                ret.TS = AppConst.DateTimeNull;
+            }
             return ret;
         }
         public QA_QuestionShowMini<BaZiMod> MapQA_QuestionShowMiniForBaZi(DataRow input)

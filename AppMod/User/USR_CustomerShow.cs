@@ -97,10 +97,10 @@ namespace AppMod.User
         }
 
         [DataMember]
-        public long birth
+        public DateTime birth
         {
-            set { _birth = (value*1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _birth.ToMilliSecondsFrom1970L()/1000; }
+            set { _birth = value; }
+            get { return _birth; }
         }
 
         [DataMember]
@@ -111,17 +111,17 @@ namespace AppMod.User
         }
 
         [DataMember]
-        public long RegTime
+        public DateTime RegTime
         {
-            set { _RegTime = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _RegTime.ToMilliSecondsFrom1970L() / 1000; }
+            set { _RegTime = value; }
+            get { return _RegTime; }
         }
 
         [DataMember]
-        public long LastLoginTime
+        public DateTime LastLoginTime
         {
-            set { _LastLoginTime = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _LastLoginTime.ToMilliSecondsFrom1970L() / 1000; }
+            set { _LastLoginTime = value; }
+            get { return _LastLoginTime; }
         }
 
         [DataMember]

@@ -649,7 +649,11 @@ namespace WebServiceForApp
             }
             if (input["birth"].ToString() != "")
             {
-                ret.birth = (DateTime.Parse(input["birth"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+                ret.birth = DateTime.Parse(input["birth"].ToString());
+            }
+            else
+            {
+                ret.birth = AppConst.DateTimeNull;
             }
             if (input["Credit"].ToString() != "")
             {
@@ -690,7 +694,11 @@ namespace WebServiceForApp
             }
             if (input["LastLoginTime"].ToString() != "")
             {
-                ret.LastLoginTime = (DateTime.Parse(input["LastLoginTime"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+                ret.LastLoginTime = DateTime.Parse(input["LastLoginTime"].ToString());
+            }
+            else
+            {
+                ret.LastLoginTime = AppConst.DateTimeNull;
             }
             ret.NickName = input["NickName"].ToString();
             ret.Photo = input["Photo"].ToString();
@@ -700,7 +708,11 @@ namespace WebServiceForApp
             }
             if (input["RegTime"].ToString() != "")
             {
-                ret.RegTime = (DateTime.Parse(input["RegTime"].ToString()).ToMilliSecondsFrom1970L()) / 1000;
+                ret.RegTime = DateTime.Parse(input["RegTime"].ToString());
+            }
+            else
+            {
+                ret.RegTime = AppConst.DateTimeNull;
             }
             ret.Signature = input["Signature"].ToString();
             if (input["Status"].ToString() != "")

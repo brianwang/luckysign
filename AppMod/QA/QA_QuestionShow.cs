@@ -65,11 +65,11 @@ namespace AppMod.QA
             set { _Award = value; }
             get { return _Award; }
         }
-        [DataMember]
-        public long EndTime
+        
+        public DateTime EndTime
         {
-            set { _EndTime = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _EndTime.ToMilliSecondsFrom1970L() / 1000; }
+            set { _EndTime = value; }
+            get { return _EndTime; }
         }
         [DataMember]
         public int IsSecret
@@ -78,10 +78,10 @@ namespace AppMod.QA
             get { return _IsSecret; }
         }
         [DataMember]
-        public long LastReplyTime
+        public DateTime LastReplyTime
         {
-            set { _LastReplyTime = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _LastReplyTime.ToMilliSecondsFrom1970L() / 1000; }
+            set { _LastReplyTime = value; }
+            get { return _LastReplyTime; }
         }
         [DataMember]
         public int LastReplyUser
@@ -108,10 +108,10 @@ namespace AppMod.QA
             get { return _DR; }
         }
         [DataMember]
-        public long TS
+        public DateTime TS
         {
-            set { _TS = (value * 1000).MilliSecondsFrom1970ToDateTime(); }
-            get { return _TS.ToMilliSecondsFrom1970L() / 1000; }
+            set { _TS = value; }
+            get { return _TS; }
         }
 
 
@@ -134,7 +134,12 @@ namespace AppMod.QA
             get { return _Customer; }
             set { _Customer = value; }
         }
-
+        [DataMember]
+        public bool IsEnd
+        {
+            get { return _EndTime==null||EndTime==AppCmn.AppConst.DateTimeNull ?false:true; }
+            set {  }
+        }
         #endregion
 
 
