@@ -175,7 +175,7 @@ namespace WebServiceForApp
             QA_QuestionShow<AstroMod> ret = new QA_QuestionShow<AstroMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置星盘
@@ -264,7 +264,7 @@ namespace WebServiceForApp
             QA_QuestionShow<BaZiMod> ret = new QA_QuestionShow<BaZiMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置命盘
@@ -303,7 +303,7 @@ namespace WebServiceForApp
             QA_QuestionShow<ZiWeiMod> ret = new QA_QuestionShow<ZiWeiMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerShow tmpu = new USR_CustomerShow();
+            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置命盘
@@ -355,7 +355,7 @@ namespace WebServiceForApp
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_AnswerShow tmp_answer = MapQA_AnswerShow(m_dt.Rows[i]);
-                USR_CustomerShow tmpu = new USR_CustomerShow();
+                USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
                 USR_CustomerBll.GetInstance().GetModel(tmp_answer.CustomerSysNo).MemberwiseCopy(tmpu);
                 tmp_answer.Customer = tmpu;
                 DataTable tmp_dt = QA_CommentBll.GetInstance().GetListByAnswer(tmp_answer.SysNo);
@@ -987,7 +987,7 @@ namespace WebServiceForApp
             }
             if (input["TS"].ToString() != "")
             {
-                ret.TS = DateTime.Parse(input["TS"].ToString()).ToMilliSecondsFrom1970L() / 1000;
+                ret.TS = DateTime.Parse(input["TS"].ToString());
             }
             return ret;
         }
