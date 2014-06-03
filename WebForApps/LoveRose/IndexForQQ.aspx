@@ -35,7 +35,7 @@
                                 //        }
                                 //    })
                                 //})
-
+                                
                                 function refreshdistrict() {
                                     $("#Div2").children("a").click(function () {
                                         $(this).parent().parent().children("span").text($(this).text());
@@ -243,10 +243,10 @@
                                 <div class="x-right-t">爱情攻略</div>
                                 <div class="x-right-c">
                                     <ul>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20131101/006763.htm">金星看男生心动女生</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20131122/002278.htm">金星星座定你爱情观</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20121204/000003.htm">花心男子星盘长啥样</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20130326/000005.htm">亲密关系中的占星术</a></li>
                                     </ul>
                                 </div>
 
@@ -269,6 +269,7 @@
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                             <script type="text/javascript">
+                                
                                 function initialselect() { }
                                 function hoverinit() {
                                     alert("initialselect");
@@ -456,15 +457,15 @@
                                     <div class="yuansu-t"></div>
                                     <div class="yuansu-c">
                                         <ul>
-                                            <li runat="server" id="li1" style="display: none;"><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果还同时出现蝴蝶，说明你是桃花很旺的人噢。</li>
-                                            <li runat="server" id="li2" style="display: none;"><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，选错人，并在感情中存在一些不切实际的幻想。</li>
-                                            <li runat="server" id="li3" style="display: none;"><span style="background-position: -10px -70px"></span>折枝代表你在婚恋关系中比较敏感，常因个性偏强而争吵较多，感情难称心。</li>
-                                            <li runat="server" id="li4" style="display: none;"><span style="background-position: -70px -70px"></span>虫子代表感情常因外力因素而破裂，被迫的分开，自己很难改变。</li>
-                                            <li runat="server" id="li5" style="display: none;"><span style="background-position: -10px -130px"></span>红杏代表你在结婚后被劈腿的可能性比较大。<%--<a href="#" target="_blank">转运秘籍</a>--%></li>
-                                            <li runat="server" id="li6" style="display: none;"><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
-                                            <li runat="server" id="li7" style="display: none;"><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
-                                            <li runat="server" id="li8" style="display: none;"><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
-                                            <li runat="server" id="li9" style="display: none;"><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
+                                            <li runat="server" id="li1" ><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果还同时出现蝴蝶，说明你是桃花很旺的人噢。</li>
+                                            <li runat="server" id="li2" ><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，选错人，并在感情中存在一些不切实际的幻想。</li>
+                                            <li runat="server" id="li3" ><span style="background-position: -10px -70px"></span>折枝代表你在婚恋关系中比较敏感，常因个性偏强而争吵较多，感情难称心。</li>
+                                            <li runat="server" id="li4" ><span style="background-position: -70px -70px"></span>虫子代表感情常因外力因素而破裂，被迫的分开，自己很难改变。</li>
+                                            <li runat="server" id="li5" ><span style="background-position: -10px -130px"></span>红杏代表你在结婚后被劈腿的可能性比较大。<%--<a href="#" target="_blank">转运秘籍</a>--%></li>
+                                            <li runat="server" id="li6" ><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
+                                            <li runat="server" id="li7" ><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
+                                            <li runat="server" id="li8" ><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
+                                            <li runat="server" id="li9" ><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
@@ -504,10 +505,10 @@
                                 <div class="x-right-t">爱情攻略</div>
                                 <div class="x-right-c">
                                     <ul>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
-                                        <li><a target="_blank" href="#">如何打动金星双子座？</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20131101/006763.htm">金星看男生心动女生</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20131122/002278.htm">金星星座定你爱情观</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20121204/000003.htm">花心男子星盘长啥样</a></li>
+                                        <li><a target="_blank" href="http://astro.fashion.qq.com/a/20130326/000005.htm">亲密关系中的占星术</a></li>
                                     </ul>
                                 </div>
 
@@ -534,6 +535,13 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+        <iframe id="c_iframe" name="c_iframe" src="http://astro.fashion.qq.com/app/xmcccccccccc.htm" width="0" height="0" style="display:none;" ></iframe>
+<script type="text/javascript">
+    var b_width = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
+    var b_height = Math.max(document.documentElement.clientHeight, document.body.clientHeight) + 10;
+    var c_iframe = document.getElementById("c_iframe");
+    c_iframe.src = c_iframe.src + "#" + b_width + "|" + b_height;
+</script>
 
     </form>
 </body>
