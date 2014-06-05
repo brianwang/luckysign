@@ -7,13 +7,14 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>爱情花</title>
-    <link href="../WebResources/Images/LoveRose/css/login.css" type="text/css" rel="stylesheet" />
+    <link href="http://app-loverose.oss-cn-qingdao.aliyuncs.com/css/login.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery.pngFix.pack.js"></script>
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/default.js"></script>
 
 
-    <link href="../WebResources/Images/LoveRose/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="http://app-loverose.oss-cn-qingdao.aliyuncs.com/css/common.css" type="text/css" rel="stylesheet" />
+
 </head>
 <body style="">
     <form id="form1" runat="server">
@@ -148,27 +149,27 @@
                                             <ul>
                                                 <li>
                                                     <div class="select">
-                                                        <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="yearspan" runat="server">1995</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subyear">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="monthspan" runat="server">1</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="submonth">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="dayspan" runat="server">1</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subday">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="hourspan" runat="server">12</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subhour">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="minitespan" runat="server">0</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subminite">
                                                         </div>
                                                     </div>
@@ -176,7 +177,7 @@
                                                 <asp:HiddenField ID="HiddenField4" runat="server" />
                                                 <li style="padding-left: 20px">
                                                     <div class="select" style="width: 120px; margin-right: 5px;">
-                                                        <span id="district1" runat="server">北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span id="district1" runat="server">北京市</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="Div1">
                                                             <asp:Repeater ID="Repeater1" runat="server">
                                                                 <ItemTemplate>
@@ -191,7 +192,7 @@
                                                         <ContentTemplate>
                                                             <div class="select" style="width: 165px;">
                                                                 <span id="district2" runat="server"></span>
-                                                                <img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                                 <div class="sub-nav" id="Div2">
                                                                     <asp:Repeater ID="Repeater2" runat="server">
                                                                         <ItemTemplate>
@@ -209,7 +210,7 @@
                                                 <li>
                                                     <a href="#" title="夏令时" class="select-a"></a>
                                                     <div id="drp0" class="select" style="width: 70px;">
-                                                        <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span>自动判断</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="sub0">
                                                             <a id="2">自动判断</a>
                                                             <a id="1">是</a>
@@ -217,7 +218,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="drp1" class="select" style="margin-left: 50px">
-                                                        <span>女</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
+                                                        <span>女</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
                                                         <div id="sub1" class="sub-nav">
                                                             <a id="g1">男</a>
                                                             <a id="g0">女</a>
@@ -255,17 +256,18 @@
                                     <div class="shouting-c">
                                         <ul>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="clear"></div>
+                             <iframe id="Iframe1" name="c_iframe" src="http://astro.fashion.qq.com/app/xmcccccccccc.htm#960|595" width="0" height="0" style="display:none;" ></iframe>
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                             <script type="text/javascript">
@@ -315,7 +317,7 @@
                                         <div id="tip" runat="server" class="tip" style="display: none;">
                                             <div class="tip-close">
                                                 <a onclick="javascript:<%=tip.ClientID %>.style.display='none';">
-                                                    <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
+                                                    <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/close.gif"></a>
                                             </div>
                                             <div class="tip-box">
                                                 <h1>
@@ -457,15 +459,15 @@
                                     <div class="yuansu-t"></div>
                                     <div class="yuansu-c">
                                         <ul>
-                                            <li runat="server" id="li1" ><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果还同时出现蝴蝶，说明你是桃花很旺的人噢。</li>
-                                            <li runat="server" id="li2" ><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，选错人，并在感情中存在一些不切实际的幻想。</li>
-                                            <li runat="server" id="li3" ><span style="background-position: -10px -70px"></span>折枝代表你在婚恋关系中比较敏感，常因个性偏强而争吵较多，感情难称心。</li>
-                                            <li runat="server" id="li4" ><span style="background-position: -70px -70px"></span>虫子代表感情常因外力因素而破裂，被迫的分开，自己很难改变。</li>
-                                            <li runat="server" id="li5" ><span style="background-position: -10px -130px"></span>红杏代表你在结婚后被劈腿的可能性比较大。<%--<a href="#" target="_blank">转运秘籍</a>--%></li>
-                                            <li runat="server" id="li6" ><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
-                                            <li runat="server" id="li7" ><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
-                                            <li runat="server" id="li8" ><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
-                                            <li runat="server" id="li9" ><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
+                                            <li runat="server" id="li1" style="display:none;"><span style="background-position: -10px -10px"></span>蜜蜂的数量代表了你对异性的吸引力，如果还同时出现蝴蝶，说明你是桃花很旺的人噢。</li>
+                                            <li runat="server" id="li2" style="display:none;"><span style="background-position: -70px -10px"></span>泡泡代表你经常遇人不淑，选错人，并在感情中存在一些不切实际的幻想。</li>
+                                            <li runat="server" id="li3" style="display:none;"><span style="background-position: -10px -70px"></span>折枝代表你在婚恋关系中比较敏感，常因个性偏强而争吵较多，感情难称心。</li>
+                                            <li runat="server" id="li4" style="display:none;"><span style="background-position: -70px -70px"></span>虫子代表感情常因外力因素而破裂，被迫的分开，自己很难改变。</li>
+                                            <li runat="server" id="li5" style="display:none;"><span style="background-position: -10px -130px"></span>红杏代表你在结婚后被劈腿的可能性比较大。<%--<a href="#" target="_blank">转运秘籍</a>--%></li>
+                                            <li runat="server" id="li6" style="display:none;"><span style="background-position: -70px -130px"></span>冰冻代表感情忽冷忽热，频繁的分手，冷暴力，莫名的疏离感不亲近。</li>
+                                            <li runat="server" id="li7" style="display:none;"><span style="background-position: -10px -190px"></span>裂痕代表老是挑剔对方，争吵较多，尤其感情中后期缺少柔情蜜意。</li>
+                                            <li runat="server" id="li8" style="display:none;"><span style="background-position: -70px -190px"></span>醋瓶代表你在感情中容易陷入三角恋，容易吃醋，比较情绪化。</li>
+                                            <li runat="server" id="li9" style="display:none;"><span style="background-position: -130px -10px"></span>枯叶代表对待感情过于自信，出现了问题又不以为然，结果导致难以挽回。</li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
@@ -517,11 +519,11 @@
                                     <div class="shouting-c">
                                         <ul>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
@@ -530,19 +532,30 @@
                             </div>
 
                             <div class="clear"></div>
+                             <iframe id="Iframe2" name="c_iframe" src="http://astro.fashion.qq.com/app/xmcccccccccc.htm#960|1032" width="0" height="0" style="display:none;" ></iframe>
                         </asp:View>
                     </asp:MultiView><%--<asp:Literal ID="Label1" runat="server"></asp:Literal>--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <iframe id="c_iframe" name="c_iframe" src="http://astro.fashion.qq.com/app/xmcccccccccc.htm" width="0" height="0" style="display:none;" ></iframe>
+<%--        <iframe id="c_iframe" name="c_iframe" src="http://astro.fashion.qq.com/app/xmcccccccccc.htm" width="0" height="0" style="display:none;" ></iframe>
 <script type="text/javascript">
-    var b_width = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
-    var b_height = Math.max(document.documentElement.clientHeight, document.body.clientHeight) + 10;
-    var c_iframe = document.getElementById("c_iframe");
-    c_iframe.src = c_iframe.src + "#" + b_width + "|" + b_height;
-</script>
-
+    function freshheight() {
+        var b_width = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
+        var b_height = Math.max(document.documentElement.clientHeight, document.body.clientHeight) + 10;
+        var c_iframe = document.getElementById("c_iframe");
+        c_iframe.src = c_iframe.src + "#" + b_width + "|" + b_height;
+    }
+</script>--%>
+        <script>
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?72cef88fe2d96fc52b022f9fa3702f10";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+    </script>
     </form>
 </body>
 </html>

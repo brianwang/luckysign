@@ -175,7 +175,7 @@ namespace WebServiceForApp
             QA_QuestionShow<AstroMod> ret = new QA_QuestionShow<AstroMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
+            USR_CustomerShow tmpu = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置星盘
@@ -264,7 +264,7 @@ namespace WebServiceForApp
             QA_QuestionShow<BaZiMod> ret = new QA_QuestionShow<BaZiMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
+            USR_CustomerShow tmpu = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置命盘
@@ -303,7 +303,7 @@ namespace WebServiceForApp
             QA_QuestionShow<ZiWeiMod> ret = new QA_QuestionShow<ZiWeiMod>();
             tmp.MemberwiseCopy(ret);
 
-            USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
+            USR_CustomerShow tmpu = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(ret.CustomerSysNo).MemberwiseCopy(tmpu);
             ret.Customer = tmpu;
             #region 设置命盘
@@ -355,16 +355,16 @@ namespace WebServiceForApp
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_AnswerShow tmp_answer = MapQA_AnswerShow(m_dt.Rows[i]);
-                USR_CustomerMaintain tmpu = new USR_CustomerMaintain();
+                USR_CustomerShow tmpu = new USR_CustomerShow();
                 USR_CustomerBll.GetInstance().GetModel(tmp_answer.CustomerSysNo).MemberwiseCopy(tmpu);
                 tmp_answer.Customer = tmpu;
                 DataTable tmp_dt = QA_CommentBll.GetInstance().GetListByAnswer(tmp_answer.SysNo);
                 if (tmp_dt != null && tmp_dt.Rows.Count > 0)
                 {
                     List<QA_CommentShow> commentlist = new List<QA_CommentShow>();
-                    for (int j = 0; j < m_dt.Rows.Count&&j<=3; j++)
+                    for (int j = 0; j < tmp_dt.Rows.Count && j <= 3; j++)
                     {
-                        QA_CommentShow tmp_comment = MapQA_CommentShow(m_dt.Rows[i]);
+                        QA_CommentShow tmp_comment = MapQA_CommentShow(tmp_dt.Rows[j]);
                         commentlist.Add(tmp_comment);
                     }
                     tmp_answer.TopComments = commentlist;
