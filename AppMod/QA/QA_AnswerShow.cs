@@ -120,6 +120,14 @@ namespace AppMod.QA
             set { _HasMoreComment = value; }
         }
 
+        private int _ToalComment;
+        [DataMember]
+        public int ToalComment
+        {
+            get { return _ToalComment; }
+            set { _ToalComment = value; }
+        }
+
 
         #endregion
 

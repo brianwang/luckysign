@@ -91,17 +91,21 @@ namespace WebServiceForApp
         {
             int total = 0;
             DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex,key,cate,orderby,ref total);
+            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
+            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
-                throw new BusinessException("没有符合条件的数据项");
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
             }
-            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_QuestionShowMini<AstroMod> tmp_quest = MapQA_QuestionShowMiniForAstro(m_dt.Rows[i]);
                 ret.Add(tmp_quest);
             }
-            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
+
             rett.List = ret;
             rett.Total = total;
             if (pagesize * pageindex >= total)
@@ -118,17 +122,22 @@ namespace WebServiceForApp
         {
             int total = 0;
             DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex, key, cate, orderby, ref total);
+            List<QA_QuestionShowMini<BaZiMod>> ret = new List<QA_QuestionShowMini<BaZiMod>>();
+            PageInfo<QA_QuestionShowMini<BaZiMod>> rett = new PageInfo<QA_QuestionShowMini<BaZiMod>>();
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
-                throw new BusinessException("没有符合条件的数据项");
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_QuestionShowMini<BaZiMod>>>.Get200OK(rett);
             }
-            List<QA_QuestionShowMini<BaZiMod>> ret = new List<QA_QuestionShowMini<BaZiMod>>();
+            
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_QuestionShowMini<BaZiMod> tmp_quest = MapQA_QuestionShowMiniForBaZi(m_dt.Rows[i]);
                 ret.Add(tmp_quest);
             }
-            PageInfo<QA_QuestionShowMini<BaZiMod>> rett = new PageInfo<QA_QuestionShowMini<BaZiMod>>();
+            
             rett.List = ret;
             rett.Total = total;
             if (pagesize * pageindex >= total)
@@ -145,17 +154,22 @@ namespace WebServiceForApp
         {
             int total = 0;
             DataTable m_dt = QA_QuestionBll.GetInstance().GetList(pagesize, pageindex, key, cate, orderby, ref total);
+            List<QA_QuestionShowMini<ZiWeiMod>> ret = new List<QA_QuestionShowMini<ZiWeiMod>>();
+            PageInfo<QA_QuestionShowMini<ZiWeiMod>> rett = new PageInfo<QA_QuestionShowMini<ZiWeiMod>>(); 
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
-                throw new BusinessException("没有符合条件的数据项");
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>>.Get200OK(rett);
             }
-            List<QA_QuestionShowMini<ZiWeiMod>> ret = new List<QA_QuestionShowMini<ZiWeiMod>>();
+            
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_QuestionShowMini<ZiWeiMod> tmp_quest = MapQA_QuestionShowMiniForZiWei(m_dt.Rows[i]);
                 ret.Add(tmp_quest);
             }
-            PageInfo<QA_QuestionShowMini<ZiWeiMod>> rett = new PageInfo<QA_QuestionShowMini<ZiWeiMod>>();
+            
             rett.List = ret;
             rett.Total = total;
             if (pagesize * pageindex >= total)
@@ -347,11 +361,16 @@ namespace WebServiceForApp
         {
             int total = 0;
             DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuest(pagesize, pageindex, sysno, ref total);
+            List<QA_AnswerShow> ret = new List<QA_AnswerShow>();
+            PageInfo<QA_AnswerShow> rett = new PageInfo<QA_AnswerShow>();
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
-                throw new BusinessException("没有符合条件的数据项");
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_AnswerShow>>.Get200OK(rett);
             }
-            List<QA_AnswerShow> ret = new List<QA_AnswerShow>();
+            
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_AnswerShow tmp_answer = MapQA_AnswerShow(m_dt.Rows[i]);
@@ -365,9 +384,13 @@ namespace WebServiceForApp
                     for (int j = 0; j < tmp_dt.Rows.Count && j <= 3; j++)
                     {
                         QA_CommentShow tmp_comment = MapQA_CommentShow(tmp_dt.Rows[j]);
+                        USR_CustomerMaintain tmpuu = new USR_CustomerMaintain();
+                        USR_CustomerBll.GetInstance().GetModel(tmp_comment.CustomerSysNo).MemberwiseCopy(tmpuu);
+                        tmp_comment.Customer = tmpuu;
                         commentlist.Add(tmp_comment);
                     }
                     tmp_answer.TopComments = commentlist;
+                    tmp_answer.ToalComment = tmp_dt.Rows.Count;
                     if (m_dt.Rows.Count > 3)
                     {
                         tmp_answer.HasMoreComment = true;
@@ -379,7 +402,7 @@ namespace WebServiceForApp
                 }
                 ret.Add(tmp_answer);
             }
-            PageInfo<QA_AnswerShow> rett = new PageInfo<QA_AnswerShow>();
+            
             rett.List = ret;
             rett.Total = total;
             if (pagesize * pageindex >= total)
@@ -396,11 +419,12 @@ namespace WebServiceForApp
         public ReturnValue<List<QA_CommentShow>> GetCommentByAnswer(int sysno)
         {
             DataTable m_dt = QA_CommentBll.GetInstance().GetListByAnswer(sysno);
+            List<QA_CommentShow> ret = new List<QA_CommentShow>();
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
-                throw new BusinessException("没有符合条件的数据项");
+                return ReturnValue<List<QA_CommentShow>>.Get200OK(ret);
             }
-            List<QA_CommentShow> ret = new List<QA_CommentShow>();
+            
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
                 QA_CommentShow tmp_comment = MapQA_CommentShow(m_dt.Rows[i]);

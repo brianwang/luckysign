@@ -57,7 +57,7 @@ namespace AppMod.QA
         public string Context
         {
             set { _Context = value; }
-            get { return CommonTools.CutStr(_Context, 100); }
+            get { return _Context; }
         }
         [DataMember]
         public int Award

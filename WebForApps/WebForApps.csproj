@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\WebForMain\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="DC.Web.HttpCompress">
+      <HintPath>..\BaseAssemblies\DC.Web.HttpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
