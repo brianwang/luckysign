@@ -635,7 +635,7 @@ namespace WebForApps.LoveRose
             #endregion
 
             HyperLink1.NavigateUrl = "http://share.v.t.qq.com/index.php?c=share&a=index&url=" + Server.UrlEncode("http://astro.fashion.qq.com/app/aiqinghua.htm") +
-                    "&pic=" + Server.UrlEncode("http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/share" + ViewState["hua"].ToString() + ".jpg") + "&appkey=801402959&title=" + Server.UrlEncode("#腾讯星座爱情花# " + AppCmn.CommonTools.CutStr(content[int.Parse(ViewState["hua"].ToString()) - 1, 0], 50) + " 嘿嘿~这是我的爱情花！我的爱情婚姻原来是这样的。挺有意思，你也来玩玩吧！") + "&line1=&line2=&line3=";
+                    "&pic=" + Server.UrlEncode("../WebResources/Images/LoveRose/img/share" + ViewState["hua"].ToString() + ".jpg") + "&appkey=801402959&title=" + Server.UrlEncode("#腾讯星座爱情花# " + AppCmn.CommonTools.CutStr(content[int.Parse(ViewState["hua"].ToString()) - 1, 0], 50) + " 嘿嘿~这是我的爱情花！我的爱情婚姻原来是这样的。挺有意思，你也来玩玩吧！") + "&line1=&line2=&line3=";
 
             
             

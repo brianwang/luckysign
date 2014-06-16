@@ -7,13 +7,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>爱情花</title>
-    <link href="http://app-loverose.oss-cn-qingdao.aliyuncs.com/css/login.css" type="text/css" rel="stylesheet" />
+    <link href="../WebResources/Images/LoveRose/css/login.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/jquery.pngFix.pack.js"></script>
     <script type="text/javascript" src="../WebResources/Images/LoveRose/js/default.js"></script>
 
 
-    <link href="http://app-loverose.oss-cn-qingdao.aliyuncs.com/css/common.css" type="text/css" rel="stylesheet" />
+    <link href="../WebResources/Images/LoveRose/css/common.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body style="">
@@ -149,27 +149,27 @@
                                             <ul>
                                                 <li>
                                                     <div class="select">
-                                                        <span id="yearspan" runat="server">1995</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="yearspan" runat="server">1995</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subyear">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="monthspan" runat="server">1</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="monthspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="submonth">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="dayspan" runat="server">1</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="dayspan" runat="server">1</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subday">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="hourspan" runat="server">12</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="hourspan" runat="server">12</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subhour">
                                                         </div>
                                                     </div>
                                                     <div class="select" style="width: 30px;">
-                                                        <span id="minitespan" runat="server">0</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="minitespan" runat="server">0</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="subminite">
                                                         </div>
                                                     </div>
@@ -177,7 +177,7 @@
                                                 <asp:HiddenField ID="HiddenField4" runat="server" />
                                                 <li style="padding-left: 20px">
                                                     <div class="select" style="width: 120px; margin-right: 5px;">
-                                                        <span id="district1" runat="server">北京市</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span id="district1" runat="server">北京市</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="Div1">
                                                             <asp:Repeater ID="Repeater1" runat="server">
                                                                 <ItemTemplate>
@@ -192,7 +192,7 @@
                                                         <ContentTemplate>
                                                             <div class="select" style="width: 165px;">
                                                                 <span id="district2" runat="server"></span>
-                                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                                <img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                                 <div class="sub-nav" id="Div2">
                                                                     <asp:Repeater ID="Repeater2" runat="server">
                                                                         <ItemTemplate>
@@ -210,7 +210,7 @@
                                                 <li>
                                                     <a href="#" title="夏令时" class="select-a"></a>
                                                     <div id="drp0" class="select" style="width: 70px;">
-                                                        <span>自动判断</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span>自动判断</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div class="sub-nav" id="sub0">
                                                             <a id="2">自动判断</a>
                                                             <a id="1">是</a>
@@ -218,7 +218,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="drp1" class="select" style="margin-left: 50px">
-                                                        <span>女</span><img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/arrow.gif" align="absmiddle">
+                                                        <span>女</span><img src="../WebResources/Images/LoveRose/img/arrow.gif" align="absmiddle">
                                                         <div id="sub1" class="sub-nav">
                                                             <a id="g1">男</a>
                                                             <a id="g0">女</a>
@@ -256,11 +256,11 @@
                                     <div class="shouting-c">
                                         <ul>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
@@ -317,7 +317,7 @@
                                         <div id="tip" runat="server" class="tip" style="display: none;">
                                             <div class="tip-close">
                                                 <a onclick="javascript:<%=tip.ClientID %>.style.display='none';">
-                                                    <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/close.gif"></a>
+                                                    <img src="../WebResources/Images/LoveRose/img/close.gif"></a>
                                             </div>
                                             <div class="tip-box">
                                                 <h1>
@@ -519,11 +519,11 @@
                                     <div class="shouting-c">
                                         <ul>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/txxz.jpg"><span>腾讯星座</span><a target="_blank" href="http://e.t.qq.com/qqastro">+收听</a></li>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/zxxt.jpg"><span>占星学堂</span><a target="_blank" href="http://t.qq.com/astro_qy">+收听</a></li>
                                             <li>
-                                                <img src="http://app-loverose.oss-cn-qingdao.aliyuncs.com/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
+                                                <img src="../WebResources/Images/LoveRose/img/iamsnowsnow.jpg"><span>蓝雪鳳兒</span><a target="_blank" href="http://t.qq.com/iamsnowsnow">+收听</a></li>
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
