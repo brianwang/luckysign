@@ -203,7 +203,7 @@ namespace AppCmn
             command.CommandType = commandType;
 
             // Attach the command parameters if they are provided
-            if (commandParameters != null)
+            if (commandParameters != null && commandParameters.Length>0)
             {
                 AttachParameters(command, commandParameters);
             }

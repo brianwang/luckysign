@@ -70,6 +70,7 @@
     <Compile Include="QA\QA_AnswerBll.cs" />
     <Compile Include="QA\QA_CategoryBll.cs" />
     <Compile Include="QA\QA_CommentBll.cs" />
+    <Compile Include="QA\QA_OrderBll.cs" />
     <Compile Include="QA\QA_QuestionBll.cs" />
     <Compile Include="QA\REL_Question_ChartBll.cs" />
     <Compile Include="Spider\SPD_FamousBll.cs" />

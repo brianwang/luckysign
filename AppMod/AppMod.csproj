@@ -73,6 +73,7 @@
     <Compile Include="QA\QA_AnswerMod.cs" />
     <Compile Include="QA\QA_CategoryMod.cs" />
     <Compile Include="QA\QA_CommentMod.cs" />
+    <Compile Include="QA\QA_OrderMod.cs" />
     <Compile Include="QA\QA_QuestionMod.cs" />
     <Compile Include="QA\REL_Question_ChartMod.cs" />
     <Compile Include="QA\QA_QuestionShow.cs" />

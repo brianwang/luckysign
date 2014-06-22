@@ -66,6 +66,7 @@
     <Compile Include="QA\QA_AnswerDal.cs" />
     <Compile Include="QA\QA_CategoryDal.cs" />
     <Compile Include="QA\QA_CommentDal.cs" />
+    <Compile Include="QA\QA_OrderDal.cs" />
     <Compile Include="QA\QA_QuestionDal.cs" />
     <Compile Include="QA\REL_Question_ChartDal.cs" />
     <Compile Include="Spider\SPD_FamousDal.cs" />

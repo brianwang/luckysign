@@ -29,6 +29,7 @@ namespace AppMod.QA
         private int _ReadCount;
         private int _DR;
         private DateTime _TS;
+        private string _SubQuest;
 
         [DataMember]
         public int SysNo
@@ -36,83 +37,103 @@ namespace AppMod.QA
             set { _SysNo = value; }
             get { return _SysNo; }
         }
+
         [DataMember]
         public int CateSysNo
         {
             set { _CateSysNo = value; }
             get { return _CateSysNo; }
         }
+
         [DataMember]
         public int CustomerSysNo
         {
             set { _CustomerSysNo = value; }
             get { return _CustomerSysNo; }
         }
+
         [DataMember]
         public string Title
         {
             set { _Title = value; }
             get { return _Title; }
         }
+
         [DataMember]
         public string Context
         {
             set { _Context = value; }
             get { return _Context; }
         }
+
         [DataMember]
         public int Award
         {
             set { _Award = value; }
             get { return _Award; }
         }
+
         [DataMember]
         public DateTime EndTime
         {
             set { _EndTime = value; }
             get { return _EndTime; }
         }
+
         [DataMember]
         public int IsSecret
         {
             set { _IsSecret = value; }
             get { return _IsSecret; }
         }
+
         [DataMember]
         public DateTime LastReplyTime
         {
             set { _LastReplyTime = value; }
             get { return _LastReplyTime; }
         }
+
         [DataMember]
         public int LastReplyUser
         {
             set { _LastReplyUser = value; }
             get { return _LastReplyUser; }
         }
+
         [DataMember]
         public int ReplyCount
         {
             set { _ReplyCount = value; }
             get { return _ReplyCount; }
         }
+
         [DataMember]
         public int ReadCount
         {
             set { _ReadCount = value; }
             get { return _ReadCount; }
         }
+
         [DataMember]
         public int DR
         {
             set { _DR = value; }
             get { return _DR; }
         }
+
         [DataMember]
         public DateTime TS
         {
             set { _TS = value; }
             get { return _TS; }
+        }
+
+        [DataMember]
+        public string SubQuest
+        {
+            set { _SubQuest = value; }
+            get { return _SubQuest; }
         }
 
 
@@ -134,6 +155,7 @@ namespace AppMod.QA
             ReadCount = AppConst.IntNull;
             DR = AppConst.IntNull;
             TS = AppConst.DateTimeNull;
+            SubQuest = AppConst.StringNull;
 
         }
 
@@ -149,5 +171,5 @@ namespace AppMod.QA
         }
         #endregion
     }
-
 }
+
