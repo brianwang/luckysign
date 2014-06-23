@@ -68,6 +68,8 @@
     <Compile Include="CMS\SYS_ArticleMod.cs" />
     <Compile Include="CMS\CMS_CategoryMod.cs" />
     <Compile Include="Fate\FATE_AstroMod.cs" />
+    <Compile Include="Order\ORD_CashMod.cs" />
+    <Compile Include="Order\ORD_PointMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Fate\FATE_ChartMod.cs" />
     <Compile Include="QA\QA_AnswerMod.cs" />
