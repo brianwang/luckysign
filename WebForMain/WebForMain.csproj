@@ -121,6 +121,8 @@
     <Content Include="Quest\Talk.aspx" />
     <Content Include="Quest\TalkList.aspx" />
     <Content Include="Quest\Topic.aspx" />
+    <Content Include="Quest\ConsultList.aspx" />
+    <Content Include="Quest\Consult.aspx" />
     <Content Include="WebResources\AstroDice\astro dice 480 510 1.swf" />
     <Content Include="WebResources\AstroDice\common.css" />
     <Content Include="WebResources\AstroDice\DD_belatedPNG.js" />
@@ -827,6 +829,20 @@
     </Compile>
     <Compile Include="Quest\Topic.aspx.designer.cs">
       <DependentUpon>Topic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\ConsultList.aspx.cs">
+      <DependentUpon>ConsultList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\ConsultList.aspx.designer.cs">
+      <DependentUpon>ConsultList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quest\Consult.aspx.cs">
+      <DependentUpon>Consult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quest\Consult.aspx.designer.cs">
+      <DependentUpon>Consult.aspx</DependentUpon>
     </Compile>
     <Compile Include="SessionInfo.cs" />
     <Compile Include="Error.aspx.cs">
