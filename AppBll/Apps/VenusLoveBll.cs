@@ -33,9 +33,9 @@ namespace AppBll.Apps
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(VenusLoveMod model)
+        public void Update(VenusLoveMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

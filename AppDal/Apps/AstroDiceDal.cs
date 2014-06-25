@@ -90,7 +90,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(AstroDiceMod model)
+        public int Update(AstroDiceMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Apps.dbo.AstroDice set ");

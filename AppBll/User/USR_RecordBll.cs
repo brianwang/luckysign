@@ -34,9 +34,9 @@ namespace AppBll.User
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(USR_RecordMod model)
+        public void Update(USR_RecordMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

@@ -36,9 +36,9 @@ namespace AppBll.Spider
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(SPD_FamousMod model)
+        public void Update(SPD_FamousMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

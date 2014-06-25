@@ -81,7 +81,7 @@ namespace AppDal.QA
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(QA_CommentMod model)
+        public int Update(QA_CommentMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update QA_Comment set ");

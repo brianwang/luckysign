@@ -160,7 +160,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_FamousMod model)
+        public int Update(SYS_FamousMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Famous set ");

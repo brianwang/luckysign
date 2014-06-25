@@ -36,9 +36,9 @@ namespace AppBll.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(SYS_AdminMod model)
+        public void Update(SYS_AdminMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据
@@ -81,7 +81,7 @@ namespace AppBll.WebSys
             {
                 model = this.GetModel(model.CustomerSysNo);
                 model.LastLogin = DateTime.Now;
-                this.UpDate(model);
+                this.Update(model);
             }
             return model;
         }

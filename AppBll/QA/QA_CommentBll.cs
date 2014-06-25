@@ -36,9 +36,9 @@ namespace AppBll.QA
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(QA_CommentMod model)
+        public void Update(QA_CommentMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据
@@ -111,7 +111,7 @@ namespace AppBll.QA
                 m_qa.ReplyCount++;
                 m_qa.LastReplyUser = model.CustomerSysNo;
                 m_qa.LastReplyTime = DateTime.Now;
-                QA_QuestionBll.GetInstance().UpDate(m_qa);
+                QA_QuestionBll.GetInstance().Update(m_qa);
                 if (QA_CategoryBll.GetInstance().GetModel(m_qa.CateSysNo).TopSysNo == 1)
                 {
                     isquest = true;

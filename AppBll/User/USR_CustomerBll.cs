@@ -61,9 +61,9 @@ namespace AppBll.User
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(USR_CustomerMod model)
+        public void Update(USR_CustomerMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据
@@ -117,7 +117,7 @@ namespace AppBll.User
             {
                 model = this.GetModel(model.SysNo);
                 model.LastLoginTime = DateTime.Now;
-                this.UpDate(model);
+                this.Update(model);
             }
             return model;
         }

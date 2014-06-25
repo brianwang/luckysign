@@ -166,7 +166,7 @@ namespace WebForMain.Qin
                 m_user.HomeTown = District2.Area3SysNo;
                 m_user.Intro = txtIntro.Text;
 
-                USR_CustomerBll.GetInstance().UpDate(m_user);
+                USR_CustomerBll.GetInstance().Update(m_user);
 
                 SessionInfo m_session = new SessionInfo();
                 m_session.CustomerEntity = m_user;
@@ -227,7 +227,7 @@ namespace WebForMain.Qin
                     //更新数据库中的用户密码
                     m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Request.QueryString["id"]));
                     m_user.Password = txtNewPass.Text.Trim();
-                    USR_CustomerBll.GetInstance().UpDate(m_user);
+                    USR_CustomerBll.GetInstance().Update(m_user);
 
                     //更新session中的密码
                     SessionInfo m_session = new SessionInfo();
@@ -262,7 +262,7 @@ namespace WebForMain.Qin
                 ImageHelper.SaveThumbnail(Server.MapPath(OPath + @"\" + filename), Server.MapPath(@"~\WebResources\UpUserFiles\Photos\T"), filename, 70, 70, true);
                 m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Request.QueryString["id"]));
                 m_user.Photo = filename.Replace(".jpg", "");
-                USR_CustomerBll.GetInstance().UpDate(m_user);
+                USR_CustomerBll.GetInstance().Update(m_user);
                 MultiView1.ActiveViewIndex = 0;
                 //DataBind();
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "photook", "alert('头像更新成功');", true);

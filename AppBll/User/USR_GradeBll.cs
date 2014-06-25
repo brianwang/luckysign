@@ -38,9 +38,9 @@ namespace AppBll.User
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(USR_GradeMod model)
+        public void Update(USR_GradeMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

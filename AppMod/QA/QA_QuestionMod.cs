@@ -30,6 +30,8 @@ namespace AppMod.QA
         private int _DR;
         private DateTime _TS;
         private string _SubQuest;
+        private int _OrderCount;
+        private int _BuyCount;
 
         [DataMember]
         public int SysNo
@@ -136,6 +138,20 @@ namespace AppMod.QA
             get { return _SubQuest; }
         }
 
+        [DataMember]
+        public int OrderCount
+        {
+            set { _OrderCount = value; }
+            get { return _OrderCount; }
+        }
+
+        [DataMember]
+        public int BuyCount
+        {
+            set { _BuyCount = value; }
+            get { return _BuyCount; }
+        }
+
 
         #endregion
 
@@ -156,6 +172,8 @@ namespace AppMod.QA
             DR = AppConst.IntNull;
             TS = AppConst.DateTimeNull;
             SubQuest = AppConst.StringNull;
+            OrderCount = AppConst.IntNull;
+            BuyCount = AppConst.IntNull;
 
         }
 

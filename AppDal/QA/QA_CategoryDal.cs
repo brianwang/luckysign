@@ -89,7 +89,7 @@ namespace AppDal.QA
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(QA_CategoryMod model)
+        public int Update(QA_CategoryMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update QA_Category set ");

@@ -159,7 +159,7 @@ namespace AppDal.Fate
          /// 更新一条数据
          /// </summary>
 
-         public int UpDate(FATE_ChartMod model)
+         public int Update(FATE_ChartMod model)
          {
              StringBuilder strSql=new StringBuilder();
              strSql.Append("update FATE_Chart set ");

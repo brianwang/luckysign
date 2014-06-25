@@ -96,7 +96,7 @@ namespace WebForMain.Passport
                 {
                     SetSession(m_customer);
                     m_customer.LastLoginTime = DateTime.Now;
-                    USR_CustomerBll.GetInstance().UpDate(m_customer);
+                    USR_CustomerBll.GetInstance().Update(m_customer);
                     if (Request.QueryString["url"] != null && Request.QueryString["url"] != "")
                     {
                         Response.Redirect(Request.QueryString["url"]);
@@ -138,7 +138,7 @@ namespace WebForMain.Passport
                 {
                     SetSession(m_customer);
                     m_customer.LastLoginTime = DateTime.Now;
-                    USR_CustomerBll.GetInstance().UpDate(m_customer);
+                    USR_CustomerBll.GetInstance().Update(m_customer);
                     if (Request.QueryString["url"] != null && Request.QueryString["url"] != "")
                     {
                         Response.Redirect(Request.QueryString["url"]);

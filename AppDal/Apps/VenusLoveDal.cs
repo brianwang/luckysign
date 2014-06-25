@@ -72,7 +72,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(VenusLoveMod model)
+        public int Update(VenusLoveMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Apps.dbo.VenusLove set ");

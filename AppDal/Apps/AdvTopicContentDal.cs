@@ -75,7 +75,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(AdvTopicContentMod model)
+        public int Update(AdvTopicContentMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update AdvTopicContent set ");

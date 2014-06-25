@@ -99,7 +99,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(AdvUserMod model)
+        public int Update(AdvUserMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update AdvUser set ");

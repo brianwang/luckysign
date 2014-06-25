@@ -213,7 +213,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_CustomerMod model)
+        public int Update(USR_CustomerMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Customer set ");

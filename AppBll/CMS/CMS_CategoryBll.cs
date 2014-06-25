@@ -37,9 +37,9 @@ namespace AppBll.CMS
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(CMS_CategoryMod model)
+        public void Update(CMS_CategoryMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

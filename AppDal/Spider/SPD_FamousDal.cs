@@ -141,7 +141,7 @@ namespace AppDal.Spider
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SPD_FamousMod model)
+        public int Update(SPD_FamousMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SPD_Famous set ");

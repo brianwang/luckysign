@@ -121,7 +121,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(QQWeiBoUserMod model)
+        public int Update(QQWeiBoUserMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Apps.dbo.QQWeiBoUser set ");

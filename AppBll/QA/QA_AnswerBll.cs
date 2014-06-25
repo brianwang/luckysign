@@ -37,9 +37,9 @@ namespace AppBll.QA
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(QA_AnswerMod model)
+        public void Update(QA_AnswerMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据
@@ -89,6 +89,65 @@ namespace AppBll.QA
             tables = "[QA_Answer] left join USR_Customer on CustomerSysNo=USR_Customer.SysNo left join USR_Grade on GradeSysNo = USR_Grade.SysNo";
             where = "[QA_Answer].dr=" + (int)AppEnum.State.normal;
            
+            if (qid != 0)
+            {
+                where += " and QuestionSysNo=" + qid;
+            }
+
+            #endregion
+
+            using (SQLData m_data = new SQLData())
+            {
+                m_data.AddParameter("SelectList", columns);
+                m_data.AddParameter("TableSource", tables);
+                m_data.AddParameter("SearchCondition", where);
+                m_data.AddParameter("OrderExpression", order);
+                m_data.AddParameter("PageIndex", pageindex);
+                m_data.AddParameter("pagesize", pagesize);
+                DataSet m_ds = m_data.SPtoDataSet("GetRecordFromPage");
+                if (m_ds.Tables.Count == 2)
+                {
+                    m_dt = m_ds.Tables[0];
+                    total = int.Parse(m_ds.Tables[1].Rows[0][0].ToString());
+                }
+            }
+            return m_dt;
+        }
+        public DataTable GetListByQuestForConsult(int pagesize, int pageindex, int qid, ref int total)
+        {
+            DataTable m_dt = new DataTable();
+            string columns = "";
+            string tables = "";
+            string where = "";
+            string order = "[QA_Answer].TS asc";
+
+            #region  设置参数
+            columns = @"[QA_Answer].[SysNo]
+                      ,[QA_Answer].[QuestionSysNo]
+                      ,[QA_Answer].[CustomerSysNo]
+                      ,[Title]
+                      ,[Context]
+                      ,[Love]
+                      ,[Hate]
+                      ,[Award]
+                      ,[QA_Answer].[DR]
+                      ,[QA_Answer].[TS]
+                      ,NickName
+                      ,Point
+                      ,TotalAnswer
+                      ,BestAnswer
+                      ,photo
+                      ,USR_Grade.Name
+                      ,USR_Grade.LevelNum
+                      ,Price
+                      ,status
+                      ,description
+                      ,score
+                      ,trial
+                      ,Words";
+            tables = "[QA_Answer] left join USR_Customer on CustomerSysNo=USR_Customer.SysNo left join USR_Grade on GradeSysNo = USR_Grade.SysNo left join QA_Order on QA_Answer.sysno = QA_Order.answersysno";
+            where = "[QA_Answer].dr=" + (int)AppEnum.State.normal;
+
             if (qid != 0)
             {
                 where += " and QuestionSysNo=" + qid;
@@ -181,7 +240,7 @@ namespace AppBll.QA
                 m_qa.ReplyCount++;
                 m_qa.LastReplyUser = model.CustomerSysNo;
                 m_qa.LastReplyTime = DateTime.Now;
-                QA_QuestionBll.GetInstance().UpDate(m_qa);
+                QA_QuestionBll.GetInstance().Update(m_qa);
                 if (QA_CategoryBll.GetInstance().GetModel(m_qa.CateSysNo).TopSysNo == 1)
                 {
                     isquest = true;
@@ -355,7 +414,7 @@ namespace AppBll.QA
                 {
                     m_answer.Award += score;
                 }
-                QA_AnswerBll.GetInstance().UpDate(m_answer);
+                QA_AnswerBll.GetInstance().Update(m_answer);
 
                 USR_CustomerBll.GetInstance().AddPoint(score, m_answer.CustomerSysNo);
                 USR_CustomerBll.GetInstance().AddCount(m_answer.CustomerSysNo, 0, 0, 1, 0, 0, 0);
@@ -363,7 +422,7 @@ namespace AppBll.QA
                 if (score == m_quest.Award - usedAward)
                 {
                     m_quest.EndTime = DateTime.Now;
-                    QA_QuestionBll.GetInstance().UpDate(m_quest);
+                    QA_QuestionBll.GetInstance().Update(m_quest);
                 }
                 scope.Complete();
             }

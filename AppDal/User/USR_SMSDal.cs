@@ -109,7 +109,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_SMSMod model)
+        public int Update(USR_SMSMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_SMS set ");

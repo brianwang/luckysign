@@ -57,7 +57,7 @@ namespace AppDal.QA
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(REL_Question_ChartMod model)
+        public int Update(REL_Question_ChartMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update REL_Question_Chart set ");

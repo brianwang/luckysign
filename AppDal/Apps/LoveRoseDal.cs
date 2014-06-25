@@ -69,7 +69,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(LoveRoseMod model)
+        public int Update(LoveRoseMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update Apps.dbo.LoveRose set ");

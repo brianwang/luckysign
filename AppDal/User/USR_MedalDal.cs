@@ -72,7 +72,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_MedalMod model)
+        public int Update(USR_MedalMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Medal set ");

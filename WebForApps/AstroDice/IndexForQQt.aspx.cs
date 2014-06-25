@@ -389,7 +389,7 @@ namespace WebForApps.AstroDice
                         recordByName.Location = strArray3[2];
                         recordByName.FansNum = int.Parse(strArray3[3]);
                         recordByName.IsVIP = int.Parse(strArray3[4]);
-                        QQWeiBoUserBll.GetInstance().UpDate(recordByName);
+                        QQWeiBoUserBll.GetInstance().Update(recordByName);
                         this.ViewState["userpara"] = strArray3;
                     }
                     else

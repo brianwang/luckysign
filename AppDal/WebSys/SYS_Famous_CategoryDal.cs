@@ -70,7 +70,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_Famous_CategoryMod model)
+        public int Update(SYS_Famous_CategoryMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Famous_Category set ");

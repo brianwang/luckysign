@@ -37,9 +37,9 @@ namespace AppBll.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(SYS_PrivilegeMod model)
+        public void Update(SYS_PrivilegeMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

@@ -66,7 +66,7 @@ namespace AppDal.BLG
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(BLG_AttentionMod model)
+        public int Update(BLG_AttentionMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update BLG_Attention set ");

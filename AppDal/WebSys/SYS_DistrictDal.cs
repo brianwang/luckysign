@@ -106,7 +106,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_DistrictMod model)
+        public int Update(SYS_DistrictMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_District set ");

@@ -85,7 +85,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_MessageMod model)
+        public int Update(USR_MessageMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Message set ");

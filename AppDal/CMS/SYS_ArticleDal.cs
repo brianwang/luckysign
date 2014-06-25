@@ -99,7 +99,7 @@ namespace AppDal.CMS
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_ArticleMod model)
+        public int Update(SYS_ArticleMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Article set ");

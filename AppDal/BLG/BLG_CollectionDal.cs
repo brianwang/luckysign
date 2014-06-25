@@ -94,7 +94,7 @@ namespace AppDal.BLG
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(BLG_CollectionMod model)
+        public int Update(BLG_CollectionMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update BLG_Collection set ");

@@ -79,7 +79,7 @@ namespace AppDal.BLG
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(BLG_ReplyMod model)
+        public int Update(BLG_ReplyMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update BLG_Reply set ");

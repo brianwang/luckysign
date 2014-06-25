@@ -24,9 +24,9 @@ namespace AppBll.CMS
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(REL_Article_ChartMod model)
+        public void Update(REL_Article_ChartMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

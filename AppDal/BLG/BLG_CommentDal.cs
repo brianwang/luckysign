@@ -94,7 +94,7 @@ namespace AppDal.BLG
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(BLG_CommentMod model)
+        public int Update(BLG_CommentMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update BLG_Comment set ");

@@ -73,7 +73,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_ThirdLoginMod model)
+        public int Update(USR_ThirdLoginMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_ThirdLogin set ");

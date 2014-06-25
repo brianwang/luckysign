@@ -70,7 +70,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(AdvTopicMod model)
+        public int Update(AdvTopicMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update AdvTopic set ");

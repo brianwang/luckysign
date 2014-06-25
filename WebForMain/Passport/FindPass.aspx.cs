@@ -36,7 +36,7 @@ namespace WebForMain.Passport
                         Password += arr[randValue];
                     }
                     m_user.Password = Password;
-                    USR_CustomerBll.GetInstance().UpDate(m_user);
+                    USR_CustomerBll.GetInstance().Update(m_user);
                     //TCPMail oMail = new TCPMail();
                     //string url = "http://www.diafans.com/Login/LoginSuccess.aspx?opt=ValidateEmail&ID=" + this.txt_NickName.Text.Trim() + "&Email=" + this.txt_Email.Text.Trim();
                     string mailadd = m_user.Email;

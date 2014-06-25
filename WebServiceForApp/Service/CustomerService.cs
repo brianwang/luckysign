@@ -169,7 +169,7 @@ namespace WebServiceForApp
                         throw new BusinessException("用户不存在！");
                     }
                     m_user.Password = Password;
-                    USR_CustomerBll.GetInstance().UpDate(m_user);
+                    USR_CustomerBll.GetInstance().Update(m_user);
 
                     #region 发送短信
                     throw new BusinessException("短信接口还未申请！");
@@ -184,7 +184,7 @@ namespace WebServiceForApp
                         throw new BusinessException("用户不存在！");
                     }
                     m_user.Password = Password;
-                    USR_CustomerBll.GetInstance().UpDate(m_user);
+                    USR_CustomerBll.GetInstance().Update(m_user);
 
                     #region SetEmailContent
                     string mailBody = CommonTools.ReadHtmFile(Container.ConfigService.GetAppSetting<string>("AdvFolderPath","") + @"EmailTemplate/FindPassword.htm");
@@ -365,7 +365,7 @@ namespace WebServiceForApp
             if (m_customer != null && m_customer.SysNo != AppConst.IntNull)
             {
                 m_customer.LastLoginTime = DateTime.Now;
-                USR_CustomerBll.GetInstance().UpDate(m_customer);
+                USR_CustomerBll.GetInstance().Update(m_customer);
 
                 USR_CustomerMaintain ret = new USR_CustomerMaintain();
                 m_customer.MemberwiseCopy(ret);
@@ -444,7 +444,7 @@ namespace WebServiceForApp
             if (m_customer != null && m_customer.SysNo != AppConst.IntNull)
             {
                 m_customer.LastLoginTime = DateTime.Now;
-                USR_CustomerBll.GetInstance().UpDate(m_customer);
+                USR_CustomerBll.GetInstance().Update(m_customer);
 
                 USR_CustomerMaintain ret = new USR_CustomerMaintain();
                 m_customer.MemberwiseCopy(ret);
@@ -548,7 +548,7 @@ namespace WebServiceForApp
             if (m_customer != null && m_customer.SysNo != AppConst.IntNull)
             {
                 m_customer.LastLoginTime = DateTime.Now;
-                USR_CustomerBll.GetInstance().UpDate(m_customer);
+                USR_CustomerBll.GetInstance().Update(m_customer);
 
                 USR_CustomerMaintain rett = new USR_CustomerMaintain();
                 m_customer.MemberwiseCopy(rett);

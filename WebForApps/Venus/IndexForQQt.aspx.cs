@@ -177,7 +177,7 @@ namespace WebForApps.Venus
                         recordByName.Location = strArray3[2];
                         recordByName.FansNum = int.Parse(strArray3[3]);
                         recordByName.IsVIP = int.Parse(strArray3[4]);
-                        QQWeiBoUserBll.GetInstance().UpDate(recordByName);
+                        QQWeiBoUserBll.GetInstance().Update(recordByName);
                     }
                 }
                 if (bo.CheckFriend(this.openid, this.openkey, base.Request.UserHostAddress, AppEnum.Apps.venus))

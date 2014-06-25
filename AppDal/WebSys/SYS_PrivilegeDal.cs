@@ -69,7 +69,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_PrivilegeMod model)
+        public int Update(SYS_PrivilegeMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Privilege set ");

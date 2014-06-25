@@ -84,7 +84,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_Famous_AstroStarMod model)
+        public int Update(SYS_Famous_AstroStarMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Famous_AstroStar set ");

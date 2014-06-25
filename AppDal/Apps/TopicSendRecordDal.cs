@@ -69,7 +69,7 @@ namespace AppDal.Apps
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(TopicSendRecordMod model)
+        public int Update(TopicSendRecordMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update TopicSendRecord set ");

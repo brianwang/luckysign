@@ -36,9 +36,9 @@ namespace AppBll.Fate
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(FATE_AstroMod model)
+        public void Update(FATE_AstroMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

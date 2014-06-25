@@ -59,7 +59,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(REL_Famous_KeyWordMod model)
+        public int Update(REL_Famous_KeyWordMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update REL_Famous_KeyWord set ");

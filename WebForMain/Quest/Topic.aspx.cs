@@ -183,7 +183,7 @@ namespace WebForMain.Quest
                 {
                     QA_AnswerMod m_answer = QA_AnswerBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
                     m_answer.Love++;
-                    QA_AnswerBll.GetInstance().UpDate(m_answer);
+                    QA_AnswerBll.GetInstance().Update(m_answer);
                     SetCommentCookies(int.Parse(e.CommandArgument.ToString()));
                     ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addlove", "alert('您对该回答表示了赞同！');", true);
                     BindList();
@@ -199,7 +199,7 @@ namespace WebForMain.Quest
                 {
                     QA_AnswerMod m_answer = QA_AnswerBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
                     m_answer.Hate++;
-                    QA_AnswerBll.GetInstance().UpDate(m_answer);
+                    QA_AnswerBll.GetInstance().Update(m_answer);
                     SetCommentCookies(int.Parse(e.CommandArgument.ToString()));
                     ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addhate", "alert('您对该回答表示了不赞同！');", true);
                     BindList();
@@ -247,7 +247,7 @@ namespace WebForMain.Quest
             {
                 QA_AnswerMod m_answer = QA_AnswerBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
                 m_answer.DR = (int)AppEnum.State.deleted;
-                QA_AnswerBll.GetInstance().UpDate(m_answer);
+                QA_AnswerBll.GetInstance().Update(m_answer);
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addhate", "alert('成功删除该回答！');", true);
                 BindList();
             }
@@ -314,7 +314,7 @@ namespace WebForMain.Quest
                     ShowError("");
                 }
                 m_qustion.ReadCount++;
-                QA_QuestionBll.GetInstance().UpDate(m_qustion);
+                QA_QuestionBll.GetInstance().Update(m_qustion);
                 ltrTitle.Text = m_qustion.Title;
                 ltrContext.Text = m_qustion.Context;
                 //ltrAward.Text = m_qustion.Award.ToString();
@@ -491,7 +491,7 @@ namespace WebForMain.Quest
         protected void LinkButton5_Click(object sender, EventArgs e)
         {
             m_qustion.DR = (int)AppEnum.State.deleted;
-            QA_QuestionBll.GetInstance().UpDate(m_qustion);
+            QA_QuestionBll.GetInstance().Update(m_qustion);
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "delqa", "alert('该问题已删除');window.location.href='"+AppConfig.HomeUrl()+"Quest/Index.aspx';", true);
         }
 
@@ -508,7 +508,7 @@ namespace WebForMain.Quest
         {
             QA_CommentMod m_comment = QA_CommentBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
             m_comment.DR = (int)AppEnum.State.deleted;
-            QA_CommentBll.GetInstance().UpDate(m_comment);
+            QA_CommentBll.GetInstance().Update(m_comment);
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addhate", "alert('成功删除该评论！');", true);
             BindList();
         }

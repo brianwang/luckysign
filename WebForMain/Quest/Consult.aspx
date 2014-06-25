@@ -71,7 +71,7 @@
                     <div class="clear"></div>
 
                     <div class="baojia_list">
-                        <div class="baojia_list_t">报价详情：已购买<span>2</span>/5个报价单</div>
+                        <div class="baojia_list_t">报价详情：已购买<span><%=m_qustion.BuyCount%></span>/<%=m_qustion.OrderCount%>个报价单</div>
                         <div class="baojia_list_c">
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                                 <ContentTemplate>
@@ -116,10 +116,10 @@
                     <div class="baojia_inst">
                         =>不知道选哪个占星师？参考如下：<br />
                         1、查看占星师的资料，尤其是感谢信中的客户点评（通常经验丰富的占星师价格较高，新人则报价较低）<br />
-                        2、如果<a href="#" style="color: #f00">预算充足</a>，可购买多位占星师的报价（不同占星师的风格/侧重不同，可多角度对比参考）<br />
+                        2、如果<a href="#" target="_blank" style="color: #f00">预算充足</a>，可购买多位占星师的报价（不同占星师的风格/侧重不同，可多角度对比参考）<br />
                         3、让网站客服提供参考建议，我要求助客服
                         <br />
-                        =>如何购买报价单？<a href="#">点击查看 </a>
+                        =>如何购买报价单？<a href="#" target="_blank">点击查看 </a>
                     </div>
 
                     <div class="clear"></div>
@@ -150,11 +150,12 @@
                                                 <div class="index_new_ask_r">
                                                     <h1><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a></h1>
                                                     <h2>等级：<%#Eval("LevelNum")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;灵签：<%#Eval("Point")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;解答数：<%#Eval("TotalAnswer")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;被采纳数：<%#Eval("BestAnswer")%> </h2>
-                                                    <h3>服务描述：合盘深度解析<br />
-                                                        字数：1000  |   价格：500元    |   状态：等待求测者购买<br />
+                                                    <h3>服务描述：<%#Eval("description")%><br />
+                                                        字数：<%#Eval("words")%>  |   价格：<%#Eval("price")%>元    |   状态：等待求测者购买<br />
+                                                        <%#Eval("trial")%><br />
                                                         <%#Eval("Context")%></h3>
-                                                    <div class="ask_lock">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
-                                                    <div class="ask_lock_info">
+                                                    <div class="ask_lock" style="display:none;">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
+                                                    <div class="ask_lock_info" style="display:none;">
                                                         <a href="#">查看Ta本次的报价单</a><br />
                                                         <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" /><br />
                                                         蓝雪

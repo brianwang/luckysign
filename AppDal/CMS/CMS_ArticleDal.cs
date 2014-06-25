@@ -88,7 +88,7 @@ namespace AppDal.CMS
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(CMS_ArticleMod model)
+        public int Update(CMS_ArticleMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update CMS_Article set ");

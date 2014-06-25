@@ -81,7 +81,7 @@ namespace AppDal.CMS
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(CMS_CategoryMod model)
+        public int Update(CMS_CategoryMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update CMS_Category set ");

@@ -81,7 +81,7 @@ namespace AppDal.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(SYS_AdminMod model)
+        public int Update(SYS_AdminMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update SYS_Admin set ");

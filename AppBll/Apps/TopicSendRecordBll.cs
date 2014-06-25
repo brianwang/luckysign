@@ -34,9 +34,9 @@ namespace AppBll.Apps
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(TopicSendRecordMod model)
+        public void Update(TopicSendRecordMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

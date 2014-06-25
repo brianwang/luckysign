@@ -64,7 +64,7 @@ namespace AppDal.QA
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(QA_StarMod model)
+        public int Update(QA_StarMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Star set ");

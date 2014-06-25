@@ -35,9 +35,9 @@ namespace AppBll.BLG
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(BLG_ArticleMod model)
+        public void Update(BLG_ArticleMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

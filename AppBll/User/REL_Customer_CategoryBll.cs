@@ -35,9 +35,9 @@ namespace AppBll.User
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(REL_Customer_CategoryMod model)
+        public void Update(REL_Customer_CategoryMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

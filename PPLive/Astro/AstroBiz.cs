@@ -262,7 +262,7 @@ namespace PPLive.Astro
             if (m_astro != null && m_astro.DR == (int)AppEnum.State.normal)
             {
                 m_astro.LastTime = DateTime.Now;
-                FATE_AstroBll.GetInstance().UpDate(m_astro);
+                FATE_AstroBll.GetInstance().Update(m_astro);
                 return;
             }
             string tmpname = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\" + CommonTools.GetRandomString(5);

@@ -75,7 +75,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_GradeMod model)
+        public int Update(USR_GradeMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Grade set ");

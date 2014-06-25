@@ -73,7 +73,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_ActionMod model)
+        public int Update(USR_ActionMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Action set ");

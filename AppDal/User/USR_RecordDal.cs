@@ -75,7 +75,7 @@ namespace AppDal.User
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(USR_RecordMod model)
+        public int Update(USR_RecordMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update USR_Record set ");

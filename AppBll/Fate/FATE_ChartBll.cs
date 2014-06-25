@@ -34,9 +34,9 @@ namespace AppBll.Fate
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(FATE_ChartMod model)
+        public void Update(FATE_ChartMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

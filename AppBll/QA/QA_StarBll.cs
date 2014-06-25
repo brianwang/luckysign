@@ -36,9 +36,9 @@ namespace AppBll.QA
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(QA_StarMod model)
+        public void Update(QA_StarMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

@@ -39,9 +39,9 @@ namespace AppBll.User
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(USR_SMSMod model)
+        public void Update(USR_SMSMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

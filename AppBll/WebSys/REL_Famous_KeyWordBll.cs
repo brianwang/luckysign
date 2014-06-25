@@ -36,9 +36,9 @@ namespace AppBll.WebSys
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(REL_Famous_KeyWordMod model)
+        public void Update(REL_Famous_KeyWordMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据

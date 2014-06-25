@@ -120,7 +120,7 @@ namespace AppDal.BLG
         /// 更新一条数据
         /// </summary>
 
-        public int UpDate(BLG_ArticleMod model)
+        public int Update(BLG_ArticleMod model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update BLG_Article set ");

@@ -33,9 +33,9 @@ namespace AppBll.Apps
         /// 更新一条数据
         /// </summary>
 
-        public void UpDate(AdvUserMod model)
+        public void Update(AdvUserMod model)
         {
-            dal.UpDate(model);
+            dal.Update(model);
         }
         /// <summary>
         /// 删除一条数据
