@@ -79,33 +79,14 @@
                                         <asp:Repeater ID="Repeater2" runat="server">
                                             <ItemTemplate>
                                                 <li>
-                                                    <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" />
-                                                    <span class="price">￥ 800</span>
-                                                    <span class="process">等待购买</span>
+                                                    <a href="#<%#Eval("floor")%>">
+                                                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" />
+                                                        <span class="price">￥ <%#decimal.Parse(Eval("Price").ToString()).ToString("0")%></span>
+                                                        <span class="process" style='color: <%#Eval("color")%>'><%#AppCmn.AppEnum.GetConsultOrderStatus(int.Parse(Eval("status").ToString()))%></span>
+                                                    </a>
                                                 </li>
                                             </ItemTemplate>
                                         </asp:Repeater>
-
-                                        <%--<li>
-                                    <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" />
-                                    <span class="price">￥ 800</span>
-                                    <span class="process" style="color: #f00">已购买</span>
-                                </li>
-                                <li>
-                                    <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" />
-                                    <span class="price">￥ 800</span>
-                                    <span class="process" style="color: #f00">等待评价</span>
-                                </li>
-                                <li>
-                                    <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" />
-                                    <span class="price">￥ 800</span>
-                                    <span class="process" style="color: #008c03">交易成功</span>
-                                </li>
-                                <li>
-                                    <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" />
-                                    <span class="price">￥ 800</span>
-                                    <span class="process">等待购买</span>
-                                </li>--%>
                                     </ul>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -116,7 +97,7 @@
                     <div class="baojia_inst">
                         =>不知道选哪个占星师？参考如下：<br />
                         1、查看占星师的资料，尤其是感谢信中的客户点评（通常经验丰富的占星师价格较高，新人则报价较低）<br />
-                        2、如果<a href="#" target="_blank" style="color: #f00">预算充足</a>，可购买多位占星师的报价（不同占星师的风格/侧重不同，可多角度对比参考）<br />
+                        2、如果<span style="color: #f00">预算充足</span>，可购买多位占星师的报价（不同占星师的风格/侧重不同，可多角度对比参考）<br />
                         3、让网站客服提供参考建议，我要求助客服
                         <br />
                         =>如何购买报价单？<a href="#" target="_blank">点击查看 </a>
@@ -151,21 +132,21 @@
                                                     <h1><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a></h1>
                                                     <h2>等级：<%#Eval("LevelNum")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;灵签：<%#Eval("Point")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;解答数：<%#Eval("TotalAnswer")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;被采纳数：<%#Eval("BestAnswer")%> </h2>
                                                     <h3>服务描述：<%#Eval("description")%><br />
-                                                        字数：<%#Eval("words")%>  |   价格：<%#Eval("price")%>元    |   状态：等待求测者购买<br />
+                                                        字数：<%#Eval("words")%>  |   价格：<%#Eval("price")%>元    |   状态：<%#AppCmn.AppEnum.GetConsultOrderStatus(int.Parse(Eval("status").ToString()))%><br />
                                                         <%#Eval("trial")%><br />
                                                         <%#Eval("Context")%></h3>
-                                                    <div class="ask_lock" style="display:none;">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
-                                                    <div class="ask_lock_info" style="display:none;">
+                                                    <div class="ask_lock" style="<%#Eval("hide")%>">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
+                                                    <div class="ask_lock_info" style="display: none;">
                                                         <a href="#">查看Ta本次的报价单</a><br />
-                                                        <img src="WebResources/IMAGES/pic_01.jpg" width="70" height="70" /><br />
-                                                        蓝雪
+                                                        <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /><br />
+                                                        <%#Eval("NickName")%>
                                                     </div>
-                                                    <div class="ask_140219" style="display: none;">
+                                                    <div id="buyicon" runat="server" class="ask_140219" visible="false">
                                                         <a href="#">我要购买</a>
-                                                        <a href="#">命理师详情</a>
+                                                        <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">命理师详情</a>
                                                         <div class="clear"></div>
                                                     </div>
-                                                    <div class="ask_140219" style="display: none;">
+                                                    <div id="confirmicon" runat="server" class="ask_140219" visible="false">
                                                         <span>温馨提示：对命理师的解析有任何疑问请继续追问，如果没有疑问请给予命理师评价。在4天23小时30分内未评价或投诉，交易将自动关闭。</span>
                                                         <div class="pinjia_140218">
                                                             <ul>
@@ -183,11 +164,11 @@
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
-                                                    <div class="ask_140219" style="display: none;">
+                                                    <%--<div class="ask_140219" style="display: none;">
                                                         <span>温馨提示：对命理师的解析有任何疑问请继续追问，如果没有疑问请给予命理师评价。在4天23小时30分内未评价或投诉，交易将自动关闭。</span>
                                                         <a href="#">申请退款</a>
                                                         <div class="clear"></div>
-                                                    </div>
+                                                    </div>--%>
                                                     <h4><%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%><%--&nbsp;&nbsp;&nbsp;|  
                                                         <asp:LinkButton ID="LinkButton2" CommandArgument='<%#Eval("SysNo")%>' CommandName="Love" runat="server">赞同</asp:LinkButton>
                                                         (<%#Eval("love")%>)--%><asp:Literal ID="Literal1" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal><asp:LinkButton ID="LinkButton5" runat="server" Visible="false" CommandArgument='<%#Eval("SysNo")%>' CommandName="Del">删除</asp:LinkButton><asp:Literal ID="Literal2" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal><a href="javascript:void(0);" onclick="showreply(this);">回复</a></h4>

@@ -9,7 +9,7 @@ namespace AppBll.Order
     {
         private readonly ORD_CashDal dal = new ORD_CashDal();
         private static ORD_CashBll _instance;
-        public ORD_CashBll GetInstance()
+        public static ORD_CashBll GetInstance()
         {
             if (_instance == null)
             { _instance = new ORD_CashBll(); }

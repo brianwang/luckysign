@@ -9,7 +9,7 @@ namespace AppBll.Order
     {
         private readonly ORD_PointDal dal = new ORD_PointDal();
         private static ORD_PointBll _instance;
-        public ORD_PointBll GetInstance()
+        public static ORD_PointBll GetInstance()
         {
             if (_instance == null)
             { _instance = new ORD_PointBll(); }

@@ -376,15 +376,31 @@ namespace WebForMain.Quest
 
         protected void BindList()
         {
+            ViewState["totalanswer"] = QA_AnswerBll.GetInstance().GetSimpleListByQuest(SysNo);
+            #region 绑定回答列表
             int total = 0;
             if (m_qustion.CustomerSysNo == AppConst.IntNull)
             {
                 m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
             }
             DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuestForConsult(pagesize, pageindex, SysNo, ref total);
+            m_dt.Columns.Add("hide");
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo || GetSession().CustomerEntity.SysNo == int.Parse(m_dt.Rows[i]["CustomerSysNo"].ToString()))
+                {
+                    m_dt.Rows[i]["hide"] = "display:none;";
+                }
+                else
+                {
+                    m_dt.Rows[i]["trial"] = "";
+                    m_dt.Rows[i]["Context"] = "";
+                    m_dt.Rows[i]["hide"] = "";
+                }
+            }
             Repeater1.DataSource = m_dt;
             Repeater1.DataBind();
-            Pager1.url = AppConfig.HomeUrl()+"Quest/Question/" + SysNo + "/";
+            Pager1.url = AppConfig.HomeUrl() + "Quest/Consult/" + SysNo + "/";
             Pager1.totalrecord = total;
             if (total % AppConst.PageSize == 0)
             {
@@ -400,6 +416,44 @@ namespace WebForMain.Quest
             {
                 UpdatePanel1.Update();
             }
+            #endregion
+            #region 绑定报价列表
+            DataTable m_dt1 = QA_OrderBll.GetInstance().GetListByQuest(SysNo);
+            m_dt1.Columns.Add("color");
+            m_dt1.Columns.Add("floor");
+            for (int i = 0; i < m_dt1.Rows.Count; i++)
+            {
+                switch (int.Parse(m_dt1.Rows[i]["status"].ToString()))
+                {
+                    case 1:
+                        m_dt1.Rows[i]["color"] = "#000";
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                        m_dt1.Rows[i]["color"] = "#008c03";
+                        break;
+                    case 0:
+                    case 5:
+                        m_dt1.Rows[i]["color"] = "#f00";
+                        break;
+                }
+                DataTable tmpdt = (DataTable)ViewState["totalanswer"];
+                for (int j = 0; j < tmpdt.Rows.Count; j++)
+                {
+                    if (tmpdt.Rows[j]["SysNo"].ToString() == m_dt1.Rows[i]["answersysno"].ToString())
+                    {
+                        m_dt1.Rows[i]["floor"] = "#"+(j+1).ToString();
+                        break;
+                    }
+                }
+            }
+
+            Repeater2.DataSource = m_dt1;
+            Repeater2.DataBind();
+
+            #endregion
+
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -424,7 +478,7 @@ namespace WebForMain.Quest
                     e.Item.FindControl("Literal1").Visible = true;
                 }
             }
-
+            #region 绑定评论列表
             Repeater m_rpt = (Repeater)e.Item.FindControl("Repeater3");
             DataTable m_dt = QA_CommentBll.GetInstance().GetListByAnswer(int.Parse(((DataRowView)e.Item.DataItem)["SysNo"].ToString()));
             if (m_dt != null)
@@ -438,6 +492,8 @@ namespace WebForMain.Quest
                 m_rpt.DataSource = m_dt;
                 m_rpt.DataBind();
             }
+            #endregion
+            #region 绑定用户奖章
             Repeater m_rpt1 = (Repeater)e.Item.FindControl("Repeater4");
             DataTable m_dt1 = REL_Customer_MedalBll.GetInstance().GetMedalByCustomer(int.Parse(((DataRowView)e.Item.DataItem)["CustomerSysNo"].ToString()),0);
             if (m_dt1 != null)
@@ -445,7 +501,29 @@ namespace WebForMain.Quest
                 m_rpt1.DataSource = m_dt1;
                 m_rpt1.DataBind();
             }
+            #endregion
 
+            #region 设置报价单权限
+            DataRowView rowv = (DataRowView)e.Item.DataItem;
+            if (rowv["Price"] != null && rowv["Price"].ToString() != "")
+            {
+                if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)//求测者
+                {
+                    if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.beforepay).ToString())
+                    {
+                        e.Item.FindControl("buyicon").Visible = true;
+                    }
+                    else if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.beforeconfirm).ToString())
+                    {
+                        e.Item.FindControl("confirmicon").Visible = true;
+                    }
+                }
+                if (GetSession().CustomerEntity.SysNo == Convert.ToInt32(rowv["CustomerSysNo"]))//回复者
+                {
+
+                }
+            }
+            #endregion
         }
 
         protected void Button5_Click(object sender, EventArgs e)

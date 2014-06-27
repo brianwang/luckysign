@@ -615,6 +615,37 @@ namespace AppCmn
         }
         #endregion
 
-
+        #region 咨询报价单状态
+        [DataContract]
+        public enum ConsultOrderStatus
+        {
+            [EnumMember]
+            [Description("等待购买")]
+            beforepay = 1,
+            [EnumMember]
+            [Description("已购买")]
+            payed = 2,
+            [EnumMember]
+            [Description("等待评价")]
+            beforeconfirm = 3,
+            [EnumMember]
+            [Description("交易成功")]
+            confirmed = 4,
+            [EnumMember]
+            [Description("交易关闭")]
+            canceled = 0,
+            [EnumMember]
+            [Description("已退款")]
+            returned = 5,
+        }
+        public static SortedList GetConsultOrderStatus()
+        {
+            return GetStatus(typeof(ConsultOrderStatus));
+        }
+        public static string GetConsultOrderStatus(object v)
+        {
+            return GetDescription(typeof(ConsultOrderStatus), v);
+        }
+        #endregion
     }
 }

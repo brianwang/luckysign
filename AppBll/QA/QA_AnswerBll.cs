@@ -225,6 +225,45 @@ namespace AppBll.QA
             return m_dt;
         }
 
+        public DataTable GetSimpleListByQuest(int qid)
+        {
+            DataTable m_dt = new DataTable();
+            string columns = "";
+            string tables = "";
+            string where = "";
+            string order = "[QA_Answer].TS asc";
+
+            #region  设置参数
+            columns = @"[QA_Answer].[SysNo]
+                      ,[CustomerSysNo]
+                      ,[QA_Answer].[TS]";
+            tables = "[QA_Answer]";
+            where = "[QA_Answer].dr=" + (int)AppEnum.State.normal;
+
+            if (qid != 0)
+            {
+                where += " and QuestionSysNo=" + qid;
+            }
+
+            #endregion
+
+            using (SQLData m_data = new SQLData())
+            {
+                m_data.AddParameter("SelectList", columns);
+                m_data.AddParameter("TableSource", tables);
+                m_data.AddParameter("SearchCondition", where);
+                m_data.AddParameter("OrderExpression", order);
+                m_data.AddParameter("PageIndex", 1);
+                m_data.AddParameter("pagesize", 1000);
+                DataSet m_ds = m_data.SPtoDataSet("GetRecordFromPage");
+                if (m_ds.Tables.Count == 2)
+                {
+                    m_dt = m_ds.Tables[0];
+                }
+            }
+            return m_dt;
+        }
+
         public void AddAnswer(QA_AnswerMod model)
         {
             bool isquest = false;
