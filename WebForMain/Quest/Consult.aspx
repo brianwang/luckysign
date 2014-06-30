@@ -111,8 +111,9 @@
                                 <ul>
                                     <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand" OnItemDataBound="Repeater1_ItemDataBound">
                                         <ItemTemplate>
-
+                                            
                                             <li>
+                                                <a id="#<%#Container.ItemIndex %>" name="#<%#Container.ItemIndex %>"></a>
                                                 <div class="index_new_ask_l">
                                                     <a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>">
                                                         <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /></a><br />
@@ -136,11 +137,11 @@
                                                         <%#Eval("trial")%><br />
                                                         <%#Eval("Context")%></h3>
                                                     <div class="ask_lock" style="<%#Eval("hide")%>">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
-                                                    <div class="ask_lock_info" style="display: none;">
-                                                        <a href="#">查看Ta本次的报价单</a><br />
+                                                    <%--<div class="ask_lock_info" style="<%#Eval("hide1")%>">
+                                                        <a href="<%#Eval("orderlink")%>">查看Ta本次的报价单</a><br />
                                                         <img src="<%=AppCmn.AppConfig.HomeUrl() %>ControlLibrary/ShowPhoto.aspx?type=t&id=<%#Eval("Photo")%>" width="70" height="70" /><br />
                                                         <%#Eval("NickName")%>
-                                                    </div>
+                                                    </div>--%>
                                                     <div id="buyicon" runat="server" class="ask_140219" visible="false">
                                                         <a href="#">我要购买</a>
                                                         <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">命理师详情</a>
@@ -159,7 +160,7 @@
                                                             </ul>
                                                         </div>
                                                         <div style="float: right; padding-top: 8px">
-                                                            <a href="#">投诉</a>
+                                                            <a href="#">申诉</a>
                                                             <a href="#" style="margin-right: 0px">追问</a>
                                                         </div>
                                                         <div class="clear"></div>

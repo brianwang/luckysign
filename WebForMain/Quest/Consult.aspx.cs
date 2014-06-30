@@ -11,6 +11,7 @@ using AppMod.User;
 using AppMod.Fate;
 using System.Data;
 using AppCmn;
+using System.Text.RegularExpressions;
 
 namespace WebForMain.Quest
 {
@@ -376,47 +377,9 @@ namespace WebForMain.Quest
 
         protected void BindList()
         {
-            ViewState["totalanswer"] = QA_AnswerBll.GetInstance().GetSimpleListByQuest(SysNo);
-            #region 绑定回答列表
-            int total = 0;
-            if (m_qustion.CustomerSysNo == AppConst.IntNull)
-            {
-                m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
-            }
-            DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuestForConsult(pagesize, pageindex, SysNo, ref total);
-            m_dt.Columns.Add("hide");
-            for (int i = 0; i < m_dt.Rows.Count; i++)
-            {
-                if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo || GetSession().CustomerEntity.SysNo == int.Parse(m_dt.Rows[i]["CustomerSysNo"].ToString()))
-                {
-                    m_dt.Rows[i]["hide"] = "display:none;";
-                }
-                else
-                {
-                    m_dt.Rows[i]["trial"] = "";
-                    m_dt.Rows[i]["Context"] = "";
-                    m_dt.Rows[i]["hide"] = "";
-                }
-            }
-            Repeater1.DataSource = m_dt;
-            Repeater1.DataBind();
-            Pager1.url = AppConfig.HomeUrl() + "Quest/Consult/" + SysNo + "/";
-            Pager1.totalrecord = total;
-            if (total % AppConst.PageSize == 0)
-            {
-                this.Pager1.total = total / pagesize;
-            }
-            else
-            {
-                this.Pager1.total = total / pagesize + 1;
-            }
-            this.Pager1.index = pageindex;
-            this.Pager1.numlenth = 3;
-            if (IsPostBack)
-            {
-                UpdatePanel1.Update();
-            }
-            #endregion
+            
+            DataTable tmpdt = QA_AnswerBll.GetInstance().GetSimpleListByQuest(SysNo);
+            tmpdt.Columns.Add("isorder");
             #region 绑定报价列表
             DataTable m_dt1 = QA_OrderBll.GetInstance().GetListByQuest(SysNo);
             m_dt1.Columns.Add("color");
@@ -438,12 +401,20 @@ namespace WebForMain.Quest
                         m_dt1.Rows[i]["color"] = "#f00";
                         break;
                 }
-                DataTable tmpdt = (DataTable)ViewState["totalanswer"];
                 for (int j = 0; j < tmpdt.Rows.Count; j++)
                 {
                     if (tmpdt.Rows[j]["SysNo"].ToString() == m_dt1.Rows[i]["answersysno"].ToString())
                     {
-                        m_dt1.Rows[i]["floor"] = "#"+(j+1).ToString();
+                        if (j >= pagesize)
+                        {
+                            Regex r = new Regex(@"pn\d+?&");
+                            m_dt1.Rows[i]["floor"] = r.Replace(Request.Url.ToString(),"") + "&pn="+j/pageindex + "#f" + (j%pageindex).ToString();
+                        }
+                        else
+                        {
+                            m_dt1.Rows[i]["floor"] = "#f" + j.ToString();
+                        }
+                        tmpdt.Rows[j]["isorder"] = "1";
                         break;
                     }
                 }
@@ -453,6 +424,50 @@ namespace WebForMain.Quest
             Repeater2.DataBind();
 
             #endregion
+            #region 绑定回答列表
+            int total = 0;
+            if (m_qustion.CustomerSysNo == AppConst.IntNull)
+            {
+                m_qustion = QA_QuestionBll.GetInstance().GetModel(SysNo);
+            }
+            DataTable m_dt = QA_AnswerBll.GetInstance().GetListByQuestForConsult(pagesize, pageindex, SysNo, ref total);
+            m_dt.Columns.Add("hide");
+            //m_dt.Columns.Add("hide1");
+            //m_dt.Columns.Add("orderlink");
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo || GetSession().CustomerEntity.SysNo == int.Parse(m_dt.Rows[i]["CustomerSysNo"].ToString()))
+                {
+                    m_dt.Rows[i]["hide"] = "display:none;";
+                }
+                else
+                {
+                    m_dt.Rows[i]["trial"] = "";
+                    m_dt.Rows[i]["Context"] = "";
+                    m_dt.Rows[i]["hide"] = "";
+                }
+
+            }
+            Repeater1.DataSource = m_dt;
+            Repeater1.DataBind();
+            Pager1.url = AppConfig.HomeUrl() + "Quest/Consult/" + SysNo + "/";
+            Pager1.totalrecord = total;
+            if (total % AppConst.PageSize == 0)
+            {
+                this.Pager1.total = total / pagesize;
+            }
+            else
+            {
+                this.Pager1.total = total / pagesize + 1;
+            }
+            this.Pager1.index = pageindex;
+            this.Pager1.numlenth = 3;
+            if (IsPostBack)
+            {
+                UpdatePanel1.Update();
+            }
+            #endregion
+            
 
         }
 
