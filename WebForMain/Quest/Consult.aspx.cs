@@ -56,6 +56,12 @@ namespace WebForMain.Quest
             {
                 ShowError("");
             }
+
+            if (m_qustion.CateSysNo != 17)//不是付费咨询则弹出
+            {
+                ShowError("");
+            }
+
             if (Request.QueryString["pn"] != null)
             {
                 try

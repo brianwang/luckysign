@@ -23,22 +23,29 @@ function checkAgree(chk) {
 
 function qaTypeChanged(drp) {
     if (drp.selectedIndex == 0) {
-        $("#info2").addClass("block");
-        $("#info2").removeClass("show");
-        $("#info1").addClass("block");
-        $("#info1").removeClass("show");
+        $("#setinfo").css('display','none');
+        //$("#info2").addClass("block");
+        //$("#info2").removeClass("show");
+        //$("#info1").addClass("block");
+        //$("#info1").removeClass("show");
     }
     else if (drp.selectedIndex == 1) {
-        $("#info1").addClass("show");
-        $("#info1").removeClass("block");
-        $("#info2").addClass("block");
-        $("#info2").removeClass("show");
+        $("#setinfo").css('display', '');
+        $("#firsttab").css('display', '');
+        $("#secondtab").css('display', 'none');
+        //$("#info1").addClass("show");
+        //$("#info1").removeClass("block");
+        //$("#info2").addClass("block");
+        //$("#info2").removeClass("show");
     }
     else if (drp.selectedIndex == 2) {
-        $("#info1").addClass("show");
-        $("#info1").removeClass("block");
-        $("#info2").addClass("show");
-        $("#info2").removeClass("block");
+        $("#setinfo").css('display', '');
+        $("#firsttab").css('display', '');
+        $("#secondtab").css('display', '');
+        //$("#info1").addClass("show");
+        //$("#info1").removeClass("block");
+        //$("#info2").addClass("show");
+        //$("#info2").removeClass("block");
     }
 }
 

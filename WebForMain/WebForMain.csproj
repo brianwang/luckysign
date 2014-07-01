@@ -142,6 +142,7 @@
     <Content Include="WebResources\AstroDice\mu.jpg" />
     <Content Include="WebResources\AstroDice\t.jpg" />
     <Content Include="WebResources\AstroDice\t_on.png" />
+    <Content Include="WebResources\CSS\140218 new.css" />
     <Content Include="WebResources\CSS\new.css" />
     <Content Include="WebResources\CSS\page.css" />
     <Content Include="WebResources\CSS\style.css" />

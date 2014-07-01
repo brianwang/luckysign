@@ -13,7 +13,6 @@
     <asp:ScriptManager runat="server">
     </asp:ScriptManager>
     <div class="main">
-
         <div class="index_left">
             <!--煮酒论命-->
             <div class="index_left_box">
@@ -22,8 +21,8 @@
                 <div class="index_left_new_list">
                     <div class="pay_140218">
                         <ul class="pay_140218_ul">
-                            <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="TextBox1" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
-                                <samp>夺人眼球</samp>的标题，能吸引更多的命理师.</span><div class="clear"></div>
+                            <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="txtTitle" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
+                                </span><span id="TitleTip" runat="server"><samp>夺人眼球</samp>的标题，能吸引更多的命理师.</span><div class="clear"></div>
                             </li>
                         </ul>
 
@@ -44,25 +43,23 @@
 
                         <div class="pay_140218_content">
                             可补充问题背景，其他问题等。<br />
-                            <asp:TextBox ID="TextBox5" TextMode="MultiLine" runat="server"></asp:TextBox><br />
+                            <asp:TextBox ID="txtContext" TextMode="MultiLine" runat="server"></asp:TextBox><br />
 
-                            预计消费：<select><option>个人运势</option>
-                            </select><span><samp>充足的预算</samp>能吸引更多优秀的命理师报价。</span><br />
-                            联系方式：<select><option>个人运势</option>
-                            </select><span>方便网站客服为您服务。</span>
+                            预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<span id="PayTip" runat="server"><samp>充足的预算</samp>能吸引更多优秀的命理师报价。</span><br />
+                            联系方式：<asp:TextBox ID="TextBox6" CssClass="pay_140218_input" runat="server"></asp:TextBox><span>仅网站客服可见，以方便为您提供服务。</span>
                         </div>
 
-                        <div class="pay_140218_t">相关星盘信息</div>
+                        <div class="pay_140218_t">相关命盘信息</div>
 
                         <div class="pay_140218_content">
-                            排盘类型：<asp:DropDownList ID="drpType" runat="server" onchange="javascript:qaTypeChanged(this);">
+                            求测类型：<asp:DropDownList ID="drpType" runat="server" onchange="javascript:qaTypeChanged(this);">
                             </asp:DropDownList><span>如果出生时间误差较大，建议同时做生时校正。</span>
                         </div>
 
-                        <div class="pay_140218_tab">
-                            <div class="pay_140218_tab_t"><span class="current">第一当事人信息</span><span>第二当事人信息</span></div>
+                        <div id="setinfo" class="pay_140218_tab">
+                            <div class="pay_140218_tab_t"><span  id="firsttab" class="current" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='';firstform.style.display='';">第一当事人信息</span><span id="secondtab" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='';firstform.style.display='';">第二当事人信息</span></div>
 
-                            <div class="pay_140218_tab_c">
+                            <div id="firstform" class="pay_140218_tab_c">
                                 <!--第一当事人信息-->
                                 <ul class="pay_140218_ul">
                                     <li>
@@ -95,7 +92,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="pay_140218_tab_c">
+                            <div id="secondform" style="display:none;" class="pay_140218_tab_c">
                                 <!--第二当事人信息-->
                                 <ul class="pay_140218_ul">
                                     <li>
@@ -142,34 +139,10 @@
 
 
             </div>
-
-
-
-
-
         </div>
-
-
         <div class="index_right">
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="clear">
     </div>
 </asp:Content>

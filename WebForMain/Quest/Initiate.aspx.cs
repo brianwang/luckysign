@@ -66,11 +66,11 @@ namespace WebForMain.Quest
                 //        m_dt.Rows.Add(m_dr);
                 //    }
                 //}
-                drpCate.DataSource = m_dt;
-                drpCate.DataValueField = "SysNo";
-                drpCate.DataTextField = "Name";
-                drpCate.DataBind();
-                drpCate.Items.Insert(0, new ListItem("请选择", "0"));
+                //drpCate.DataSource = m_dt;
+                //drpCate.DataValueField = "SysNo";
+                //drpCate.DataTextField = "Name";
+                //drpCate.DataBind();
+                //drpCate.Items.Insert(0, new ListItem("请选择", "0"));
 
                 drpType.DataSource = AppEnum.GetChartType();
                 drpType.DataTextField = "value";
@@ -78,7 +78,6 @@ namespace WebForMain.Quest
                 drpType.DataBind();
                 drpType.SelectedIndex = 1;
 
-                ltrPoint.Text = GetSession().CustomerEntity.Point.ToString();
 
                 #region 占星骰子问题
                 if ((Request.QueryString["type"] != null && Request.QueryString["type"] == "dice") ||
@@ -91,7 +90,6 @@ namespace WebForMain.Quest
                         int constellation = int.Parse(Request.QueryString["const"]) + 1;
                         txtTitle.Text = Request.QueryString["ask"] + " #" + PublicValue.GetAstroStar(star) + " " + house + "宫 " + PublicValue.GetConstellation(constellation) + "#";
                         drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue("0"));
-                        drpCate.SelectedIndex = drpCate.Items.IndexOf(drpCate.Items.FindByValue("7"));
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "touzi", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                     }
                     catch { }
@@ -137,13 +135,13 @@ namespace WebForMain.Quest
         {
             Login(Request.Url.ToString());
             #region 判断输入项
-            if (drpCate.SelectedIndex == 0)
-            {
-                CateTip.InnerHtml = "请选择分类";
-                CateTip.Attributes["class"] = "err";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
-                return;
-            }
+            //if (drpCate.SelectedIndex == 0)
+            //{
+            //    CateTip.InnerHtml = "请选择分类";
+            //    CateTip.Attributes["class"] = "err";
+            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
+            //    return;
+            //}
             if (txtTitle.Text.Trim() == "")
             {
                 TitleTip.InnerHtml = "请输入标题";
@@ -158,46 +156,35 @@ namespace WebForMain.Quest
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
             }
-            int pointpay = 0;
+            int pay = 0;
             try
             {
-                pointpay = int.Parse(txtPoint.Text.Trim());
+                pay = int.Parse(txtPay.Text.Trim());
             }
             catch
             {
-                PointTip.InnerHtml = "您输入的积分数值有误，请重新输入";
-                PointTip.Attributes["class"] = "err";
+                PayTip.InnerHtml = "预计消费金额只可填写数字，请重新输入";
+                PayTip.Attributes["class"] = "err";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
             }
-            if (pointpay > GetSession().CustomerEntity.Point)
-            {
-                PointTip.InnerHtml = "您最多可用" + GetSession().CustomerEntity.Point.ToString() + "积分";
-                PointTip.Attributes["class"] = "err";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
-                return;
-            }
-            //if (District1.Area3SysNo == 0)
-            //{
-                
-            //}
-            //else if (drpType.SelectedIndex == 1)
-            //{
- 
-            //}
+
 
             #endregion
             
             try
             {
                 QA_QuestionMod m_quest = new QA_QuestionMod();
-                m_quest.Award = pointpay;
-                m_quest.CateSysNo = int.Parse(drpCate.SelectedValue);
+                m_quest.Award = pay;
+                m_quest.CateSysNo = 17;//付费咨询
                 m_quest.Context = txtContext.Text.Trim();
+                m_quest.SubQuest = TextBox2.Text.Trim().Replace("|","")+ "|" + TextBox3.Text.Trim().Replace("|","")+ "|"TextBox4.Text.Trim().Replace("|","");
                 m_quest.CustomerSysNo = GetSession().CustomerEntity.SysNo;
                 m_quest.LastReplyTime = DateTime.Now;
                 m_quest.ReplyCount = 0;
                 m_quest.ReadCount = 0;
+                m_quest.BuyCount = 0;
+                m_quest.OrderCount= 0;
                 m_quest.Title = txtTitle.Text.Trim();
                 m_quest.TS = DateTime.Now;
                 m_quest.DR = (int)AppEnum.State.normal;
@@ -256,9 +243,9 @@ namespace WebForMain.Quest
                 
 
 
-                LogManagement.getInstance().WriteTrace("前台发布问题", "Ask", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
+                LogManagement.getInstance().WriteTrace("前台发布咨询", "Consult", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
                 Page.ClientScript.RegisterStartupScript(this.GetType(),"askok","alert('问题发布成功！');",true);
-                Response.Redirect(AppConfig.HomeUrl()+"Quest/Question/" + sysno,false);
+                Response.Redirect(AppConfig.HomeUrl()+"Quest/Consult/" + sysno,false);
             }
             catch (Exception ex)
             {
