@@ -92,9 +92,8 @@ namespace WebForMain.Quest
                 ShowError("");
             }
             #endregion
-            Right1.showsearch = false;
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "SetDocument", "SetDocument();", true);
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SetDocument", "SetDocument();", true);
+            
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "SetDocument", "SetDocument();", true);
 
         }
         #region 发布回答

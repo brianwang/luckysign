@@ -23,7 +23,7 @@ namespace WCFHost
             ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.CustomerService));
             ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.QAService));
             ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.PPLiveService));
-
+            ManageableServiceHostManager.Instance.RegisterService(typeof(WebServiceForApp.SystemService));
         }
 
         protected override void OnStart(string[] args)

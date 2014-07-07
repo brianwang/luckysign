@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AppCmn;
 using System.Text;
 using System.Runtime.Serialization;
-
+using XMS.Core;
 namespace AppMod.Fate
 {
     [DataContract]
@@ -41,7 +41,7 @@ namespace AppMod.Fate
             set { _SysNo = value; }
             get { return _SysNo; }
         }
-        [DataMember]
+        
         public DateTime FirstBirth
         {
             set { _FirstBirth = value; }
@@ -53,7 +53,7 @@ namespace AppMod.Fate
             set { _FirstPoi = value; }
             get { return _FirstPoi; }
         }
-        [DataMember]
+        
         public DateTime Transit
         {
             set { _Transit = value; }
@@ -65,7 +65,7 @@ namespace AppMod.Fate
             set { _TransitPoi = value; }
             get { return _TransitPoi; }
         }
-        [DataMember]
+        
         public DateTime SecondBirth
         {
             set { _SecondBirth = value; }
@@ -183,6 +183,28 @@ namespace AppMod.Fate
             SecondGender = AppConst.IntNull;
 
         }
+
+        #region 扩展成员变量
+        [DataMember]
+        public long FirstBirthLong
+        {
+            set { _FirstBirth = value.MilliSecondsFrom1970ToDateTime(); }
+            get { return _FirstBirth.ToMilliSecondsFrom1970L(); }
+        }
+
+        [DataMember]
+        public long TransitLong
+        {
+            set { _Transit = value.MilliSecondsFrom1970ToDateTime(); }
+            get { return _Transit.ToMilliSecondsFrom1970L(); }
+        }
+        [DataMember]
+        public long SecondBirthLong
+        {
+            set { _SecondBirth = value.MilliSecondsFrom1970ToDateTime(); }
+            get { return _SecondBirth.ToMilliSecondsFrom1970L(); }
+        }
+        #endregion
 
         #region 实现IComparable<T>接口的泛型排序方法
         /// <sumary> 

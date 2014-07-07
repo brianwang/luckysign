@@ -206,6 +206,37 @@ namespace AppBll.WebSys
             }
             return table;
         }
+        public SYS_DistrictMod GetNearestByPoi(string lng, string lat)
+        {
+            DataTable table = new DataTable();
+            SYS_DistrictMod m_dist = new SYS_DistrictMod();
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(@"select top 1 sysno 
+                 from [Sys_District] where level=3 and englishname is null and ABS([longitude]-").Append(SQLData.SQLFilter(lng)).Append(")<3 and ABS([Latitude]-").Append(SQLData.SQLFilter(lat)).Append(")<3 order by SQUARE([longitude]-").Append(SQLData.SQLFilter(lng)).Append(")+ SQUARE([Latitude]-").Append(SQLData.SQLFilter(lat)).Append(")");
+
+                //try
+                //{
+                    table = data.CmdtoDataTable(builder.ToString());
+                //}
+                //catch (Exception exception)
+                //{
+                //    throw exception;
+                //}
+                if (table.Rows.Count > 0)
+                {
+                    m_dist = GetModel(int.Parse(table.Rows[0]["sysno"].ToString()));
+                    table = data.CmdtoDataTable("select * from [District3Level] where SysNo3="+m_dist.SysNo);
+                    m_dist.Name = (table.Rows[0]["Name1"].ToString() +"-"+ table.Rows[0]["Name2"].ToString()+"-" + table.Rows[0]["Name3"].ToString()).Replace("市辖区-","");
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return m_dist;
+        }
         #endregion
     }
 }

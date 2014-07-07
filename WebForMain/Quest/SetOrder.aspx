@@ -76,12 +76,10 @@
 
                         <div class="pay_140218_t" style="margin-top: 10px">报价信息</div>
 
-                        <div class="pay_140218_samp">问题描述<span>越简单明确</span>，越容易得到满意的解答。问题越多，费用越高，</div>
-
                         <ul class="pay_140218_ul">
-                            <li><span class="t">最少字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
+                            <li><span class="t">承诺最少字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
                             </li>
-                            <li><span class="t">价格：</span><span class="c"><asp:TextBox ID="TextBox3" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
+                            <li><span class="t">我的报价：</span><span class="c"><asp:TextBox ID="TextBox3" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
                             </li>
                         </ul>
 
@@ -94,7 +92,7 @@
                         <div class="pay_140218_t">往事验证</div>
 
                         <div class="pay_140218_content">
-                            可对咨询者之前的或Ta已知的事情进行描述以便其验证。<br />
+                            可对咨询者之前的或Ta已知的事情进行描述以便其认可您的准确度。<br />
                             <asp:TextBox ID="txtTrial" TextMode="MultiLine" runat="server"></asp:TextBox>
                         </div>
                     </div>

@@ -436,7 +436,7 @@ namespace WebServiceForApp
 
         public ReturnValue<USR_CustomerShow> AddQuestion(Stream openPageData)
         {
-            QA_QuestionShow<FATE_ChartMod> input;
+            QA_QuestionInput<FATE_ChartMod> input;
             try
             {
                 int nReadCount = 0;
@@ -449,7 +449,7 @@ namespace WebServiceForApp
                 byte[] byteJson = ms.ToArray();
                 string textJson = System.Text.Encoding.Default.GetString(byteJson);
 
-                input = (QA_QuestionShow<FATE_ChartMod>)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow<FATE_ChartMod>));
+                input = (QA_QuestionInput<FATE_ChartMod>)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow<FATE_ChartMod>));
 
                 if (input == null)
                 {
