@@ -542,17 +542,17 @@ namespace AppBll.QA
                 m_record.CustomerSysNo = model.CustomerSysNo;
                 m_record.TargetSysNo = model.SysNo;
                 m_record.TS = DateTime.Now;
-                m_record.Type = 61;
+                m_record.Type = (int)AppEnum.ActionType.AddQuest;
                 User.USR_RecordBll.GetInstance().Add(m_record);
                 if (isquest)
                 {
                     User.USR_CustomerBll.GetInstance().AddPoint(0 - model.Award, model.CustomerSysNo);
-                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 1, 0, 0, 0, 0, 0);
+                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 1, 0, 0, 0, 0, 0, 0, 0, 0);
                 }
                 else
                 {
                     User.USR_CustomerBll.GetInstance().AddPoint(AppConst.TalkPoint, model.CustomerSysNo);
-                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0,0, 1, 0);
+                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 1, 0, 0, 0, 0);
                 }
                 User.USR_CustomerBll.GetInstance().AddExp(AppConst.TalkExp, model.CustomerSysNo);
                 scope.Complete();

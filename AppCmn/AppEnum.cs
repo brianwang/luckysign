@@ -309,8 +309,31 @@ namespace AppCmn
             [EnumMember][Description("关闭问题")]
             EndQuest = 64,
 
+
+            [EnumMember]
+            [Description("发布报价")]
+            SetOrder = 71,
+            [EnumMember]
+            [Description("购买报价")]
+            BuyOrder = 72,
+            [EnumMember]
+            [Description("兑现咨询结果")]
+            SendResult = 73,
+            [EnumMember]
+            [Description("评价咨询结果")]
+            PriceOrder = 74,
+            [EnumMember]
+            [Description("取消报价")]
+            CancelOrder = 75,
+            [EnumMember]
+            [Description("修改报价")]
+            UpdateOrder = 76,
+            [EnumMember]
+            [Description("发起投诉退款")]
+            ComplainOrder = 77,
+
             [EnumMember][Description("评论文章")]
-            ReplyArticle = 71,
+            ReplyArticle = 81,
 
             [EnumMember][Description("收藏命盘")]
             CollectChart = 111,

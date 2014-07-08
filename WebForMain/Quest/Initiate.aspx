@@ -22,7 +22,7 @@
                     <div class="pay_140218">
                         <ul class="pay_140218_ul">
                             <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="txtTitle" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
-                                </span><span id="TitleTip" runat="server"><samp>夺人眼球</samp>的标题，能吸引更多的命理师.</span><div class="clear"></div>
+                                </span><span id="TitleTip" runat="server">夺人眼球的标题，能吸引更多的命理师.</span><div class="clear"></div>
                             </li>
                         </ul>
 
@@ -45,7 +45,7 @@
                             可补充问题背景，其他问题等。<br />
                             <asp:TextBox ID="txtContext" TextMode="MultiLine" runat="server"></asp:TextBox><br />
 
-                            预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<span id="PayTip" runat="server"><samp>充足的预算</samp>能吸引更多优秀的命理师报价。</span><br />
+                            预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<span id="PayTip" runat="server">充足的预算能吸引更多优秀的命理师报价。</span><br />
                             联系方式：<asp:TextBox ID="TextBox6" CssClass="pay_140218_input" runat="server"></asp:TextBox><span>仅网站客服可见，以方便为您提供服务。</span>
                         </div>
 

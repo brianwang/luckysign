@@ -434,7 +434,7 @@ namespace WebServiceForApp
             return ReturnValue<List<QA_CommentShow>>.Get200OK(ret);
         }
 
-        public ReturnValue<USR_CustomerShow> AddQuestion(Stream openPageData)
+        public ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData)
         {
             QA_QuestionInput<FATE_ChartMod> input;
             try

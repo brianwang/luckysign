@@ -83,6 +83,14 @@ namespace WebForMain.Passport
                 m_user.Exp = 0;
                 m_user.TotalReply = 0;
                 m_user.HasNewInfo = 0;
+                m_user.TotalTalk = 0;
+                m_user.TotalTalkReply = 0;
+                m_user.SetOrderCount = 0;
+                m_user.BuyOrderCount = 0;
+                m_user.SellOrderCount = 0;
+                m_user.TotalSellRMB = 0;
+                m_user.TotalBuyRMB = 0;
+                m_user.TotalBuyPoint = 0;
 
 
                 m_user.SysNo = USR_CustomerBll.GetInstance().Add(m_user);

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using AppCmn;
 using System.Text;
 using System.Runtime.Serialization;
-using AppCmn;
 
 namespace AppMod.User
 {
@@ -25,7 +24,7 @@ namespace AppMod.User
         private string _Photo;
         private int _Credit;
         private int _Point;
-        private DateTime _birth;
+        private DateTime _Birth;
         private int _FateType;
         private DateTime _RegTime;
         private DateTime _LastLoginTime;
@@ -45,6 +44,12 @@ namespace AppMod.User
         private int _TotalTalk;
         private int _TotalTalkReply;
         private string _Phone;
+        private int _SetOrderCount;
+        private int _BuyOrderCount;
+        private int _SellOrderCount;
+        private decimal _TotalSellRMB;
+        private decimal _TotalBuyRMB;
+        private int _TotalBuyPoint;
 
         [DataMember]
         public int SysNo
@@ -110,10 +115,10 @@ namespace AppMod.User
         }
 
         [DataMember]
-        public DateTime birth
+        public DateTime Birth
         {
-            set { _birth = value; }
-            get { return _birth; }
+            set { _Birth = value; }
+            get { return _Birth; }
         }
 
         [DataMember]
@@ -249,6 +254,48 @@ namespace AppMod.User
             get { return _Phone; }
         }
 
+        [DataMember]
+        public int SetOrderCount
+        {
+            set { _SetOrderCount = value; }
+            get { return _SetOrderCount; }
+        }
+
+        [DataMember]
+        public int BuyOrderCount
+        {
+            set { _BuyOrderCount = value; }
+            get { return _BuyOrderCount; }
+        }
+
+        [DataMember]
+        public int SellOrderCount
+        {
+            set { _SellOrderCount = value; }
+            get { return _SellOrderCount; }
+        }
+
+        [DataMember]
+        public decimal TotalSellRMB
+        {
+            set { _TotalSellRMB = value; }
+            get { return _TotalSellRMB; }
+        }
+
+        [DataMember]
+        public decimal TotalBuyRMB
+        {
+            set { _TotalBuyRMB = value; }
+            get { return _TotalBuyRMB; }
+        }
+
+        [DataMember]
+        public int TotalBuyPoint
+        {
+            set { _TotalBuyPoint = value; }
+            get { return _TotalBuyPoint; }
+        }
+
 
         #endregion
 
@@ -263,7 +310,7 @@ namespace AppMod.User
             Photo = AppConst.StringNull;
             Credit = AppConst.IntNull;
             Point = AppConst.IntNull;
-            birth = AppConst.DateTimeNull;
+            Birth = AppConst.DateTimeNull;
             FateType = AppConst.IntNull;
             RegTime = AppConst.DateTimeNull;
             LastLoginTime = AppConst.DateTimeNull;
@@ -283,9 +330,14 @@ namespace AppMod.User
             TotalTalk = AppConst.IntNull;
             TotalTalkReply = AppConst.IntNull;
             Phone = AppConst.StringNull;
+            SetOrderCount = AppConst.IntNull;
+            BuyOrderCount = AppConst.IntNull;
+            SellOrderCount = AppConst.IntNull;
+            TotalSellRMB = AppConst.DecimalNull;
+            TotalBuyRMB = AppConst.DecimalNull;
+            TotalBuyPoint = AppConst.IntNull;
 
         }
-
 
         #region 实现IComparable<T>接口的泛型排序方法
         /// <sumary> 
@@ -298,7 +350,6 @@ namespace AppMod.User
             return SysNo.CompareTo(other.SysNo);
         }
         #endregion
-
     }
-
 }
+

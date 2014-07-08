@@ -121,18 +121,18 @@ namespace AppBll.QA
                 m_record.CustomerSysNo = model.CustomerSysNo;
                 m_record.TargetSysNo = sysno;
                 m_record.TS = DateTime.Now;
-                m_record.Type = 63;
+                m_record.Type = (int)AppEnum.ActionType.ReplyAnswer;
                 User.USR_RecordBll.GetInstance().Add(m_record);
 
                 if (model.CustomerSysNo == m_qa.CustomerSysNo )
                 {
                     User.USR_CustomerBll.GetInstance().AddPoint(AppConst.ReplyPoint, model.CustomerSysNo);
                     User.USR_CustomerBll.GetInstance().AddExp(AppConst.ReplyExp, model.CustomerSysNo);
-                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 1, 0, 0);
+                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 1, 0, 0, 0, 0, 0);
                 }
                 else if (!isquest)
                 {
-                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1);
+                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1, 0, 0, 0);
                 }
                 User.USR_CustomerBll.GetInstance().AddPoint(AppConst.CommentPoint, model.CustomerSysNo);
                 User.USR_CustomerBll.GetInstance().AddExp(AppConst.CommentExp, model.CustomerSysNo);

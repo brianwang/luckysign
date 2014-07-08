@@ -58,7 +58,6 @@ namespace AppMod.QA
             set { _Award = value; }
             get { return _Award; }
         }
-
         [DataMember]
         public int IsSecret
         {

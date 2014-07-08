@@ -184,27 +184,27 @@ namespace AppMod.Fate
 
         }
 
-        #region 扩展成员变量
-        [DataMember]
-        public long FirstBirthLong
-        {
-            set { _FirstBirth = value.MilliSecondsFrom1970ToDateTime(); }
-            get { return _FirstBirth.ToMilliSecondsFrom1970L(); }
-        }
+        //#region 扩展成员变量
+        //[DataMember]
+        //public long FirstBirthLong
+        //{
+        //    set { _FirstBirth = value.MilliSecondsFrom1970ToDateTime(); }
+        //    get { return _FirstBirth.ToMilliSecondsFrom1970L(); }
+        //}
 
-        [DataMember]
-        public long TransitLong
-        {
-            set { _Transit = value.MilliSecondsFrom1970ToDateTime(); }
-            get { return _Transit.ToMilliSecondsFrom1970L(); }
-        }
-        [DataMember]
-        public long SecondBirthLong
-        {
-            set { _SecondBirth = value.MilliSecondsFrom1970ToDateTime(); }
-            get { return _SecondBirth.ToMilliSecondsFrom1970L(); }
-        }
-        #endregion
+        //[DataMember]
+        //public long TransitLong
+        //{
+        //    set { _Transit = value.MilliSecondsFrom1970ToDateTime(); }
+        //    get { return _Transit.ToMilliSecondsFrom1970L(); }
+        //}
+        //[DataMember]
+        //public long SecondBirthLong
+        //{
+        //    set { _SecondBirth = value.MilliSecondsFrom1970ToDateTime(); }
+        //    get { return _SecondBirth.ToMilliSecondsFrom1970L(); }
+        //}
+        //#endregion
 
         #region 实现IComparable<T>接口的泛型排序方法
         /// <sumary> 

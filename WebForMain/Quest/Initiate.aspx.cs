@@ -144,27 +144,32 @@ namespace WebForMain.Quest
             //}
             if (txtTitle.Text.Trim() == "")
             {
-                TitleTip.InnerHtml = "请输入标题";
-                TitleTip.Attributes["class"] = "err";
+                TitleTip.InnerHtml = "<samp>请输入标题</samp>";
+                //TitleTip.Attributes["class"] = "err";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
             }
-            if (txtTitle.Text.Trim().Length > 30)
+            else if (txtTitle.Text.Trim().Length > 30)
             {
-                TitleTip.InnerHtml = "您输入的标题太长，请控制在30字以内";
-                TitleTip.Attributes["class"] = "err";
+                TitleTip.InnerHtml = "<samp>您输入的标题太长，请控制在30字以内</samp>";
+                //TitleTip.Attributes["class"] = "err";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
+            }
+            else
+            {
+                TitleTip.InnerHtml = "夺人眼球的标题，能吸引更多的命理师.";
             }
             int pay = 0;
             try
             {
                 pay = int.Parse(txtPay.Text.Trim());
+                PayTip.InnerHtml = "充足的预算能吸引更多优秀的命理师报价。";
             }
             catch
             {
-                PayTip.InnerHtml = "预计消费金额只可填写数字，请重新输入";
-                PayTip.Attributes["class"] = "err";
+                PayTip.InnerHtml = "<samp>预计消费金额只可填写数字，请重新输入</samp>";
+                //PayTip.Attributes["class"] = "err";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "typemodify", "qaTypeChanged(document.getElementById('" + drpType.ClientID + "'));", true);
                 return;
             }
@@ -178,7 +183,7 @@ namespace WebForMain.Quest
                 m_quest.Award = pay;
                 m_quest.CateSysNo = 17;//付费咨询
                 m_quest.Context = txtContext.Text.Trim();
-                m_quest.SubQuest = TextBox2.Text.Trim().Replace("|","")+ "|" + TextBox3.Text.Trim().Replace("|","")+ "|"TextBox4.Text.Trim().Replace("|","");
+                m_quest.SubQuest = TextBox2.Text.Trim().Replace("|","")+ "|" + TextBox3.Text.Trim().Replace("|","")+ "|"+TextBox4.Text.Trim().Replace("|","");
                 m_quest.CustomerSysNo = GetSession().CustomerEntity.SysNo;
                 m_quest.LastReplyTime = DateTime.Now;
                 m_quest.ReplyCount = 0;
@@ -244,8 +249,8 @@ namespace WebForMain.Quest
 
 
                 LogManagement.getInstance().WriteTrace("前台发布咨询", "Consult", "IP:" + Request.UserHostAddress + "|UID:" + GetSession().CustomerEntity.Email);
-                Page.ClientScript.RegisterStartupScript(this.GetType(),"askok","alert('问题发布成功！');",true);
-                Response.Redirect(AppConfig.HomeUrl()+"Quest/Consult/" + sysno,false);
+                Page.ClientScript.RegisterStartupScript(this.GetType(),"askok","alert('问题发布成功！');location.href='" + AppConfig.HomeUrl()+"Quest/Consult/" + sysno+"'",true);
+                //Response.Redirect(AppConfig.HomeUrl()+"Quest/Consult/" + sysno,false);
             }
             catch (Exception ex)
             {

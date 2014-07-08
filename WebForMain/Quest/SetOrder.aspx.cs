@@ -96,62 +96,6 @@ namespace WebForMain.Quest
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "SetDocument", "SetDocument();", true);
 
         }
-        #region 发布回答
-
-
-        protected void lkbReply2_Click(object sender, EventArgs e)
-        {
-            QA_AnswerMod m_answer = new QA_AnswerMod();
-            m_answer.Award = 0;
-            m_answer.Context = Server.HtmlEncode(txtReply2.Text.Trim());
-            if (GetSession().CustomerEntity == null || GetSession().CustomerEntity.SysNo == AppConst.IntNull)
-            {
-                m_answer.CustomerSysNo = 0;
-            }
-            else
-            {
-                m_answer.CustomerSysNo = GetSession().CustomerEntity.SysNo;
-            }
-            m_answer.DR = (int)AppEnum.State.normal;
-            m_answer.Hate = 0;
-            m_answer.Love = 0;
-            m_answer.QuestionSysNo = SysNo;
-            m_answer.Title = "";
-            m_answer.TS = DateTime.Now;
-
-            if (SaveReply(m_answer))
-            {
-                ClearReply();
-                BindList();
-            }
-        }
-
-        private bool SaveReply(QA_AnswerMod m_answer)
-        {
-            try
-            {
-                QA_AnswerBll.GetInstance().AddAnswer(m_answer);
-                RefreshSession();
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addanswer", "alert('回答发布成功！');", true);
-                return true;
-            }
-            catch
-            {
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addanswer", "alert('系统故障,发布失败！');", true);
-                return false;
-            }
-
-        }
-        private void ClearReply()
-        {
-            //txtReply.Text = "";
-
-            txtReply2.Text = "";
-
-        }
-
-        #endregion
-
 
         protected void BindData()
         {
@@ -215,6 +159,73 @@ namespace WebForMain.Quest
             catch
             {
                 ShowError("");
+            }
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Login(Request.Url.ToString());
+            #region 判断输入项
+            decimal price = 0 ;
+            try
+            {
+               price = decimal.Parse(TextBox3.Text.Trim());
+               pricetip.InnerHtml="";
+            }
+            catch
+            {
+                pricetip.InnerHtml = "<samp>预计消费金额只可填写数字，请重新输入</samp>";
+            }
+
+            int words = 0 ;
+            try
+            {
+               words = int.Parse(TextBox2.Text.Trim());
+               wordstip.InnerHtml="";
+            }
+            catch
+            {
+                wordstip.InnerHtml = "<samp>最少字数只可填写数字，请重新输入</samp>";
+            }
+            #endregion
+
+            QA_AnswerMod m_answer = new QA_AnswerMod();
+            m_answer.Award = 0;
+            m_answer.Context = "";
+            if (GetSession().CustomerEntity == null || GetSession().CustomerEntity.SysNo == AppConst.IntNull)
+            {
+                m_answer.CustomerSysNo = 0;
+            }
+            else
+            {
+                m_answer.CustomerSysNo = GetSession().CustomerEntity.SysNo;
+            }
+            m_answer.DR = (int)AppEnum.State.normal;
+            m_answer.Hate = 0;
+            m_answer.Love = 0;
+            m_answer.QuestionSysNo = SysNo;
+            m_answer.Title = "";
+            m_answer.TS = DateTime.Now;
+
+            QA_OrderMod m_order = new QA_OrderMod();
+            m_order.CustomerSysNo = m_answer.CustomerSysNo;
+            m_order.Description = txtDescription.Text.Trim();
+            m_order.Price = price;
+            m_order.QuestionSysNo = m_answer.QuestionSysNo;
+            m_order.Score = AppConst.IntNull;
+            m_order.Status = (int)AppEnum.ConsultOrderStatus.beforepay;
+            m_order.Trial = txtTrial.Text.Trim();
+            m_order.TS = DateTime.Now;
+            m_order.Words = words;
+
+            try
+            {
+                QA_OrderBll.GetInstance().SetOrder(m_order, m_answer);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ok", "alert('报价发布成功！');location.href='" + AppConfig.HomeUrl() + "Quest/Consult/" + SysNo + "'", true);
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "nook", "alert('系统故障,发布失败！');", true);
             }
         }
 

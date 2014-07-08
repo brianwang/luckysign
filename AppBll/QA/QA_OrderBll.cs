@@ -4,6 +4,8 @@ using AppMod.QA;
 using AppDal.QA;
 using AppCmn;
 using System.Text;
+using System.Transactions;
+using AppBll.User;
 
 namespace AppBll.QA
 {
@@ -85,6 +87,35 @@ namespace AppBll.QA
                 }
             }
             return tables;
+        }
+
+        public void SetOrder(QA_OrderMod order,QA_AnswerMod answer)
+        {
+            TransactionOptions options = new TransactionOptions();
+            options.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+            options.Timeout = TransactionManager.DefaultTimeout;
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                int sysno = QA_AnswerBll.GetInstance().AddAnswer(answer);
+                USR_CustomerBll.GetInstance().AddCount(answer.CustomerSysNo, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+
+                order.AnswerSysNo = sysno;
+                Add(order);
+
+                QA_QuestionMod m_qa = QA_QuestionBll.GetInstance().GetModel(order.QuestionSysNo);
+                m_qa.OrderCount++;
+                QA_QuestionBll.GetInstance().Update(m_qa);
+
+                AppMod.User.USR_RecordMod m_record = new AppMod.User.USR_RecordMod();
+                m_record.CustomerSysNo = order.CustomerSysNo;
+                m_record.TargetSysNo = sysno;
+                m_record.TS = DateTime.Now;
+                m_record.Type = (int)AppEnum.ActionType.SetOrder;
+                User.USR_RecordBll.GetInstance().Add(m_record);
+
+                scope.Complete();
+            }
         }
 
         #endregion

@@ -264,7 +264,7 @@ namespace AppBll.QA
             return m_dt;
         }
 
-        public void AddAnswer(QA_AnswerMod model)
+        public int AddAnswer(QA_AnswerMod model)
         {
             bool isquest = false;
             TransactionOptions options = new TransactionOptions();
@@ -289,7 +289,7 @@ namespace AppBll.QA
                 m_record.CustomerSysNo = model.CustomerSysNo;
                 m_record.TargetSysNo = sysno;
                 m_record.TS = DateTime.Now;
-                m_record.Type = 62;
+                m_record.Type = (int)AppEnum.ActionType.ReplyQuest;
                 User.USR_RecordBll.GetInstance().Add(m_record);
 
                 User.USR_CustomerBll.GetInstance().AddPoint(AppConst.AnswerPoint, model.CustomerSysNo);
@@ -307,18 +307,19 @@ namespace AppBll.QA
                     User.USR_MessageBll.GetInstance().AddMessage(m_notice);
                     if (isquest)
                     {
-                        User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 1, 0, 0, 0, 0);
+                        User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 1, 0, 0, 0, 0, 0, 0, 0);
                     }
                     else
                     {
-                        User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1);
+                        User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1, 0, 0, 0);
                     }
                 }
                 else
                 {
-                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1);
+                    User.USR_CustomerBll.GetInstance().AddCount(model.CustomerSysNo, 0, 0, 0, 0, 0, 1, 0, 0, 0);
                 }
                 scope.Complete();
+                return sysno;
             }
         }
 
@@ -456,7 +457,7 @@ namespace AppBll.QA
                 QA_AnswerBll.GetInstance().Update(m_answer);
 
                 USR_CustomerBll.GetInstance().AddPoint(score, m_answer.CustomerSysNo);
-                USR_CustomerBll.GetInstance().AddCount(m_answer.CustomerSysNo, 0, 0, 1, 0, 0, 0);
+                USR_CustomerBll.GetInstance().AddCount(m_answer.CustomerSysNo, 0, 0, 1, 0, 0, 0, 0, 0, 0);
                 int usedAward = QA_AnswerBll.GetInstance().GetUsedAward(m_quest.SysNo);
                 if (score == m_quest.Award - usedAward)
                 {

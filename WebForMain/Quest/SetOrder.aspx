@@ -77,9 +77,9 @@
                         <div class="pay_140218_t" style="margin-top: 10px">报价信息</div>
 
                         <ul class="pay_140218_ul">
-                            <li><span class="t">承诺最少字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
+                            <li><span class="t">占卜结果最少字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><span id="wordstip" runat="server"></span><div class="clear"></div>
                             </li>
-                            <li><span class="t">我的报价：</span><span class="c"><asp:TextBox ID="TextBox3" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><div class="clear"></div>
+                            <li><span class="t">我的报价：</span><span class="c"><asp:TextBox ID="TextBox3" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><span id="pricetip" runat="server"></span><div class="clear"></div>
                             </li>
                         </ul>
 
@@ -100,7 +100,7 @@
                     <div class="clear"></div>
 
                     <div class="pay_140218_btn">
-                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed3_Click">提交</asp:LinkButton></div>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">提交</asp:LinkButton></div>
 
                 </div>
 

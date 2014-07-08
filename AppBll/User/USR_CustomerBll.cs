@@ -191,7 +191,7 @@ namespace AppBll.User
             return model;
         }
 
-        public void AddCount(int CustomerSysNo,int TotalQuest, int TotalAnswer,int BestAnswer,int TotalReply,int TotalTalk,int TotalTalkReply)
+        public void AddCount(int CustomerSysNo, int TotalQuest, int TotalAnswer, int BestAnswer, int TotalReply, int TotalTalk, int TotalTalkReply, int SetOrderCount, int BuyOrderCount, int SellOrderCount)
         {
             using (SQLData data = new SQLData())
             {
@@ -199,7 +199,26 @@ namespace AppBll.User
                 builder.Append("update USR_Customer set TotalQuest = TotalQuest+").Append(TotalQuest).Append(",TotalAnswer = TotalAnswer+").Append(TotalAnswer)
                     .Append(",BestAnswer = BestAnswer+").Append(BestAnswer).Append(",TotalReply = TotalReply+").Append(TotalReply)
                     .Append(",TotalTalk = TotalTalk+").Append(TotalTalk).Append(",TotalTalkReply = TotalTalkReply+").Append(TotalTalkReply)
+                    .Append(",SetOrderCount = SetOrderCount+").Append(SetOrderCount).Append(",BuyOrderCount = BuyOrderCount+").Append(BuyOrderCount).Append(",SellOrderCount = SellOrderCount+").Append(SellOrderCount)
                     .Append(" where SysNo=").Append(CustomerSysNo);
+                try
+                {
+                    data.CmdtoNone(builder.ToString());
+                }
+                catch (Exception exception)
+                {
+                    //throw exception;
+                }
+            }
+        }
+
+        public void AddConsume(int CustomerSysNo, int TotalSellRMB, int TotalBuyRMB, int TotalBuyPoint)
+        {
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append("update USR_Customer set TotalSellRMB = TotalSellRMB+").Append(TotalSellRMB).Append(",TotalBuyRMB = TotalBuyRMB+").Append(TotalBuyRMB)
+                    .Append(",TotalBuyPoint = TotalBuyPoint+").Append(TotalBuyPoint).Append(" where SysNo=").Append(CustomerSysNo);
                 try
                 {
                     data.CmdtoNone(builder.ToString());
