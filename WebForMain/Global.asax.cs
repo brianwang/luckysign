@@ -26,6 +26,10 @@ namespace WebForMain
                 "Quest/Ask",
                 "~/Quest/Ask.aspx",
                 false);
+            routes.MapPageRoute("发咨询",
+                "Quest/Initiate",
+                "~/Quest/Initiate.aspx",
+                false);
             routes.MapPageRoute("煮酒论命问答列表1",
                 "Quest/QuestList/{cate}/{pn}",
                 "~/Quest/QuestList.aspx",
@@ -54,6 +58,13 @@ namespace WebForMain
                 new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
                 new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
             );
+            routes.MapPageRoute("煮酒论命付费咨询列表",
+                "Quest/ConsultList/{key}/{pn}",
+                "~/Quest/ConsultList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
+                new RouteValueDictionary { { "pn", @"\d*" }, { "key", @"[^/]*" } }
+            );
             routes.MapPageRoute("煮酒论命问答详情",
                 "Quest/Question/{id}/{pn}",
                 "~/Quest/Question.aspx",
@@ -64,6 +75,14 @@ namespace WebForMain
             routes.MapPageRoute("煮酒论命帖子详情",
                 "Quest/Topic/{id}/{pn}",
                 "~/Quest/Topic.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }
+            );
+
+            routes.MapPageRoute("煮酒论命付费咨询详情",
+                "Quest/Consult/{id}/{pn}",
+                "~/Quest/Consult.aspx",
                 false,
                 new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "id", @"\d*" }, { "pn", @"\d*" } }

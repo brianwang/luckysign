@@ -40,7 +40,7 @@
             <!--专业咨询-->
             <%--<div class="zjlm_box" style="background: #d2eff2">
                 <div class="zjlm_box_t">
-                    <a href="#" class="zjlm_box_t_a" style="background: #a5534c">求解盘</a>
+                    <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Initiate" target="_blank" class="zjlm_box_t_a" style="background: #a5534c">求解盘</a>
                     <h1>专业咨询</h1>
                     面向客户的付费专业解盘，由获命理师竞价咨询提供深度解析服务，保障服务质量并提供隐私保护。
                 </div>
