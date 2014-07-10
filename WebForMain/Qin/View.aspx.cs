@@ -79,9 +79,9 @@ namespace WebForMain.Qin
                     {
                         ltrFrom.Text = "未知";
                     }
-                    if (m_user.birth != AppConst.DateTimeNull)
+                    if (m_user.Birth != AppConst.DateTimeNull)
                     {
-                        ltrBirth.Text = "生日：" + m_user.birth.ToString("yyyy年MM月dd日");
+                        ltrBirth.Text = "生日：" + m_user.Birth.ToString("yyyy年MM月dd日");
                     }
                     else
                     {

@@ -2413,7 +2413,19 @@ namespace AppCmn
 
         public static int ExecuteNonQuery(SqlCommand cmd,SqlParameter[] sqlpara)
         {
-            return ExecuteNonQuery(AppConfig.ConnectionString, cmd.CommandType, cmd.CommandText, sqlpara);
+            if (sqlpara == null)
+            {
+                SqlParameter[] tmp = new SqlParameter[cmd.Parameters.Count];
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    tmp[i] = cmd.Parameters[i];
+                }
+            return ExecuteNonQuery(AppConfig.ConnectionString, cmd.CommandType, cmd.CommandText,tmp);
+            }
+            else
+            {
+                return ExecuteNonQuery(AppConfig.ConnectionString, cmd.CommandType, cmd.CommandText, sqlpara);
+            }
         }
         public static int ExecuteNonQuery(string sqlstr)
         {

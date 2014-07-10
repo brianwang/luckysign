@@ -22,7 +22,7 @@
                     <div class="pay_140218">
                         <ul class="pay_140218_ul">
                             <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="txtTitle" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
-                                </span><span id="TitleTip" runat="server">夺人眼球的标题，能吸引更多的命理师.</span><div class="clear"></div>
+                            </span><span id="TitleTip" runat="server">夺人眼球的标题，能吸引更多的命理师.</span><div class="clear"></div>
                             </li>
                         </ul>
 
@@ -44,9 +44,11 @@
                         <div class="pay_140218_content">
                             可补充问题背景，其他问题等。<br />
                             <asp:TextBox ID="txtContext" TextMode="MultiLine" runat="server"></asp:TextBox><br />
-
-                            预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<span id="PayTip" runat="server">充足的预算能吸引更多优秀的命理师报价。</span><br />
-                            联系方式：<asp:TextBox ID="TextBox6" CssClass="pay_140218_input" runat="server"></asp:TextBox><span>仅网站客服可见，以方便为您提供服务。</span>
+                            <br />
+                            预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<br />
+                            <span id="PayTip" runat="server">充足的预算能吸引更多优秀的命理师报价。</span><br />
+                            联系方式：<asp:TextBox ID="TextBox6" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
+                            <span>仅网站客服可见，以方便为您提供服务。</span>
                         </div>
 
                         <div class="pay_140218_t">相关命盘信息</div>
@@ -57,7 +59,7 @@
                         </div>
 
                         <div id="setinfo" class="pay_140218_tab">
-                            <div class="pay_140218_tab_t"><span  id="firsttab" class="current" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='';firstform.style.display='';">第一当事人信息</span><span id="secondtab" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='';firstform.style.display='';">第二当事人信息</span></div>
+                            <div class="pay_140218_tab_t"><span id="firsttab" class="current" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='none';firstform.style.display='';">第一当事人信息</span><span id="secondtab" style="display: none;" onclick="javascript:$('.current').removeClass('current');$(this).addClass('current');secondform.style.display='';firstform.style.display='none';">第二当事人信息</span></div>
 
                             <div id="firstform" class="pay_140218_tab_c">
                                 <!--第一当事人信息-->
@@ -88,11 +90,13 @@
                                     </asp:DropDownList></span><div class="clear"></div>
                                     </li>
                                     <li><span class="t">性别：</span><span class="c"><asp:DropDownList ID="drpGender1" runat="server">
+                                        <asp:ListItem Text="男" Value="1" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="女" Value="0"></asp:ListItem>
                                     </asp:DropDownList></span><div class="clear"></div>
                                     </li>
                                 </ul>
                             </div>
-                            <div id="secondform" style="display:none;" class="pay_140218_tab_c">
+                            <div id="secondform" style="display: none;" class="pay_140218_tab_c">
                                 <!--第二当事人信息-->
                                 <ul class="pay_140218_ul">
                                     <li>
@@ -121,6 +125,8 @@
                                     </asp:DropDownList></span><div class="clear"></div>
                                     </li>
                                     <li><span class="t">性别：</span><span class="c"><asp:DropDownList ID="drpGender2" runat="server">
+                                        <asp:ListItem Text="男" Value="1" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="女" Value="0"></asp:ListItem>
                                     </asp:DropDownList></span><div class="clear"></div>
                                     </li>
                                 </ul>
@@ -133,7 +139,8 @@
                     <div class="clear"></div>
 
                     <div class="pay_140218_btn">
-                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed3_Click">提交</asp:LinkButton></div>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Unnamed3_Click">提交</asp:LinkButton>
+                    </div>
 
                 </div>
 

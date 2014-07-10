@@ -212,7 +212,7 @@ namespace WebForMain.Passport
                 }
 
                 m_user.Credit = 0;
-                m_user.birth = AppConst.DateTimeNull;
+                m_user.Birth = AppConst.DateTimeNull;
                 m_user.IsShowBirth = 1;
                 m_user.IsStar = 0;
                 m_user.BestAnswer = 0;

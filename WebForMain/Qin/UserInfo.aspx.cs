@@ -80,9 +80,9 @@ namespace WebForMain.Qin
 
                     drpFateType.SelectedIndex = drpFateType.Items.IndexOf(drpFateType.Items.FindByValue(m_user.FateType.ToString()));
                     drpBirthType.SelectedIndex = drpBirthType.Items.IndexOf(drpBirthType.Items.FindByValue(m_user.IsShowBirth.ToString()));
-                    if (m_user.birth != AppConst.DateTimeNull)
+                    if (m_user.Birth != AppConst.DateTimeNull)
                     {
-                        DatePicker2.SelectedTime = m_user.birth;
+                        DatePicker2.SelectedTime = m_user.Birth;
                     }
                     else 
                     {
@@ -161,7 +161,7 @@ namespace WebForMain.Qin
                 m_user = USR_CustomerBll.GetInstance().GetModel(int.Parse(Request.QueryString["id"]));
                 m_user.FateType = int.Parse(drpFateType.SelectedValue);
                 m_user.Gender = int.Parse(RadioButtonList1.SelectedValue);
-                m_user.birth = DatePicker2.SelectedTime;
+                m_user.Birth = DatePicker2.SelectedTime;
                 m_user.IsShowBirth = int.Parse(drpBirthType.SelectedValue);
                 m_user.HomeTown = District2.Area3SysNo;
                 m_user.Intro = txtIntro.Text;
