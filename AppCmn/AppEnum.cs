@@ -216,9 +216,9 @@ namespace AppCmn
             personal = 1,
             [EnumMember][Description("两人关系")]
             relation = 2,
-            //[EnumMember][Description("推运")]
-            //transit = 3,
-            //[EnumMember][Description("塔罗牌")]
+            //[EnumMember][Description("占星骰子")]
+            //astrodice = 3,
+            //[EnumMember][Description("塔罗牌阵")]
             //tarot = 4
             [EnumMember][Description("不排盘")]
             nochart = 0,

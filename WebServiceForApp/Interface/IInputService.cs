@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.ComponentModel;
+using System.IO;
+using XMS.Core;
+using AppMod.User;
+using AppMod.QA;
+using AppMod.WebSys;
+using AppDal.QA;
+using PPLive.Astro;
+using PPLive.BaZi;
+using PPLive.ZiWei;
+
+namespace WebServiceForApp
+{
+     [ServiceContract(Namespace = "http://api.ssqian.com/Input")]
+    public interface IInputService
+    {
+        
+        [OperationContract, WebInvoke(UriTemplate = "/AddQuestionWithChart")]
+        [Description("发布问题,/AddQuestionWithChart")]
+        ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData);
+
+
+    }
+
+}
