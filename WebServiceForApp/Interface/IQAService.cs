@@ -52,10 +52,6 @@ namespace WebServiceForApp
         [Description("获取问题详情（紫薇）,/GetQuestionForZiWei?sysno={sysno}")]
         ReturnValue<QA_QuestionShow<ZiWeiMod>> GetQuestionForZiWei(int sysno);
 
-        [OperationContract, WebInvoke(UriTemplate = "/AddQuestionWithChart")]
-        [Description("发布问题,/AddQuestionWithChart")]
-        ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData);
-
         [OperationContract, WebGet(UriTemplate = "/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
         [Description("获取问题的回复列表,/GetAnswerByQuest?sysno={sysno}&pagesize={pagesize}&pageindex={pageindex}")]
         ReturnValue<PageInfo<QA_AnswerShow>> GetAnswerByQuest(int pagesize, int pageindex, int sysno);

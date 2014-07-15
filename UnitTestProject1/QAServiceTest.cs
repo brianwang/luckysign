@@ -5,6 +5,8 @@ using PPLive.BaZi;
 using AppMod.QA;
 using AppMod.WebSys;
 using XMS.Core;
+using System.IO;
+using AppMod.User;
 
 namespace UnitTestProject1
 {
@@ -86,5 +88,25 @@ namespace UnitTestProject1
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("验证此测试方法的正确性。");
         }
+
+        /// <summary>
+        ///AddQuestionWithChart 的测试
+        ///</summary>
+        [TestMethod()]
+        public void AddQuestionWithChartTest()
+        {
+            QAService target = new QAService(); // TODO: 初始化为适当的值
+            using (StreamReader sr = new StreamReader(@"D:\json.txt", System.Text.Encoding.UTF8))
+            {
+                string str = sr.ReadToEnd();
+                Stream openPageData = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(str));
+                ReturnValue<USR_CustomerShow> expected = null; // TODO: 初始化为适当的值
+                ReturnValue<USR_CustomerShow> actual = ReturnValue<USR_CustomerShow>.Get404Error(str);
+                actual = target.AddQuestionWithChart(openPageData);
+                Assert.AreEqual(expected, actual);
+                Assert.Inconclusive("验证此测试方法的正确性。");
+            }
+        }
+
     }
 }

@@ -24,8 +24,6 @@ namespace WebServiceForApp
         [OperationContract, WebInvoke(UriTemplate = "/AddQuestionWithChart")]
         [Description("发布问题,/AddQuestionWithChart")]
         ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData);
-
-
     }
 
 }

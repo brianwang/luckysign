@@ -23,7 +23,7 @@ using PPLive;
 
 namespace WebServiceForApp
 {
-    public class QAService : IQAService
+    public class QAService : IQAService, IInputService
     {
         public ReturnValue<List<QA_CategoryShow>> GetCates(int parent)
         {
@@ -447,9 +447,9 @@ namespace WebServiceForApp
                     ms.Write(buffer, 0, nReadCount);
                 }
                 byte[] byteJson = ms.ToArray();
-                string textJson = System.Text.Encoding.Default.GetString(byteJson);
+                string textJson = System.Text.Encoding.UTF8.GetString(byteJson);
 
-                input = (QA_QuestionInput<FATE_ChartMod>)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(QA_QuestionShow<FATE_ChartMod>));
+                input = XMS.Core.Json.JsonSerializer.Deserialize<QA_QuestionInput<FATE_ChartMod>>(textJson);
 
                 if (input == null)
                 {

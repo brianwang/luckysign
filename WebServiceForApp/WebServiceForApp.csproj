@@ -85,7 +85,6 @@
     <Compile Include="Service\QAService.cs" />
     <Compile Include="Service\PPLiveService.cs" />
     <Compile Include="Service\SystemService.cs" />
-    <Compile Include="Service\InputService.cs" />
     <Compile Include="Task\RewardTask.cs" />
   </ItemGroup>
   <ItemGroup>
