@@ -44,6 +44,13 @@ namespace WebForMain
                 new RouteValueDictionary { { "pn", "1" } },
                 new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
             );
+            routes.MapPageRoute("煮酒论命付费咨询列表1",
+                "Quest/ConsultList/{cate}/{pn}",
+                "~/Quest/ConsultList.aspx",
+                false,
+                new RouteValueDictionary { { "pn", "1" } },
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" } }
+            );
             routes.MapPageRoute("煮酒论命问答列表",
                 "Quest/QuestList/{cate}/{key}/{pn}",
                 "~/Quest/QuestList.aspx",
@@ -59,11 +66,11 @@ namespace WebForMain
                 new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
             );
             routes.MapPageRoute("煮酒论命付费咨询列表",
-                "Quest/ConsultList/{key}/{pn}",
+                "Quest/ConsultList/{cate}/{key}/{pn}",
                 "~/Quest/ConsultList.aspx",
                 false,
                 new RouteValueDictionary { { "pn", "1" }, { "key", "" } },
-                new RouteValueDictionary { { "pn", @"\d*" }, { "key", @"[^/]*" } }
+                new RouteValueDictionary { { "cate", @"\d*" }, { "pn", @"\d*" }, { "key", @"[^/]*" } }
             );
             routes.MapPageRoute("煮酒论命问答详情",
                 "Quest/Question/{id}/{pn}",

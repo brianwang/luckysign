@@ -77,6 +77,8 @@ namespace AppBll.QA
                       ,[Title]
                       ,[Context]
                       ,[Award]
+                      ,[buycount]
+                      ,[ordercount]
                       ,[EndTime]
                       ,[IsSecret]
                       ,[LastReplyTime]

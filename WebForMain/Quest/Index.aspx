@@ -38,7 +38,7 @@
             </div>
 
             <!--专业咨询-->
-            <%--<div class="zjlm_box" style="background: #d2eff2">
+            <div class="zjlm_box" style="background: #d2eff2">
                 <div class="zjlm_box_t">
                     <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Initiate" target="_blank" class="zjlm_box_t_a" style="background: #a5534c">求解盘</a>
                     <h1>专业咨询</h1>
@@ -57,11 +57,11 @@
                         <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
                         <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
                         <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-
                     </ul>
+                    <div style="float:right;"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/ConsultList/17" target="_blank">更多...</a></div>
                     <div class="clear"></div>
                 </div>
-            </div>--%>
+            </div>
 
             <!--学习讨论-->
             <div class="zjlm_box">

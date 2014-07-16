@@ -19,7 +19,7 @@
                     <ContentTemplate>
                         <div class="index_new_ask_t" style="padding: 0px">
                             <div class="index_new_ask_button">
-                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Consult" target="_blank" style="background: #779058">我要求测</a>
+                                <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Initiate" target="_blank" style="background: #779058">我要求测</a>
                                 <%--<a href="Talk.aspx" target="_blank" style="background: #6D8690">发起讨论</a>--%>
                             </div>
                             <div class="index_new_ask_position">
