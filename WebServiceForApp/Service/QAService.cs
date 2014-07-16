@@ -437,8 +437,8 @@ namespace WebServiceForApp
         public ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData)
         {
             QA_QuestionInput<FATE_ChartMod> input;
-            try
-            {
+            //try
+            //{
                 int nReadCount = 0;
                 MemoryStream ms = new MemoryStream();
                 byte[] buffer = new byte[1024];
@@ -455,11 +455,11 @@ namespace WebServiceForApp
                 {
                     throw new BusinessException("参数有误");
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             #region 判断输入项
             if (input.CateSysNo == 0 || input.CateSysNo == AppConst.IntNull)
@@ -482,8 +482,8 @@ namespace WebServiceForApp
 
             #endregion
 
-            try
-            {
+            //try
+            //{
                 QA_QuestionMod m_quest = new QA_QuestionMod();
                 m_quest.Award = input.Award;
                 m_quest.CateSysNo = input.CateSysNo;
@@ -534,11 +534,11 @@ namespace WebServiceForApp
                         REL_Question_ChartBll.GetInstance().Add(m_qchart);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
             USR_CustomerShow ret = new USR_CustomerShow();
             USR_CustomerBll.GetInstance().GetModel(input.CustomerSysNo).MemberwiseCopy(ret);
