@@ -649,11 +649,11 @@ namespace WebServiceForApp
             }
             if (input["birth"].ToString() != "")
             {
-                ret.birth = DateTime.Parse(input["birth"].ToString());
+                ret.Birth = DateTime.Parse(input["birth"].ToString());
             }
             else
             {
-                ret.birth = AppConst.DateTimeNull;
+                ret.Birth = AppConst.DateTimeNull;
             }
             if (input["Credit"].ToString() != "")
             {

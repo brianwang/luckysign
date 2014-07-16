@@ -97,7 +97,7 @@ namespace AppMod.User
         }
 
         
-        public DateTime birth
+        public DateTime Birth
         {
             set { _birth = value; }
             get { return _birth; }
@@ -233,7 +233,7 @@ namespace AppMod.User
             Gender = AppConst.IntNull;
             Credit = AppConst.IntNull;
             Point = AppConst.IntNull;
-            birth = AppConst.DateTimeNull;
+            Birth = AppConst.DateTimeNull;
             FateType = AppConst.IntNull;
             Status = AppConst.IntNull;
             IsStar = AppConst.IntNull;
