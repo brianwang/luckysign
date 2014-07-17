@@ -29,14 +29,13 @@ namespace AppDal.Order
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into ORD_Point(");
-            strSql.Append("CustomerSysNo,ProductType,ProductSysNo,Point,Type,TS,Status)");
+            strSql.Append("CustomerSysNo,ProductSysNo,Point,Type,TS,Status)");
             strSql.Append(" values (");
-            strSql.Append("@CustomerSysNo,@ProductType,@ProductSysNo,@Point,@Type,@TS,@Status)");
+            strSql.Append("@CustomerSysNo,@ProductSysNo,@Point,@Type,@TS,@Status)");
             strSql.Append(";select @@IDENTITY");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
                  new SqlParameter("@CustomerSysNo",SqlDbType.Int,4),
-                 new SqlParameter("@ProductType",SqlDbType.Int,4),
                  new SqlParameter("@ProductSysNo",SqlDbType.Int,4),
                  new SqlParameter("@Point",SqlDbType.Int,4),
                  new SqlParameter("@Type",SqlDbType.Int,4),
@@ -48,36 +47,31 @@ namespace AppDal.Order
             else
                 parameters[0].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[0]);
-            if (model.ProductType != AppConst.IntNull)
-                parameters[1].Value = model.ProductType;
+            if (model.ProductSysNo != AppConst.IntNull)
+                parameters[1].Value = model.ProductSysNo;
             else
                 parameters[1].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[1]);
-            if (model.ProductSysNo != AppConst.IntNull)
-                parameters[2].Value = model.ProductSysNo;
+            if (model.Point != AppConst.IntNull)
+                parameters[2].Value = model.Point;
             else
                 parameters[2].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[2]);
-            if (model.Point != AppConst.IntNull)
-                parameters[3].Value = model.Point;
+            if (model.Type != AppConst.IntNull)
+                parameters[3].Value = model.Type;
             else
                 parameters[3].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[3]);
-            if (model.Type != AppConst.IntNull)
-                parameters[4].Value = model.Type;
+            if (model.TS != AppConst.DateTimeNull)
+                parameters[4].Value = model.TS;
             else
                 parameters[4].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[4]);
-            if (model.TS != AppConst.DateTimeNull)
-                parameters[5].Value = model.TS;
+            if (model.Status != AppConst.IntNull)
+                parameters[5].Value = model.Status;
             else
                 parameters[5].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[5]);
-            if (model.Status != AppConst.IntNull)
-                parameters[6].Value = model.Status;
-            else
-                parameters[6].Value = System.DBNull.Value;
-            cmd.Parameters.Add(parameters[6]);
 
             return Convert.ToInt32(SqlHelper.ExecuteScalar(cmd, parameters));
         }
@@ -100,13 +94,6 @@ namespace AppDal.Order
                 strSql.Append("CustomerSysNo=@CustomerSysNo,");
                 SqlParameter param = new SqlParameter("@CustomerSysNo", SqlDbType.Int, 4);
                 param.Value = model.CustomerSysNo;
-                cmd.Parameters.Add(param);
-            }
-            if (model.ProductType != AppConst.IntNull)
-            {
-                strSql.Append("ProductType=@ProductType,");
-                SqlParameter param = new SqlParameter("@ProductType", SqlDbType.Int, 4);
-                param.Value = model.ProductType;
                 cmd.Parameters.Add(param);
             }
             if (model.ProductSysNo != AppConst.IntNull)
@@ -170,7 +157,7 @@ namespace AppDal.Order
         public ORD_PointMod GetModel(int SysNo)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select SysNo, CustomerSysNo, ProductType, ProductSysNo, Point, Type, TS, Status from  dbo.ORD_Point");
+            strSql.Append("select SysNo, CustomerSysNo, ProductSysNo, Point, Type, TS, Status from  dbo.ORD_Point");
             strSql.Append(" where SysNo=@SysNo ");
             SqlParameter[] parameters = { 
 		new SqlParameter("@SysNo", SqlDbType.Int,4 )
@@ -187,10 +174,6 @@ namespace AppDal.Order
                 if (ds.Tables[0].Rows[0]["CustomerSysNo"].ToString() != "")
                 {
                     model.CustomerSysNo = int.Parse(ds.Tables[0].Rows[0]["CustomerSysNo"].ToString());
-                }
-                if (ds.Tables[0].Rows[0]["ProductType"].ToString() != "")
-                {
-                    model.ProductType = int.Parse(ds.Tables[0].Rows[0]["ProductType"].ToString());
                 }
                 if (ds.Tables[0].Rows[0]["ProductSysNo"].ToString() != "")
                 {

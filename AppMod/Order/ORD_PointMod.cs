@@ -17,7 +17,6 @@ namespace AppMod.Order
         #region 成员变量和公共属性
         private int _SysNo;
         private int _CustomerSysNo;
-        private int _ProductType;
         private int _ProductSysNo;
         private int _Point;
         private int _Type;
@@ -36,13 +35,6 @@ namespace AppMod.Order
         {
             set { _CustomerSysNo = value; }
             get { return _CustomerSysNo; }
-        }
-
-        [DataMember]
-        public int ProductType
-        {
-            set { _ProductType = value; }
-            get { return _ProductType; }
         }
 
         [DataMember]
@@ -87,7 +79,6 @@ namespace AppMod.Order
         {
             SysNo = AppConst.IntNull;
             CustomerSysNo = AppConst.IntNull;
-            ProductType = AppConst.IntNull;
             ProductSysNo = AppConst.IntNull;
             Point = AppConst.IntNull;
             Type = AppConst.IntNull;

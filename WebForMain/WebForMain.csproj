@@ -83,6 +83,7 @@
     <Content Include="ControlLibrary\LoginPannel.ascx" />
     <Content Include="ControlLibrary\PatnerLogin.ascx" />
     <Content Include="ControlLibrary\PPPanel.ascx" />
+    <Content Include="ControlLibrary\QinAccountRight.ascx" />
     <Content Include="ControlLibrary\QinRightPannel.ascx" />
     <Content Include="ControlLibrary\QinSearch.ascx" />
     <Content Include="ControlLibrary\QuestRightPanel.ascx" />
@@ -115,6 +116,7 @@
     <Content Include="Qin\MyQuestion.aspx" />
     <Content Include="Qin\UserInfo.aspx" />
     <Content Include="Qin\View.aspx" />
+    <Content Include="Qin\MyAccount.aspx" />
     <Content Include="Quest\Index.aspx" />
     <Content Include="Quest\QuestList.aspx" />
     <Content Include="Quest\Question.aspx" />
@@ -531,6 +533,13 @@
     <Compile Include="ControlLibrary\PPPanel.ascx.designer.cs">
       <DependentUpon>PPPanel.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ControlLibrary\QinAccountRight.ascx.cs">
+      <DependentUpon>QinAccountRight.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\QinAccountRight.ascx.designer.cs">
+      <DependentUpon>QinAccountRight.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ControlLibrary\QinRightPannel.ascx.cs">
       <DependentUpon>QinRightPannel.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -782,6 +791,13 @@
     </Compile>
     <Compile Include="Qin\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Quest\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

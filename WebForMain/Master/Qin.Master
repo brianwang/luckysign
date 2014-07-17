@@ -35,6 +35,7 @@
                         <a href="/Qin/View/<%=m_base.GetSession().CustomerEntity.SysNo %>" title="我的首页" class='<%=tab[0] %>'>我的首页</a> <a href="/Qin/MyCollection.aspx"
                             title="我的收藏" class='<%=tab[1] %>'>我的收藏</a> <a href="/Qin/MyQuestion.aspx" title="我的问答"
                                 class='<%=tab[2] %>'>我的问答</a>
+                        <a href="/Qin/MyAccount.aspx" title="我的账户" class='<%=tab[3] %>'>我的账户</a>
                         <%--<a href="/Qin/MyGroup.aspx" title="我的群组" class='<%=tab[3] %>'>我的群组</a> --%><a
                             href="/Qin/MyMessage.aspx" title="我的消息" class='<%=tab[4] %>'> 我的消息</a>
                         <div class="clear">

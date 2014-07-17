@@ -15,7 +15,7 @@ namespace AppBll.Order
             { _instance = new ORD_CashBll(); }
             return _instance;
         }
-        #region  成员方法
+        #region  基础成员方法
         /// <summary>
         /// 增加一条数据
         /// </summary>
@@ -48,6 +48,11 @@ namespace AppBll.Order
         {
             return dal.GetModel(SysNo);
         }
-        #endregion  成员方法
+        #endregion  基础成员方法
+
+        #region 扩展成员方法
+
+
+        #endregion
     }
 }

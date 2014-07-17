@@ -43,7 +43,7 @@
 
                         <div class="pay_140218_content">
                             可补充问题背景，其他问题等。<br />
-                            <asp:TextBox ID="txtContext" TextMode="MultiLine" runat="server"></asp:TextBox><br />
+                            <FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="560px" Height="200px" /><br />
                             <br />
                             预计消费：<asp:TextBox ID="txtPay" CssClass="pay_140218_input" runat="server"></asp:TextBox>元<br />
                             <span id="PayTip" runat="server">充足的预算能吸引更多优秀的命理师报价。</span><br />

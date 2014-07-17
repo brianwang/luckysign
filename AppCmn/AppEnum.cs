@@ -670,5 +670,67 @@ namespace AppCmn
             return GetDescription(typeof(ConsultOrderStatus), v);
         }
         #endregion
+
+        #region 灵签收支记录类型
+        [DataContract]
+        public enum PointOrderType
+        {
+            [EnumMember]
+            [Description("网银充值")]
+            buy = 1,
+            [EnumMember]
+            [Description("系统奖励")]
+            systemadd = 2,
+            [EnumMember]
+            [Description("应用消费")]
+            appconsume = 3,
+            [EnumMember]
+            [Description("问答悬赏")]
+            questaward = 4,
+            [EnumMember]
+            [Description("系统退还")]
+            systemreturn = 5,
+        }
+        public static SortedList GetPointOrderType()
+        {
+            return GetStatus(typeof(PointOrderType));
+        }
+        public static string GetPointOrderType(object v)
+        {
+            return GetDescription(typeof(PointOrderType), v);
+        }
+        #endregion
+
+
+
+        #region 灵签交易订单状态
+        [DataContract]
+        public enum PointOrderStatus
+        {
+            [EnumMember]
+            [Description("交易成功")]
+            beforepay = 1,
+            [EnumMember]
+            [Description("处理中")]
+            payed = 2,
+            [EnumMember]
+            [Description("交易失败")]
+            beforeconfirm = 3,
+            [EnumMember]
+            [Description("退款中")]
+            confirmed = 4,
+            [EnumMember]
+            [Description("已退款")]
+            returned = 5,
+        }
+        public static SortedList GetPointOrderStatus()
+        {
+            return GetStatus(typeof(PointOrderStatus));
+        }
+        public static string GetPointOrderStatus(object v)
+        {
+            return GetDescription(typeof(PointOrderStatus), v);
+        }
+        #endregion
     }
 }
