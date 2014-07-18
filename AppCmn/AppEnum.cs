@@ -558,6 +558,9 @@ namespace AppCmn
             venus = 0,
             [EnumMember][Description("占星骰子")]
             astrodice = 1,
+            [EnumMember]
+            [Description("爱情花")]
+            loverose = 2,
         }
         public static SortedList GetApps()
         {
@@ -700,8 +703,6 @@ namespace AppCmn
             return GetDescription(typeof(PointOrderType), v);
         }
         #endregion
-
-
 
         #region 灵签交易订单状态
         [DataContract]
