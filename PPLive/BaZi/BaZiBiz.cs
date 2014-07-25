@@ -140,6 +140,10 @@ namespace PPLive.BaZi
 
         private PublicValue.TianGan HourTG(PublicValue.TianGan dayTG, int hour)
         {
+            if (hour == 23)
+            {
+                hour = 0;
+            }
             int flag = ((int)dayTG) % 5 * 2;
             PublicValue.TianGan ret;
             ret = (PublicValue.TianGan)Enum.Parse(typeof(PublicValue.TianGan), ((flag+(hour+1)/2)%10).ToString());
@@ -442,7 +446,7 @@ namespace PPLive.BaZi
             int daytemp = day;
             if (hour == 23)
             {
-                daytemp--;
+                daytemp++;
             }
             ret.DayTG = DayTG(year, mon, daytemp);
             ret.DayDZ = DayDZ(year, mon, daytemp);
