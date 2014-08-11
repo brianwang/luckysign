@@ -46,46 +46,7 @@ namespace WebServiceForApp
             return ReturnValue<BaZiMod>.Get200OK(input);
         }
 
-        public ReturnValue<AstroMod> TimeToAstro()
-        {
-            AstroMod input = new AstroMod();
-            //int nReadCount = 0;
-            //MemoryStream ms = new MemoryStream();
-            //byte[] buffer = new byte[1024];
-            //while ((nReadCount = openPageData.Read(buffer, 0, 1024)) > 0)
-            //{
-            //    ms.Write(buffer, 0, nReadCount);
-            //}
-            //byte[] byteJson = ms.ToArray();
-            //string textJson = System.Text.Encoding.Default.GetString(byteJson);
-
-            //input = (AstroMod)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(AstroMod));
-
-            //if (input == null)
-            //{
-                input.birth = DateTime.Now;
-                input.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-                
-                    input.IsDaylight = AppEnum.BOOL.False;
-
-                    input.zone = -8;
-                    input.startsShow.Clear();
-                for (int i = 1; i <=30; i++)
-                {
-                        input.startsShow.Add(i, PublicValue.GetAstroStar((PublicValue.AstroStar)i));
-                }
-                input.aspectsShow.Clear();
-                input.aspectsShow.Add(1, 0);
-                input.aspectsShow.Add(2, 180);
-                input.aspectsShow.Add(4, 120);
-                input.aspectsShow.Add(3, 90);
-                input.aspectsShow.Add(5, 60);
-            //}
-
-            input.graphicID = AstroBiz.GetInstance().SetGraphicID(input);
-            AstroBiz.GetInstance().GetParamters(ref input);
-            return ReturnValue<AstroMod>.Get200OK(input);
-        }
+        
 
         public ReturnValue<ZiWeiMod> TimeToZiWei()
         {

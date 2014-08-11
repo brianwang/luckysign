@@ -17,13 +17,17 @@ using PPLive.ZiWei;
 
 namespace WebServiceForApp
 {
-     [ServiceContract(Namespace = "http://api.ssqian.com/Input")]
+    [ServiceContract(Namespace = "http://api.ssqian.com/Input")]
     public interface IInputService
     {
-        
+
         [OperationContract, WebInvoke(UriTemplate = "/AddQuestionWithChart")]
         [Description("发布问题,/AddQuestionWithChart")]
         ReturnValue<USR_CustomerShow> AddQuestionWithChart(Stream openPageData);
+
+        [OperationContract, WebInvoke(UriTemplate = "/TimeToAstro")]
+        [Description("排占星命盘,/TimeToAstro")]
+        ReturnValue<AstroMod> TimeToAstro(Stream openPageData);
     }
 
 }

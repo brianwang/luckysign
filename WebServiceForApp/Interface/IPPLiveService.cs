@@ -35,11 +35,6 @@ namespace WebServiceForApp
         [Description("排紫薇命盘,/TimeToZiWei")]
         ReturnValue<ZiWeiMod> TimeToZiWei();
 
-        [OperationContract, WebGet(UriTemplate = "/TimeToAstro")]
-        [Description("排占星命盘,/TimeToAstro")]
-        ReturnValue<AstroMod> TimeToAstro();
-
-
 
         [OperationContract, WebGet(UriTemplate = "/Hello")]
         [Description("测试,/Hello")]
