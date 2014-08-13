@@ -20,12 +20,9 @@
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
                     <div class="account_yue"><a href="#">充值</a>灵签余额：<asp:Literal ID="ltrPoint" runat="server"></asp:Literal></div>
-
                     <div class="clear"></div>
-
                     <div class="account_table">
                         <div class="account_table_t"><span>灵签账户收支记录</span></div>
-
                         <div class="account_table_c">
                             <table cellpadding="0" cellspacing="0">
                                 <tr>
@@ -51,6 +48,41 @@
 
                             </table>
                             <uc1:Pager ID="Pager1" runat="server"></uc1:Pager>
+                        </div>
+                    </div>
+                </asp:View>
+                <asp:View ID="View2" runat="server">
+                    <div class="account_yue"><a href="#">提现</a>账户余额：<asp:Literal ID="ltrCash" runat="server"></asp:Literal></div>
+                    <div class="clear"></div>
+                    <div class="account_table">
+                        <div class="account_table_t"><span>现金账户收支记录</span></div>
+                        <div class="account_table_c">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>交易单号</td>
+                                    <td>交易时间</td>
+                                    <td>内容</td>
+                                    <td>对方</td>
+                                    <td>金额</td>
+                                    <td>交易状态</td>
+                                    <td>操作</td>
+                                </tr>
+                                <asp:Repeater ID="Repeater2" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td><%# Eval("OrderID")%></td>
+                                            <td><%# DateTime.Parse(Eval("PayTime").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%></td>
+                                            <td><%# Eval("content")%></td>
+                                            <td><%# Eval("target")%></td>
+                                            <td>￥<%# Eval("PayAmount")%></td>
+                                            <td><%# AppCmn.AppEnum.GetPointOrderStatus(int.Parse(Eval("status").ToString()))%></td>
+                                            <td>——</td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                            </table>
+                            <uc1:Pager ID="Pager2" runat="server"></uc1:Pager>
                         </div>
                     </div>
                 </asp:View>

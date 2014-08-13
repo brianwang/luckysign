@@ -88,15 +88,15 @@ namespace AppBll.Order
             }
             if (orderby == "timedown")
             {
-                order = "QA_Question.LastReplyTime desc";
+                order = "TS desc";
             }
             else if (orderby == "timeup")
             {
-                order = "QA_Question.LastReplyTime asc";
+                order = "TS asc";
             }
             else 
             {
-                order = "QA_Question.LastReplyTime desc";
+                order = "TS desc";
             }
 
             #endregion

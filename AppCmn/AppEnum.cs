@@ -674,6 +674,36 @@ namespace AppCmn
         }
         #endregion
 
+        #region 灵签交易订单状态
+        [DataContract]
+        public enum PointOrderStatus
+        {
+            [EnumMember]
+            [Description("交易成功")]
+            beforepay = 1,
+            [EnumMember]
+            [Description("处理中")]
+            payed = 2,
+            [EnumMember]
+            [Description("交易失败")]
+            beforeconfirm = 3,
+            [EnumMember]
+            [Description("退款中")]
+            confirmed = 4,
+            [EnumMember]
+            [Description("已退款")]
+            returned = 5,
+        }
+        public static SortedList GetPointOrderStatus()
+        {
+            return GetStatus(typeof(PointOrderStatus));
+        }
+        public static string GetPointOrderStatus(object v)
+        {
+            return GetDescription(typeof(PointOrderStatus), v);
+        }
+        #endregion
+        
         #region 灵签收支记录类型
         [DataContract]
         public enum PointOrderType
@@ -704,33 +734,33 @@ namespace AppCmn
         }
         #endregion
 
-        #region 灵签交易订单状态
+        #region 现金收支记录类型
         [DataContract]
-        public enum PointOrderStatus
+        public enum CashOrderType
         {
             [EnumMember]
-            [Description("交易成功")]
-            beforepay = 1,
+            [Description("充值")]
+            recharge = 1,
             [EnumMember]
-            [Description("处理中")]
-            payed = 2,
+            [Description("付费咨询获取")]
+            consultget = 2,
             [EnumMember]
-            [Description("交易失败")]
-            beforeconfirm = 3,
+            [Description("付费咨询支付")]
+            consultpay = 3,
             [EnumMember]
-            [Description("退款中")]
-            confirmed = 4,
+            [Description("系统奖励")]
+            systemadd = 4,
             [EnumMember]
-            [Description("已退款")]
-            returned = 5,
+            [Description("系统退还")]
+            systemreturn = 5,
         }
-        public static SortedList GetPointOrderStatus()
+        public static SortedList GetCashOrderType()
         {
-            return GetStatus(typeof(PointOrderStatus));
+            return GetStatus(typeof(CashOrderType));
         }
-        public static string GetPointOrderStatus(object v)
+        public static string GetCashOrderType(object v)
         {
-            return GetDescription(typeof(PointOrderStatus), v);
+            return GetDescription(typeof(CashOrderType), v);
         }
         #endregion
     }

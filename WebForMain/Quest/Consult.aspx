@@ -161,7 +161,7 @@
                                                         </div>
                                                         <div style="float: right; padding-top: 8px">
                                                             <a href="#">ÉêËß</a>
-                                                            <a href="#" style="margin-right: 0px">×·ÎÊ</a>
+                                                            <a href="javascript:void(0);" onclick="showreply(this);" style="margin-right: 0px">×·ÎÊ</a>
                                                         </div>
                                                         <div class="clear"></div>
                                                     </div>
@@ -172,7 +172,11 @@
                                                     </div>--%>
                                                     <h4><%#DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%><%--&nbsp;&nbsp;&nbsp;|  
                                                         <asp:LinkButton ID="LinkButton2" CommandArgument='<%#Eval("SysNo")%>' CommandName="Love" runat="server">ÔÞÍ¬</asp:LinkButton>
-                                                        (<%#Eval("love")%>)--%><asp:Literal ID="Literal1" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal><asp:LinkButton ID="LinkButton5" runat="server" Visible="false" CommandArgument='<%#Eval("SysNo")%>' CommandName="Del">É¾³ý</asp:LinkButton><asp:Literal ID="Literal2" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal><a href="javascript:void(0);" onclick="showreply(this);">»Ø¸´</a></h4>
+                                                        (<%#Eval("love")%>)--%>
+                                                        <asp:Literal ID="Literal1" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal>
+                                                        <asp:LinkButton ID="LinkButton5" runat="server" Visible="false" CommandArgument='<%#Eval("SysNo")%>' CommandName="Del">É¾³ý</asp:LinkButton>
+                                                        <asp:Literal ID="Literal2" Visible="false" runat="server" Text="&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"></asp:Literal>
+                                                        <a href="javascript:void(0);" onclick="showreply(this);">»Ø¸´</a></h4>
                                                     <div class="index_new_reply_list">
                                                         <asp:Repeater ID="Repeater3" runat="server" OnItemDataBound="Repeater3_ItemDataBound" OnItemCommand="Repeater3_ItemCommand">
                                                             <ItemTemplate>

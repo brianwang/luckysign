@@ -118,6 +118,24 @@ namespace AppBll.QA
             }
         }
 
+        public DataTable GetOrderDetail(int SysNo)
+        {
+            DataTable table = new DataTable();
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append("select qa_order.*,qa_question.title,TT.nickname as orderuname,PP.nickname as questuname from qa_order left join qa_question on questionsysno = qa_question.sysno left join usr_customer TT on TT.sysno = qa_order.customersysno left join usr_customer PP on PP.sysno = qa_question.customersysno where qa_order.sysno=").Append(SysNo);
+                try
+                {
+                    table = data.CmdtoDataTable(builder.ToString());
+                }
+                catch (Exception exception)
+                {
+                    //throw exception;
+                }
+            }
+            return table;
+        }
         #endregion
     }
 }
