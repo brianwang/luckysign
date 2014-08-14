@@ -61,14 +61,19 @@ namespace AppBll.Order
 
             #region  设置参数
             columns = @"[SysNo]
-      ,[OrderID]
       ,[CustomerSysNo]
+      ,[ProductType]
       ,[ProductSysNo]
-      ,[Point]
-      ,[Type]
+      ,[Price]
+      ,[PayType]
+      ,[Discount]
+      ,[PayAmount]
       ,[TS]
-      ,[Status]";
-            tables = "ORD_Point ";
+      ,[Status]
+      ,[OrderID]
+      ,[CurrentID]
+      ,[PayTime]";
+            tables = "ORD_Cash";
             where = "1=1";
             if (customersysno != 0)
             {
@@ -76,7 +81,7 @@ namespace AppBll.Order
             }
             if (type != AppConst.IntNull)
             {
-                where += " and Type=" + type;
+                where += " and ProductType=" + type;
             }
             if (status != AppConst.IntNull)
             {
@@ -88,15 +93,15 @@ namespace AppBll.Order
             }
             if (orderby == "timedown")
             {
-                order = "QA_Question.LastReplyTime desc";
+                order = "TS desc";
             }
             else if (orderby == "timeup")
             {
-                order = "QA_Question.LastReplyTime asc";
+                order = "TS asc";
             }
             else
             {
-                order = "QA_Question.LastReplyTime desc";
+                order = "TS desc";
             }
 
             #endregion
