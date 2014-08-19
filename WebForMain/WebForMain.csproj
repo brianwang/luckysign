@@ -82,6 +82,7 @@
     <Content Include="ControlLibrary\DistrictPicker.ascx" />
     <Content Include="ControlLibrary\LoginPannel.ascx" />
     <Content Include="ControlLibrary\PatnerLogin.ascx" />
+    <Content Include="ControlLibrary\PayPannel.ascx" />
     <Content Include="ControlLibrary\PPPanel.ascx" />
     <Content Include="ControlLibrary\QinAccountRight.ascx" />
     <Content Include="ControlLibrary\QinRightPannel.ascx" />
@@ -93,6 +94,10 @@
     <Content Include="ControlLibrary\ArticleRightPanel.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Order\ConsultOrder.aspx" />
+    <Content Include="Order\PayBack.aspx" />
+    <Content Include="Order\PayResult.aspx" />
+    <Content Include="Order\PointOrder.aspx" />
     <Content Include="Passport\Agreement.aspx" />
     <Content Include="Passport\FindPass.aspx" />
     <Content Include="Passport\Login.aspx" />
@@ -526,6 +531,13 @@
     <Compile Include="ControlLibrary\PatnerLogin.ascx.designer.cs">
       <DependentUpon>PatnerLogin.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ControlLibrary\PayPannel.ascx.cs">
+      <DependentUpon>PayPannel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlLibrary\PayPannel.ascx.designer.cs">
+      <DependentUpon>PayPannel.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ControlLibrary\PPPanel.ascx.cs">
       <DependentUpon>PPPanel.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -612,6 +624,34 @@
     </Compile>
     <Compile Include="Master\Qin.Master.designer.cs">
       <DependentUpon>Qin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Order\ConsultOrder.aspx.cs">
+      <DependentUpon>ConsultOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\ConsultOrder.aspx.designer.cs">
+      <DependentUpon>ConsultOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\PayBack.aspx.cs">
+      <DependentUpon>PayBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\PayBack.aspx.designer.cs">
+      <DependentUpon>PayBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\PayResult.aspx.cs">
+      <DependentUpon>PayResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\PayResult.aspx.designer.cs">
+      <DependentUpon>PayResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\PointOrder.aspx.cs">
+      <DependentUpon>PointOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\PointOrder.aspx.designer.cs">
+      <DependentUpon>PointOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Passport\Agreement.aspx.cs">
       <DependentUpon>Agreement.aspx</DependentUpon>
