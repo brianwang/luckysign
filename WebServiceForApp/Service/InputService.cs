@@ -140,7 +140,7 @@ namespace WebServiceForApp
 
         public ReturnValue<AstroMod> TimeToAstro(Stream openPageData)
         {
-            AstroMod input = new AstroMod();
+            AstroMod input = null;
             int nReadCount = 0;
             MemoryStream ms = new MemoryStream();
             byte[] buffer = new byte[1024];
@@ -151,15 +151,17 @@ namespace WebServiceForApp
             byte[] byteJson = ms.ToArray();
             string textJson = System.Text.Encoding.Default.GetString(byteJson);
 
-            input = (AstroMod)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(AstroMod));
+            if (!string.IsNullOrEmpty(textJson))
+            {
+                input = XMS.Core.Json.JsonSerializer.Deserialize<AstroMod>(textJson);
+            }
 
             if (input == null)
             {
+                input = new AstroMod();
                 input.birth = DateTime.Now;
                 input.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-
                 input.IsDaylight = AppEnum.BOOL.False;
-
                 input.zone = -8;
                 input.startsShow.Clear();
                 for (int i = 1; i <= 30; i++)
