@@ -105,6 +105,7 @@
     </None>
     <None Include="conf\Services.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
