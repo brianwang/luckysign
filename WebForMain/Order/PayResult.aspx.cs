@@ -55,7 +55,7 @@ namespace WebForMain.Order
         {
             if (ordertype == 1)
             {
-                
+                Literal1.Text = "您的订单已";
             }
             else if (ordertype == 2)
             { }
