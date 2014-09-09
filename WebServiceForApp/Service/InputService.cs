@@ -149,7 +149,7 @@ namespace WebServiceForApp
                 ms.Write(buffer, 0, nReadCount);
             }
             byte[] byteJson = ms.ToArray();
-            string textJson = System.Text.Encoding.Default.GetString(byteJson);
+            string textJson = System.Text.Encoding.UTF8.GetString(byteJson);
 
             if (!string.IsNullOrEmpty(textJson))
             {
