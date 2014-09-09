@@ -26,6 +26,7 @@ namespace WebForMain.Quest
         {
             WebForMain.Master.Main m_master = (WebForMain.Master.Main)Master;
             m_master.SetTab(1);
+            Login(Request.Url.ToString());
             if (Request.QueryString["id"] != null)
             {
                 try
@@ -62,36 +63,10 @@ namespace WebForMain.Quest
                 ShowError("");
             }
 
-            if (Request.QueryString["pn"] != null)
-            {
-                try
-                {
-                    pageindex = int.Parse(Request.QueryString["pn"]);
-                }
-                catch
-                { }
-            }
-            else if (Page.RouteData.Values["pn"] != null && Page.RouteData.Values["pn"].ToString() != "")
-            {
-                try
-                {
-                    pageindex = int.Parse(Page.RouteData.Values["pn"].ToString());
-                }
-                catch
-                {
-                    ShowError("");
-                }
-            }
             if (!IsPostBack)
             {
                 BindData();
             }
-            #region 登录状态判断
-            if (GetSession().CustomerEntity == null || GetSession().CustomerEntity.SysNo == AppConst.IntNull)
-            {
-                ShowError("");
-            }
-            #endregion
             
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "SetDocument", "SetDocument();", true);
 
@@ -112,13 +87,7 @@ namespace WebForMain.Quest
                 ltrContext.Text = m_qustion.Context;
                 ltrAward.Text = m_qustion.Award.ToString();
                 ltrReply.Text = m_qustion.ReplyCount.ToString();
-                ltrTime.Text = m_qustion.TS.ToString("yyyy-MM-dd HH:mm:ss");
                 ltrViewNum.Text = m_qustion.ReadCount.ToString();
-                if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)
-                {
-                    LinkButton5.Style["display"] = "";
-                    ltrTime.Text += "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;";
-                }
                 USR_CustomerMod m_user = USR_CustomerBll.GetInstance().GetModel(m_qustion.CustomerSysNo);
                 USR_GradeMod m_grade = USR_GradeBll.GetInstance().GetModel(m_user.GradeSysNo);
                 ltrNickName.Text = m_user.NickName;

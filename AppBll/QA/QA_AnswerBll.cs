@@ -140,7 +140,7 @@ namespace AppBll.QA
                       ,USR_Grade.Name
                       ,USR_Grade.LevelNum
                       ,Price
-                      ,status
+                      ,QA_Order.status
                       ,description
                       ,score
                       ,trial
@@ -150,7 +150,7 @@ namespace AppBll.QA
 
             if (qid != 0)
             {
-                where += " and QuestionSysNo=" + qid;
+                where += " and [QA_Answer].QuestionSysNo=" + qid;
             }
 
             #endregion

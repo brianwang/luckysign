@@ -75,7 +75,7 @@ namespace AppBll.QA
       ,[Trial]
       ,NickName
       ,photo
-  FROM [QA_Order] left join USR_Customer on CustomerSysNo=USR_Customer.SysNo where status=").Append((int)AppEnum.State.normal).Append(" and QuestionSysNo=").Append(SysNo);
+  FROM [QA_Order] left join USR_Customer on CustomerSysNo=USR_Customer.SysNo where QuestionSysNo=").Append(SysNo);
 
                 try
                 {

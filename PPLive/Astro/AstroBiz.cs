@@ -347,6 +347,7 @@ namespace PPLive.Astro
                 {
                     File.Delete(mod.composeFile2);
                 }
+
             //}
             //catch (Exception ex)
             //{

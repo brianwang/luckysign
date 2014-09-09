@@ -13,6 +13,7 @@ namespace WebForMain.Order
     {
         private int ordersysno = 0;
         private int ordertype = 0;
+        private bool succ = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             Login(Request.Url.ToString());
@@ -49,16 +50,34 @@ namespace WebForMain.Order
         }
 
         protected void SetPay()
-        { }
+        {
+            succ = true;
+        }
 
         protected void ShowResult()
         {
             if (ordertype == 1)
             {
-                Literal1.Text = "您的订单已";
+                if (succ)
+                {
+                    Literal1.Text = "您的订单已支付成功";
+                }
+                else
+                {
+                    Literal1.Text = "您的订单支付失败，请联系客服";
+                }
             }
             else if (ordertype == 2)
-            { }
+            {
+                if (succ)
+                {
+                    Literal1.Text = "您的订单已支付成功";
+                }
+                else
+                {
+                    Literal1.Text = "您的订单支付失败，请联系客服";
+                }
+            }
             else
             {
                 ShowError("");

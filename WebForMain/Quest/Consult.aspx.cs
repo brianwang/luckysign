@@ -8,6 +8,8 @@ using AppBll.QA;
 using AppMod.QA;
 using AppBll.User;
 using AppMod.User;
+using AppBll.Order;
+using AppMod.Order;
 using AppMod.Fate;
 using System.Data;
 using AppCmn;
@@ -17,7 +19,7 @@ namespace WebForMain.Quest
 {
     public partial class Consult : PageBase
     {
-        private int SysNo = 0;
+        public int SysNo = 0;
         private int pageindex = 1;
         private int pagesize = AppConst.PageSize;
         public QA_QuestionMod m_qustion = new QA_QuestionMod();
@@ -219,14 +221,14 @@ namespace WebForMain.Quest
                     ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addlove", "alert('您已对该回答发表了看法！');", true);
                 }
             }
-            else if (e.CommandName == "Award")
-            {
-                QA_QuestionMod m_quest = QA_QuestionBll.GetInstance().GetModel(SysNo);
-                int usedAward = QA_AnswerBll.GetInstance().GetUsedAward(SysNo);
-                ltrMax.Text = "该问题的总悬赏积分为：" + (m_quest.Award - usedAward).ToString();
-                HiddenField1.Value = e.CommandArgument.ToString();
-                ModalPopupExtender1.Show();
-            }
+            //else if (e.CommandName == "Award")
+            //{
+            //    QA_QuestionMod m_quest = QA_QuestionBll.GetInstance().GetModel(SysNo);
+            //    int usedAward = QA_AnswerBll.GetInstance().GetUsedAward(SysNo);
+            //    ltrMax.Text = "该问题的总悬赏积分为：" + (m_quest.Award - usedAward).ToString();
+            //    HiddenField1.Value = e.CommandArgument.ToString();
+            //    ModalPopupExtender1.Show();
+            //}
             else if (e.CommandName == "Reply")
             {
                 if (((TextBox)e.Item.FindControl("txtRe")).Text.Trim() == "")
@@ -260,6 +262,13 @@ namespace WebForMain.Quest
                 QA_AnswerBll.GetInstance().Update(m_answer);
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "addhate", "alert('成功删除该回答！');", true);
                 BindList();
+            }
+            else if (e.CommandName == "buy")
+            {
+                //生成订单
+                string order = "";
+                
+                Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?order=" + order);
             }
         }
 
@@ -481,17 +490,17 @@ namespace WebForMain.Quest
         {
             if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)
             {
-                e.Item.FindControl("LinkButton1").Visible = true;
-                if (m_qustion.EndTime <= DateTime.Now || GetSession().CustomerEntity.SysNo.ToString() == ((DataRowView)e.Item.DataItem)["CustomerSysNo"].ToString())
-                {
-                    e.Item.FindControl("LinkButton1").Visible = false;
-                }
+                //e.Item.FindControl("LinkButton1").Visible = true;
+                //if (m_qustion.EndTime <= DateTime.Now || GetSession().CustomerEntity.SysNo.ToString() == ((DataRowView)e.Item.DataItem)["CustomerSysNo"].ToString())
+                //{
+                //    e.Item.FindControl("LinkButton1").Visible = false;
+                //}
                 e.Item.FindControl("LinkButton5").Visible = true;
                 e.Item.FindControl("Literal1").Visible = true;
             }
             else
             {
-                e.Item.FindControl("LinkButton1").Visible = false;
+                //e.Item.FindControl("LinkButton1").Visible = false;
                 if(REL_Customer_CategoryBll.GetInstance().HasRecord(GetSession().CustomerEntity.SysNo,m_qustion.CateSysNo,(int)AppEnum.CategoryType.QA)
                     || GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)
                 {

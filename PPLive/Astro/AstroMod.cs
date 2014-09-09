@@ -38,7 +38,8 @@ namespace PPLive.Astro
         private AppCmn.AppEnum.Gender _gender = AppCmn.AppEnum.Gender.none;
         private AppCmn.AppEnum.Gender _gender1 = AppCmn.AppEnum.Gender.none;
 
-        private Star[] xing = new Star[32]; 
+        private Star[] xing = new Star[32];
+        private Star[] xing1 = new Star[32]; 
         #endregion
 
         #region 接口
@@ -173,6 +174,12 @@ namespace PPLive.Astro
         {
             get { return xing; }
             set { xing = value; }
+        }
+        [DataMember]
+        public Star[] Stars1
+        {
+            get { return xing1; }
+            set { xing1 = value; }
         }
         #endregion
 

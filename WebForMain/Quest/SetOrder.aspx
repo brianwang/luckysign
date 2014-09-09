@@ -61,9 +61,6 @@
                     <uc1:Astro ID="Astro1" runat="server" Visible="false"></uc1:Astro>
                     <uc1:Bazi ID="Bazi1" runat="server" Visible="false"></uc1:Bazi>
                     <uc1:Ziwei ID="Ziwei1" runat="server" Visible="false"></uc1:Ziwei>
-                    <h4 style="font-weight: normal; margin-top: 55px; text-align: right;">
-                        <asp:Literal ID="ltrTime" runat="server"></asp:Literal>
-                        <asp:LinkButton ID="LinkButton5" runat="server" Style="display: none;" OnClick="LinkButton5_Click">É¾³ý</asp:LinkButton>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="showreply(this);" style="text-decoration: underline">»Ø¸´</a></h4>
 
                     <div class="clear"></div>
                    

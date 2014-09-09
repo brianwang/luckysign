@@ -199,7 +199,7 @@ namespace WebForMain.Quest
                 ShowError("请从正常入口进入");
             }
             QA_CategoryMod m_cate = QA_CategoryBll.GetInstance().GetModel(cate);
-            ltrNav.Text = @"<a href=""" + AppConfig.HomeUrl() + @""">首页</a> > <a href=""" + AppConfig.HomeUrl() + @"Quest/"">煮酒论命</a> > <span>" + QA_CategoryBll.GetInstance().GetModel(m_cate.TopSysNo).Name + "</span> > <span>" + m_cate.Name + "</span>";
+            ltrNav.Text = @"<a href=""" + AppConfig.HomeUrl() + @""">首页</a> > <a href=""" + AppConfig.HomeUrl() + @"Quest/"">煮酒论命</a> > <span>" + m_cate.Name + "</span>";
             string search = "";
             //if (txtName.Trim() != "寻找你感兴趣的咨询话题")
             //{

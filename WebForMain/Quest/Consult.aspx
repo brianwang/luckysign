@@ -87,6 +87,12 @@
                                                 </li>
                                             </ItemTemplate>
                                         </asp:Repeater>
+                                        <li>
+                                            <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/SetOrder.aspx?id=<%=SysNo %> ">
+                                                <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>" width="70" height="70" />
+                                                <span class="price">我要报价</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -111,7 +117,7 @@
                                 <ul>
                                     <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand" OnItemDataBound="Repeater1_ItemDataBound">
                                         <ItemTemplate>
-                                            
+
                                             <li>
                                                 <a id="#<%#Container.ItemIndex %>" name="#<%#Container.ItemIndex %>"></a>
                                                 <div class="index_new_ask_l">
@@ -133,8 +139,10 @@
                                                     <h1><a target="_blank" href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>"><%#Eval("NickName")%></a></h1>
                                                     <h2>等级：<%#Eval("LevelNum")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;灵签：<%#Eval("Point")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;解答数：<%#Eval("TotalAnswer")%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;被采纳数：<%#Eval("BestAnswer")%> </h2>
                                                     <h3>服务描述：<%#Eval("description")%><br />
-                                                        字数：<%#Eval("words")%>  |   价格：<%#Eval("price")%>元    |   状态：<%#AppCmn.AppEnum.GetConsultOrderStatus(int.Parse(Eval("status").ToString()))%><br />
-                                                        <%#Eval("trial")%><br />
+                                                        字数：<%#Eval("words")%>  |   价格：<%#Eval("price")%>元    |   状态：<%#AppCmn.AppEnum.GetConsultOrderStatus(int.Parse(Eval("status").ToString()))%>
+                                                        <br /><br />
+                                                        <%#Eval("trial")%>
+                                                        <br /><br />
                                                         <%#Eval("Context")%></h3>
                                                     <div class="ask_lock" style="<%#Eval("hide")%>">此回复已由作者设置为"加密回复"，仅作者、被回复人以及管理员可见。</div>
                                                     <%--<div class="ask_lock_info" style="<%#Eval("hide1")%>">
@@ -143,7 +151,7 @@
                                                         <%#Eval("NickName")%>
                                                     </div>--%>
                                                     <div id="buyicon" runat="server" class="ask_140219" visible="false">
-                                                        <a href="#">我要购买</a>
+                                                        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%#Eval("SysNo")%>' CommandName="buy">我要购买</asp:LinkButton>
                                                         <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">命理师详情</a>
                                                         <div class="clear"></div>
                                                     </div>
