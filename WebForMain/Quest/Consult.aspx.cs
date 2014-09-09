@@ -266,9 +266,25 @@ namespace WebForMain.Quest
             else if (e.CommandName == "buy")
             {
                 //生成订单
-                string order = "";
-                
-                Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?order=" + order);
+                Login(Request.Url.ToString());
+                QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
+                ORD_CashMod m_mod = new ORD_CashMod();
+                m_mod.CustomerSysNo = GetSession().CustomerEntity.SysNo;
+                m_mod.CurrentID = "";
+                m_mod.Discount = 0;
+               
+                m_mod.PayAmount = m_order.Price;
+                m_mod.PayType = AppConst.IntNull;
+                m_mod.Price = m_order.Price;
+                m_mod.ProductSysNo = m_order.SysNo;
+                m_mod.Status = (int)AppEnum.CashOrderStatus.beforepay;
+                m_mod.ProductType = (int)AppEnum.CashOrderType.consultpay; ;
+                m_mod.TS = DateTime.Now;
+
+                m_mod.OrderID = "C" + m_mod.ProductType.ToString("0") + m_mod.TS.ToString("yyyyMMdd") + m_mod.ProductSysNo;
+                ORD_CashBll.GetInstance().Add(m_mod);
+
+                Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?orderID=" + m_mod.OrderID);
             }
         }
 

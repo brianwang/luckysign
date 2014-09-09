@@ -6,22 +6,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AppMod.Order;
 using AppBll.Order;
+using AppCmn;
 
 namespace WebForMain.Order
 {
     public partial class PayResult : PageBase
     {
-        private int ordersysno = 0;
+        private string orderID = "";
         private int ordertype = 0;
         private bool succ = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             Login(Request.Url.ToString());
-            if (Request.QueryString["order"] != null)
+            if (Request.QueryString["orderID"] != null)
             {
                 try
                 {
-                    ordersysno = int.Parse(Request.QueryString["order"]);
+                    orderID = Request.QueryString["order"];
                 }
                 catch
                 {
@@ -40,7 +41,7 @@ namespace WebForMain.Order
                 }
             }
 
-            if (ordersysno == 0 || ordertype == 0)
+            if (orderID != "" && ordertype != 0)
             {
                 SetPay();
             }
@@ -51,7 +52,16 @@ namespace WebForMain.Order
 
         protected void SetPay()
         {
+            
+            #region 验证支付接口返回信息
             succ = true;
+            #endregion
+            if (succ)
+            {
+                ORD_CashMod m_mod = ORD_CashBll.GetInstance().GetModelByOrderID(orderID);
+                m_mod.CurrentID = "";//记录支付流水号
+                ORD_CashBll.GetInstance().SetPaySucc(m_mod);
+            }
         }
 
         protected void ShowResult()

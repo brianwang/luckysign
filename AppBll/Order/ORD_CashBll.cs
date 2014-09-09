@@ -3,6 +3,11 @@ using System.Data;
 using AppMod.Order;
 using AppDal.Order;
 using AppCmn;
+using System.Text;
+using System.Transactions;
+using AppMod.QA;
+using AppBll.QA;
+
 namespace AppBll.Order
 {
     public class ORD_CashBll
@@ -124,6 +129,48 @@ namespace AppBll.Order
             return m_dt;
         }
 
+        public ORD_CashMod GetModelByOrderID(string OrderID)
+        {
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(@"select SysNo from ORD_Cash where OrderID=").Append(OrderID);
+                try
+                {
+                    int sysno = Convert.ToInt32(data.CmdtoDataTable(builder.ToString()).Rows[0][0]);
+                    return GetModel(sysno);
+                }
+                catch (Exception exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool SetPaySucc(ORD_CashMod m_mod)
+        {
+            TransactionOptions options = new TransactionOptions();
+            options.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
+            options.Timeout = TransactionManager.DefaultTimeout;
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                m_mod.CurrentID = "";
+                m_mod.PayTime = DateTime.Now;
+                m_mod.Status = (int)AppEnum.CashOrderStatus.succed;
+                ORD_CashBll.GetInstance().Update(m_mod);
+                switch (m_mod.ProductType)
+                {
+                    case 1://咨询订单
+                        QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(m_mod.ProductSysNo);
+                        m_order.Status = (int)AppEnum.ConsultOrderStatus.payed;
+                        QA_OrderBll.GetInstance().Update(m_order);
+                        break;
+                }
+                scope.Complete();
+                return true;
+            }
+        }
         #endregion
     }
 }

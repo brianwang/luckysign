@@ -151,7 +151,7 @@
                                                         <%#Eval("NickName")%>
                                                     </div>--%>
                                                     <div id="buyicon" runat="server" class="ask_140219" visible="false">
-                                                        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%#Eval("SysNo")%>' CommandName="buy">我要购买</asp:LinkButton>
+                                                        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%#Eval("ordersysno")%>' CommandName="buy">我要购买</asp:LinkButton>
                                                         <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">命理师详情</a>
                                                         <div class="clear"></div>
                                                     </div>

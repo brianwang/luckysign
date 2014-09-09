@@ -679,17 +679,17 @@ namespace AppCmn
         public enum PointOrderStatus
         {
             [EnumMember]
-            [Description("交易成功")]
+            [Description("待支付")]
             beforepay = 1,
             [EnumMember]
-            [Description("处理中")]
-            payed = 2,
+            [Description("交易成功")]
+            succed = 2,
             [EnumMember]
             [Description("交易失败")]
-            beforeconfirm = 3,
+            failed = 3,
             [EnumMember]
             [Description("退款中")]
-            confirmed = 4,
+            returing = 4,
             [EnumMember]
             [Description("已退款")]
             returned = 5,
@@ -701,6 +701,36 @@ namespace AppCmn
         public static string GetPointOrderStatus(object v)
         {
             return GetDescription(typeof(PointOrderStatus), v);
+        }
+        #endregion
+
+        #region 现金交易订单状态
+        [DataContract]
+        public enum CashOrderStatus
+        {
+            [EnumMember]
+            [Description("待支付")]
+            beforepay = 1,
+            [EnumMember]
+            [Description("交易成功")]
+            succed = 2,
+            [EnumMember]
+            [Description("交易失败")]
+            failed = 3,
+            [EnumMember]
+            [Description("退款中")]
+            returing = 4,
+            [EnumMember]
+            [Description("已退款")]
+            returned = 5,
+        }
+        public static SortedList GetCashOrderStatus()
+        {
+            return GetStatus(typeof(CashOrderStatus));
+        }
+        public static string GetCashOrderStatus(object v)
+        {
+            return GetDescription(typeof(CashOrderStatus), v);
         }
         #endregion
         

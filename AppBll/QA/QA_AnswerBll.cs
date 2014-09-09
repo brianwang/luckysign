@@ -141,6 +141,7 @@ namespace AppBll.QA
                       ,USR_Grade.LevelNum
                       ,Price
                       ,QA_Order.status
+                      ,QA_Order.SysNo as ordersysno
                       ,description
                       ,score
                       ,trial
