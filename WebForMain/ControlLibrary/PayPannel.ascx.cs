@@ -54,7 +54,7 @@ namespace WebForMain.ControlLibrary
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect(AppCmn.AppConfig.HomeUrl() + "PayResult.aspx?order=" + _orderSysno + "%type=" + _orderType);
+            Response.Redirect(AppCmn.AppConfig.HomeUrl() + "Order/PayResult.aspx?orderID=" + _orderID);
         }
         public void initial()
         { }

@@ -155,19 +155,29 @@
                                                         <a href="<%=AppCmn.AppConfig.HomeUrl() %>Qin/View/<%#Eval("CustomerSysNo")%>" target="_blank">命理师详情</a>
                                                         <div class="clear"></div>
                                                     </div>
+                                                    <div id="replyicon" runat="server" class="ask_140219" visible="false">
+                                                        <a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/SetOrder.aspx?order=<%#Eval("ordersysno")%>'>提交解答</a>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <div id="buyedtip" runat="server" class="ask_140219" visible="false">
+                                                        <span>温馨提示：命理师会在约<asp:Literal ID="Literal3" runat="server"></asp:Literal>内提交解答，请耐心等待。</span>
+                                                        <div class="clear"></div>
+                                                        </div>
                                                     <div id="confirmicon" runat="server" class="ask_140219" visible="false">
-                                                        <span>温馨提示：对命理师的解析有任何疑问请继续追问，如果没有疑问请给予命理师评价。在4天23小时30分内未评价或投诉，交易将自动关闭。</span>
+                                                        <span>温馨提示：对命理师的解析有任何疑问请继续追问，如果没有疑问请给予命理师评价。在<asp:Literal ID="Literal4" runat="server"></asp:Literal>内未评价或申诉，交易将自动关闭。</span>
                                                         <div class="pinjia_140218">
                                                             <ul>
-                                                                <li class="current">
-                                                                    <img src="WebResources/img/0218/pj1.gif" /></li>
-                                                                <li>
-                                                                    <img src="WebResources/img/0218/pj2.gif" /></li>
-                                                                <li>
-                                                                    <img src="WebResources/img/0218/pj3.gif" /></li>
+                                                                <li onclick="checkscore(this);">
+                                                                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/0218/pj1.gif" /></li>
+                                                                <li onclick="checkscore(this);">
+                                                                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/0218/pj2.gif" /></li>
+                                                                <li onclick="checkscore(this);">
+                                                                    <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/0218/pj3.gif" /></li>
                                                             </ul>
+                                                            <asp:HiddenField ID="HiddenField3" class="hiddentmp" Value="" runat="server" />
                                                         </div>
-                                                        <div style="float: right; padding-top: 8px">
+                                                        <div id="btn1" style="float: right; padding-top: 8px">
+                                                            <asp:LinkButton ID="LinkButton2" runat="server" OnClientClick="confirmcsore();" CommandArgument='<%#Eval("ordersysno")%>' CommandName="score">评价</asp:LinkButton>
                                                             <a href="#">申诉</a>
                                                             <a href="javascript:void(0);" onclick="showreply(this);" style="margin-right: 0px">追问</a>
                                                         </div>
@@ -291,12 +301,26 @@
     <script type="text/javascript">
         function showreply(input) {
             if (document.getElementById('<%=IsLogined.ClientID%>').value == 'TRUE') {
-                $(input).parent().parent().children(".index_new_ask_form").css("display", "");
+                if ($(input).html() == "回复") {
+                    $(input).parent().parent().children(".index_new_ask_form").css("display", "");
+                }
+                else if($(input).html() == "追问") {
+                    $(input).parent().parent().parent().children(".index_new_ask_form").css("display", "");
+                }
             }
             else {
                 document.getElementById('<%=LinkButton3.ClientID%>').click();
             }
         }
-
+        function checkscore(input) {
+            $(input).parent().children("li").removeClass("current");
+            $(input).addClass("current");
+            idx = $(input).parent().children("li").index(input);
+            $(input).parent().parent().children(".hiddentmp").value = idx;
+        }
+        function confirmcsore()
+        {
+            confirm("请确认您的问题已经完全得到解答，且命理师已履行了其服务承诺！");
+        }
     </script>
 </asp:Content>

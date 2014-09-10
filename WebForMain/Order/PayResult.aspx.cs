@@ -22,30 +22,42 @@ namespace WebForMain.Order
             {
                 try
                 {
-                    orderID = Request.QueryString["order"];
+                    orderID = Request.QueryString["orderID"];
                 }
                 catch
                 {
                     ShowError("");
                 }
             }
-            if (Request.QueryString["type"] != null)
-            {
-                try
-                {
-                    ordertype = int.Parse(Request.QueryString["type"]);
-                }
-                catch
-                {
-                    ShowError("");
-                }
-            }
+            //if (Request.QueryString["type"] != null)
+            //{
+            //    try
+            //    {
+            //        ordertype = int.Parse(Request.QueryString["type"]);
+            //    }
+            //    catch
+            //    {
+            //        ShowError("");
+            //    }
+            //}
 
-            if (orderID != "" && ordertype != 0)
+            if (orderID == "")
             {
-                SetPay();
+                ShowError("");
             }
-
+            else if (orderID.Contains("C"))
+            {
+                ordertype = 1;
+            }
+            else if (orderID.Contains("P"))
+            {
+                ordertype = 2;
+            }
+            else
+            {
+                ShowError("");
+            }
+            SetPay();
             ShowResult();
 
         }
@@ -59,6 +71,10 @@ namespace WebForMain.Order
             if (succ)
             {
                 ORD_CashMod m_mod = ORD_CashBll.GetInstance().GetModelByOrderID(orderID);
+                if (m_mod == null)
+                {
+                    ShowError("");//订单号错误
+                }
                 m_mod.CurrentID = "";//记录支付流水号
                 ORD_CashBll.GetInstance().SetPaySucc(m_mod);
             }

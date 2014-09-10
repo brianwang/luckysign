@@ -29,9 +29,9 @@ namespace AppDal.QA
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into QA_Order(");
-            strSql.Append("AnswerSysNo,QuestionSysNo,CustomerSysNo,Price,Status,TS,Words,Description,Score,Trial)");
+            strSql.Append("AnswerSysNo,QuestionSysNo,CustomerSysNo,Price,Status,TS,Words,Description,Score,Trial,ReplyTime)");
             strSql.Append(" values (");
-            strSql.Append("@AnswerSysNo,@QuestionSysNo,@CustomerSysNo,@Price,@Status,@TS,@Words,@Description,@Score,@Trial)");
+            strSql.Append("@AnswerSysNo,@QuestionSysNo,@CustomerSysNo,@Price,@Status,@TS,@Words,@Description,@Score,@Trial,@ReplyTime)");
             strSql.Append(";select @@IDENTITY");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -45,6 +45,7 @@ namespace AppDal.QA
                  new SqlParameter("@Description",SqlDbType.NVarChar,1000),
                  new SqlParameter("@Score",SqlDbType.Int,4),
                  new SqlParameter("@Trial",SqlDbType.NVarChar,1000),
+                 new SqlParameter("@ReplyTime",SqlDbType.DateTime),
              };
             if (model.AnswerSysNo != AppConst.IntNull)
                 parameters[0].Value = model.AnswerSysNo;
@@ -96,6 +97,11 @@ namespace AppDal.QA
             else
                 parameters[9].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[9]);
+            if (model.ReplyTime != AppConst.DateTimeNull)
+                parameters[10].Value = model.ReplyTime;
+            else
+                parameters[10].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[10]);
 
             return Convert.ToInt32(SqlHelper.ExecuteScalar(cmd, parameters));
         }
@@ -183,6 +189,13 @@ namespace AppDal.QA
                 param.Value = model.Trial;
                 cmd.Parameters.Add(param);
             }
+            if (model.ReplyTime != AppConst.DateTimeNull)
+            {
+                strSql.Append("ReplyTime=@ReplyTime,");
+                SqlParameter param = new SqlParameter("@ReplyTime", SqlDbType.DateTime);
+                param.Value = model.ReplyTime;
+                cmd.Parameters.Add(param);
+            }
             strSql.Remove(strSql.Length - 1, 1);
             strSql.Append(" where SysNo=@SysNo ");
             cmd.CommandText = strSql.ToString();
@@ -209,7 +222,7 @@ namespace AppDal.QA
         public QA_OrderMod GetModel(int SysNo)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select SysNo, AnswerSysNo, QuestionSysNo, CustomerSysNo, Price, Status, TS, Words, Description, Score, Trial from  dbo.QA_Order");
+            strSql.Append("select SysNo, AnswerSysNo, QuestionSysNo, CustomerSysNo, Price, Status, TS, Words, Description, Score, Trial, ReplyTime from  dbo.QA_Order");
             strSql.Append(" where SysNo=@SysNo ");
             SqlParameter[] parameters = { 
 		new SqlParameter("@SysNo", SqlDbType.Int,4 )
@@ -257,6 +270,10 @@ namespace AppDal.QA
                     model.Score = int.Parse(ds.Tables[0].Rows[0]["Score"].ToString());
                 }
                 model.Trial = ds.Tables[0].Rows[0]["Trial"].ToString();
+                if (ds.Tables[0].Rows[0]["ReplyTime"].ToString() != "")
+                {
+                    model.ReplyTime = DateTime.Parse(ds.Tables[0].Rows[0]["ReplyTime"].ToString());
+                }
                 return model;
             }
             else

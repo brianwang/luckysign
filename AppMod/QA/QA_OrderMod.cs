@@ -26,6 +26,7 @@ namespace AppMod.QA
         private string _Description;
         private int _Score;
         private string _Trial;
+        private DateTime _ReplyTime;
 
         [DataMember]
         public int SysNo
@@ -104,6 +105,13 @@ namespace AppMod.QA
             get { return _Trial; }
         }
 
+        [DataMember]
+        public DateTime ReplyTime
+        {
+            set { _ReplyTime = value; }
+            get { return _ReplyTime; }
+        }
+
 
         #endregion
 
@@ -120,6 +128,7 @@ namespace AppMod.QA
             Description = AppConst.StringNull;
             Score = AppConst.IntNull;
             Trial = AppConst.StringNull;
+            ReplyTime = AppConst.DateTimeNull;
 
         }
 

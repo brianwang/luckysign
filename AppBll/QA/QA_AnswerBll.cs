@@ -143,6 +143,7 @@ namespace AppBll.QA
                       ,QA_Order.status
                       ,QA_Order.SysNo as ordersysno
                       ,description
+                      ,replytime
                       ,score
                       ,trial
                       ,Words";

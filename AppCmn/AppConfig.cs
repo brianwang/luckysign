@@ -141,5 +141,16 @@ namespace AppCmn
                 get { return ConfigurationManager.AppSettings["MailUserPassword"]; }
             }
         #endregion
+
+        #region 支付接口
+            public static string AlipayPID
+            {
+                get { return ConfigurationManager.AppSettings["AlipayPID"]; }
+            }
+            public static string AlipayKey
+            {
+                get { return ConfigurationManager.AppSettings["AlipayKey"]; }
+            }
+        #endregion
     }
 }

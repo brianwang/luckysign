@@ -1,10 +1,11 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Master/Main.Master" AutoEventWireup="True"
-    CodeBehind="SetOrder.aspx.cs" Inherits="WebForMain.Quest.SetOrder" %>
+    CodeBehind="SetOrder.aspx.cs" Inherits="WebForMain.Quest.SetOrder" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/ControlLibrary/AstroForQuest.ascx" TagName="Astro" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/BaZiForQuest.ascx" TagName="Bazi" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/ZiWeiForQuest.ascx" TagName="Ziwei" TagPrefix="uc1" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>发布报价-上上签</title>
@@ -91,6 +92,12 @@
                         <div class="pay_140218_content">
                             可对咨询者之前的或Ta已知的事情进行描述以便其认可您的准确度。<br />
                             <asp:TextBox ID="txtTrial" TextMode="MultiLine" runat="server"></asp:TextBox>
+                        </div>
+                         <div class="pay_140218_t">占卜结果</div>
+
+                        <div class="pay_140218_content">
+                            请输入占卜结果<br />
+                            <FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="450px" Height="300px" />
                         </div>
                     </div>
 

@@ -189,6 +189,7 @@ namespace WebForMain.Quest
 
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            Login(Request.Url.ToString());
             if (e.CommandName == "Love")
             {
                 if (!CheckCommentCookies(int.Parse(e.CommandArgument.ToString())))
@@ -266,7 +267,6 @@ namespace WebForMain.Quest
             else if (e.CommandName == "buy")
             {
                 //生成订单
-                Login(Request.Url.ToString());
                 QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
                 ORD_CashMod m_mod = new ORD_CashMod();
                 m_mod.CustomerSysNo = GetSession().CustomerEntity.SysNo;
@@ -281,10 +281,28 @@ namespace WebForMain.Quest
                 m_mod.ProductType = (int)AppEnum.CashOrderType.consultpay; ;
                 m_mod.TS = DateTime.Now;
 
-                m_mod.OrderID = "C" + m_mod.ProductType.ToString("0") + m_mod.TS.ToString("yyyyMMdd") + m_mod.ProductSysNo;
-                ORD_CashBll.GetInstance().Add(m_mod);
+                m_mod.OrderID = "C" + m_mod.ProductType.ToString("0") + m_mod.TS.ToString("yyyyMMdd") + m_mod.ProductSysNo+CommonTools.ThrowRandom(0,99999).ToString("00000");
+                m_mod.SysNo = ORD_CashBll.GetInstance().Add(m_mod);
 
-                Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?orderID=" + m_mod.OrderID);
+                Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?order=" + m_mod.SysNo);
+            }
+            else if (e.CommandName == "score")
+            {
+                string score = ((HiddenField)e.Item.FindControl("HiddenField3")).Value;
+                if (score == "")
+                {
+                    ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "score", "alert('请先选择评价！');", true);
+                    return;
+                }
+                else
+                {
+                    QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(int.Parse(e.CommandArgument.ToString()));
+                    m_order.Score = int.Parse(score);
+                    m_order.Status = (int)AppEnum.ConsultOrderStatus.confirmed;
+                    QA_OrderBll.GetInstance().Update(m_order);
+                    ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "score", "alert('已评价成功！');", true);
+                    BindList();
+                }
             }
         }
 
@@ -555,6 +573,7 @@ namespace WebForMain.Quest
             {
                 if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)//求测者
                 {
+                    e.Item.FindControl("LinkButton5").Visible = false;
                     if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.beforepay).ToString())
                     {
                         e.Item.FindControl("buyicon").Visible = true;
@@ -562,11 +581,52 @@ namespace WebForMain.Quest
                     else if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.beforeconfirm).ToString())
                     {
                         e.Item.FindControl("confirmicon").Visible = true;
+                        DateTime replytime = DateTime.Parse(rowv["replytime"].ToString());
+                        if (replytime != AppConst.DateTimeNull)
+                        {
+                            TimeSpan m_span = replytime.AddHours(AppConst.ConsultConfirmTime) - DateTime.Now;
+                            string tmpstr = "";
+                            if (m_span.Days > 0)
+                            {
+                                tmpstr += m_span.Days + "天";
+                            }
+                            if (m_span.Days > 0)
+                            {
+                                tmpstr += m_span.Hours + "小时";
+                            }
+                            ((Literal)e.Item.FindControl("Literal4")).Text = tmpstr;
+                        }
+                    }
+                    else if(rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.payed).ToString())
+                    {
+                        e.Item.FindControl("buyedtip").Visible = true;
+                        DateTime paytime = ORD_CashBll.GetInstance().GetPayTimeByQAOrder(int.Parse(rowv["ordersysno"].ToString()));
+                        if (paytime != AppConst.DateTimeNull)
+                        {
+                            TimeSpan m_span = paytime.AddHours(AppConst.ConsultReplyTime) - DateTime.Now;
+                            string tmpstr = "";
+                            if (m_span.Days > 0)
+                            {
+                                tmpstr += m_span.Days + "天";
+                            }
+                            if (m_span.Days > 0)
+                            {
+                                tmpstr += m_span.Hours + "小时";
+                            }
+                            ((Literal)e.Item.FindControl("Literal3")).Text = tmpstr;
+                        }
+                        else
+                        {
+                            ShowError("");
+                        }
                     }
                 }
-                if (GetSession().CustomerEntity.SysNo == Convert.ToInt32(rowv["CustomerSysNo"]))//回复者
+                if (GetSession().CustomerEntity.SysNo == Convert.ToInt32(rowv["CustomerSysNo"]))//占卜师
                 {
-
+                    if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.payed).ToString())
+                    {
+                        e.Item.FindControl("replyicon").Visible = true;
+                    }
                 }
             }
             #endregion

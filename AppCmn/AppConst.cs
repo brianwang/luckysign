@@ -108,5 +108,8 @@ namespace AppCmn
         //发布话题奖励经验
         public const int TalkExp = 2;
         #endregion
+
+        public const double ConsultReplyTime = 48;//付费咨询支付后X小时内必须提交解答
+        public const double ConsultConfirmTime = 120;//付费咨询解答后X小时内必须确认支付
     }
 }

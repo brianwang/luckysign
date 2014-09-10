@@ -134,7 +134,7 @@ namespace AppBll.Order
             using (SQLData data = new SQLData())
             {
                 StringBuilder builder = new StringBuilder();
-                builder.Append(@"select SysNo from ORD_Cash where OrderID=").Append(OrderID);
+                builder.Append(@"select SysNo from ORD_Cash where OrderID='").Append(OrderID).Append("'");
                 try
                 {
                     int sysno = Convert.ToInt32(data.CmdtoDataTable(builder.ToString()).Rows[0][0]);
@@ -143,6 +143,31 @@ namespace AppBll.Order
                 catch (Exception exception)
                 {
                     return null;
+                }
+            }
+        }
+
+        public DateTime GetPayTimeByQAOrder(int ordersysno)
+        {
+            using (SQLData data = new SQLData())
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(@"select PayTime from ORD_Cash where producttype=").Append((int)AppEnum.CashOrderType.consultpay).Append(" and productsysno=").Append(ordersysno).Append(" and status=").Append((int)AppEnum.CashOrderStatus.succed);
+                try
+                {
+                    DataTable tmp = data.CmdtoDataTable(builder.ToString());
+                    if (tmp.Rows.Count > 0)
+                    {
+                        return DateTime.Parse(tmp.Rows[0]["PayTime"].ToString());
+                    }
+                    else
+                    {
+                        return AppConst.DateTimeNull;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    return AppConst.DateTimeNull;
                 }
             }
         }
@@ -161,7 +186,7 @@ namespace AppBll.Order
                 ORD_CashBll.GetInstance().Update(m_mod);
                 switch (m_mod.ProductType)
                 {
-                    case 1://咨询订单
+                    case (int)AppEnum.CashOrderType.consultpay://咨询订单
                         QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(m_mod.ProductSysNo);
                         m_order.Status = (int)AppEnum.ConsultOrderStatus.payed;
                         QA_OrderBll.GetInstance().Update(m_order);

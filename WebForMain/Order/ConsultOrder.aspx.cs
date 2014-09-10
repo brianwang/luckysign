@@ -33,6 +33,10 @@ namespace WebForMain.Order
                 ShowError("");
             }
             ORD_CashMod m_order = ORD_CashBll.GetInstance().GetModel(ordersysno);
+            if (m_order.CustomerSysNo != GetSession().CustomerEntity.SysNo)
+            {
+                ShowError("");//非当前用户的订单
+            }
             orderid = m_order.OrderID;
             price = m_order.PayAmount.ToString("￥0.00");
 
