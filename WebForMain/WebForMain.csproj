@@ -95,8 +95,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Order\ConsultOrder.aspx" />
-    <Content Include="Order\PayBack.aspx" />
-    <Content Include="Order\PayResult.aspx" />
+    <Content Include="Order\PayBackForAlipay.aspx" />
+    <Content Include="Order\PayResultForAlipay.aspx" />
     <Content Include="Order\PointOrder.aspx" />
     <Content Include="Passport\Agreement.aspx" />
     <Content Include="Passport\FindPass.aspx" />
@@ -632,19 +632,19 @@
     <Compile Include="Order\ConsultOrder.aspx.designer.cs">
       <DependentUpon>ConsultOrder.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\PayBack.aspx.cs">
-      <DependentUpon>PayBack.aspx</DependentUpon>
+    <Compile Include="Order\PayBackForAlipay.aspx.cs">
+      <DependentUpon>PayBackForAlipay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\PayBack.aspx.designer.cs">
-      <DependentUpon>PayBack.aspx</DependentUpon>
+    <Compile Include="Order\PayBackForAlipay.aspx.designer.cs">
+      <DependentUpon>PayBackForAlipay.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\PayResult.aspx.cs">
-      <DependentUpon>PayResult.aspx</DependentUpon>
+    <Compile Include="Order\PayResultForAlipay.aspx.cs">
+      <DependentUpon>PayResultForAlipay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\PayResult.aspx.designer.cs">
-      <DependentUpon>PayResult.aspx</DependentUpon>
+    <Compile Include="Order\PayResultForAlipay.aspx.designer.cs">
+      <DependentUpon>PayResultForAlipay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\PointOrder.aspx.cs">
       <DependentUpon>PointOrder.aspx</DependentUpon>

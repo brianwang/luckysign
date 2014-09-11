@@ -174,7 +174,7 @@
                                                                 <li onclick="checkscore(this);">
                                                                     <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>img/0218/pj3.gif" /></li>
                                                             </ul>
-                                                            <asp:HiddenField ID="HiddenField3" class="hiddentmp" Value="" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField3"  Value="pppp" runat="server" />
                                                         </div>
                                                         <div id="btn1" style="float: right; padding-top: 8px">
                                                             <asp:LinkButton ID="LinkButton2" runat="server" OnClientClick="confirmcsore();" CommandArgument='<%#Eval("ordersysno")%>' CommandName="score">评价</asp:LinkButton>
@@ -316,11 +316,11 @@
             $(input).parent().children("li").removeClass("current");
             $(input).addClass("current");
             idx = $(input).parent().children("li").index(input);
-            $(input).parent().parent().children(".hiddentmp").value = idx;
+            $(input).parent().parent().children("input").val(idx);
         }
         function confirmcsore()
         {
-            confirm("请确认您的问题已经完全得到解答，且命理师已履行了其服务承诺！");
+            if (confirm("请确认您的问题已经完全得到解答，且命理师已履行了其服务承诺！")) { return true; } else { return false; }
         }
     </script>
 </asp:Content>

@@ -151,6 +151,18 @@ namespace AppCmn
             {
                 get { return ConfigurationManager.AppSettings["AlipayKey"]; }
             }
+            public static string AlipayAccount
+            {
+                get { return ConfigurationManager.AppSettings["AlipayAccount"]; }
+            }
+            public static string AlipayPayResult
+            {
+                get { return ConfigurationManager.AppSettings["AlipayPayResult"]; }
+            }
+            public static string AlipayPayNotify
+            {
+                get { return ConfigurationManager.AppSettings["AlipayPayNotify"]; }
+            }
         #endregion
     }
 }

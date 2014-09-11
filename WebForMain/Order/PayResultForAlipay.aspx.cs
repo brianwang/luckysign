@@ -10,7 +10,7 @@ using AppCmn;
 
 namespace WebForMain.Order
 {
-    public partial class PayResult : PageBase
+    public partial class PayResultForAlipay : PageBase
     {
         private string orderID = "";
         private int ordertype = 0;
