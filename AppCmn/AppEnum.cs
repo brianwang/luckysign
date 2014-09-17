@@ -723,6 +723,9 @@ namespace AppCmn
             [EnumMember]
             [Description("已退款")]
             returned = 5,
+            [EnumMember]
+            [Description("待确认")]
+            confirming = 6,
         }
         public static SortedList GetCashOrderStatus()
         {

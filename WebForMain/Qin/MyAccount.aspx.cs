@@ -82,7 +82,7 @@ namespace WebForMain.Qin
                     Repeater1.DataBind();
                     break;
                 case 1:
-                    ltrPoint.Text = GetSession().CustomerEntity.Credit.ToString();
+                    ltrCash.Text = GetSession().CustomerEntity.Credit.ToString();
 
                     m_dt = ORD_CashBll.GetInstance().GetList(pagesize, pageindex, GetSession().CustomerEntity.SysNo, AppConst.IntNull, AppConst.IntNull, AppConst.IntNull, "", ref total);
                     m_dt.Columns.Add("content");
@@ -97,10 +97,10 @@ namespace WebForMain.Qin
                                 DataTable tmp_dt = QA_OrderBll.GetInstance().GetOrderDetail(int.Parse(m_dt.Rows[i]["productsysno"].ToString()));
                                 if (tmp_dt.Rows.Count > 0)
                                 {
-                                    m_dt.Rows[i]["content"] = CommonTools.CutStr(tmp_dt.Rows[0]["title"].ToString(), 10);
+                                    m_dt.Rows[i]["content"] = AppEnum.GetCashOrderType(int.Parse(m_dt.Rows[i]["producttype"].ToString()));
                                     if (m_dt.Rows[i]["producttype"].ToString() == ((int)AppEnum.CashOrderType.consultget).ToString())
                                         m_dt.Rows[i]["target"] = tmp_dt.Rows[0]["questuname"].ToString();
-                                    else if (m_dt.Rows[i]["producttype"].ToString() == ((int)AppEnum.CashOrderType.consultget).ToString())
+                                    else if (m_dt.Rows[i]["producttype"].ToString() == ((int)AppEnum.CashOrderType.consultpay).ToString())
                                         m_dt.Rows[i]["target"] = tmp_dt.Rows[0]["orderuname"].ToString();
                                 }
                             }

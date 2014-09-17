@@ -92,7 +92,7 @@ namespace AppBll.Order
             {
                 where += " and status=" + status;
             }
-            if (productsysno != 0)
+            if (productsysno != AppConst.IntNull)
             {
                 where += " and productsysno=" + productsysno;
             }
@@ -190,6 +190,9 @@ namespace AppBll.Order
                         QA_OrderMod m_order = QA_OrderBll.GetInstance().GetModel(m_mod.ProductSysNo);
                         m_order.Status = (int)AppEnum.ConsultOrderStatus.payed;
                         QA_OrderBll.GetInstance().Update(m_order);
+
+                        QA_OrderMod rec_order = new QA_OrderMod();
+                        rec_order.
                         break;
                 }
                 scope.Complete();

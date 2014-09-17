@@ -71,8 +71,8 @@
                                     <ItemTemplate>
                                         <tr>
                                             <td><%# Eval("OrderID")%></td>
-                                            <td><%# DateTime.Parse(Eval("PayTime").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%></td>
-                                            <td><%# Eval("content")%></td>
+                                            <td><%# Eval("PayTime")==null||Eval("PayTime").ToString()==""? "" : DateTime.Parse(Eval("PayTime").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%></td>
+                                            <td><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Consult/<%#Eval("productsysno")%>" target="_blank"><%# Eval("content")%></a></td>
                                             <td><%# Eval("target")%></td>
                                             <td>гд<%# Eval("PayAmount")%></td>
                                             <td><%# AppCmn.AppEnum.GetPointOrderStatus(int.Parse(Eval("status").ToString()))%></td>
