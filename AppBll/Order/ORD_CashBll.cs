@@ -191,8 +191,26 @@ namespace AppBll.Order
                         m_order.Status = (int)AppEnum.ConsultOrderStatus.payed;
                         QA_OrderBll.GetInstance().Update(m_order);
 
-                        QA_OrderMod rec_order = new QA_OrderMod();
-                        rec_order.
+                        //生成收款单
+                        if (m_mod.ProductType == (int)AppEnum.CashOrderType.consultpay)
+                        {
+                            ORD_CashMod rec_order = new ORD_CashMod();
+                            QA_OrderMod tmp_order = QA_OrderBll.GetInstance().GetModel(m_mod.ProductSysNo);
+                            rec_order.CustomerSysNo = tmp_order.CustomerSysNo;
+                            rec_order.CurrentID = "";
+                            rec_order.Discount = 1 - AppConst.ConsultDiscount;
+
+                            rec_order.PayAmount = m_mod.Price * rec_order.Discount;
+                            rec_order.PayType = m_mod.PayType;
+                            rec_order.Price = m_mod.Price;
+                            rec_order.ProductSysNo = m_mod.SysNo;
+                            rec_order.Status = (int)AppEnum.CashOrderStatus.confirming;
+                            rec_order.ProductType = (int)AppEnum.CashOrderType.consultget;
+                            rec_order.TS = DateTime.Now;
+
+                            rec_order.OrderID = "C" + m_mod.ProductType.ToString("0") + DateTime.Now.ToString("yyyyMMdd") + m_mod.ProductSysNo + CommonTools.ThrowRandom(0, 99999).ToString("00000");
+                            rec_order.SysNo = ORD_CashBll.GetInstance().Add(rec_order);
+                        }
                         break;
                 }
                 scope.Complete();

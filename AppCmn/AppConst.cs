@@ -64,6 +64,7 @@ namespace AppCmn
         public const string AstroDiceAricle = "AstroDiceAricle";
 
         public const string AllNewAnswer = "AllNewAnswer";
+        public const string AllNewConsult = "AllNewConsult";
         public const string AllNewTalk = "AllNewTalk";
 
         public const string APIRegionName = "APICache";

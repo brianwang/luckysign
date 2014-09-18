@@ -122,6 +122,7 @@
     <Content Include="Qin\UserInfo.aspx" />
     <Content Include="Qin\View.aspx" />
     <Content Include="Qin\MyAccount.aspx" />
+    <Content Include="Qin\MyComplain.aspx" />
     <Content Include="Quest\Index.aspx" />
     <Content Include="Quest\QuestList.aspx" />
     <Content Include="Quest\Question.aspx" />
@@ -838,6 +839,13 @@
     </Compile>
     <Compile Include="Qin\MyAccount.aspx.designer.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Qin\MyComplain.aspx.cs">
+      <DependentUpon>MyComplain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Qin\MyComplain.aspx.designer.cs">
+      <DependentUpon>MyComplain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Quest\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

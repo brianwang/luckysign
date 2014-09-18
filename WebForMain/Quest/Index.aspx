@@ -47,18 +47,14 @@
 
                 <div class="zjlm_ul2">
                     <ul>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
-                        <li><a href="#">不知道还能不能嫁出去了。救…(19) </a><span>0</span>/5单</li>
+                        <asp:Repeater ID="Repeater6" runat="server">
+                            <ItemTemplate>
+                                <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Consult/<%#Eval("SysNo")%>' target="_blank">
+                                    <%#Eval("Title")%> (<%#Eval("Title")%>) </a><span>0</span>/5单</li>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </ul>
-                    <div style="float:right;"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/ConsultList/17" target="_blank">更多...</a></div>
+                    <div style="float: right;"><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/ConsultList/17" target="_blank">更多...</a></div>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -134,7 +130,7 @@
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
@@ -148,9 +144,9 @@
     <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/jquery.pngFix.pack.js"></script>
     <script type="text/javascript" src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/new.js"></script>
     <script type="text/javascript">
-                        $(function () {
+        $(function () {
 
-                            $(".zjlm_r_c2 li:nth-child(5n)").append("");
-                        })
-                    </script>
+            $(".zjlm_r_c2 li:nth-child(5n)").append("");
+        })
+    </script>
 </asp:Content>
