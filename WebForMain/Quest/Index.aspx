@@ -50,7 +50,7 @@
                         <asp:Repeater ID="Repeater6" runat="server">
                             <ItemTemplate>
                                 <li><a href='<%=AppCmn.AppConfig.HomeUrl() %>Quest/Consult/<%#Eval("SysNo")%>' target="_blank">
-                                    <%#Eval("Title")%> (<%#Eval("Title")%>) </a><span>0</span>/5µ¥</li>
+                                    <%#Eval("Title")%> (<%#Eval("ReplyCount")%>) </a><span><%#Eval("BuyCount")%></span>/<%#Eval("OrderCount")%>µ¥</li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>

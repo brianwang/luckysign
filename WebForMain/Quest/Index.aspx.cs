@@ -20,6 +20,7 @@ namespace WebForMain.Quest
                 BindTalkCate();
                 BindNewQuest();
                 BindNewTalk();
+                BindNewConsult();
             }
         }
 
@@ -155,34 +156,14 @@ namespace WebForMain.Quest
             DataTable dt = new DataTable();
             if (HttpRuntime.Cache[AppConst.AllNewConsult] == null)
             {
-                dt = QA_QuestionBll.GetInstance().GetList(6, 1, "", 0, "replytimedown", ref total);
-                dt.Columns.Add("Answer");
-                dt.Columns.Add("AnswerUser");
-                dt.Columns.Add("CateName");
-                int tmptotal = 0;
-                DataTable tmpdt = QA_CategoryBll.GetInstance().GetAllCates();
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    DataTable tmpanswer = QA_AnswerBll.GetInstance().GetListByQuest(1, 1, int.Parse(dt.Rows[i]["SysNo"].ToString()), ref tmptotal);
-                    dt.Rows[i]["Answer"] = tmpanswer.Rows[0]["Context"].ToString();
-                    dt.Rows[i]["AnswerUser"] = tmpanswer.Rows[0]["NickName"].ToString();
-                    for (int j = 0; j < tmpdt.Rows.Count; j++)
-                    {
-                        if (dt.Rows[i]["CateSysNo"].ToString() == tmpdt.Rows[j]["SysNo"].ToString())
-                        {
-                            dt.Rows[i]["CateName"] = tmpdt.Rows[j]["Name"].ToString();
-                            break;
-                        }
-                    }
-                }
+                dt = QA_QuestionBll.GetInstance().GetList(6, 1, "", 17, "replytimedown", ref total);
                 HttpRuntime.Cache.Insert(AppConst.AllNewConsult, dt,
-                 null, DateTime.Now.AddMinutes(5), TimeSpan.Zero,
+                 null, DateTime.Now.AddMinutes(0), TimeSpan.Zero,
                  System.Web.Caching.CacheItemPriority.High, null);
             }
             dt = HttpRuntime.Cache[AppConst.AllNewConsult] as DataTable;
-            Repeater3.DataSource = dt;
-            Repeater3.DataBind();
+            Repeater6.DataSource = dt;
+            Repeater6.DataBind();
         }
 
         protected void BindNewTalk()
