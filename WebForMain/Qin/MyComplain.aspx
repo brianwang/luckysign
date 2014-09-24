@@ -3,9 +3,9 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/ControlLibrary/QinSearch.ascx" TagName="Search" TagPrefix="uc1" %>
-<%@ Register Src="~/ControlLibrary/ComboShow.ascx" TagName="ComboShow" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/Pagination.ascx" TagName="Pager" TagPrefix="uc1" %>
 <%@ Register Src="~/ControlLibrary/QinAccountRight.ascx" TagName="RightPannel" TagPrefix="uc1" %>
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>我的投诉-上上签</title>
@@ -19,52 +19,30 @@
         <div class="setting_box" style="margin-top: 0">
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
-                    <div class="account_yue"><a href="#">充值</a>灵签余额：<asp:Literal ID="ltrPoint" runat="server"></asp:Literal></div>
-                    <div class="clear"></div>
-                    <div class="account_table">
-                        <div class="account_table_t"><span>灵签账户收支记录</span></div>
-                        <div class="account_table_c">
-                            <table cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>交易单号</td>
-                                    <td>消费时间</td>
-                                    <td>内容</td>
-                                    <td>灵签数</td>
-                                    <td>交易状态</td>
-                                    <td>操作</td>
-                                </tr>
-                                <asp:Repeater ID="Repeater1" runat="server">
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td><%# Eval("OrderID")%></td>
-                                            <td><%# DateTime.Parse(Eval("TS").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%></td>
-                                            <td><%# Eval("content")%></td>
-                                            <td><%# Eval("point")%>灵签</td>
-                                            <td><%# AppCmn.AppEnum.GetPointOrderStatus(int.Parse(Eval("status").ToString()))%></td>
-                                            <td>——</td>
-                                        </tr>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-
-                            </table>
-                            <uc1:Pager ID="Pager1" runat="server"></uc1:Pager>
+                    <div class="index_left_new_list">
+                        <div class="pay_140218">
+                            <div class="pay_140218_t" style="margin-top: 10px">投诉申请</div>
+                            <div class="pay_140218_content">
+                                 报价单号：<span class="c"><samp><asp:Literal ID="Literal1" runat="server"></asp:Literal></samp></span><br />
+                                 问题名称：<span class="c"><samp><asp:Literal ID="Literal2" runat="server"></asp:Literal></samp></span><br />
+                                 回答者：<span class="c"><asp:Image ID="Image1" runat="server" /><br /> <samp><asp:Literal ID="Literal3" runat="server"></asp:Literal></samp></span><br />
+                                 投诉原因：<asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><br />
+                                 详情说明：<FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="360px" Height="200px" /><br />
+                            </div>
                         </div>
                     </div>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <div class="account_yue"><a href="#">提现</a>账户余额：<asp:Literal ID="ltrCash" runat="server"></asp:Literal></div>
-                    <div class="clear"></div>
                     <div class="account_table">
-                        <div class="account_table_t"><span>现金账户收支记录</span></div>
+                        <div class="account_table_t"><span>投诉记录</span></div>
                         <div class="account_table_c">
                             <table cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td>交易单号</td>
-                                    <td>交易时间</td>
-                                    <td>内容</td>
-                                    <td>对方</td>
-                                    <td>金额</td>
-                                    <td>交易状态</td>
+                                    <td>投诉编号</td>
+                                    <td>报价单号</td>
+                                    <td>被投诉方</td>
+                                    <td>投诉原因</td>
+                                    <td>状态</td>
                                     <td>操作</td>
                                 </tr>
                                 <asp:Repeater ID="Repeater2" runat="server">
@@ -74,7 +52,6 @@
                                             <td><%# Eval("PayTime")==null||Eval("PayTime").ToString()==""? "" : DateTime.Parse(Eval("PayTime").ToString()).ToString("yyyy-MM-dd HH:mm:ss")%></td>
                                             <td><a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/Consult/<%#Eval("productsysno")%>" target="_blank"><%# Eval("content")%></a></td>
                                             <td><%# Eval("target")%></td>
-                                            <td>￥<%# Eval("PayAmount")%></td>
                                             <td><%# AppCmn.AppEnum.GetPointOrderStatus(int.Parse(Eval("status").ToString()))%></td>
                                             <td>——</td>
                                         </tr>

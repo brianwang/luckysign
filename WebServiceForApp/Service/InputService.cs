@@ -176,15 +176,17 @@ namespace WebServiceForApp
                 input.aspectsShow.Add(5, 60);
             }
 
-            input.graphicID = AstroBiz.GetInstance().SetGraphicID(input);
+            //input.graphicID = AstroBiz.GetInstance().SetGraphicID(input);
             AstroBiz.GetInstance().GetParamters(ref input);
             if ((input.type == PublicValue.AstroType.hepan && input.compose == PublicValue.AstroZuhe.bijiao) || (input.type == PublicValue.AstroType.tuiyun && input.transit == PublicValue.AstroTuiyun.xingyun))
             {
-                AstroMod tmpinput = input;
-                tmpinput.birth = input.birth1;
-                tmpinput.position = input.position1;
-                tmpinput.IsDaylight = input.IsDaylight1;
-                tmpinput.zone = input.zone1;
+                AstroMod tmpinput = new AstroMod();
+                tmpinput.aspectsShow = input.aspectsShow;
+                tmpinput.startsShow = input.startsShow;
+                tmpinput.birth = input.birth;
+                tmpinput.position = input.position;
+                tmpinput.IsDaylight = input.IsDaylight;
+                tmpinput.zone = input.zone;
                 AstroBiz.GetInstance().GetParamters(ref tmpinput);
                 input.Stars1 = tmpinput.Stars;
             }

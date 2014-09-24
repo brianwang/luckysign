@@ -62,29 +62,9 @@ namespace WebForMain.Qin
             switch (tab)
             {
                 case 0:
-                    ltrPoint.Text = GetSession().CustomerEntity.Point.ToString();
-
-                    m_dt = ORD_PointBll.GetInstance().GetList(pagesize, pageindex, GetSession().CustomerEntity.SysNo, AppConst.IntNull, AppConst.IntNull, AppConst.IntNull, "", ref total);
-                    m_dt.Columns.Add("content");
-                    for (int i = 0; i < m_dt.Rows.Count; i++)
-                    {
-                        m_dt.Rows[i]["content"] = AppEnum.GetPointOrderType(int.Parse(m_dt.Rows[i]["type"].ToString()));
-                        if (m_dt.Rows[i]["type"].ToString() == ((int)AppEnum.PointOrderType.appconsume).ToString())
-                        {
-                            m_dt.Rows[i]["content"] += "应用-" + AppEnum.GetApps(int.Parse(m_dt.Rows[i]["productsysno"].ToString()));
-                        }
-                        else if (m_dt.Rows[i]["type"].ToString() == ((int)AppEnum.PointOrderType.questaward).ToString())
-                        {
-                            m_dt.Rows[i]["content"] = "悬赏-" + "<a href='" + AppConfig.HomeUrl() + "Quest/Question/" + m_dt.Rows[i]["productsysno"].ToString() + "' target='_blank'>" + CommonTools.CutStr(m_dt.Rows[i]["content"].ToString(), 10) + "</a>";
-                        }
-                    }
-                    Repeater1.DataSource = m_dt;
-                    Repeater1.DataBind();
-                    break;
+                    
                 case 1:
-                    ltrCash.Text = GetSession().CustomerEntity.Credit.ToString();
-
-                    m_dt = ORD_CashBll.GetInstance().GetList(pagesize, pageindex, GetSession().CustomerEntity.SysNo, AppConst.IntNull, AppConst.IntNull, AppConst.IntNull, "", ref total);
+                    m_dt = com ORD_CashBll.GetInstance().GetList(pagesize, pageindex, GetSession().CustomerEntity.SysNo, AppConst.IntNull, AppConst.IntNull, AppConst.IntNull, "", ref total);
                     m_dt.Columns.Add("content");
                     m_dt.Columns.Add("target");
                     for (int i = 0; i < m_dt.Rows.Count; i++)
