@@ -64,6 +64,7 @@
     <Compile Include="Fate\FATE_ChartDal.cs" />
     <Compile Include="Order\ORD_CashDal.cs" />
     <Compile Include="Order\ORD_PointDal.cs" />
+    <Compile Include="Order\ORD_ReturnCashDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\QA_AnswerDal.cs" />
     <Compile Include="QA\QA_CategoryDal.cs" />

@@ -68,6 +68,7 @@
     <Compile Include="Fate\FATE_ChartBll.cs" />
     <Compile Include="Order\ORD_CashBll.cs" />
     <Compile Include="Order\ORD_PointBll.cs" />
+    <Compile Include="Order\ORD_ReturnCashBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\QA_AnswerBll.cs" />
     <Compile Include="QA\QA_CategoryBll.cs" />

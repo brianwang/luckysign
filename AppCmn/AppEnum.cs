@@ -796,5 +796,68 @@ namespace AppCmn
             return GetDescription(typeof(CashOrderType), v);
         }
         #endregion
+
+        #region 现金退款单状态
+        [DataContract]
+        public enum CashReturnStatus
+        {
+            [EnumMember]
+            [Description("待确认")]
+            confirming = 1,
+            [EnumMember]
+            [Description("被拒绝")]
+            refused = 2,
+            [EnumMember]
+            [Description("待评估")]
+            judging = 3,
+            [EnumMember]
+            [Description("已取消")]
+            canceled = 4,
+            [EnumMember]
+            [Description("已退款")]
+            returned = 5,
+            [EnumMember]
+            [Description("被驳回")]
+            rejected = 6,
+        }
+        public static SortedList GetCashReturnStatus()
+        {
+            return GetStatus(typeof(CashReturnStatus));
+        }
+        public static string GetCashReturnStatus(object v)
+        {
+            return GetDescription(typeof(CashReturnStatus), v);
+        }
+        #endregion
+
+        #region 现金退款原因
+        [DataContract]
+        public enum CashReturnReason
+        {
+            [EnumMember]
+            [Description("充值")]
+            recharge = 1,
+            [EnumMember]
+            [Description("付费咨询获取")]
+            consultget = 2,
+            [EnumMember]
+            [Description("付费咨询支付")]
+            consultpay = 3,
+            [EnumMember]
+            [Description("系统奖励")]
+            systemadd = 4,
+            [EnumMember]
+            [Description("其他")]
+            other = 99,
+        }
+        public static SortedList GetCashReturnReason()
+        {
+            return GetStatus(typeof(CashReturnReason));
+        }
+        public static string GetCashReturnReason(object v)
+        {
+            return GetDescription(typeof(CashReturnReason), v);
+        }
+        #endregion
     }
 }

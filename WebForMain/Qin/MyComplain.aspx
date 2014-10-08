@@ -23,12 +23,21 @@
                         <div class="pay_140218">
                             <div class="pay_140218_t" style="margin-top: 10px">投诉申请</div>
                             <div class="pay_140218_content">
-                                 报价单号：<span class="c"><samp><asp:Literal ID="Literal1" runat="server"></asp:Literal></samp></span><br />
-                                 问题名称：<span class="c"><samp><asp:Literal ID="Literal2" runat="server"></asp:Literal></samp></span><br />
-                                 回答者：<span class="c"><asp:Image ID="Image1" runat="server" /><br /> <samp><asp:Literal ID="Literal3" runat="server"></asp:Literal></samp></span><br />
-                                 投诉原因：<asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><br />
-                                 详情说明：<FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="360px" Height="200px" /><br />
+                                报价单号：<span class="c"><samp><asp:Literal ID="Literal1" runat="server"></asp:Literal></samp></span><br />
+                                问题名称：<span class="c"><samp><asp:Literal ID="Literal2" runat="server"></asp:Literal></samp></span><br />
+                                回答者：<span class="c"><asp:Image ID="Image1" runat="server" /><br />
+                                    <samp>
+                                        <asp:Literal ID="Literal3" runat="server"></asp:Literal></samp></span><br />
+                                投诉原因：<asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList><span id="ReasonTip" runat="server"></span><br />
+                                退款金额：<asp:TextBox ID="TextBox1" Text="0" runat="server"></asp:TextBox><span id="AmountTip" runat="server">如需退款请输入金额</span><br />
+                                详情说明：<FTB:FreeTextBox ID="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="360px" Height="200px" />
+                                <br />
                             </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="pay_140218_btn">
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">提交</asp:LinkButton>
                         </div>
                     </div>
                 </asp:View>
@@ -59,7 +68,7 @@
                                 </asp:Repeater>
 
                             </table>
-                            <uc1:Pager ID="Pager2" runat="server"></uc1:Pager>
+                            <uc1:Pager ID="Pager1" runat="server"></uc1:Pager>
                         </div>
                     </div>
                 </asp:View>

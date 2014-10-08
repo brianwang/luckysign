@@ -112,6 +112,7 @@ namespace AppCmn
 
         public const double ConsultReplyTime = 48;//付费咨询支付后X小时内必须提交解答
         public const double ConsultConfirmTime = 120;//付费咨询解答后X小时内必须确认支付
+        public const double ReturnConfirmTime = 48;//退款提交后X小时内必须处理退款
 
         public const decimal ConsultDiscount = 0.15M;//付费咨询系统抽成比例
     }

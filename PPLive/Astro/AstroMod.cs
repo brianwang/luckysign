@@ -193,6 +193,10 @@ namespace PPLive.Astro
         {
             starname = (PublicValue.AstroStar)Enum.Parse(typeof(PublicValue.AstroStar), i.ToString());
         }
+        public Star()
+        {
+            
+        }
         #region 私有变量
         private PublicValue.AstroStar starname = new PublicValue.AstroStar();
         private int gong = 1;//所在宫号，第一宫为1
