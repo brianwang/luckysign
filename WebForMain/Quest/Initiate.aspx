@@ -21,8 +21,8 @@
                 <div class="index_left_new_list">
                     <div class="pay_140218">
                         <ul class="pay_140218_ul">
-                            <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="txtTitle" CssClass="pay_140218_input" runat="server"></asp:TextBox><br />
-                            </span><span id="TitleTip" runat="server">夺人眼球的标题，能吸引更多的命理师.</span><div class="clear"></div>
+                            <li><span class="t">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</span><span class="c"><asp:TextBox ID="txtTitle" CssClass="pay_140218_input" runat="server"></asp:TextBox>
+                            </span><br /><span id="TitleTip" runat="server">夺人眼球的标题，能吸引更多的命理师.</span><div class="clear"></div>
                             </li>
                         </ul>
 
