@@ -163,14 +163,14 @@ namespace WebServiceForApp
                 input.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
                 input.IsDaylight = AppEnum.BOOL.False;
                 input.zone = -8;
-                
+
                 input.birth1 = DateTime.Now.AddDays(-300);
                 input.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
                 input.IsDaylight1 = AppEnum.BOOL.False;
                 input.zone1 = -8;
                 input.type = PublicValue.AstroType.hepan;
                 input.compose = PublicValue.AstroZuhe.bijiao;
-
+            }
                 input.startsShow.Clear();
                 for (int i = 1; i <= 30; i++)
                 {
@@ -182,7 +182,7 @@ namespace WebServiceForApp
                 input.aspectsShow.Add(4, 120);
                 input.aspectsShow.Add(3, 90);
                 input.aspectsShow.Add(5, 60);
-            }
+            
 
             //input.graphicID = AstroBiz.GetInstance().SetGraphicID(input);
             AstroBiz.GetInstance().GetParamters(ref input);
