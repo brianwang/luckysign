@@ -60,13 +60,21 @@ namespace WebServiceForApp
         [Description("发布回复,/AddAnswer?CustomerSysNo={CustomerSysNo}&QuestionSysNo={QuestionSysNo}&Title={Title}&Context={Context}")]
         ReturnValue<USR_CustomerShow> AddAnswer(int CustomerSysNo, int QuestionSysNo, string Title, string Context);
 
+        [OperationContract, WebGet(UriTemplate = "/RemoveAnswer?AnswerSysNo={AnswerSysNo}")]
+        [Description("删除回复,/RemoveAnswer?AnswerSysNo={AnswerSysNo}")]
+        ReturnValue<bool> RemoveAnswer(int AnswerSysNo);
+
         [OperationContract, WebGet(UriTemplate = "/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
         [Description("设置悬赏,/SetAward?answersysno={answersysno}&score={score}&msg={msg}")]
         ReturnValue<QA_QuestionShow<AstroMod>> SetAward(int answersysno, int score, string msg);
 
         [OperationContract, WebGet(UriTemplate = "/AddComment?CustomerSysNo={CustomerSysNo}&AnswerSysNo={AnswerSysNo}&QuestionSysNo={QuestionSysNo}&Context={Context}")]
-        [Description("发布评论,/AddComment?sysno={sysno}")]
+        [Description("发布评论,/AddComment?CustomerSysNo={CustomerSysNo}&AnswerSysNo={AnswerSysNo}&QuestionSysNo={QuestionSysNo}&Context={Context}")]
         ReturnValue<USR_CustomerShow> AddComment(int AnswerSysNo, int CustomerSysNo, int QuestionSysNo, string Context);
+
+        [OperationContract, WebGet(UriTemplate = "/RemoveComment?CommentSysNo={CommentSysNo}")]
+        [Description("删除评论,/RemoveComment?CommentSysNo={CommentSysNo}")]
+        ReturnValue<bool> RemoveComment(int CommentSysNo);
 
         [OperationContract, WebGet(UriTemplate = "/GetCommentByAnswer?sysno={sysno}")]
         [Description("获取某回复的评论列表,/GetCommentByAnswer?sysno={sysno}")]

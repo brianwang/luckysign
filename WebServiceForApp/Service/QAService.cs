@@ -472,6 +472,37 @@ namespace WebServiceForApp
             return ReturnValue<USR_CustomerShow>.Get200OK(ret);
         }
 
+        public ReturnValue<bool> RemoveComment(int CommentSysNo)
+        {
+            QA_CommentMod m_comment = QA_CommentBll.GetInstance().GetModel(CommentSysNo);
+            if (m_comment != null)
+            {
+                m_comment.DR = (int)AppEnum.State.deleted;
+                QA_CommentBll.GetInstance().Update(m_comment);
+
+                return ReturnValue<bool>.Get200OK(true);
+            }
+            else
+            {
+                throw new BusinessException("该评论不存在！");
+            }
+        }
+        public ReturnValue<bool> RemoveAnswer(int AnswerSysNo)
+        {
+            QA_AnswerMod m_anser = QA_AnswerBll.GetInstance().GetModel(AnswerSysNo);
+            if (m_anser != null)
+            {
+                m_anser.DR = (int)AppEnum.State.deleted;
+                QA_AnswerBll.GetInstance().Update(m_anser);
+
+                return ReturnValue<bool>.Get200OK(false);
+            }
+            else
+            {
+                throw new BusinessException("该回复不存在！");
+            }
+        }
+
         public ReturnValue<QA_QuestionShow<AstroMod>> SetAward(int answersysno, int score, string msg)
         { 
             QA_AnswerMod m_anser = QA_AnswerBll.GetInstance().GetModel(answersysno);
