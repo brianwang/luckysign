@@ -168,7 +168,7 @@ namespace WebServiceForApp
                 input.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
                 input.IsDaylight1 = AppEnum.BOOL.False;
                 input.zone1 = -8;
-                input.type = PublicValue.AstroType.hepan;
+                input.type = PublicValue.AstroType.benming;
                 input.compose = PublicValue.AstroZuhe.bijiao;
             }
                 input.startsShow.Clear();

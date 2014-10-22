@@ -92,6 +92,8 @@
     <Content Include="ControlLibrary\ShowPhoto.aspx" />
     <Content Include="ControlLibrary\VerifyCode.aspx" />
     <Content Include="ControlLibrary\ArticleRightPanel.ascx" />
+    <Content Include="Course\Detail.aspx" />
+    <Content Include="Course\Index.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Order\ConsultOrder.aspx" />
@@ -623,6 +625,20 @@
     </Compile>
     <Compile Include="ControlLibrary\ArticleRightPanel.ascx.designer.cs">
       <DependentUpon>ArticleRightPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Course\Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Course\Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Course\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Course\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
