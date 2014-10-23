@@ -64,6 +64,7 @@
     <Compile Include="CMS\SYS_ArticleBll.cs" />
     <Compile Include="CMS\SYS_ArticleContentBll.cs" />
     <Compile Include="CMS\CMS_CategoryBll.cs" />
+    <Compile Include="Course\COZ_CourseBll.cs" />
     <Compile Include="Fate\FATE_AstroBll.cs" />
     <Compile Include="Fate\FATE_ChartBll.cs" />
     <Compile Include="Order\ORD_CashBll.cs" />

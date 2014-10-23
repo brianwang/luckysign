@@ -133,6 +133,11 @@ namespace PPLive
             }
             catch { }
         }
+
+        private void SetLatLng()
+        {
+ 
+        }
         
         #region 私有变量
         private decimal _latitude = 0m;//维度
@@ -148,13 +153,39 @@ namespace PPLive
         [DataMember]
         public decimal latitude
         {
-            get { return _latitude; }
+            get {
+                if (_latitude == 0m&&_Lat!="") 
+                {
+                    if (_Lat.Contains("S"))
+                    {
+                        _latitude = 0 - decimal.Parse(_Lat.Replace("S", "."));
+                    }
+                    else if (_Lat.Contains("N"))
+                    {
+                        _latitude = decimal.Parse(_Lat.Replace("N", "."));
+                    }
+                }
+                return _latitude;
+            }
             set { _latitude = value; }
         }
         [DataMember]
         public decimal longitude
         {
-            get { return _longitude; }
+            get {
+                if (_longitude == 0m && _Lng != "")
+                {
+                    if (_Lng.Contains("W"))
+                    {
+                        _longitude = 0 - decimal.Parse(_Lng.Replace("W", "."));
+                    }
+                    else if (_Lng.Contains("E"))
+                    {
+                        _longitude = decimal.Parse(_Lng.Replace("E", "."));
+                    }
+                } 
+                return _longitude;
+            }
             set { _longitude = value; }
         }
         [DataMember]
@@ -166,13 +197,39 @@ namespace PPLive
         [DataMember]
         public string Lat
         {
-            get { return _Lat; }
+            get {
+                if (_Lat == "" && _latitude != 0m)
+                {
+                    if (_latitude < 0)
+                    {
+                        _Lat = (0 - _latitude).ToString("0.00").Replace(".", "S");
+                    }
+                    else
+                    {
+                        _Lat = _latitude.ToString("0.00").Replace(".", "N");
+                    }
+                }
+                return _Lat;
+            }
             set { _Lat = value; }
         }
         [DataMember]
         public string Lng
         {
-            get { return _Lng; }
+            get {
+                if (_Lng == "" && _longitude != 0m)
+                {
+                    if (_longitude < 0)
+                    {
+                        _Lng = (0 - _longitude).ToString("0.00").Replace(".", "W");
+                    }
+                    else
+                    {
+                        _Lng = _longitude.ToString("0.00").Replace(".", "E");
+                    }
+                }
+                return _Lng;
+            }
             set { _Lng = value; }
         }
         [DataMember]

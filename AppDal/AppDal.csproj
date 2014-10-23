@@ -60,6 +60,7 @@
     <Compile Include="CMS\SYS_ArticleContentDal.cs" />
     <Compile Include="CMS\SYS_ArticleDal.cs" />
     <Compile Include="CMS\CMS_CategoryDal.cs" />
+    <Compile Include="Course\COZ_CourseDal.cs" />
     <Compile Include="Fate\FATE_AstroDal.cs" />
     <Compile Include="Fate\FATE_ChartDal.cs" />
     <Compile Include="Order\ORD_CashDal.cs" />

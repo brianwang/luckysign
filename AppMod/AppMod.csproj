@@ -67,6 +67,7 @@
     <Compile Include="CMS\SYS_ArticleContentMod.cs" />
     <Compile Include="CMS\SYS_ArticleMod.cs" />
     <Compile Include="CMS\CMS_CategoryMod.cs" />
+    <Compile Include="Course\COZ_CourseMod.cs" />
     <Compile Include="Fate\FATE_AstroMod.cs" />
     <Compile Include="Order\ORD_CashMod.cs" />
     <Compile Include="Order\ORD_PointMod.cs" />
