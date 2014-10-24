@@ -265,7 +265,33 @@ namespace WebServiceForApp
                 tmpastro.aspectsShow.Add(3, 90);
                 tmpastro.aspectsShow.Add(5, 60);
                 tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
-                AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                if ((tmpastro.type == PublicValue.AstroType.hepan && tmpastro.compose == PublicValue.AstroZuhe.bijiao) || (tmpastro.type == PublicValue.AstroType.tuiyun && tmpastro.transit == PublicValue.AstroTuiyun.xingyun))
+                {
+                    AstroMod tmpinput = new AstroMod();
+                    tmpinput.aspectsShow = tmpastro.aspectsShow;
+                    tmpinput.startsShow = tmpastro.startsShow;
+                    tmpinput.birth = tmpastro.birth;
+                    tmpinput.position = tmpastro.position;
+                    tmpinput.IsDaylight = tmpastro.IsDaylight;
+                    tmpinput.zone = tmpastro.zone;
+                    AstroBiz.GetInstance().GetParamters(ref tmpinput);
+                    tmpastro.Stars = tmpinput.Stars;
+
+                    tmpinput = new AstroMod();
+                    tmpinput.aspectsShow = tmpastro.aspectsShow;
+                    tmpinput.startsShow = tmpastro.startsShow;
+                    tmpinput.birth = tmpastro.birth1;
+                    tmpinput.position = tmpastro.position1;
+                    tmpinput.IsDaylight = tmpastro.IsDaylight1;
+                    tmpinput.zone = tmpastro.zone1;
+                    AstroBiz.GetInstance().GetParamters(ref tmpinput);
+                    tmpastro.Stars1 = tmpinput.Stars;
+                }
+                else
+                {
+                    AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                    tmpastro.Stars1 = null;
+                }
                 ret.Chart.Add(tmpastro);
             }
             #endregion
@@ -633,7 +659,33 @@ namespace WebServiceForApp
                 tmpastro.aspectsShow.Add(3, 90);
                 tmpastro.aspectsShow.Add(5, 60);
                 tmpastro.graphicID = AstroBiz.GetInstance().SetGraphicID(tmpastro);
-                AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                if ((tmpastro.type == PublicValue.AstroType.hepan && tmpastro.compose == PublicValue.AstroZuhe.bijiao) || (tmpastro.type == PublicValue.AstroType.tuiyun && tmpastro.transit == PublicValue.AstroTuiyun.xingyun))
+                {
+                    AstroMod tmpinput = new AstroMod();
+                    tmpinput.aspectsShow = tmpastro.aspectsShow;
+                    tmpinput.startsShow = tmpastro.startsShow;
+                    tmpinput.birth = tmpastro.birth;
+                    tmpinput.position = tmpastro.position;
+                    tmpinput.IsDaylight = tmpastro.IsDaylight;
+                    tmpinput.zone = tmpastro.zone;
+                    AstroBiz.GetInstance().GetParamters(ref tmpinput);
+                    tmpastro.Stars = tmpinput.Stars;
+
+                    tmpinput = new AstroMod();
+                    tmpinput.aspectsShow = tmpastro.aspectsShow;
+                    tmpinput.startsShow = tmpastro.startsShow;
+                    tmpinput.birth = tmpastro.birth1;
+                    tmpinput.position = tmpastro.position1;
+                    tmpinput.IsDaylight = tmpastro.IsDaylight1;
+                    tmpinput.zone = tmpastro.zone1;
+                    AstroBiz.GetInstance().GetParamters(ref tmpinput);
+                    tmpastro.Stars1 = tmpinput.Stars;
+                }
+                else
+                {
+                    AstroBiz.GetInstance().GetParamters(ref tmpastro);
+                    tmpastro.Stars1 = null;
+                }
                 ret.Chart.Add(tmpastro);
             }
             #endregion
