@@ -24,6 +24,10 @@ namespace WebServiceForApp
         [Description("登录,/login?uname={username}&pwd={password}")]
         ReturnValue<USR_CustomerMaintain> UserLogin(string username, string password);
 
+        [OperationContract, WebGet(UriTemplate = "/GetUserInfo?uid={uid}")]
+        [Description("获取用户信息,/GetUserInfo?uid={uid}")]
+        ReturnValue<USR_CustomerMaintain> GetUserInfo(int uid);
+
         [OperationContract, WebGet(UriTemplate = "/CheckUser?uname={username}")]
         [Description("验证用户名,/CheckUser?uname={username}")]
         ReturnValue<bool> CheckUser(string username);

@@ -430,6 +430,11 @@ namespace WebForMain.Quest
             DataTable tmpdt = QA_AnswerBll.GetInstance().GetSimpleListByQuest(SysNo);
             tmpdt.Columns.Add("isorder");
             #region 绑定报价列表
+            if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)
+            {
+                myprice.Visible = false;
+            }
+
             DataTable m_dt1 = QA_OrderBll.GetInstance().GetListByQuest(SysNo);
             m_dt1.Columns.Add("color");
             m_dt1.Columns.Add("floor");
@@ -450,6 +455,12 @@ namespace WebForMain.Quest
                         m_dt1.Rows[i]["color"] = "#f00";
                         break;
                 }
+                //若已有报价单且未购买则不允许发布第二个价单
+                if (m_dt1.Rows[i]["CustomerSysNo"].ToString() == GetSession().CustomerEntity.SysNo.ToString() && int.Parse(m_dt1.Rows[i]["status"].ToString()) == 1)
+                {
+                    myprice.Visible = false;
+                }
+                #region 设置锚点
                 for (int j = 0; j < tmpdt.Rows.Count; j++)
                 {
                     if (tmpdt.Rows[j]["SysNo"].ToString() == m_dt1.Rows[i]["answersysno"].ToString())
@@ -467,6 +478,7 @@ namespace WebForMain.Quest
                         break;
                     }
                 }
+                #endregion
             }
 
             Repeater2.DataSource = m_dt1;
@@ -573,7 +585,7 @@ namespace WebForMain.Quest
             {
                 if (GetSession().CustomerEntity.SysNo == m_qustion.CustomerSysNo)//求测者
                 {
-                    e.Item.FindControl("LinkButton5").Visible = false;
+                    e.Item.FindControl("LinkButton5").Visible = false;//报价单无法删除
                     if (rowv["status"].ToString() == ((int)AppEnum.ConsultOrderStatus.beforepay).ToString())
                     {
                         e.Item.FindControl("buyicon").Visible = true;

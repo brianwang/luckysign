@@ -87,7 +87,7 @@
                                                 </li>
                                             </ItemTemplate>
                                         </asp:Repeater>
-                                        <li>
+                                        <li id="myprice" runat="server">
                                             <a href="<%=AppCmn.AppConfig.HomeUrl() %>Quest/SetOrder.aspx?id=<%=SysNo %> ">
                                                 <img src="<%=AppCmn.AppConfig.WebResourcesPath() %>" width="70" height="70" />
                                                 <span class="price">我要报价</span>

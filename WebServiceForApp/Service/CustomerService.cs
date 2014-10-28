@@ -44,6 +44,21 @@ namespace WebServiceForApp
             }
         }
 
+        public ReturnValue<USR_CustomerMaintain> GetUserInfo(int uid)
+        {
+            USR_CustomerMod m_user = USR_CustomerBll.GetInstance().GetModel(uid);
+            if (m_user.SysNo != -999999)
+            {
+                USR_CustomerMaintain ret = new USR_CustomerMaintain();
+                m_user.MemberwiseCopy(ret);
+                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+            }
+            else
+            {
+                throw new BusinessException("用户ID错误，请重新输入！");
+            }
+        }
+
         public ReturnValue<bool> CheckUser(string username)
         {
             if (string.IsNullOrEmpty(username))
