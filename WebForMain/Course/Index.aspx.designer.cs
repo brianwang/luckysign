@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebForMain.Quest {
+namespace WebForMain.Course {
     
     
     public partial class Index {

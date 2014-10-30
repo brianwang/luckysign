@@ -14,7 +14,7 @@ using AppBll.User;
 using System.Text;
 using System.Data;
 
-namespace WebForMain.Celebrity
+namespace WebForMain.Course
 {
     public partial class Detail : PageBase
     {

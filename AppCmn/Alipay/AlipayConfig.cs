@@ -27,6 +27,7 @@ namespace Com.Alipay
         #region 字段
         private static string partner = "";
         private static string key = "";
+        private static string account = "";
         private static string input_charset = "";
         private static string sign_type = "";
         #endregion
@@ -36,14 +37,14 @@ namespace Com.Alipay
             //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
             //合作身份者ID，以2088开头由16位纯数字组成的字符串
-            partner = AppCmn.AppConfig.AlipayPID;
+            partner = "2088411594405984";
 
             //交易安全检验码，由数字和字母组成的32位字符串
-            key = AppCmn.AppConfig.AlipayKey;
+            key = "sdb2bc8pn6mjbv8kwcvzw26fx6xii21y";
 
             //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-
+            account = "zfb@ssqian.com";
 
             //字符编码格式 目前支持 gbk 或 utf-8
             input_charset = "utf-8";
@@ -69,6 +70,15 @@ namespace Com.Alipay
         {
             get { return key; }
             set { key = value; }
+        }
+
+        /// <summary>
+        /// 获取或设交易账号
+        /// </summary>
+        public static string Account
+        {
+            get { return account; }
+            set { account = value; }
         }
 
         /// <summary>

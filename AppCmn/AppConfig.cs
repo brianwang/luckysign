@@ -142,27 +142,27 @@ namespace AppCmn
             }
         #endregion
 
-        #region 支付接口
-            public static string AlipayPID
-            {
-                get { return ConfigurationManager.AppSettings["AlipayPID"]; }
-            }
-            public static string AlipayKey
-            {
-                get { return ConfigurationManager.AppSettings["AlipayKey"]; }
-            }
-            public static string AlipayAccount
-            {
-                get { return ConfigurationManager.AppSettings["AlipayAccount"]; }
-            }
-            public static string AlipayPayResult
-            {
-                get { return ConfigurationManager.AppSettings["AlipayPayResult"]; }
-            }
-            public static string AlipayPayNotify
-            {
-                get { return ConfigurationManager.AppSettings["AlipayPayNotify"]; }
-            }
-        #endregion
+        //#region 支付接口
+        //    public static string AlipayPID
+        //    {
+        //        get { return ConfigurationManager.AppSettings["AlipayPID"]; }
+        //    }
+        //    public static string AlipayKey
+        //    {
+        //        get { return ConfigurationManager.AppSettings["AlipayKey"]; }
+        //    }
+        //    public static string AlipayAccount
+        //    {
+        //        get { return ConfigurationManager.AppSettings["AlipayAccount"]; }
+        //    }
+        //    public static string AlipayPayResult
+        //    {
+        //        get { return ConfigurationManager.AppSettings["AlipayPayResult"]; }
+        //    }
+        //    public static string AlipayPayNotify
+        //    {
+        //        get { return ConfigurationManager.AppSettings["AlipayPayNotify"]; }
+        //    }
+        //#endregion
     }
 }

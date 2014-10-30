@@ -211,6 +211,11 @@ namespace AppBll.Order
                             rec_order.OrderID = "C" + m_mod.ProductType.ToString("0") + DateTime.Now.ToString("yyyyMMdd") + m_mod.ProductSysNo + CommonTools.ThrowRandom(0, 99999).ToString("00000");
                             rec_order.SysNo = ORD_CashBll.GetInstance().Add(rec_order);
                         }
+                        //修改咨询购买数
+                        QA_QuestionMod m_quest = new QA_QuestionMod();
+                        m_quest = QA_QuestionBll.GetInstance().GetModel(m_order.QuestionSysNo);
+                        m_quest.BuyCount++;
+                        QA_QuestionBll.GetInstance().Update(m_quest);
                         break;
                 }
                 scope.Complete();

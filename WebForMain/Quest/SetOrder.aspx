@@ -75,7 +75,7 @@
                         <div class="pay_140218_t" style="margin-top: 10px">报价信息</div>
 
                         <ul class="pay_140218_ul">
-                            <li><span class="t">占卜结果最少字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><span id="wordstip" runat="server"></span><div class="clear"></div>
+                            <li><span class="t">承诺字数：</span><span class="c"><asp:TextBox ID="TextBox2" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><span id="wordstip" runat="server"></span><div class="clear"></div>
                             </li>
                             <li><span class="t">我的报价：</span><span class="c"><asp:TextBox ID="TextBox3" CssClass="pay_140218_input" runat="server"></asp:TextBox></span><span id="pricetip" runat="server"></span><div class="clear"></div>
                             </li>
@@ -93,9 +93,9 @@
                             可对咨询者之前的或Ta已知的事情进行描述以便其认可您的准确度。<br />
                             <asp:TextBox ID="txtTrial" TextMode="MultiLine" runat="server"></asp:TextBox>
                         </div>
-                         <div class="pay_140218_t">占卜结果</div>
+                         <div id="resulttitle" runat="server" class="pay_140218_t">占卜结果</div>
 
-                        <div class="pay_140218_content">
+                        <div id="resultcontent" runat="server" class="pay_140218_content">
                             请输入占卜结果<br />
                             <FTB:FreeTextBox id="txtContext" runat="Server" EnableHtmlMode="false" EnableToolbars="false" DesignModeCss="tarea" Width="450px" Height="300px" />
                         </div>

@@ -167,6 +167,13 @@ namespace WebForMain.Quest
                     txtDescription.ReadOnly = true;
                     txtTrial.Text = old_order.Trial;
                     txtTrial.ReadOnly = true;
+
+                }
+                else
+                {
+                    //发布报价单时隐藏结果输入框
+                    resulttitle.Visible = false;
+                    resultcontent.Visible = false;
                 }
                 #endregion
             }

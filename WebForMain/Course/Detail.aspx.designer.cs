@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebForMain.Celebrity {
+namespace WebForMain.Course {
     
     
     public partial class Detail {

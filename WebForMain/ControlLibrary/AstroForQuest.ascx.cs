@@ -105,11 +105,12 @@ namespace WebForMain.ControlLibrary
 
                     if (_input != null)
                     {
-                        InitialChart();
+                        InitialChart();//用于系统中命盘展示
+                        LinkButton8.Visible = false;
                     }
                     else if (_m_astro != null)
                     {
-                        InitialFate();
+                        InitialFate();//用于排盘
                     }
                     else
                     { return; }

@@ -184,6 +184,24 @@ namespace WebForMain.Quest {
         protected global::System.Web.UI.WebControls.TextBox txtTrial;
         
         /// <summary>
+        /// resulttitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl resulttitle;
+        
+        /// <summary>
+        /// resultcontent 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl resultcontent;
+        
+        /// <summary>
         /// txtContext 控件。
         /// </summary>
         /// <remarks>

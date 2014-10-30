@@ -10,6 +10,6 @@
 namespace WebForMain.Order {
     
     
-    public partial class PayBackForAlipay {
+    public partial class PayNotifyForAlipay {
     }
 }

@@ -10,7 +10,7 @@
 namespace WebForMain.Order {
     
     
-    public partial class PayResultForAlipay {
+    public partial class PayReturnForAlipay {
         
         /// <summary>
         /// Literal1 控件。
