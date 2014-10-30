@@ -283,7 +283,7 @@ namespace WebForMain.Quest
 
                 m_mod.OrderID = "C" + m_mod.ProductType.ToString("0") + m_mod.TS.ToString("yyyyMMdd") + m_mod.ProductSysNo+CommonTools.ThrowRandom(0,99999).ToString("00000");
                 m_mod.SysNo = ORD_CashBll.GetInstance().Add(m_mod);
-                m_qustion.BuyCount++;
+                //m_qustion.BuyCount++;//支付成功后修改订单购买数
                 QA_QuestionBll.GetInstance().Update(m_qustion);
 
                 Response.Redirect(AppConfig.HomeUrl() + "Order/ConsultOrder.aspx?order=" + m_mod.SysNo);
