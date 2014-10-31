@@ -417,7 +417,7 @@ namespace WebServiceForApp
                     }
                     tmp_answer.TopComments = commentlist;
                     tmp_answer.ToalComment = tmp_dt.Rows.Count;
-                    if (m_dt.Rows.Count > 3)
+                    if (tmp_dt.Rows.Count > 3)
                     {
                         tmp_answer.HasMoreComment = true;
                     }
@@ -921,6 +921,7 @@ namespace WebServiceForApp
         public QA_AnswerShow MapQA_AnswerShow(DataRow input)
         {
             QA_AnswerShow ret = new QA_AnswerShow();
+
             if (input["Award"].ToString() != "")
             {
                 ret.Award = int.Parse(input["Award"].ToString());
@@ -961,6 +962,9 @@ namespace WebServiceForApp
         public QA_CommentShow MapQA_CommentShow(DataRow input)
         {
             QA_CommentShow ret = new QA_CommentShow();
+            USR_CustomerMaintain tmpuu = new USR_CustomerMaintain();
+            USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString())).MemberwiseCopy(tmpuu);
+            ret.Customer = tmpuu;
             if (input["AnswerSysNo"].ToString() != "")
             {
                 ret.AnswerSysNo = int.Parse(input["AnswerSysNo"].ToString());
