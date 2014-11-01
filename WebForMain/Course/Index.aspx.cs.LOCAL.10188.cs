@@ -14,14 +14,14 @@ namespace WebForMain.Course
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    BindFreeCate();
-            //    BindTalkCate();
-            //    BindNewQuest();
-            //    BindNewTalk();
-            //    BindNewConsult();
-            //}
+            if (!IsPostBack)
+            {
+                //BindFreeCate();
+                //BindTalkCate();
+                //BindNewQuest();
+                //BindNewTalk();
+                //BindNewConsult();
+            }
         }
 
 

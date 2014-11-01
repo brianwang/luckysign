@@ -455,10 +455,12 @@ namespace PPLive.BaZi
             ret.HourDZ = HourDZ(hour);
 
             int montemp = CheckMon(ret.BirthTime);
-            ret.MonthTG= MonthTG(year, montemp);
+            int yeartemp = CheckYear(ret.BirthTime);
+
+            ret.MonthTG = MonthTG(yeartemp, montemp);
             ret.MonthDZ = MonthDZ(montemp);
 
-            int yeartemp = CheckYear(ret.BirthTime);
+            
             ret.YearTG = YearTG(yeartemp);
             ret.YearDZ = YearDZ(yeartemp);
             XunKongDay(ref ret);

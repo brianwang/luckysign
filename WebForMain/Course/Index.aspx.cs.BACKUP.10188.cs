@@ -14,6 +14,16 @@ namespace WebForMain.Course
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
+            if (!IsPostBack)
+            {
+                //BindFreeCate();
+                //BindTalkCate();
+                //BindNewQuest();
+                //BindNewTalk();
+                //BindNewConsult();
+            }
+=======
             //if (!IsPostBack)
             //{
             //    BindFreeCate();
@@ -22,6 +32,7 @@ namespace WebForMain.Course
             //    BindNewTalk();
             //    BindNewConsult();
             //}
+>>>>>>> Stashed changes
         }
 
 
