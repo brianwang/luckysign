@@ -40,6 +40,14 @@ namespace WebServiceForApp
         [Description("获取问题列表（紫薇）,/GetQuestionListForZiWei?pagesize={pagesize}&pageindex={pageindex}&key={key}&cate={cate}&orderby={orderby}")]
         ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>> GetQuestionListForZiWei(int pagesize, int pageindex, string key, int cate, string orderby);
 
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionListByUserAnswer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
+        [Description("获取用户所回复的问题列表,/GetQuestionListByUserAnswer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
+        ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby);
+
+        [OperationContract, WebGet(UriTemplate = "/GetQuestionListByUserAsk?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
+        [Description("获取用户所发布的问题列表,/GetQuestionListByUserAsk?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
+        ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAsk(int pagesize, int pageindex, int customersysno, int cate, string orderby);
+
         [OperationContract, WebGet(UriTemplate = "/GetQuestionForAstro?sysno={sysno}")]
         [Description("获取问题详情(占星),/GetQuestionForAstro?sysno={sysno}")]
         ReturnValue<QA_QuestionShow<AstroMod>> GetQuestionForAstro(int sysno);

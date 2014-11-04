@@ -103,6 +103,31 @@ namespace WebServiceForApp
             }
         }
 
+        public ReturnValue<bool> UpdateUserInfo(int uid, int gender, int fatetype, string intro)
+        {
+            if (gender > 1 || gender < 0)
+            {
+                throw new BusinessException("性别错误");
+            }
+            if (fatetype > 2 || gender < 0)
+            {
+                throw new BusinessException("排盘类型错误");
+            }
+            USR_CustomerMod m_user = USR_CustomerBll.GetInstance().GetModel(uid);
+            if (m_user.SysNo == -999999)
+            {
+                throw new BusinessException("该用户不存在");
+            }
+            else
+            {
+                m_user.Gender = gender;
+                m_user.FateType = fatetype;
+                m_user.Intro = AppCmn.CommonTools.StringFilter(intro);
+                USR_CustomerBll.GetInstance().Update(m_user);
+                return ReturnValue<bool>.Get200OK(true);
+            }
+        }
+
         public ReturnValue<bool> CheckPhone(string phone)
         {
             if (string.IsNullOrEmpty(phone))
@@ -758,6 +783,32 @@ namespace WebServiceForApp
             {
                 ret.TotalTalkReply = int.Parse(input["TotalTalkReply"].ToString());
             }
+                ret.Phone = input["Phone"].ToString();
+            if (input["SetOrderCount"].ToString() != "")
+            {
+                ret.SetOrderCount = int.Parse(input["SetOrderCount"].ToString());
+            }
+            if (input["BuyOrderCount"].ToString() != "")
+            {
+                ret.BuyOrderCount = int.Parse(input["BuyOrderCount"].ToString());
+            }
+             if (input["SellOrderCount"].ToString() != "")
+            {
+                ret.SellOrderCount = int.Parse(input["SellOrderCount"].ToString());
+            }
+             if (input["TotalSellRMB"].ToString() != "")
+            {
+                ret.TotalSellRMB = int.Parse(input["TotalSellRMB"].ToString());
+            }
+             if (input["TotalBuyRMB"].ToString() != "")
+            {
+                ret.TotalBuyRMB = int.Parse(input["TotalBuyRMB"].ToString());
+            }
+             if (input["TotalBuyPoint"].ToString() != "")
+            {
+                ret.TotalBuyPoint = int.Parse(input["TotalBuyPoint"].ToString());
+            }
+
             return ret;
         }
         #endregion

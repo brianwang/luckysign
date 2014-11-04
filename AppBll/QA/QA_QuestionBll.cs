@@ -284,7 +284,9 @@ namespace AppBll.QA
                       ,[EndTime]
                       ,[IsSecret]
                       ,[LastReplyTime]
+                      ,[LastReplyUser]
                       ,[ReplyCount]
+                      ,[ReadCount]
                       ,QA_Question.[DR]
                       ,QA_Question.[TS]
                       ,Photo
@@ -368,7 +370,9 @@ namespace AppBll.QA
                       ,[EndTime]
                       ,[IsSecret]
                       ,[LastReplyTime]
+                      ,[LastReplyUser]
                       ,[ReplyCount]
+                      ,[ReadCount]
                       ,QA_Question.[DR]
                       ,QA_Question.[TS]
                       ,Photo

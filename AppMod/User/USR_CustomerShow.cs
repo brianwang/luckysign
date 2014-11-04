@@ -46,6 +46,13 @@ namespace AppMod.User
         private int _HasNewInfo;
         private int _TotalTalk;
         private int _TotalTalkReply;
+        private string _Phone;
+        private int _SetOrderCount;
+        private int _BuyOrderCount;
+        private int _SellOrderCount;
+        private decimal _TotalSellRMB;
+        private decimal _TotalBuyRMB;
+        private int _TotalBuyPoint;
 
         [DataMember]
         public int SysNo
@@ -222,7 +229,54 @@ namespace AppMod.User
             get { return _TotalTalkReply; }
         }
 
+        [DataMember]
+        public string Phone
+        {
+            set { _Phone = value; }
+            get { return _Phone; }
+        }
 
+        [DataMember]
+        public int SetOrderCount
+        {
+            set { _SetOrderCount = value; }
+            get { return _SetOrderCount; }
+        }
+
+        [DataMember]
+        public int BuyOrderCount
+        {
+            set { _BuyOrderCount = value; }
+            get { return _BuyOrderCount; }
+        }
+
+        [DataMember]
+        public int SellOrderCount
+        {
+            set { _SellOrderCount = value; }
+            get { return _SellOrderCount; }
+        }
+
+        [DataMember]
+        public decimal TotalSellRMB
+        {
+            set { _TotalSellRMB = value; }
+            get { return _TotalSellRMB; }
+        }
+
+        [DataMember]
+        public decimal TotalBuyRMB
+        {
+            set { _TotalBuyRMB = value; }
+            get { return _TotalBuyRMB; }
+        }
+
+        [DataMember]
+        public int TotalBuyPoint
+        {
+            set { _TotalBuyPoint = value; }
+            get { return _TotalBuyPoint; }
+        }
 
         #endregion
 
@@ -249,7 +303,13 @@ namespace AppMod.User
             HasNewInfo = AppConst.IntNull;
             TotalTalk = AppConst.IntNull;
             TotalTalkReply = AppConst.IntNull;
-
+            Phone = AppConst.StringNull;
+            SetOrderCount = AppConst.IntNull;
+            BuyOrderCount = AppConst.IntNull;
+            SellOrderCount = AppConst.IntNull;
+            TotalSellRMB = AppConst.DecimalNull;
+            TotalBuyRMB = AppConst.DecimalNull;
+            TotalBuyPoint = AppConst.IntNull;
         }
         
        

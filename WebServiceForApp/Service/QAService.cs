@@ -183,6 +183,70 @@ namespace WebServiceForApp
             return ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>>.Get200OK(rett);
         }
 
+        public ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby)
+        {
+            int total = 0;
+            DataTable m_dt = QA_QuestionBll.GetInstance().GetListByUserAnswer(pagesize, pageindex, customersysno,"", cate,false, orderby, ref total);
+            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
+            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_QuestionShowMini<AstroMod> tmp_quest = MapQA_QuestionShowMiniForAstro(m_dt.Rows[i]);
+                ret.Add(tmp_quest);
+            }
+
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+        }
+
+        public ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAsk(int pagesize, int pageindex, int customersysno, int cate, string orderby)
+        {
+            int total = 0;
+            DataTable m_dt = QA_QuestionBll.GetInstance().GetListByUserAsk(pagesize, pageindex, customersysno, "", cate, orderby, ref total);
+            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
+            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                QA_QuestionShowMini<AstroMod> tmp_quest = MapQA_QuestionShowMiniForAstro(m_dt.Rows[i]);
+                ret.Add(tmp_quest);
+            }
+
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+        }
+
         public ReturnValue<QA_QuestionShow<AstroMod>> GetQuestionForAstro(int sysno)
         {
             QA_QuestionMod tmp = QA_QuestionBll.GetInstance().GetModel(sysno);
@@ -577,7 +641,7 @@ namespace WebServiceForApp
         public QA_QuestionShowMini<AstroMod> MapQA_QuestionShowMiniForAstro(DataRow input)
         {
             QA_QuestionShowMini<AstroMod> ret = new QA_QuestionShowMini<AstroMod>();
-            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+            
             if (input["Award"].ToString() != "")
             {
                 ret.Award = int.Parse(input["Award"].ToString());
@@ -690,8 +754,18 @@ namespace WebServiceForApp
             }
             #endregion
             ret.Context = input["Context"].ToString();
-            ret.CustomerNickName = m_customer.NickName;
-            ret.CustomerPhoto = m_customer.Photo;
+            if (input["NickName"] == null)
+            {
+                USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+
+                ret.CustomerNickName = m_customer.NickName;
+                ret.CustomerPhoto = m_customer.Photo;
+            }
+            else
+            {
+                ret.CustomerNickName = input["NickName"].ToString();
+                ret.CustomerPhoto = input["Photo"].ToString();
+            }
             if (input["CustomerSysNo"].ToString() != "")
             {
                 ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
@@ -747,7 +821,6 @@ namespace WebServiceForApp
         public QA_QuestionShowMini<BaZiMod> MapQA_QuestionShowMiniForBaZi(DataRow input)
         {
             QA_QuestionShowMini<BaZiMod> ret = new QA_QuestionShowMini<BaZiMod>();
-            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
             if (input["Award"].ToString() != "")
             {
                 ret.Award = int.Parse(input["Award"].ToString());
@@ -784,8 +857,18 @@ namespace WebServiceForApp
             }
             #endregion
             ret.Context = input["Context"].ToString();
-            ret.CustomerNickName = m_customer.NickName;
-            ret.CustomerPhoto = m_customer.Photo;
+            if (input["NickName"] == null)
+            {
+                USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+
+                ret.CustomerNickName = m_customer.NickName;
+                ret.CustomerPhoto = m_customer.Photo;
+            }
+            else
+            {
+                ret.CustomerNickName = input["NickName"].ToString();
+                ret.CustomerPhoto = input["Photo"].ToString();
+            }
             if (input["CustomerSysNo"].ToString() != "")
             {
                 ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
@@ -830,7 +913,6 @@ namespace WebServiceForApp
         public QA_QuestionShowMini<ZiWeiMod> MapQA_QuestionShowMiniForZiWei(DataRow input)
         {
             QA_QuestionShowMini<ZiWeiMod> ret = new QA_QuestionShowMini<ZiWeiMod>();
-            USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
             if (input["Award"].ToString() != "")
             {
                 ret.Award = int.Parse(input["Award"].ToString());
@@ -874,8 +956,18 @@ namespace WebServiceForApp
             }
             #endregion
             ret.Context = input["Context"].ToString();
-            ret.CustomerNickName = m_customer.NickName;
-            ret.CustomerPhoto = m_customer.Photo;
+            if (input["NickName"] == null)
+            {
+                USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(input["CustomerSysNo"].ToString()));
+
+                ret.CustomerNickName = m_customer.NickName;
+                ret.CustomerPhoto = m_customer.Photo;
+            }
+            else
+            {
+                ret.CustomerNickName = input["NickName"].ToString();
+                ret.CustomerPhoto = input["Photo"].ToString();
+            }
             if (input["CustomerSysNo"].ToString() != "")
             {
                 ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());

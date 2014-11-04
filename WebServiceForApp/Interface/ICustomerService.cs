@@ -52,6 +52,10 @@ namespace WebServiceForApp
         [Description("找回密码,/FindPass?username={username}")]
         ReturnValue<bool> FindPass(string username);
 
+        [OperationContract, WebGet(UriTemplate = "/UpdateUserInfo?uid={uid}&gender={gender}&fatetype={fatetype}&intro={intro}")]
+        [Description("修改用户信息,/UpdateUserInfo?uid={uid}&gender={gender}&fatetype={fatetype}&intro={intro}")]
+        ReturnValue<bool> UpdateUserInfo(int uid, int gender, int fatetype, string intro);
+
         [OperationContract, WebGet(UriTemplate = "/GetQQLoginUrl")]
         [Description("QQ第三方登录地址获取,/GetQQLoginUrl")]
         ReturnValue<string> GetQQLoginUrl();
