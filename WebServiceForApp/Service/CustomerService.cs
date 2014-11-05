@@ -145,7 +145,7 @@ namespace WebServiceForApp
             else
             {
                 //生成6位随机验证码
-                string[] arr = ("A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,2,3,4,5,6,7,8,9").Split(',');
+                string[] arr = ("1,2,3,4,5,6,7,8,9,0").Split(',');
                 string Password = "";
                 int randValue = -1;
                 Random rand = new Random(unchecked((int)DateTime.Now.Ticks));
@@ -163,9 +163,9 @@ namespace WebServiceForApp
                 m_sms.Status = (int)AppEnum.SMSStatus.sending;
                 m_sms.TS = DateTime.Now;
                 m_sms.Type = (int)AppEnum.SMSType.Register;
-                SYS_SMSBll.GetInstance().Add(m_sms);
+                m_sms.SysNo = SYS_SMSBll.GetInstance().Add(m_sms);
                 SYS_SMSBll.GetInstance().SendSMS(m_sms);
-                XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode" + phone, Password, 600);
+                XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode" + phone, Password, 1000);
                 return ReturnValue<bool>.Get200OK(true);
 
                 #endregion
