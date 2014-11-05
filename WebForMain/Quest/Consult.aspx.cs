@@ -138,7 +138,7 @@ namespace WebForMain.Quest
         {
             QA_AnswerMod m_answer = new QA_AnswerMod();
             m_answer.Award = 0;
-            m_answer.Context = Server.HtmlEncode(txtReply2.Text.Trim());
+            m_answer.Context = AppCmn.CommonTools.SystemInputFilter(txtReply2.Text.Trim());
             if (GetSession().CustomerEntity == null || GetSession().CustomerEntity.SysNo == AppConst.IntNull)
             {
                 m_answer.CustomerSysNo = 0;
@@ -241,7 +241,7 @@ namespace WebForMain.Quest
                 {
                     QA_CommentMod m_comment = new QA_CommentMod();
                     m_comment.AnswerSysNo = int.Parse(e.CommandArgument.ToString());
-                    m_comment.Context = Server.HtmlEncode(((TextBox)e.Item.FindControl("txtRe")).Text.Trim());
+                    m_comment.Context = AppCmn.CommonTools.SystemInputFilter(((TextBox)e.Item.FindControl("txtRe")).Text.Trim());
                     m_comment.DR = (int)AppEnum.State.normal;
                     m_comment.QuestionSysNo = SysNo;
                     m_comment.TS = DateTime.Now;

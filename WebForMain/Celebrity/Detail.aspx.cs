@@ -116,7 +116,7 @@ namespace WebForMain.Celebrity
             {
                 SYS_Famous_CommentMod m_comment = new SYS_Famous_CommentMod
                 {
-                    Context = base.Server.HtmlEncode(this.TextBox1.Text.Trim()),
+                    Context = AppCmn.CommonTools.SystemInputFilter(this.TextBox1.Text.Trim()),
                     CustomerSysNo = base.GetSession().CustomerEntity.SysNo,
                     DR = 0,
                     FamousSysNo = this.sysno,

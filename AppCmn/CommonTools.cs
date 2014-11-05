@@ -176,7 +176,7 @@ namespace AppCmn
         }
 
         /// <summary>
-        /// 
+        /// 用于过滤内容敏感词
         /// </summary>
         /// <param name="inputstr"></param>
         /// <returns></returns>
@@ -450,6 +450,11 @@ namespace AppCmn
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Htmlstring"></param>
+        /// <returns></returns>
         public static string NoHTML(string Htmlstring)   
         {   
             //删除注释
@@ -492,5 +497,16 @@ namespace AppCmn
             Htmlstring = HttpContext.Current.Server.HtmlEncode(Htmlstring).Trim();  
             return Htmlstring;  
         }
+
+        public static string SystemInputFilter(string input)
+        {
+            input = StringFilter(input);
+            input = NoHTML(input);
+            input = SQLData.SQLFilter(input);
+            return input;
+        }
+
+      
+
     }
 }

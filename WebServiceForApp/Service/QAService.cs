@@ -531,7 +531,7 @@ namespace WebServiceForApp
             QA_AnswerMod m_answer = new QA_AnswerMod();
             m_answer.Award = 0;
             m_answer.Title = Title;
-            m_answer.Context = HttpUtility.HtmlEncode(Context.DoTrim());
+            m_answer.Context = AppCmn.CommonTools.SystemInputFilter(Context.DoTrim());
             m_answer.CustomerSysNo = CustomerSysNo;
             m_answer.DR = (int)AppEnum.State.normal;
             m_answer.Hate = 0;
@@ -550,7 +550,7 @@ namespace WebServiceForApp
         {
             QA_CommentMod m_comment = new QA_CommentMod();
             m_comment.AnswerSysNo = AnswerSysNo;
-            m_comment.Context = HttpUtility.HtmlEncode(Context.DoTrim());
+            m_comment.Context = AppCmn.CommonTools.SystemInputFilter(Context.DoTrim());
             m_comment.DR = (int)AppEnum.State.normal;
             m_comment.QuestionSysNo = QuestionSysNo;
             m_comment.TS = DateTime.Now;

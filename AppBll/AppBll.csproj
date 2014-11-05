@@ -100,6 +100,7 @@
     <Compile Include="WebSys\SYS_PrivilegeBll.cs" />
     <Compile Include="User\USR_CustomerBll.cs" />
     <Compile Include="User\USR_GradeBll.cs" />
+    <Compile Include="WebSys\SYS_SMSBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppCmn\AppCmn.csproj">

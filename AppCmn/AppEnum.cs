@@ -859,5 +859,50 @@ namespace AppCmn
             return GetDescription(typeof(CashReturnReason), v);
         }
         #endregion
+
+        #region 外部短信发送状态
+        [DataContract]
+        public enum SMSStatus
+        {
+            [EnumMember]
+            [Description("待发送")]
+            sending = 1,
+            [EnumMember]
+            [Description("已发送")]
+            sended = 2,
+            [EnumMember]
+            [Description("发送失败")]
+            failed = 3,
+        }
+        public static SortedList GetSMSStatus()
+        {
+            return GetStatus(typeof(SMSStatus));
+        }
+        public static string GetSMSStatus(object v)
+        {
+            return GetDescription(typeof(SMSStatus), v);
+        }
+        #endregion
+
+        #region 外部短信类型
+        [DataContract]
+        public enum SMSType
+        {
+            [EnumMember]
+            [Description("注册验证码")]
+            Register = 1,
+            [EnumMember]
+            [Description("密码找回")]
+            FindPass = 2,
+        }
+        public static SortedList GetSMSType()
+        {
+            return GetStatus(typeof(SMSType));
+        }
+        public static string GetSMSType(object v)
+        {
+            return GetDescription(typeof(SMSType), v);
+        }
+        #endregion
     }
 }

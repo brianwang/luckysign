@@ -83,6 +83,9 @@ namespace AppCmn
 
         //系统自动分配奖励通知
         public const string AutoSendAward = @"由于您一直未对您发布的问题<a target='_blank' href='@url'>“@question”</a>进行悬赏分配，因此系统自动为您分配了悬赏。";
+
+        //手机注册验证码短信
+        public const string RegisterPhoneCode = @"【上上签】正在进行手机注册验证，验证码：@code。请输入验证码继续注册，欢迎来到上上签！";
         #endregion
 
         #region 奖励积分，经验值

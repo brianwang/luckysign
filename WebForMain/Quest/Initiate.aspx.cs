@@ -182,7 +182,7 @@ namespace WebForMain.Quest
                 QA_QuestionMod m_quest = new QA_QuestionMod();
                 m_quest.Award = pay;
                 m_quest.CateSysNo = 17;//付费咨询
-                m_quest.Context = txtContext.Text.Trim();
+                m_quest.Context = SQLData.SQLFilter(AppCmn.CommonTools.StringFilter(txtContext.Text.Trim()));
                 m_quest.SubQuest = TextBox2.Text.Trim().Replace("|","")+ "|" + TextBox3.Text.Trim().Replace("|","")+ "|"+TextBox4.Text.Trim().Replace("|","");
                 m_quest.CustomerSysNo = GetSession().CustomerEntity.SysNo;
                 m_quest.LastReplyTime = DateTime.Now;
@@ -190,7 +190,7 @@ namespace WebForMain.Quest
                 m_quest.ReadCount = 0;
                 m_quest.BuyCount = 0;
                 m_quest.OrderCount= 0;
-                m_quest.Title = txtTitle.Text.Trim();
+                m_quest.Title = AppCmn.CommonTools.SystemInputFilter(txtTitle.Text.Trim());
                 m_quest.TS = DateTime.Now;
                 m_quest.DR = (int)AppEnum.State.normal;
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ComponentModel;
-
+using AppMod.WebSys;
 using XMS.Core;
 
 using AppMod.User;
@@ -75,6 +75,20 @@ namespace WebServiceForApp
         [OperationContract, WebGet(UriTemplate = "/WeiboLoginAlt?token={token}&expires={expires}")]
         [Description("微博第三方登录,/WeiboLoginAlt?token={token}&expires={expires}")]
         ReturnValue<USR_CustomerMaintain> WeiboLoginAlt(string token, long expires);
+
+        [OperationContract, WebGet(UriTemplate = "/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&isread={isread}&type={type}")]
+        [Description("获取系统消息,/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&isread={isread}&type={type}")]
+        ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno, int isread, int type);
+
+        [OperationContract, WebGet(UriTemplate = "/GetSMSTopicByUser?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
+        [Description("获取私信列表,/GetSMSTopicByUser?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
+        ReturnValue<PageInfo<USR_SMSShow>> GetSMSTopicByUser(int pagesize, int pageindex, int customersysno);
+
+        [OperationContract, WebGet(UriTemplate = "/GetSMSTalk?sysno={sysno}")]
+        [Description("获取单次私信对话,/GetSMSTalk?sysno={sysno}")]
+        ReturnValue<List<USR_SMSShow>> GetSMSTalk(int sysno);
+
+
     }
 
 }

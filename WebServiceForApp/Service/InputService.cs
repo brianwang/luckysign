@@ -79,12 +79,14 @@ namespace WebServiceForApp
             QA_QuestionMod m_quest = new QA_QuestionMod();
             m_quest.Award = input.Award;
             m_quest.CateSysNo = input.CateSysNo;
-            m_quest.Context = input.Context;
+            m_quest.Context = SQLData.SQLFilter(AppCmn.CommonTools.StringFilter(input.Context));
             m_quest.CustomerSysNo = input.CustomerSysNo;
             m_quest.LastReplyTime = DateTime.Now;
             m_quest.ReplyCount = 0;
             m_quest.ReadCount = 0;
-            m_quest.Title = input.Title;
+            m_quest.BuyCount = 0;
+            m_quest.OrderCount = 0;
+            m_quest.Title = AppCmn.CommonTools.SystemInputFilter(input.Title);
             m_quest.TS = DateTime.Now;
             m_quest.DR = (int)AppEnum.State.normal;
 

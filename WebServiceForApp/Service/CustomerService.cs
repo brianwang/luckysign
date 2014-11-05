@@ -10,6 +10,8 @@ using AppBll.User;
 using System.IO;
 using System.Configuration;
 using System.Data;
+using AppMod.WebSys;
+using AppBll.WebSys;
 
 namespace WebServiceForApp
 {
@@ -122,7 +124,7 @@ namespace WebServiceForApp
             {
                 m_user.Gender = gender;
                 m_user.FateType = fatetype;
-                m_user.Intro = AppCmn.CommonTools.StringFilter(intro);
+                m_user.Intro = AppCmn.CommonTools.NoHTML(AppCmn.CommonTools.StringFilter(intro));
                 USR_CustomerBll.GetInstance().Update(m_user);
                 return ReturnValue<bool>.Get200OK(true);
             }
@@ -154,7 +156,15 @@ namespace WebServiceForApp
                 }
                 #region 发送短信
 
-                Password = "111111";    //测试验证码为111111
+                //Password = "111111";    //测试验证码为111111
+                SYS_SMSMod m_sms = new SYS_SMSMod();
+                m_sms.Content = AppConst.RegisterPhoneCode.Replace("@code",Password);
+                m_sms.PhoneNum = phone;
+                m_sms.Status = (int)AppEnum.SMSStatus.sending;
+                m_sms.TS = DateTime.Now;
+                m_sms.Type = (int)AppEnum.SMSType.Register;
+                SYS_SMSBll.GetInstance().Add(m_sms);
+                SYS_SMSBll.GetInstance().SendSMS(m_sms);
                 XMS.Core.Container.CacheService.LocalCache.SetItem(AppConst.APIRegionName, "SMSVerifyCode" + phone, Password, 600);
                 return ReturnValue<bool>.Get200OK(true);
 
@@ -677,6 +687,117 @@ namespace WebServiceForApp
             return ReturnValue<USR_CustomerMaintain>.Get200OK(rettt);
         }
 
+        public ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno,int isread,int type)
+        {
+            int total = 0;
+            DataTable m_dt = USR_MessageBll.GetInstance().GetMessageByCustomer(customersysno, pagesize, pageindex, isread, type, ref total);
+            List<USR_MessageMod> ret = new List<USR_MessageMod>();
+            PageInfo<USR_MessageMod> rett = new PageInfo<USR_MessageMod>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<USR_MessageMod>>.Get200OK(rett);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                USR_MessageMod tmp_message = MapUSR_Message(m_dt.Rows[i]);
+                ret.Add(tmp_message);
+            }
+
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<USR_MessageMod>>.Get200OK(rett);
+        }
+
+        public ReturnValue<PageInfo<USR_SMSShow>> GetSMSTopicByUser(int pagesize, int pageindex, int customersysno)
+        {
+            int total = 0;
+            DataTable m_dt = USR_SMSBll.GetInstance().GetTopicByUser(customersysno, pagesize, pageindex, ref total);
+            List<USR_SMSShow> ret = new List<USR_SMSShow>();
+            PageInfo<USR_SMSShow> rett = new PageInfo<USR_SMSShow>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                rett.List = ret;
+                rett.Total = total;
+                rett.HasNextPage = false;
+                return ReturnValue<PageInfo<USR_SMSShow>>.Get200OK(rett);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                USR_SMSShow tmp_sms = MapUSR_SMS(m_dt.Rows[i]);
+                ret.Add(tmp_sms);
+            }
+
+            rett.List = ret;
+            rett.Total = total;
+            if (pagesize * pageindex >= total)
+            {
+                rett.HasNextPage = false;
+            }
+            else
+            {
+                rett.HasNextPage = true;
+            }
+            return ReturnValue<PageInfo<USR_SMSShow>>.Get200OK(rett);
+        }
+
+        public ReturnValue<List<USR_SMSShow>> GetSMSTalk(int sysno)
+        {
+            DataTable m_dt = USR_SMSBll.GetInstance().GetTalk(sysno);
+            List<USR_SMSShow> ret = new List<USR_SMSShow>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                return ReturnValue<List<USR_SMSShow>>.Get200OK(ret);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                USR_SMSShow tmp_sms = MapUSR_SMS(m_dt.Rows[i]);
+                ret.Add(tmp_sms);
+            }
+            return ReturnValue<List<USR_SMSShow>>.Get200OK(ret);
+        }
+
+        public ReturnValue<bool> AddSMS(int FromSysNo, int ToSysNo, string title, string context, int TopicSysNo)
+        {
+            try
+            {
+                USR_SMSMod m_sms = new USR_SMSMod();
+                m_sms.Context = AppCmn.CommonTools.NoHTML(AppCmn.CommonTools.StringFilter(context));
+                m_sms.Title = AppCmn.CommonTools.NoHTML(AppCmn.CommonTools.StringFilter(title));
+                m_sms.DR = (int)AppEnum.State.normal;
+                m_sms.FromSysNo = FromSysNo;
+                m_sms.IsFromDeleted = (int)AppEnum.BOOL.False;
+                m_sms.IsRead = (int)AppEnum.BOOL.False;
+                m_sms.IsToDeleted = (int)AppEnum.BOOL.False;
+                if (TopicSysNo != 0)
+                {
+                    m_sms.Parent = TopicSysNo;
+                }
+                else
+                {
+                    m_sms.Parent = 0;
+                }
+                m_sms.ReplyCount = 0;
+                m_sms.TS = DateTime.Now;
+                m_sms.ToSysNo = ToSysNo;
+                USR_SMSBll.GetInstance().Add(m_sms);
+                return ReturnValue<bool>.Get200OK(true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         #region Map方法
 
@@ -809,6 +930,87 @@ namespace WebServiceForApp
                 ret.TotalBuyPoint = int.Parse(input["TotalBuyPoint"].ToString());
             }
 
+            return ret;
+        }
+
+        public USR_MessageMod MapUSR_Message(DataRow input)
+        {
+            USR_MessageMod ret = new USR_MessageMod();
+
+            ret.Title = input["Title"].ToString();
+            ret.Context = input["Context"].ToString();
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["CustomerSysNo"].ToString() != "")
+            {
+                ret.CustomerSysNo = int.Parse(input["CustomerSysNo"].ToString());
+            }
+            if (input["IsRead"].ToString() != "")
+            {
+                ret.IsRead = int.Parse(input["IsRead"].ToString());
+            }
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
+            if (input["Type"].ToString() != "")
+            {
+                ret.Type = int.Parse(input["Type"].ToString());
+            }
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
+            else
+            {
+                ret.TS = AppConst.DateTimeNull;
+            }
+            return ret;
+        }
+
+        public USR_SMSShow MapUSR_SMS(DataRow input)
+        {
+            USR_SMSShow ret = new USR_SMSShow();
+            ret.Title = input["Title"].ToString();
+            ret.Context = input["Context"].ToString();
+            ret.FromName = input["FromName"].ToString();
+            ret.ToName = input["ToName"].ToString();
+            ret.FromPhoto = input["FromPhoto"].ToString();
+            ret.ToPhoto = input["ToPhoto"].ToString();
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["ToSysNo"].ToString() != "")
+            {
+                ret.ToSysNo = int.Parse(input["ToSysNo"].ToString());
+            }
+            if (input["FromSysNo"].ToString() != "")
+            {
+                ret.FromSysNo = int.Parse(input["FromSysNo"].ToString());
+            }
+            if (input["IsRead"].ToString() != "")
+            {
+                ret.IsRead = int.Parse(input["IsRead"].ToString());
+            }
+            if (input["ReplyCount"].ToString() != "")
+            {
+                ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
+            }
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
+            else
+            {
+                ret.TS = AppConst.DateTimeNull;
+            }
             return ret;
         }
         #endregion

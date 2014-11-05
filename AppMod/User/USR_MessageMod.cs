@@ -24,48 +24,50 @@ namespace AppMod.User
         private int _DR;
         private DateTime _TS;
 
+         [DataMember]
         public int SysNo
         {
             set { _SysNo = value; }
             get { return _SysNo; }
         }
 
+         [DataMember]
         public int CustomerSysNo
         {
             set { _CustomerSysNo = value; }
             get { return _CustomerSysNo; }
         }
-
+         [DataMember]
         public string Title
         {
             set { _Title = value; }
             get { return _Title; }
         }
-
+         [DataMember]
         public int Type
         {
             set { _Type = value; }
             get { return _Type; }
         }
-
+         [DataMember]
         public string Context
         {
             set { _Context = value; }
             get { return _Context; }
         }
-
+        [DataMember]
         public int IsRead
         {
             set { _IsRead = value; }
             get { return _IsRead; }
         }
-
+        [DataMember]
         public int DR
         {
             set { _DR = value; }
             get { return _DR; }
         }
-
+         [DataMember]
         public DateTime TS
         {
             set { _TS = value; }

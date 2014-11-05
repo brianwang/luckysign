@@ -193,12 +193,14 @@ namespace WebForMain.Quest
                 QA_QuestionMod m_quest = new QA_QuestionMod();
                 m_quest.Award = pointpay;
                 m_quest.CateSysNo = int.Parse(drpCate.SelectedValue);
-                m_quest.Context = txtContext.Text.Trim();
+                m_quest.Context = SQLData.SQLFilter(AppCmn.CommonTools.StringFilter(txtContext.Text.Trim()));
                 m_quest.CustomerSysNo = GetSession().CustomerEntity.SysNo;
                 m_quest.LastReplyTime = DateTime.Now;
                 m_quest.ReplyCount = 0;
                 m_quest.ReadCount = 0;
-                m_quest.Title = txtTitle.Text.Trim();
+                m_quest.BuyCount = 0;
+                m_quest.OrderCount = 0;
+                m_quest.Title = AppCmn.CommonTools.SystemInputFilter(txtTitle.Text.Trim());
                 m_quest.TS = DateTime.Now;
                 m_quest.DR = (int)AppEnum.State.normal;
 

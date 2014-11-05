@@ -99,6 +99,7 @@
     <Compile Include="User\USR_ThirdLoginMod.cs" />
     <Compile Include="User\USR_CustomerShow.cs" />
     <Compile Include="User\USR_CustomerMaintain.cs" />
+    <Compile Include="User\USR_SMSShow.cs" />
     <Compile Include="WebSys\REL_Admin_PrivilegeMod.cs" />
     <Compile Include="WebSys\REL_Famous_KeyWordMod.cs" />
     <Compile Include="WebSys\SYS_AdminMod.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="User\USR_CustomerMod.cs" />
     <Compile Include="User\USR_GradeMod.cs" />
     <Compile Include="WebSys\PageInfo.cs" />
+    <Compile Include="WebSys\SYS_SMSMod.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppCmn\AppCmn.csproj">

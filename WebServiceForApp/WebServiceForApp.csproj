@@ -87,6 +87,7 @@
     <Compile Include="Service\SystemService.cs" />
     <Compile Include="Service\InputService.cs" />
     <Compile Include="Task\RewardTask.cs" />
+    <Compile Include="Task\SendSMS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppBll\AppBll.csproj">

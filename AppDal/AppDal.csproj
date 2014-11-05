@@ -96,6 +96,7 @@
     <Compile Include="WebSys\SYS_PrivilegeDal.cs" />
     <Compile Include="User\USR_CustomerDal.cs" />
     <Compile Include="User\USR_GradeDal.cs" />
+    <Compile Include="WebSys\SYS_SMSDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppCmn\AppCmn.csproj">
