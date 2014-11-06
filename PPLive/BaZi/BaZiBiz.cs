@@ -216,6 +216,10 @@ namespace PPLive.BaZi
             bazi.XunKong1 = (PublicValue.DiZhi)Enum.Parse(typeof(PublicValue.DiZhi), (temp+1).ToString());
         }
 
+        /// <summary>
+        /// 年干阴阳
+        /// </summary>
+        /// <param name="bazi"></param>
         private void SetYinYang(ref BaZiMod bazi)
         {
             if ((int)bazi.YearTG % 2 == 0)
@@ -235,6 +239,13 @@ namespace PPLive.BaZi
             bazi.WangShuai[2] = GetWangShuai(bazi.DayDZ, bazi.DayTG);
             bazi.WangShuai[3] = GetWangShuai(bazi.HourDZ, bazi.DayTG);
         }
+
+        /// <summary>
+        /// 旺衰，十天干生旺死绝
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="riyuan"></param>
+        /// <returns></returns>
         private PublicValue.ZiWeiChangSheng GetWangShuai(PublicValue.DiZhi source, PublicValue.TianGan riyuan)
         {
             int[] begins = { 11, 6, 2, 9, 2, 9, 5, 0, 8, 3 };
@@ -252,6 +263,7 @@ namespace PPLive.BaZi
             return ret;
         }
 
+        
         private void SetNaYin(ref BaZiMod bazi)
         {
             bazi.NaYin[0] = (PublicValue.Nayin)(10000+(int)bazi.YearTG*100+(int)bazi.YearDZ);
