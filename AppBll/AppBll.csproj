@@ -77,6 +77,8 @@
     <Compile Include="QA\QA_OrderBll.cs" />
     <Compile Include="QA\QA_QuestionBll.cs" />
     <Compile Include="QA\REL_Question_ChartBll.cs" />
+    <Compile Include="RSH\RSH_BaziConditionBll.cs" />
+    <Compile Include="RSH\RSH_BaziLogicBll.cs" />
     <Compile Include="Spider\SPD_FamousBll.cs" />
     <Compile Include="QA\QA_StarBll.cs" />
     <Compile Include="User\REL_Customer_CategoryBll.cs" />

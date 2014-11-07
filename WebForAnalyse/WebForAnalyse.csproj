@@ -66,8 +66,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BaZi\PatternList.aspx" />
     <Content Include="BaZi\TimeToBazi.aspx" />
     <Content Include="BaZi\SearchBazi.aspx" />
+    <Content Include="BaZi\PatternEdit.aspx" />
+    <Content Include="ControlLibrary\Pagination.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="Demo\Demo.aspx" />
     <Content Include="Error.aspx" />
@@ -377,6 +380,13 @@
     <Content Include="ZiWei\ZiWeiToTime.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaZi\PatternList.aspx.cs">
+      <DependentUpon>PatternList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaZi\PatternList.aspx.designer.cs">
+      <DependentUpon>PatternList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BaZi\TimeToBazi.aspx.cs">
       <DependentUpon>TimeToBazi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,6 +400,17 @@
     </Compile>
     <Compile Include="BaZi\SearchBazi.aspx.designer.cs">
       <DependentUpon>SearchBazi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BaZi\PatternEdit.aspx.cs">
+      <DependentUpon>PatternEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaZi\PatternEdit.aspx.designer.cs">
+      <DependentUpon>PatternEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLibrary\Pagination.ascx.cs">
+      <DependentUpon>Pagination.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -470,7 +491,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\配置文件1.pubxml" />
   </ItemGroup>
   <PropertyGroup>

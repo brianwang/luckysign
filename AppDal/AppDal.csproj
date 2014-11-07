@@ -73,6 +73,8 @@
     <Compile Include="QA\QA_OrderDal.cs" />
     <Compile Include="QA\QA_QuestionDal.cs" />
     <Compile Include="QA\REL_Question_ChartDal.cs" />
+    <Compile Include="RSH\RSH_BaziConditionDal.cs" />
+    <Compile Include="RSH\RSH_BaziLogicDal.cs" />
     <Compile Include="Spider\SPD_FamousDal.cs" />
     <Compile Include="QA\QA_StarDal.cs" />
     <Compile Include="User\REL_Customer_CategoryDal.cs" />

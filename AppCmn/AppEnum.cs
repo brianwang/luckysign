@@ -904,5 +904,53 @@ namespace AppCmn
             return GetDescription(typeof(SMSType), v);
         }
         #endregion
+
+        #region 八字组合使用类型（BaZiLogic表中type）
+        [DataContract]
+        public enum BaZiLogicType
+        {
+            [EnumMember]
+            [Description("本命")]
+            benming = 1,
+            [EnumMember]
+            [Description("大运")]
+            dayun = 2,
+            [EnumMember]
+            [Description("流年")]
+            liunian = 2,
+        }
+        public static SortedList GetBaZiLogicType()
+        {
+            return GetStatus(typeof(BaZiLogicType));
+        }
+        public static string GetBaZiLogicType(object v)
+        {
+            return GetDescription(typeof(BaZiLogicType), v);
+        }
+        #endregion 
+
+        #region 八字组合条件类型（BaZiCondition表中type）
+        [DataContract]
+        public enum BaZiConditionType
+        {
+            [EnumMember]
+            [Description("")]
+            benming = 1,
+            [EnumMember]
+            [Description("大运")]
+            dayun = 2,
+            [EnumMember]
+            [Description("流年")]
+            liunian = 2,
+        }
+        public static SortedList GetBaZiConditionType()
+        {
+            return GetStatus(typeof(BaZiConditionType));
+        }
+        public static string GetBaZiConditionType(object v)
+        {
+            return GetDescription(typeof(BaZiConditionType), v);
+        }
+        #endregion 
     }
 }
