@@ -35,7 +35,7 @@ $("#<%= txtDate1.ClientID %>").datepicker({
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>
-        紫薇格局组合分析</h2>
+        八字组合设置</h2>
     <p id="page-intro">
         请选择组合：</p>
     <fieldset class="column">
