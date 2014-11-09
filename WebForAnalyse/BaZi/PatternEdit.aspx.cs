@@ -6,26 +6,29 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AppCmn;
 using PPLive;
-using PPLive.ZiWei;
+using PPLive.BaZi;
 using System.Data;
+using AppMod.Research;
+using AppBll.Research;
 
-namespace WebForAnalyse.ZiWei
+namespace WebForAnalyse.BaZi
 {
-    public partial class ZiWeiToTime : PageBase
+    public partial class PatternEdit : PageBase
     {
+        private int sysno=AppConst.IntNull;
         protected void Page_Load(object sender, EventArgs e)
         {
             #region 初始化
             //Login(Request.RawUrl);
             WebForAnalyse.Master.AdminMaster m_master = (WebForAnalyse.Master.AdminMaster)this.Master;
-            m_master.PageName = "紫薇格局分析";
+            m_master.PageName = "八字格局设置";
             m_master.SetCate(WebForAnalyse.Master.AdminMaster.CateType.ZiWei1);
             #endregion
             if (!IsPostBack)
             {
                 DataTable m_dt = new DataTable();
                 m_dt.Columns.Add("id");
-                for(int i=0;i<10;i++)
+                for(int i=0;i<50;i++)
                 {
                     DataRow m_dr = m_dt.NewRow();
                     m_dr["id"] = i;
@@ -33,8 +36,6 @@ namespace WebForAnalyse.ZiWei
                 }
                 Repeater1.DataSource =m_dt;
                 Repeater1.DataBind();
-                Repeater2.DataSource = m_dt;
-                Repeater2.DataBind();
 
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(1);", true);
             }
@@ -62,101 +63,39 @@ namespace WebForAnalyse.ZiWei
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(1);", true);
                 return;
             }
-            DataTable m_dt1 = new DataTable();
-            m_dt1.Columns.Add("star");
-            m_dt1.Columns.Add("gong");
-            m_dt1.Columns.Add("wei");
-            m_dt1.Columns.Add("hua");
 
-            DataTable m_dt2 = new DataTable();
-            m_dt2.Columns.Add("star");
-            m_dt2.Columns.Add("star1");
-            m_dt2.Columns.Add("hua1");
-            m_dt2.Columns.Add("hua");
-            m_dt2.Columns.Add("rel");
+            List<RSH_BaziConditionMod> m_condition = new List<RSH_BaziConditionMod>();
 
-            for (int i = 0; i < 10; i++)
+
+            for (int i = 0; i < 50; i++)
             {
-                DataRow m_dr1 = m_dt1.NewRow();
-                m_dr1["star"] = ((DropDownList)Repeater1.Items[i].FindControl("drpStar")).SelectedValue;
-                m_dr1["gong"] = ((DropDownList)Repeater1.Items[i].FindControl("drpGong")).SelectedItem.Text;
-                m_dr1["wei"] = ((DropDownList)Repeater1.Items[i].FindControl("drpWei")).SelectedItem.Text;
-                m_dr1["hua"] = ((DropDownList)Repeater1.Items[i].FindControl("drpHua")).SelectedItem.Text;
-                m_dt1.Rows.Add(m_dr1);
+                if (Repeater1.Items[i].FindControl("drpItem").Visible)
+                {
+                    RSH_BaziConditionMod m_tmp = new RSH_BaziConditionMod();
 
-                DataRow m_dr2 = m_dt2.NewRow();
-                m_dr2["star"] = ((DropDownList)Repeater2.Items[i].FindControl("drpStar")).SelectedValue;
-                m_dr2["star1"] = ((DropDownList)Repeater2.Items[i].FindControl("drpStar1")).SelectedValue;
-                //m_dr2["hua1"] = ((DropDownList)Repeater2.Items[i].FindControl("drpHua1")).SelectedValue;
-                //m_dr2["hua"] = ((DropDownList)Repeater2.Items[i].FindControl("drpHua")).SelectedValue;
-                m_dr2["rel"] = ((DropDownList)Repeater2.Items[i].FindControl("drpRel")).SelectedValue;
-                m_dt2.Rows.Add(m_dr2);
+                    m_tmp.Item = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpItem")).SelectedValue);
+                    m_tmp.Type = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpType")).SelectedValue);
+                    m_tmp.Condition = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpCondition")).SelectedValue);
+                    m_tmp.Target = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpTarget")).SelectedValue);
+                    m_condition.Add(m_tmp);
+                }
             }
 
             for (int i = 0; m_date.Date < m_date1.Date; i++)
             {
                 m_date = new DateEntity(m_date.Date.AddHours(2));
-                ZiWeiMod tmpzw = ZiWeiBiz.GetInstance().TimeToZiWei(m_date, AppEnum.Gender.male, new int[] { 1, 1, 0,1 });
+                BaZiMod tmpzw = new BaZiMod();
+                tmpzw.BirthTime = m_date;
+                tmpzw.Gender = AppEnum.Gender.male;
+                BaZiBiz.GetInstance().TimeToBaZi(ref tmpzw);
                 bool flag = true;
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 50; j++)
                 {
-                    if (m_dt1.Rows[j]["star"].ToString() != "-1")
-                    {
-                        if (m_dt1.Rows[j]["gong"].ToString() != "请选择")
-                        {
-                            if (PublicValue.GetZiWeiGong(tmpzw.Gong[tmpzw.Xing[int.Parse(m_dt1.Rows[j]["star"].ToString())].Gong].GongName) != m_dt1.Rows[j]["gong"].ToString())
-                            {
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if (m_dt1.Rows[j]["wei"].ToString() != "请选择")
-                        {
-                            if (PublicValue.GetDiZhi(tmpzw.Gong[tmpzw.Xing[int.Parse(m_dt1.Rows[j]["star"].ToString())].Gong].DZ) != m_dt1.Rows[j]["wei"].ToString())
-                            {
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if (m_dt1.Rows[j]["hua"].ToString() != "　")
-                        {
-                            if (PublicValue.GetZiWeiSihua(tmpzw.Xing[int.Parse(m_dt1.Rows[j]["star"].ToString())].Hua) != m_dt1.Rows[j]["hua"].ToString())
-                            {
-                                flag = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (m_dt2.Rows[j]["star"].ToString() != "-1" && m_dt2.Rows[j]["star1"].ToString() != "-1")
-                    {
-                        if (m_dt2.Rows[j]["rel"].ToString() == "0" && !(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong == tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong))
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else if (m_dt2.Rows[j]["rel"].ToString() == "1" && !(Math.Abs(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong - tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong) == 6))
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else if (m_dt2.Rows[j]["rel"].ToString() == "2" && !((Math.Abs(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong - tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong) == 4|| 
-                            Math.Abs(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong - tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong) == 8)))
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else if (m_dt2.Rows[j]["rel"].ToString() == "3" && !((Math.Abs(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong - tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong) == 6 ||
-                            Math.Abs(tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star"].ToString())].Gong - tmpzw.Xing[int.Parse(m_dt2.Rows[j]["star1"].ToString())].Gong) %4==0)))
-                        {
-                            flag = false;
-                            break;
-                        }
-                    }
+                    //逻辑筛选
                 }
                 if (flag)
                 {
-                    ltrResult.Text += m_date.Date.ToString("yyyy-MM-dd HH:00:00 ")+"<a href='http://pp.ssqian.com/PPLive/AstroChart.aspx?ID=-qb_"+m_date.Date.ToString("MM dd yyyy HH;00;00")+" 0_-8_120E42_21N93_-c_0_-YAo_1_5_10_8_8_8_5_-R0_1_2_3_4_5_6_7_8_9_10 14 18_21_24_27_30' target='_blank'>查看星盘</a><br />";
+                    ltrResult.Text += m_date.Date.ToString("yyyy-MM-dd HH:00:00 ")+"<br />";
                 }
             }
             this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(1);", true);
@@ -192,33 +131,53 @@ namespace WebForAnalyse.ZiWei
             drpHua.DataBind();
         }
 
-        protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            DropDownList drpStar = (DropDownList)e.Item.FindControl("drpStar");
-            drpStar.DataSource = PublicValue.GetZiWeiStar();
-            drpStar.DataTextField = "value";
-            drpStar.DataValueField = "key";
-            drpStar.DataBind();
-            drpStar.Items.Insert(0, new ListItem("请选择", "-1"));
+            Dictionary<int,RSH_BaziConditionMod> m_condition = new Dictionary<int,RSH_BaziConditionMod>();
 
-            DropDownList drpStar1 = (DropDownList)e.Item.FindControl("drpStar1");
-            drpStar1.DataSource = PublicValue.GetZiWeiStar();
-            drpStar1.DataTextField = "value";
-            drpStar1.DataValueField = "key";
-            drpStar1.DataBind();
-            drpStar1.Items.Insert(0, new ListItem("请选择", "-1"));
+            for (int i = 0; i < 50; i++)
+            {
+                if (Repeater1.Items[i].FindControl("drpItem").Visible)
+                {
+                    RSH_BaziConditionMod m_tmp = new RSH_BaziConditionMod();
 
-            //DropDownList drpHua = (DropDownList)e.Item.FindControl("drpHua");
-            //drpHua.DataSource = PublicValue.GetZiWeiSihua();
-            //drpHua.DataTextField = "value";
-            //drpHua.DataValueField = "key";
-            //drpHua.DataBind();
+                    m_tmp.Item = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpItem")).SelectedValue);
+                    m_tmp.Type = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpType")).SelectedValue);
+                    m_tmp.Condition = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpCondition")).SelectedValue);
+                    m_tmp.Target = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpTarget")).SelectedValue);
+                    m_tmp.SysNo = RSH_BaziConditionBll.GetInstance().Add(m_tmp);
+                    m_condition.Add(i,m_tmp);
+                }
+            }
 
-            //DropDownList drpHua1 = (DropDownList)e.Item.FindControl("drpHua1");
-            //drpHua1.DataSource = PublicValue.GetZiWeiSihua();
-            //drpHua1.DataTextField = "value";
-            //drpHua1.DataValueField = "key";
-            //drpHua1.DataBind();
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            DropDownList m_drp = (DropDownList)e.Item.FindControl("drpLogic");
+            if (m_drp.Visible)
+            {
+                ((Button)e.Item.FindControl("Button2")).Text = "添加已有逻辑";
+                m_drp.Visible = false;
+                ((DropDownList)e.Item.FindControl("drpItem")).Visible = true;
+                ((DropDownList)e.Item.FindControl("drpType")).Visible = true;
+                ((DropDownList)e.Item.FindControl("drpCondition")).Visible = true;
+                ((DropDownList)e.Item.FindControl("drpTarget")).Visible = true;
+            }
+            else
+            {
+                ((Button)e.Item.FindControl("Button2")).Text = "添加新条件";
+                m_drp.Visible = true;
+                ((DropDownList)e.Item.FindControl("drpItem")).Visible = false;
+                ((DropDownList)e.Item.FindControl("drpType")).Visible = false;
+                ((DropDownList)e.Item.FindControl("drpCondition")).Visible = false;
+                ((DropDownList)e.Item.FindControl("drpTarget")).Visible = false;
+            }
+        }
+
+        protected void Button2_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }
