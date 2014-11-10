@@ -1296,5 +1296,101 @@ namespace PPLive
 
         #endregion
 
+        #region 盲派八字
+
+        [DataContract(Name = "BaZiLogicItem")]
+        public enum BaZiLogicItem
+        {
+            [EnumMember]
+            [Description("年干")]
+            niangan = 1,
+            [EnumMember]
+            [Description("年支")]
+            nianzhi = 2,
+            [EnumMember]
+            [Description("月干")]
+            yuegan = 3,
+            [EnumMember]
+            [Description("月支")]
+            yuezhi = 4,
+            [EnumMember]
+            [Description("日干")]
+            rigan = 5,
+            [EnumMember]
+            [Description("日支")]
+            rizhi = 6,
+            [EnumMember]
+            [Description("时干")]
+            shigan = 7,
+            [EnumMember]
+            [Description("时支")]
+            shizhi = 8,
+            [EnumMember]
+            [Description("年柱藏干")]
+            niancanggan = 11,
+            [EnumMember]
+            [Description("月柱藏干")]
+            yuecanggan = 12,
+            [EnumMember]
+            [Description("日柱藏干")]
+            ricanggan = 13,
+            [EnumMember]
+            [Description("时柱藏干")]
+            shicanggan = 14,
+            [EnumMember]
+            [Description("大运天干")]
+            dayungan = 21,
+            [EnumMember]
+            [Description("大运地支")]
+            dayunzhi = 22,
+            [EnumMember]
+            [Description("流年天干")]
+            liuniangan = 23,
+            [EnumMember]
+            [Description("流年地支")]
+            liunianzhi = 24,
+            [EnumMember]
+            [Description("旬空")]
+            xunkong = 9,
+            [EnumMember]
+            [Description("性别")]
+            xingbie = 0,
+            [EnumMember]
+            [Description("夫妻宫")]
+            fuqigong = 31,
+            [EnumMember]
+            [Description("夫妻星")]
+            fuqixing = 41,
+        }
+        public static SortedList GetBaZiLogicItem()
+        {
+            return GetStatus(typeof(BaZiLogicItem));
+        }
+        public static string GetBaZiLogicItem(object v)
+        {
+            return GetDescription(typeof(BaZiLogicItem), v);
+        }
+
+        [DataContract(Name = "BaZiLogicType")]
+        public enum BaZiLogicType
+        {
+            [EnumMember]
+            [Description("年干")]
+            niangan = 1,
+            [EnumMember]
+            [Description("年支")]
+            niangan = 1,
+        }
+        public static SortedList GetBaZiLogicType()
+        {
+            return GetStatus(typeof(BaZiLogicType));
+        }
+        public static string GetBaZiLogicType(object v)
+        {
+            return GetDescription(typeof(BaZiLogicType), v);
+        }
+
+        #endregion
+
     }
 }
