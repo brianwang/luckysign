@@ -191,9 +191,58 @@ namespace PPLive
             qisha = 9,
 
         };
+        public static SortedList GetShiShen()
+        {
+            return GetStatus(typeof(ShiShen));
+        }
         public static string GetShiShen(object v)
         {
             return GetDescription(typeof(ShiShen), v);
+        }
+
+
+        [DataContract(Name = "ShengKeZhiHua")]
+        public enum ShengKeZhiHua
+        {
+            [EnumMember]
+            [Description("比肩")]
+            bijian = 0,
+            [EnumMember]
+            [Description("劫财")]
+            jiecai = 1,
+            [EnumMember]
+            [Description("正印")]
+            zhengyin = 2,
+            [EnumMember]
+            [Description("枭神")]
+            pianyin = 3,
+            [EnumMember]
+            [Description("食神")]
+            shishen = 4,
+            [EnumMember]
+            [Description("伤官")]
+            shangguan = 5,
+            [EnumMember]
+            [Description("正财")]
+            zhengcai = 6,
+            [EnumMember]
+            [Description("偏财")]
+            piancai = 7,
+            [EnumMember]
+            [Description("正官")]
+            zhengguan = 8,
+            [EnumMember]
+            [Description("七杀")]
+            qisha = 9,
+
+        };
+        public static SortedList GetShengKeZhiHua()
+        {
+            return GetStatus(typeof(ShengKeZhiHua));
+        }
+        public static string GetShengKeZhiHua(object v)
+        {
+            return GetDescription(typeof(ShengKeZhiHua), v);
         }
         #endregion
 
@@ -479,6 +528,27 @@ namespace PPLive
         {
             return GetDescription(typeof(AllJieQi), v);
         }
+
+        [DataContract(Name = "Power")]
+        public enum Power
+        {
+            [EnumMember]
+            [Description("增")]
+            plus = 1,
+            [EnumMember]
+            [Description("减")]
+            minus = 0,
+            
+        }
+        public static SortedList GetPower()
+        {
+            return GetStatus(typeof(Power));
+        }
+        public static string GetPower(object v)
+        {
+            return GetDescription(typeof(Power), v);
+        }
+
         #endregion
 
         #region 农历
@@ -1375,11 +1445,11 @@ namespace PPLive
         public enum BaZiLogicType
         {
             [EnumMember]
-            [Description("年干")]
-            niangan = 1,
+            [Description("五行关系")]
+            wuxing = 1,
             [EnumMember]
-            [Description("年支")]
-            niangan = 1,
+            [Description("十神关系")]
+            shishen = 2,
         }
         public static SortedList GetBaZiLogicType()
         {
@@ -1389,6 +1459,7 @@ namespace PPLive
         {
             return GetDescription(typeof(BaZiLogicType), v);
         }
+
 
         #endregion
 

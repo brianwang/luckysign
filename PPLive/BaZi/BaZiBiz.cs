@@ -437,6 +437,76 @@ namespace PPLive.BaZi
                 bazi.CangGan[3, j] = (PublicValue.TianGan)Enum.Parse(typeof(PublicValue.TianGan), cang[(int)bazi.HourDZ].Substring(j, 1));
             }
         }
+
+        #endregion
+        #region 盲派算法
+        /// <summary>
+        /// 驿马
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private List<PublicValue.DiZhi> GetYiMa(PublicValue.DiZhi input)
+        {
+            List<PublicValue.DiZhi> ret = new List<PublicValue.DiZhi>();
+            switch (((int)input)%3)
+            {
+                case 0:
+                    ret.Add(PublicValue.DiZhi.yin);
+                    ret.Add(PublicValue.DiZhi.wu);
+                    ret.Add(PublicValue.DiZhi.xu);
+                    break;
+                case 1:
+                    ret.Add(PublicValue.DiZhi.hai);
+                    ret.Add(PublicValue.DiZhi.mao);
+                    ret.Add(PublicValue.DiZhi.wei);
+                    break;
+                case 2:
+                    ret.Add(PublicValue.DiZhi.shen);
+                    ret.Add(PublicValue.DiZhi.zi);
+                    ret.Add(PublicValue.DiZhi.chen);
+                    break;
+                case 3:
+                    ret.Add(PublicValue.DiZhi.si);
+                    ret.Add(PublicValue.DiZhi.you);
+                    ret.Add(PublicValue.DiZhi.chou);
+                    break;  
+            }
+            return ret;
+        }
+
+        private PublicValue.DiZhi GetLuShen(PublicValue.TianGan input)
+        {
+            switch ((int)input)
+            {
+                case 0:
+                    return PublicValue.DiZhi.yin;
+                    break;
+                case 1:
+                    return PublicValue.DiZhi.mao;
+                    break;
+                case 2:
+                case 4:
+                    return PublicValue.DiZhi.si;
+                    break;
+                case 3:
+                case 5:
+                    return PublicValue.DiZhi.wu;
+                    break;
+                case 6:
+                    return PublicValue.DiZhi.shen;
+                    break;
+                case 7:
+                    return PublicValue.DiZhi.you;
+                    break;
+                case 8:
+                    return PublicValue.DiZhi.hai;
+                    break;
+                case 9:
+                default:
+                    return PublicValue.DiZhi.zi;
+                    break;
+            }
+        }
         #endregion
 
         /// <summary>

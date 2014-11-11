@@ -1314,12 +1314,17 @@ namespace PPLive
         private PublicValue.TianGan sourcetg = new PublicValue.TianGan();
         private PublicValue.DiZhi sourcedz = new PublicValue.DiZhi();
         private int sourceType = 0;//0为仅天干，1为仅地支，2为天干地支
+        private PublicValue.Power sourcePower = new PublicValue.Power();
 
         private PublicValue.TianGan targettg = new PublicValue.TianGan();
         private PublicValue.DiZhi targetdz = new PublicValue.DiZhi();
         private int targetType = 0;//0为仅天干，1为仅地支，2为天干地支
+        private PublicValue.Power targetPower = new PublicValue.Power();
 
         private PublicValue.ShiShen shishen = new PublicValue.ShiShen();
+        private PublicValue.ShengKeZhiHua shengkezhihua = new PublicValue.ShengKeZhiHua();
+        private bool yinyangSame = true;
+
         #endregion
         #region 接口
         public PublicValue.TianGan SourceTG
@@ -1337,6 +1342,12 @@ namespace PPLive
             get { return sourceType; }
             set { sourceType = value; }
         }
+        public PublicValue.Power SourcePower
+        {
+            get { return sourcePower; }
+            set { sourcePower = value; }
+        }
+
         public PublicValue.TianGan TargetTG
         {
             get { return targettg; }
@@ -1352,10 +1363,26 @@ namespace PPLive
             get { return targetType; }
             set { targetType = value; }
         }
+        public PublicValue.Power TargetPower
+        {
+            get { return targetPower; }
+            set { targetPower = value; }
+        }
+
         public PublicValue.ShiShen ShiShen
         {
             get { return shishen; }
             set { shishen = value; }
+        }
+        public PublicValue.ShengKeZhiHua ShengKeZhiHua
+        {
+            get { return shengkezhihua; }
+            set { shengkezhihua = value; }
+        }
+        public bool YinYangSame
+        {
+            get { return yinyangSame; }
+            set { yinyangSame = value; }
         }
         #endregion
     }

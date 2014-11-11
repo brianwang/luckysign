@@ -50,7 +50,7 @@
                                 <asp:DropDownList ID="drpItem" runat="server" CssClass="small-input">
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpType" runat="server" CssClass="small-input">
+                                <asp:DropDownList ID="drpType" runat="server" CssClass="small-input" AutoPostBack="true" OnSelectedIndexChanged="drpType_SelectedIndexChanged">
                                 </asp:DropDownList>
 
                                 <asp:DropDownList ID="drpCondition" runat="server" CssClass="small-input">

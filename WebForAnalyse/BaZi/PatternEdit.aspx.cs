@@ -103,32 +103,27 @@ namespace WebForAnalyse.BaZi
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            DropDownList drpStar = (DropDownList)e.Item.FindControl("drpStar");
-            drpStar.DataSource = PublicValue.GetZiWeiStar();
-            drpStar.DataTextField = "value";
-            drpStar.DataValueField = "key";
-            drpStar.DataBind();
-            drpStar.Items.Insert(0, new ListItem("请选择", "-1"));
+            DropDownList drpItem = (DropDownList)e.Item.FindControl("drpItem");
+            drpItem.DataSource = PublicValue.GetBaZiLogicItem();
+            drpItem.DataTextField = "value";
+            drpItem.DataValueField = "key";
+            drpItem.DataBind();
+            drpItem.Items.Insert(0, new ListItem("请选择", "-1"));
 
-            DropDownList drpGong = (DropDownList)e.Item.FindControl("drpGong");
-            drpGong.DataSource = PublicValue.GetZiWeiGong();
-            drpGong.DataTextField = "value";
-            drpGong.DataValueField = "key";
-            drpGong.DataBind();
-            drpGong.Items.Insert(0, new ListItem("请选择", "-1"));
+            DropDownList drpType = (DropDownList)e.Item.FindControl("drpType");
+            drpType.DataSource = PublicValue.GetBaZiLogicType();
+            drpType.DataTextField = "value";
+            drpType.DataValueField = "key";
+            drpType.DataBind();
+            drpType.Items.Insert(0, new ListItem("请选择", "-1"));
 
-            DropDownList drpWei = (DropDownList)e.Item.FindControl("drpWei");
-            drpWei.DataSource = PublicValue.GetDiZhi();
-            drpWei.DataTextField = "value";
-            drpWei.DataValueField = "key";
-            drpWei.DataBind();
-            drpWei.Items.Insert(0, new ListItem("请选择", "-1"));
-
-            DropDownList drpHua = (DropDownList)e.Item.FindControl("drpHua");
-            drpHua.DataSource = PublicValue.GetZiWeiSihua();
-            drpHua.DataTextField = "value";
-            drpHua.DataValueField = "key";
-            drpHua.DataBind();
+            DropDownList drpTarget = (DropDownList)e.Item.FindControl("drpTarget");
+            drpTarget.DataSource = PublicValue.GetBaZiLogicItem();
+            drpTarget.DataTextField = "value";
+            drpTarget.DataValueField = "key";
+            drpTarget.DataBind();
+            drpTarget.Items.Insert(0, new ListItem("无", "0"));
+            drpTarget.Items.Insert(0, new ListItem("请选择", "-1"));
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -178,6 +173,31 @@ namespace WebForAnalyse.BaZi
         protected void Button2_Click1(object sender, EventArgs e)
         {
 
+        }
+
+        protected void drpType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList ddl = sender as DropDownList;
+            Repeater rpt = ddl.Parent.Parent as Repeater;
+            int n = ((RepeaterItem)ddl.Parent).ItemIndex;
+            DropDownList ddl2 = rpt.Items[n].FindControl("drpCondition") as DropDownList;
+            switch (ddl.SelectedIndex)
+            {
+                case 1:
+                    ddl2.DataSource = PublicValue.GetShiShen();
+                    ddl2.DataTextField = "value";
+                    ddl2.DataValueField = "key";
+                    ddl2.DataBind();
+                    ddl2.Items.Insert(0, new ListItem("请选择", "-1"));
+                    break;
+                case 2:
+                    ddl2.DataSource = PublicValue.GetShiShen();
+                    ddl2.DataTextField = "value";
+                    ddl2.DataValueField = "key";
+                    ddl2.DataBind();
+                    ddl2.Items.Insert(0, new ListItem("请选择", "-1"));
+                    break;
+            }
         }
     }
 }
