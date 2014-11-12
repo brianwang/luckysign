@@ -549,6 +549,34 @@ namespace PPLive
             return GetDescription(typeof(Power), v);
         }
 
+        [DataContract(Name = "WuXingShuXing")]
+        public enum WuXingShuXing
+        {
+            [EnumMember]
+            [Description("金")]
+            gold = 1,
+            [EnumMember]
+            [Description("木")]
+            wood = 0,
+            [EnumMember]
+            [Description("水")]
+            water = 0,
+            [EnumMember]
+            [Description("火")]
+            fire = 0,
+            [EnumMember]
+            [Description("土")]
+            earth = 0,
+        }
+        public static SortedList GetWuXingShuXing()
+        {
+            return GetStatus(typeof(WuXingShuXing));
+        }
+        public static string GetWuXingShuXing(object v)
+        {
+            return GetDescription(typeof(WuXingShuXing), v);
+        }
+
         #endregion
 
         #region 农历
@@ -1450,6 +1478,9 @@ namespace PPLive
             [EnumMember]
             [Description("十神关系")]
             shishen = 2,
+            [EnumMember]
+            [Description("五行属性")]
+            shuxing = 3,
         }
         public static SortedList GetBaZiLogicType()
         {
@@ -1460,6 +1491,30 @@ namespace PPLive
             return GetDescription(typeof(BaZiLogicType), v);
         }
 
+        [DataContract(Name = "WuXingRelation")]
+        public enum WuXingRelation
+        {
+            [EnumMember]
+            [Description("生")]
+            sheng = 1,
+            [EnumMember]
+            [Description("克")]
+            ke = 2,
+            [EnumMember]
+            [Description("耗")]
+            hao = 3,
+            [EnumMember]
+            [Description("泄")]
+            xie = 3,
+        }
+        public static SortedList GetWuXingRelation()
+        {
+            return GetStatus(typeof(WuXingRelation));
+        }
+        public static string GetWuXingRelation(object v)
+        {
+            return GetDescription(typeof(WuXingRelation), v);
+        }
 
         #endregion
 

@@ -184,7 +184,7 @@ namespace WebForAnalyse.BaZi
             switch (ddl.SelectedIndex)
             {
                 case 1:
-                    ddl2.DataSource = PublicValue.GetShiShen();
+                    ddl2.DataSource = PublicValue.GetWuXingRelation();
                     ddl2.DataTextField = "value";
                     ddl2.DataValueField = "key";
                     ddl2.DataBind();
@@ -192,6 +192,13 @@ namespace WebForAnalyse.BaZi
                     break;
                 case 2:
                     ddl2.DataSource = PublicValue.GetShiShen();
+                    ddl2.DataTextField = "value";
+                    ddl2.DataValueField = "key";
+                    ddl2.DataBind();
+                    ddl2.Items.Insert(0, new ListItem("请选择", "-1"));
+                    break;
+                case 3:
+                    ddl2.DataSource = PublicValue.GetWuXingShuXing();
                     ddl2.DataTextField = "value";
                     ddl2.DataValueField = "key";
                     ddl2.DataBind();
