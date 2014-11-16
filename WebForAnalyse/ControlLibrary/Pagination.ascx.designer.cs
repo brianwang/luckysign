@@ -7,8 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebForAnalyse.ControlLibrary
-{
+namespace WebForAnalyse.ControlLibrary {
     
     
     public partial class Pagination {

@@ -290,80 +290,80 @@ namespace WebForAdmin.Celebrity
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
                 return;
             }
-                try
+            try
+            {
+                if (type == "ADD")
                 {
-                    if (type == "ADD")
+                    m_famous.SysNo = SYS_FamousBll.GetInstance().Add(m_famous);
+                    for (int i = 0; i < keys.Length; i++)
                     {
-                        m_famous.SysNo = SYS_FamousBll.GetInstance().Add(m_famous);
-                        for (int i = 0; i < keys.Length; i++)
+                        SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
+                        tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
+                        if (tmp_key.SysNo == AppConst.IntNull)
                         {
-                            SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
-                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
-                            if (tmp_key.SysNo  == AppConst.IntNull)
-                            {
-                                tmp_key.KeyWords = keys[i];
-                                tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
-                            }
-                            REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
-                            tmp_rel.Famous_SysNo = m_famous.SysNo;
-                            tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
-                            REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
+                            tmp_key.KeyWords = keys[i];
+                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
                         }
-                        LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Add", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
+                        REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
+                        tmp_rel.Famous_SysNo = m_famous.SysNo;
+                        tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
+                        REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
                     }
-                    else if (type == "EDIT")
-                    {
-                        SYS_FamousBll.GetInstance().UpDate(m_famous);
-                        REL_Famous_KeyWordBll.GetInstance().RemoveAllKeyByFamous(m_famous.SysNo);
-                        for (int i = 0; i < keys.Length; i++)
-                        {
-                            SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
-                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
-                            if (tmp_key.SysNo == AppConst.IntNull)
-                            {
-                                tmp_key.KeyWords = keys[i];
-                                tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
-                            }
-                            REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
-                            tmp_rel.Famous_SysNo = m_famous.SysNo;
-                            tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
-                            REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
-                        }
-                        LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Edit", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
-                    }
-                    else if (type == "INPUT")
-                    {
-                        m_famous.SysNo = SYS_FamousBll.GetInstance().Add(m_famous);
-                        int spider = int.Parse(Request.QueryString["id"]);
-                        SPD_FamousMod m_spider = SPD_FamousBll.GetInstance().GetModel(spider);
-                        m_spider.FamousSysNo = m_famous.SysNo;
-                        SPD_FamousBll.GetInstance().UpDate(m_spider);
-                        for (int i = 0; i < keys.Length; i++)
-                        {
-                            SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
-                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
-                            if (tmp_key.SysNo == AppConst.IntNull)
-                            {
-                                tmp_key.KeyWords = keys[i];
-                                tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
-                            }
-                            REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
-                            tmp_rel.Famous_SysNo = m_famous.SysNo;
-                            tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
-                            REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
-                        }
-                        LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Input", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
-                    }
-                    ltrNotice.Text = "该记录已保存成功！";
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
+                    LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Add", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
                 }
-                catch(Exception ex)
+                else if (type == "EDIT")
                 {
-                    ltrError.Text = "系统错误，保存失败！";
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
-                    LogManagement.getInstance().WriteException(ex, "Celebrity.Save", "IP:"+Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
+                    SYS_FamousBll.GetInstance().Update(m_famous);
+                    REL_Famous_KeyWordBll.GetInstance().RemoveAllKeyByFamous(m_famous.SysNo);
+                    for (int i = 0; i < keys.Length; i++)
+                    {
+                        SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
+                        tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
+                        if (tmp_key.SysNo == AppConst.IntNull)
+                        {
+                            tmp_key.KeyWords = keys[i];
+                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
+                        }
+                        REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
+                        tmp_rel.Famous_SysNo = m_famous.SysNo;
+                        tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
+                        REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
+                    }
+                    LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Edit", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
                 }
+                else if (type == "INPUT")
+                {
+                    m_famous.SysNo = SYS_FamousBll.GetInstance().Add(m_famous);
+                    int spider = int.Parse(Request.QueryString["id"]);
+                    SPD_FamousMod m_spider = SPD_FamousBll.GetInstance().GetModel(spider);
+                    m_spider.FamousSysNo = m_famous.SysNo;
+                    SPD_FamousBll.GetInstance().Update(m_spider);
+                    for (int i = 0; i < keys.Length; i++)
+                    {
+                        SYS_Famous_KeyWordsMod tmp_key = new SYS_Famous_KeyWordsMod();
+                        tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().GetSysNoByName(keys[i]);
+                        if (tmp_key.SysNo == AppConst.IntNull)
+                        {
+                            tmp_key.KeyWords = keys[i];
+                            tmp_key.SysNo = SYS_Famous_KeyWordsBll.GetInstance().Add(tmp_key);
+                        }
+                        REL_Famous_KeyWordMod tmp_rel = new REL_Famous_KeyWordMod();
+                        tmp_rel.Famous_SysNo = m_famous.SysNo;
+                        tmp_rel.KeyWord_SysNo = tmp_key.SysNo;
+                        REL_Famous_KeyWordBll.GetInstance().Add(tmp_rel);
+                    }
+                    LogManagement.getInstance().WriteTrace(m_famous.SysNo, "Celebrity.Input", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
+                }
+                ltrNotice.Text = "该记录已保存成功！";
+                this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
             }
+            catch (Exception ex)
+            {
+                ltrError.Text = "系统错误，保存失败！";
+                this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
+                LogManagement.getInstance().WriteException(ex, "Celebrity.Save", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
+            }
+        }
 
         protected void txtKey_TextChanged(object sender, EventArgs e)
         {

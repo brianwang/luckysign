@@ -26,9 +26,28 @@
 
         });
 
+        function convert(input) {
+            if ($("#p" + input).children("span").children("select").css("display") == "none") {
+                $("#p" + input).children("select").css("display", "none");
+                $("#p" + input).children("span").children("select").css("display", "");
+            }
+            else {
+                $("#p" + input).children("select").css("display", "");
+                $("#p" + input).children("span").children("select").css("display", "none");
+            }
+        }
+
         function plus(input) {
-            $("#p" + (input + 1)).css("display", "");
-            $("#2p" + (input + 1)).css("display", "");
+            if ($("#a" + input).html() == "+" || input == 0) {
+                $("#p" + (input + 1)).css("display", "");
+                if (input > 0)
+                    $("#a" + input).html("-");
+            }
+            else {
+                $("#p" + (input)).css("display", "none");
+                $("#a" + input).html("+");
+            }
+            this
         }
     </script>
 
@@ -38,32 +57,94 @@
     <p id="page-intro">
         请设置关系：
     </p>
+    <div id="noticediv1" class="notification attention png_bg" style="display: none;">
+        <a href="#" class="close">
+            <img src="../WebResources/images/icons/cross_grey_small.png" title="Close this notification"
+                alt="close" /></a>
+        <div>
+            <asp:Literal ID="ltrNotice1" runat="server"></asp:Literal>
+        </div>
+    </div>
+    <div id="errordiv" class="notification error png_bg" style="display: none;">
+        <a href="#" class="close">
+            <img src="../WebResources/images/icons/cross_grey_small.png" title="Close this notification"
+                alt="close" /></a>
+        <div>
+            <asp:Literal ID="ltrError" runat="server"></asp:Literal>
+        </div>
+    </div>
+
+    <fieldset  class="column-left">
+        <p>
+            <label>
+                标题</label>
+            <asp:TextBox ID="txtTitle" class="text-input small-input" ReadOnly="true" Enabled="false"
+                runat="server"></asp:TextBox>
+            <%--<span class="input-notification success png_bg">Successful message</span>--%>
+            <!-- Classes for input-notification: success, error, information, attention -->
+            <br />
+            <small></small>
+        </p>
+    </fieldset>
+    <fieldset  class="column-right">
+        <p>
+            <label>
+                类型</label>
+            <asp:DropDownList ID="drpType" runat="server" class="small-input">
+                </asp:DropDownList>
+            <%--<span class="input-notification success png_bg">Successful message</span>--%>
+            <!-- Classes for input-notification: success, error, information, attention -->
+            <br />
+            <small></small>
+        </p>
+    </fieldset>
     <fieldset class="column">
-        <p style="display: none;">
-            <asp:TextBox ID="txtSign" runat="server"></asp:TextBox>
+        <p>
+            <label>
+                详细</label>
+            <asp:TextBox ID="txtDesc" class="text-input textarea" TextMode="MultiLine" Height="300"
+                Width="300" runat="server"></asp:TextBox>
+            <%--<span class="input-notification success png_bg">Successful message</span>--%>
+            <!-- Classes for input-notification: success, error, information, attention -->
+            <br />
+            <small></small>
+        </p>
+        <p>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound" OnItemCommand="Repeater1_ItemCommand">
+                    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
                         <ItemTemplate>
                             <label id="p<%# Container.ItemIndex + 1%>" style="display: none;">
-
-                                <asp:DropDownList ID="drpItem" runat="server" CssClass="small-input">
+                                <asp:TextBox ID="txtSign1" runat="server" CssClass="tiny-input"></asp:TextBox>
+                                <asp:DropDownList ID="drpItem" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpType" runat="server" CssClass="small-input" AutoPostBack="true" OnSelectedIndexChanged="drpType_SelectedIndexChanged">
+                                <asp:DropDownList ID="drpNegative" runat="server" CssClass="tiny-input">
+                                    <asp:ListItem Text="" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="非" Value="0"></asp:ListItem>
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpCondition" runat="server" CssClass="small-input">
+                                <asp:DropDownList ID="drpType" runat="server" CssClass="tiny-input" AutoPostBack="true" OnSelectedIndexChanged="drpType_SelectedIndexChanged">
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpTarget" runat="server" CssClass="small-input">
+                                <asp:DropDownList ID="drpCondition" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpLogic" runat="server" CssClass="medium-input" Visible="false">
+                                <asp:DropDownList ID="drpTarget" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
-                                <asp:Button ID="Button2" runat="server" Text="添加已有逻辑" />
-                                <asp:TextBox ID="txtSign" runat="server" CssClass="small-input"></asp:TextBox>
-                                <a href="javascript:plus(<%# Container.ItemIndex + 1%>);">+ </a>
+
+                                <span>
+                                    <asp:DropDownList ID="drpLogic" runat="server" CssClass="tiny-input" Style="display: none;">
+                                    </asp:DropDownList></span>
+                                <a id="b<%# Container.ItemIndex + 1%>" href="javascript:convert(<%# Container.ItemIndex + 1%>);">模式</a>
+
+                                <asp:TextBox ID="txtSign2" runat="server" CssClass="tiny-input"></asp:TextBox>
+                                <asp:DropDownList ID="drpSign" runat="server" CssClass="tiny-input">
+                                    <asp:ListItem Text="" Value=""></asp:ListItem>
+                                    <asp:ListItem Text="且" Value="&&"></asp:ListItem>
+                                    <asp:ListItem Text="或" Value="||"></asp:ListItem>
+                                </asp:DropDownList>
+                                <a id="a<%# Container.ItemIndex + 1%>" href="javascript:plus(<%# Container.ItemIndex + 1%>);">+</a>
                                 <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
                                 <!-- Classes for input-notification: success, error, information, attention -->
                             </label>
@@ -75,10 +156,8 @@
         <p>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <label>
-                        解释
-                    </label>
-                    <asp:Button ID="Button2" runat="server" Text="生成" OnClick="Button2_Click1" />
+                    <asp:Button ID="Button2" runat="server" Text="生成解释" OnClick="Button2_Click1" />
+
                     <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                     <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
                     <!-- Classes for input-notification: success, error, information, attention -->

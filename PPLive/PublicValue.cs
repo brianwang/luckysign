@@ -557,16 +557,16 @@ namespace PPLive
             gold = 1,
             [EnumMember]
             [Description("木")]
-            wood = 0,
+            wood = 2,
             [EnumMember]
             [Description("水")]
-            water = 0,
+            water = 3,
             [EnumMember]
             [Description("火")]
-            fire = 0,
+            fire = 4,
             [EnumMember]
             [Description("土")]
-            earth = 0,
+            earth = 5,
         }
         public static SortedList GetWuXingShuXing()
         {
@@ -1505,7 +1505,7 @@ namespace PPLive
             hao = 3,
             [EnumMember]
             [Description("泄")]
-            xie = 3,
+            xie = 4,
         }
         public static SortedList GetWuXingRelation()
         {
