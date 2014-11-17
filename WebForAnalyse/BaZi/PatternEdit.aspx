@@ -27,27 +27,71 @@
         });
 
         function convert(input) {
-            if ($("#p" + input).children("span").children("select").css("display") == "none") {
-                $("#p" + input).children("select").css("display", "none");
-                $("#p" + input).children("span").children("select").css("display", "");
+            if(input<10)
+            {
+                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + input+ "_p";
+            }
+            else
+            {
+                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + input + "_p";
+            }
+
+            //var hidden = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField2").value;
+            if ($(id).children("span").children("select").css("display") == "none") {
+                
+                $(id).children("select").css("display", "none");
+                $(id).children("span").children("select").css("display", "");
+                //hidden = hidden + input+"|";
             }
             else {
-                $("#p" + input).children("select").css("display", "");
-                $("#p" + input).children("span").children("select").css("display", "none");
+                $(id).children("select").css("display", "");
+                $(id).children("span").children("select").css("display", "none");
+                //hidden = hidden.replace("|"+input+"|", "|");
             }
+
+        }
+
+        function show(input)
+        {
+            if (input < 9) {
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + (input + 1) + "_p";
+            }
+            else {
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + (input + 1) + "_p";
+            }
+            
+                $(id1).css("display", "");
+                if (input > 0)
+                    $("#a" + input).html("-");
         }
 
         function plus(input) {
+            if (input < 10) {
+                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + input + "_p";
+            }
+            else {
+                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + input + "_p";
+            }
+            if (input < 9) {
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + (input + 1) + "_p";
+            }
+            else {
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + (input + 1) + "_p";
+            }
             if ($("#a" + input).html() == "+" || input == 0) {
-                $("#p" + (input + 1)).css("display", "");
+                $(id1).css("display", "");
                 if (input > 0)
                     $("#a" + input).html("-");
             }
             else {
-                $("#p" + (input)).css("display", "none");
+                $(id1).css("display", "none");
                 $("#a" + input).html("+");
             }
-            this
+            max = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value;
+            if (input > max)
+            {
+                document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value = input;
+            }
         }
     </script>
 
@@ -112,12 +156,12 @@
             <small></small>
         </p>
         <p>
-
-            <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
-                <ItemTemplate>
-                    <label id="p<%# Container.ItemIndex + 1%>" style="display: none;">
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate> 
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+                        <ItemTemplate>
+                            <label id="p"  style="display: none;" runat="server">
+                                <%# Container.ItemIndex + 1%>
                                 <asp:TextBox ID="txtSign1" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
 
                                 <asp:DropDownList ID="drpItem" runat="server" CssClass="tiny-input">
@@ -137,11 +181,12 @@
                                 <asp:DropDownList ID="drpTarget" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
 
-                                <span>
+                                
                                     <asp:DropDownList ID="drpLogic" runat="server" CssClass="tiny-input" Style="display: none;">
-                                    </asp:DropDownList></span>
+                                    </asp:DropDownList>
 
-                                <a id="b<%# Container.ItemIndex + 1%>" href="javascript:convert(<%# Container.ItemIndex + 1%>);">模式</a>
+                                <a href="javascript:convert(<%# Container.ItemIndex%>);">模式</a>
+                                 <%--<asp:LinkButton runat="server" Text="模式" OnClick="Unnamed_Click"></asp:LinkButton>--%>
 
                                 <asp:TextBox ID="txtSign2" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
 
@@ -150,15 +195,18 @@
                                     <asp:ListItem Text="且" Value="&&"></asp:ListItem>
                                     <asp:ListItem Text="或" Value="||"></asp:ListItem>
                                 </asp:DropDownList>
+                                <%--<asp:LinkButton ID="show" runat="server" Text="+" OnClick="Unnamed_Click1"></asp:LinkButton>--%>
                                 <a id="a<%# Container.ItemIndex + 1%>" href="javascript:plus(<%# Container.ItemIndex + 1%>);">+</a>
                                 <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
                                 <!-- Classes for input-notification: success, error, information, attention -->
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </label>
-                </ItemTemplate>
-            </asp:Repeater>
 
+                            </label>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:HiddenField ID="HiddenField1" Value="1" runat="server" />
+            <asp:HiddenField ID="HiddenField2" Value="|" runat="server" />
         </p>
         <p>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">

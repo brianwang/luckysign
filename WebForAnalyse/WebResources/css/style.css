@@ -586,9 +586,14 @@ form input.text-input, form select, form textarea, form .wysiwyg
     color: #333;
 }
 
+form .tinyest-input
+{
+    width: 4% !important;
+}
+
 form .tiny-input
 {
-    width: 10% !important;
+    width: 8% !important;
 }
 
 form .small-input

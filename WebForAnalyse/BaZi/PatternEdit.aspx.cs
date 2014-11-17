@@ -15,7 +15,7 @@ namespace WebForAnalyse.BaZi
 {
     public partial class PatternEdit : PageBase
     {
-        private int sysno=AppConst.IntNull;
+        private int sysno = AppConst.IntNull;
         private DataTable LogicList = new DataTable();
         private DataTable ConditionList = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,13 +30,13 @@ namespace WebForAnalyse.BaZi
             {
                 DataTable m_dt = new DataTable();
                 m_dt.Columns.Add("id");
-                for(int i=0;i<50;i++)
+                for (int i = 0; i < 50; i++)
                 {
                     DataRow m_dr = m_dt.NewRow();
                     m_dr["id"] = i;
                     m_dt.Rows.Add(m_dr);
                 }
-                Repeater1.DataSource =m_dt;
+                Repeater1.DataSource = m_dt;
                 Repeater1.DataBind();
 
                 if (Request.QueryString["id"] != null && Request.QueryString["id"] != "")
@@ -53,8 +53,19 @@ namespace WebForAnalyse.BaZi
 
                 int total = 0;
                 LogicList = RSH_BaziLogicBll.GetInstance().GetList(0, 1000, "", ref total);
-                this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(0);", true);
+                //this.ClientScript.RegisterStartupScript(this.GetType(), "", "show(0);", true);
             }
+            string jsstr = "";
+            for (int i = 0; i < int.Parse(HiddenField1.Value); i++)
+            {
+                jsstr += "show(" + i + ");";
+            }
+            string[] tmpstrs = HiddenField2.Value.Substring(1).Split(new char[] { '|' });
+            for (int i = 0; i < tmpstrs.Length; i++)
+            {
+                jsstr += "convert(" + tmpstrs[i] + ");";
+            }
+            ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "", jsstr, true);
         }
 
         protected void PrepareForm()
@@ -87,7 +98,7 @@ namespace WebForAnalyse.BaZi
             {
                 ltrNotice.Text = "请选择日期";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';closeforseconds();", true);
-                this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(1);", true);
+                this.ClientScript.RegisterStartupScript(this.GetType(), "", "show(0);", true);
                 return;
             }
             DateEntity m_date = new DateEntity(new DateTime(int.Parse(txtDate.Text.Split(new char[] { '-' })[0]), int.Parse(txtDate.Text.Split(new char[] { '-' })[1]), int.Parse(txtDate.Text.Split(new char[] { '-' })[2]),
@@ -98,7 +109,7 @@ namespace WebForAnalyse.BaZi
             {
                 ltrNotice.Text = "开始日期必须在结束日期前";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';closeforseconds();", true);
-                this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(0);", true);
+                //this.ClientScript.RegisterStartupScript(this.GetType(), "", "show(0);", true);
                 return;
             }
 
@@ -133,10 +144,10 @@ namespace WebForAnalyse.BaZi
                 }
                 if (flag)
                 {
-                    ltrResult.Text += m_date.Date.ToString("yyyy-MM-dd HH:00:00 ")+"<br />";
+                    ltrResult.Text += m_date.Date.ToString("yyyy-MM-dd HH:00:00 ") + "<br />";
                 }
             }
-            this.ClientScript.RegisterStartupScript(this.GetType(), "", "plus(0);", true);
+            //this.ClientScript.RegisterStartupScript(this.GetType(), "", "show(0);", true);
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -162,7 +173,7 @@ namespace WebForAnalyse.BaZi
             drpTarget.DataBind();
             drpTarget.Items.Insert(0, new ListItem("无", "0"));
             drpTarget.Items.Insert(0, new ListItem("请选择", "-1"));
-            
+
             DropDownList drpLogic = (DropDownList)e.Item.FindControl("drpLogic");
             drpLogic.DataSource = LogicList;
             drpLogic.DataTextField = "Name";
@@ -202,7 +213,7 @@ namespace WebForAnalyse.BaZi
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Dictionary<int,RSH_BaziConditionMod> m_condition = new Dictionary<int,RSH_BaziConditionMod>();
+            Dictionary<int, RSH_BaziConditionMod> m_condition = new Dictionary<int, RSH_BaziConditionMod>();
 
             for (int i = 0; i < 50; i++)
             {
@@ -215,7 +226,7 @@ namespace WebForAnalyse.BaZi
                     m_tmp.Condition = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpCondition")).SelectedValue);
                     m_tmp.Target = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpTarget")).SelectedValue);
                     m_tmp.SysNo = RSH_BaziConditionBll.GetInstance().Add(m_tmp);
-                    m_condition.Add(i,m_tmp);
+                    m_condition.Add(i, m_tmp);
                 }
             }
 
@@ -366,8 +377,8 @@ namespace WebForAnalyse.BaZi
         protected void drpType_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList ddl = sender as DropDownList;
-            Repeater rpt = ddl.Parent.Parent as Repeater;
-            int n = ((RepeaterItem)ddl.Parent).ItemIndex;
+            Repeater rpt = ddl.Parent.Parent.Parent as Repeater;
+            int n = ((RepeaterItem)ddl.Parent.Parent).ItemIndex;
             DropDownList ddl2 = rpt.Items[n].FindControl("drpCondition") as DropDownList;
             switch (ddl.SelectedIndex)
             {
@@ -392,6 +403,54 @@ namespace WebForAnalyse.BaZi
                     ddl2.DataBind();
                     ddl2.Items.Insert(0, new ListItem("请选择", "-1"));
                     break;
+            }
+            
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            LinkButton lbn = sender as LinkButton;
+            DropDownList drpLogic = lbn.Parent.FindControl("drpLogic") as DropDownList;
+            DropDownList drpItem = lbn.Parent.FindControl("drpItem") as DropDownList;
+            DropDownList drpNegative = lbn.Parent.FindControl("drpNegative") as DropDownList;
+            DropDownList drpType = lbn.Parent.FindControl("drpType") as DropDownList;
+            DropDownList drpCondition = lbn.Parent.FindControl("drpCondition") as DropDownList;
+            DropDownList drpTarget = lbn.Parent.FindControl("drpTarget") as DropDownList;
+            if (drpLogic.Style["display"] == "none")
+            {
+                drpLogic.Style["display"] = "";
+                drpItem.Style["display"] = "none";
+                drpNegative.Style["display"] = "none";
+                drpType.Style["display"] = "none";
+                drpCondition.Style["display"] = "none";
+                drpTarget.Style["display"] = "none";
+            }
+            else
+            {
+                drpLogic.Style["display"] = "none";
+                drpItem.Style["display"] = "";
+                drpNegative.Style["display"] = "";
+                drpType.Style["display"] = "";
+                drpCondition.Style["display"] = "";
+                drpTarget.Style["display"] = "";
+            }
+        }
+
+        protected void Unnamed_Click1(object sender, EventArgs e)
+        {
+            LinkButton lbn = sender as LinkButton;
+            Repeater rpt = lbn.Parent.Parent.Parent as Repeater;
+            int n = ((RepeaterItem)lbn.Parent.Parent).ItemIndex;
+            Label lbl = rpt.Items[n + 1].FindControl("p") as Label;
+            if (lbn.Text == "+")
+            {
+                lbn.Text = "-";
+                lbl.Style["display"] = "";
+            }
+            else
+            {
+                lbn.Text = "+";
+                lbl.Style["display"] = "none";
             }
         }
     }
