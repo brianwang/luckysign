@@ -29,9 +29,9 @@ namespace AppDal.Research
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into RSH_BaziCondition(");
-            strSql.Append("Item,Type,Condition,LogicSysNo,Target)");
+            strSql.Append("Item,Type,Condition,LogicSysNo,Target,Negative)");
             strSql.Append(" values (");
-            strSql.Append("@Item,@Type,@Condition,@LogicSysNo,@Target)");
+            strSql.Append("@Item,@Type,@Condition,@LogicSysNo,@Target,@Negative)");
             strSql.Append(";select @@IDENTITY");
             SqlCommand cmd = new SqlCommand(strSql.ToString());
             SqlParameter[] parameters = {
@@ -40,6 +40,7 @@ namespace AppDal.Research
                  new SqlParameter("@Condition",SqlDbType.Int,4),
                  new SqlParameter("@LogicSysNo",SqlDbType.Int,4),
                  new SqlParameter("@Target",SqlDbType.Int,4),
+                 new SqlParameter("@Negative",SqlDbType.Int,4),
              };
             if (model.Item != AppConst.IntNull)
                 parameters[0].Value = model.Item;
@@ -66,6 +67,11 @@ namespace AppDal.Research
             else
                 parameters[4].Value = System.DBNull.Value;
             cmd.Parameters.Add(parameters[4]);
+            if (model.Negative != AppConst.IntNull)
+                parameters[5].Value = model.Negative;
+            else
+                parameters[5].Value = System.DBNull.Value;
+            cmd.Parameters.Add(parameters[5]);
 
             return Convert.ToInt32(SqlHelper.ExecuteScalar(cmd, parameters));
         }
@@ -118,6 +124,13 @@ namespace AppDal.Research
                 param.Value = model.Target;
                 cmd.Parameters.Add(param);
             }
+            if (model.Negative != AppConst.IntNull)
+            {
+                strSql.Append("Negative=@Negative,");
+                SqlParameter param = new SqlParameter("@Negative", SqlDbType.Int, 4);
+                param.Value = model.Negative;
+                cmd.Parameters.Add(param);
+            }
             strSql.Remove(strSql.Length - 1, 1);
             strSql.Append(" where SysNo=@SysNo ");
             cmd.CommandText = strSql.ToString();
@@ -144,7 +157,7 @@ namespace AppDal.Research
         public RSH_BaziConditionMod GetModel(int SysNo)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select SysNo, Item, Type, Condition, LogicSysNo, Target from  dbo.RSH_BaziCondition");
+            strSql.Append("select SysNo, Item, Type, Condition, LogicSysNo, Target, Negative from  dbo.RSH_BaziCondition");
             strSql.Append(" where SysNo=@SysNo ");
             SqlParameter[] parameters = { 
 		new SqlParameter("@SysNo", SqlDbType.Int,4 )
@@ -177,6 +190,10 @@ namespace AppDal.Research
                 if (ds.Tables[0].Rows[0]["Target"].ToString() != "")
                 {
                     model.Target = int.Parse(ds.Tables[0].Rows[0]["Target"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["Negative"].ToString() != "")
+                {
+                    model.Negative = int.Parse(ds.Tables[0].Rows[0]["Negative"].ToString());
                 }
                 return model;
             }

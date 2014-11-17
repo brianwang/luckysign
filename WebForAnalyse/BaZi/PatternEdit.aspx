@@ -74,11 +74,11 @@
         </div>
     </div>
 
-    <fieldset  class="column-left">
+    <fieldset class="column-left">
         <p>
             <label>
                 标题</label>
-            <asp:TextBox ID="txtTitle" class="text-input small-input" ReadOnly="true" Enabled="false"
+            <asp:TextBox ID="txtTitle" class="text-input large-input"
                 runat="server"></asp:TextBox>
             <%--<span class="input-notification success png_bg">Successful message</span>--%>
             <!-- Classes for input-notification: success, error, information, attention -->
@@ -86,23 +86,25 @@
             <small></small>
         </p>
     </fieldset>
-    <fieldset  class="column-right">
+    <fieldset class="column-right">
         <p>
             <label>
                 类型</label>
             <asp:DropDownList ID="drpType" runat="server" class="small-input">
-                </asp:DropDownList>
+            </asp:DropDownList>
             <%--<span class="input-notification success png_bg">Successful message</span>--%>
             <!-- Classes for input-notification: success, error, information, attention -->
             <br />
             <small></small>
         </p>
     </fieldset>
+    <div class="clear">
+    </div>
     <fieldset class="column">
         <p>
             <label>
                 详细</label>
-            <asp:TextBox ID="txtDesc" class="text-input textarea" TextMode="MultiLine" Height="300"
+            <asp:TextBox ID="txtDesc" class="text-input textarea" TextMode="MultiLine" Height="100"
                 Width="300" runat="server"></asp:TextBox>
             <%--<span class="input-notification success png_bg">Successful message</span>--%>
             <!-- Classes for input-notification: success, error, information, attention -->
@@ -110,16 +112,18 @@
             <small></small>
         </p>
         <p>
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
-                        <ItemTemplate>
-                            <label id="p<%# Container.ItemIndex + 1%>" style="display: none;">
-                                <asp:TextBox ID="txtSign1" runat="server" CssClass="tiny-input"></asp:TextBox>
+
+            <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+                <ItemTemplate>
+                    <label id="p<%# Container.ItemIndex + 1%>" style="display: none;">
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate> 
+                                <asp:TextBox ID="txtSign1" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
+
                                 <asp:DropDownList ID="drpItem" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
 
-                                <asp:DropDownList ID="drpNegative" runat="server" CssClass="tiny-input">
+                                <asp:DropDownList ID="drpNegative" runat="server" CssClass="tinyest-input">
                                     <asp:ListItem Text="" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="非" Value="0"></asp:ListItem>
                                 </asp:DropDownList>
@@ -136,10 +140,12 @@
                                 <span>
                                     <asp:DropDownList ID="drpLogic" runat="server" CssClass="tiny-input" Style="display: none;">
                                     </asp:DropDownList></span>
+
                                 <a id="b<%# Container.ItemIndex + 1%>" href="javascript:convert(<%# Container.ItemIndex + 1%>);">模式</a>
 
-                                <asp:TextBox ID="txtSign2" runat="server" CssClass="tiny-input"></asp:TextBox>
-                                <asp:DropDownList ID="drpSign" runat="server" CssClass="tiny-input">
+                                <asp:TextBox ID="txtSign2" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
+
+                                <asp:DropDownList ID="drpSign" runat="server" CssClass="tinyest-input">
                                     <asp:ListItem Text="" Value=""></asp:ListItem>
                                     <asp:ListItem Text="且" Value="&&"></asp:ListItem>
                                     <asp:ListItem Text="或" Value="||"></asp:ListItem>
@@ -147,11 +153,12 @@
                                 <a id="a<%# Container.ItemIndex + 1%>" href="javascript:plus(<%# Container.ItemIndex + 1%>);">+</a>
                                 <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
                                 <!-- Classes for input-notification: success, error, information, attention -->
-                            </label>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </label>
+                </ItemTemplate>
+            </asp:Repeater>
+
         </p>
         <p>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">

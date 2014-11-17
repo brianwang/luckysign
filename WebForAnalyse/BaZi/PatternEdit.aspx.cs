@@ -17,13 +17,14 @@ namespace WebForAnalyse.BaZi
     {
         private int sysno=AppConst.IntNull;
         private DataTable LogicList = new DataTable();
+        private DataTable ConditionList = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             #region 初始化
             //Login(Request.RawUrl);
             WebForAnalyse.Master.AdminMaster m_master = (WebForAnalyse.Master.AdminMaster)this.Master;
-            m_master.PageName = "八字格局设置";
-            m_master.SetCate(WebForAnalyse.Master.AdminMaster.CateType.ZiWei1);
+            m_master.PageName = "八字组合设置";
+            m_master.SetCate(WebForAnalyse.Master.AdminMaster.CateType.BaZi3);
             #endregion
             if (!IsPostBack)
             {
@@ -38,6 +39,12 @@ namespace WebForAnalyse.BaZi
                 Repeater1.DataSource =m_dt;
                 Repeater1.DataBind();
 
+                if (Request.QueryString["id"] != null && Request.QueryString["id"] != "")
+                {
+                    sysno = int.Parse(Request.QueryString["id"]);
+                    PrepareForm();
+                }
+
                 drpType.DataSource = AppEnum.GetBaZiLogicType();
                 drpType.DataTextField = "value";
                 drpType.DataValueField = "key";
@@ -50,7 +57,29 @@ namespace WebForAnalyse.BaZi
             }
         }
 
-        private int dayun = 6;
+        protected void PrepareForm()
+        {
+            RSH_BaziLogicMod m_logic = RSH_BaziLogicBll.GetInstance().GetModel(sysno);
+            txtTitle.Text = m_logic.Name;
+            txtDesc.Text = m_logic.Description;
+            string[] logic = m_logic.Logic.Split(new char[] { '_' });
+            ConditionList = RSH_BaziConditionBll.GetInstance().GetListByLogic(sysno);
+            ConditionList.Columns.Add("sign1");
+            ConditionList.Columns.Add("sign2");
+            ConditionList.Columns.Add("sign");
+            ConditionList.Columns.Add("logic");
+            for (int i = 0; i < ConditionList.Rows.Count; i++)
+            {
+                ConditionList.Rows[i]["sign1"] = logic[4 * i];
+                ConditionList.Rows[i]["sign2"] = logic[4 * i + 2];
+                ConditionList.Rows[i]["sign"] = logic[4 * i + 3];
+                if (logic[4 * i + 1].Contains("#"))
+                    ConditionList.Rows[i]["logic"] = logic[4 * i + 1];
+                else
+                    ConditionList.Rows[i]["logic"] = "";
+            }
+        }
+
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             ltrResult.Text = "";
@@ -140,6 +169,35 @@ namespace WebForAnalyse.BaZi
             drpLogic.DataValueField = "SysNo";
             drpLogic.DataBind();
             drpLogic.Items.Insert(0, new ListItem("请选择", "-1"));
+
+            if (sysno != AppConst.IntNull)
+            {
+                string jsstr = "";
+                if (ConditionList.Rows[e.Item.ItemIndex]["logic"].ToString() == "")
+                {
+                    drpItem.SelectedIndex = drpItem.Items.IndexOf(drpItem.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["item"].ToString()));
+                    drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["type"].ToString()));
+                    drpTarget.SelectedIndex = drpTarget.Items.IndexOf(drpTarget.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["target"].ToString()));
+                    DropDownList drpCondition = (DropDownList)e.Item.FindControl("drpCondition");
+                    drpCondition.SelectedIndex = drpCondition.Items.IndexOf(drpCondition.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["Condition"].ToString()));
+                    DropDownList drpNegative = (DropDownList)e.Item.FindControl("drpNegative");
+                    drpNegative.SelectedIndex = drpNegative.Items.IndexOf(drpNegative.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["Negative"].ToString()));
+                }
+                else
+                {
+                    DropDownList drplogic = (DropDownList)e.Item.FindControl("drplogic");
+                    drplogic.SelectedIndex = drplogic.Items.IndexOf(drplogic.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["logic"].ToString()));
+                    jsstr += "convert(" + e.Item.ItemIndex + ");";
+                }
+                DropDownList drpSign = (DropDownList)e.Item.FindControl("drpSign");
+                drpSign.SelectedIndex = drpSign.Items.IndexOf(drpSign.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["sign"].ToString()));
+                TextBox sign1 = (TextBox)e.Item.FindControl("txtSign1");
+                sign1.Text = ConditionList.Rows[e.Item.ItemIndex]["sign1"].ToString();
+                TextBox sign2 = (TextBox)e.Item.FindControl("txtSign2");
+                sign2.Text = ConditionList.Rows[e.Item.ItemIndex]["sign2"].ToString();
+
+                this.ClientScript.RegisterStartupScript(this.GetType(), "convert", jsstr, true);
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -256,22 +314,34 @@ namespace WebForAnalyse.BaZi
             }
             #endregion
 
-
             RSH_BaziLogicMod m_logic = new RSH_BaziLogicMod();
-            m_logic.Description = txtDesc.Text.Trim();
-            m_logic.DR = (int)AppEnum.State.normal;
-            m_logic.Name = txtTitle.Text.Trim();
-            m_logic.Type = int.Parse(drpType.SelectedValue);
-            m_logic.Logic = "";
-            m_logic.SysNo = RSH_BaziLogicBll.GetInstance().Add(m_logic);
+            if (sysno == AppConst.IntNull)
+            {
+                m_logic.Description = txtDesc.Text.Trim();
+                m_logic.DR = (int)AppEnum.State.normal;
+                m_logic.Name = txtTitle.Text.Trim();
+                m_logic.Type = int.Parse(drpType.SelectedValue);
+                m_logic.Logic = "";
+                m_logic.SysNo = RSH_BaziLogicBll.GetInstance().Add(m_logic);
+            }
+            else
+            {
+                m_logic = RSH_BaziLogicBll.GetInstance().GetModel(sysno);
+                m_logic.Description = txtDesc.Text.Trim();
+                m_logic.DR = (int)AppEnum.State.normal;
+                m_logic.Name = txtTitle.Text.Trim();
+                m_logic.Type = int.Parse(drpType.SelectedValue);
+                m_logic.Logic = "";
+                RSH_BaziConditionBll.GetInstance().DeleteConditionsByLogic(sysno);
+            }
 
             //List<RSH_BaziConditionMod> m_condtions = new List<RSH_BaziConditionMod>();
             foreach (RepeaterItem item in Repeater1.Items)
             {
-                m_logic.Logic += ((TextBox)item.FindControl("txtSign1")).Text;
+                m_logic.Logic += ((TextBox)item.FindControl("txtSign1")).Text + "_";
                 if (((DropDownList)item.FindControl("drpLogic")).Style["display"] != "none")
                 {
-                    m_logic.Logic += "#" + ((DropDownList)item.FindControl("drpLogic")).SelectedValue;
+                    m_logic.Logic += "#" + ((DropDownList)item.FindControl("drpLogic")).SelectedValue + "_";
                 }
                 else if (((DropDownList)item.FindControl("drpItem")).Style["display"] != "none")
                 {
@@ -281,12 +351,16 @@ namespace WebForAnalyse.BaZi
                     tmp_c.Type = int.Parse(((DropDownList)item.FindControl("drpType")).SelectedValue);
                     tmp_c.Condition = int.Parse(((DropDownList)item.FindControl("drpCondition")).SelectedValue);
                     tmp_c.Target = int.Parse(((DropDownList)item.FindControl("drpTarget")).SelectedValue);
+                    tmp_c.Negative = int.Parse(((DropDownList)item.FindControl("drpNegative")).SelectedValue);
+
                     tmp_c.SysNo = RSH_BaziConditionBll.GetInstance().Add(tmp_c);
-                    m_logic.Logic += "@" + tmp_c.SysNo;
+                    m_logic.Logic += "@" + tmp_c.SysNo + "_";
                 }
-                m_logic.Logic += ((TextBox)item.FindControl("txtSign2")).Text;
-                m_logic.Logic += ((DropDownList)item.FindControl("drpItem")).SelectedValue;
+                m_logic.Logic += ((TextBox)item.FindControl("txtSign2")).Text + "_";
+                m_logic.Logic += ((DropDownList)item.FindControl("drpSign")).SelectedValue + "_";
             }
+            RSH_BaziLogicBll.GetInstance().Update(m_logic);
+
         }
 
         protected void drpType_SelectedIndexChanged(object sender, EventArgs e)

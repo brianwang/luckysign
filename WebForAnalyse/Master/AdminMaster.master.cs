@@ -26,6 +26,8 @@ namespace WebForAnalyse.Master
             BaZi1 = 11,
             [Description("八字查询")]
             BaZi2 = 12,
+            [Description("八字组合")]
+            BaZi3 = 13,
 
 
             [Description("六爻研究")]

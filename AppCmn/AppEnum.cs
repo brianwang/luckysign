@@ -917,7 +917,7 @@ namespace AppCmn
             dayun = 2,
             [EnumMember]
             [Description("流年")]
-            liunian = 2,
+            liunian = 3,
         }
         public static SortedList GetBaZiLogicType()
         {
@@ -934,14 +934,14 @@ namespace AppCmn
         public enum BaZiConditionType
         {
             [EnumMember]
-            [Description("")]
-            benming = 1,
+            [Description("五行关系")]
+            wuxing = 1,
             [EnumMember]
-            [Description("大运")]
-            dayun = 2,
+            [Description("十神关系")]
+            shishen = 2,
             [EnumMember]
-            [Description("流年")]
-            liunian = 2,
+            [Description("五行属性")]
+            wuxingshuxing = 3,
         }
         public static SortedList GetBaZiConditionType()
         {

@@ -100,6 +100,7 @@
                         <ul>
                             <li><a href="../Bazi/TimeToBazi.aspx" class="<%=CateList[11] %>">八字男女同排</a></li>
                             <li><a href="../Bazi/SearchBazi.aspx" class="<%=CateList[12] %>">八字搜索</a></li>
+                            <li><a href="../Bazi/PatternList.aspx" class="<%=CateList[13] %>">八字组合</a></li>
                         </ul>
                     </li>
                     <li><a href="#" class="<%=CateList[20] %> nav-top-item no-submenu">六爻研究 </a></li>

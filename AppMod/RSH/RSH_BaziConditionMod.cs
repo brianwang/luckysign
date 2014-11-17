@@ -21,6 +21,7 @@ namespace AppMod.Research
         private int _Condition;
         private int _LogicSysNo;
         private int _Target;
+        private int _Negative;
 
         [DataMember]
         public int SysNo
@@ -64,6 +65,13 @@ namespace AppMod.Research
             get { return _Target; }
         }
 
+        [DataMember]
+        public int Negative
+        {
+            set { _Negative = value; }
+            get { return _Negative; }
+        }
+
 
         #endregion
 
@@ -75,6 +83,7 @@ namespace AppMod.Research
             Condition = AppConst.IntNull;
             LogicSysNo = AppConst.IntNull;
             Target = AppConst.IntNull;
+            Negative = AppConst.IntNull;
 
         }
 

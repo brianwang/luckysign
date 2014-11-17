@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <h2>查询八字组合</h2>
     <p id="page-intro">
-         <a href="PatternEdit.aspx?add=1">添加新组合</a><br />
+         <a href="PatternEdit.aspx">添加新组合</a><br />
         请按以下条件组合查询：
     </p>
     <fieldset>
@@ -93,7 +93,7 @@
                                     </td>
                                     <td>
                                         <!-- Icons -->
-                                        <a href="Edit.aspx?type=edit&id=<%# Eval("SysNo")%>" title="Edit">
+                                        <a href="PatternEdit.aspx?id=<%# Eval("SysNo")%>" title="Edit">
                                             <img src="../WebResources/images/icons/pencil.png" alt="Edit" /></a>  <a href='<%# Eval("deleteurl")%><%# Eval("SysNo")%>'
                                                 title="Delete"><img src="../WebResources/images/icons/cross.png" alt="Delete" /></a>
                                     </td>

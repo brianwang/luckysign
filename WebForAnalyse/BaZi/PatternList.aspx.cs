@@ -22,8 +22,8 @@ namespace WebForAnalyse.BaZi
             #region 初始化
             //Login(Request.RawUrl);CheckPrivilege(Request.RawUrl);
             WebForAnalyse.Master.AdminMaster m_master = (WebForAnalyse.Master.AdminMaster)this.Master;
-            m_master.PageName = "查询名人案例库";
-            //m_master.SetCate(WebForAdmin.Master.AdminMaster.CateType.Famous1);
+            m_master.PageName = "八字组合";
+            m_master.SetCate(WebForAnalyse.Master.AdminMaster.CateType.BaZi3);
             #endregion
             if (!IsPostBack)
             {
