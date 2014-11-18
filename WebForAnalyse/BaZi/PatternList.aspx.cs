@@ -55,7 +55,7 @@ namespace WebForAnalyse.BaZi
 
         protected void BindContent()
         {
-            DataTable m_dt = RSH_BaziLogicBll.GetInstance().GetList(AppConst.PageSize, pageindex, txtName.Text.Trim(), ref total);
+            DataTable m_dt = RSH_BaziLogicBll.GetInstance().GetList(AppConst.PageSize, pageindex, txtName.Text.Trim(),AppConst.IntNull, ref total);
             m_dt.Columns.Add("deleteurl");
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {

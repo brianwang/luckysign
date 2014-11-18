@@ -86,8 +86,13 @@ namespace WebForAnalyse
                 }
                 else
                 {
-                    Response.Redirect("Celebrity/Celebritys.aspx");
+                    Response.Redirect("BaZi/PatternList.aspx");
                 }
+            }
+            else
+            {
+                this.ltrNotice.Text = "用户名或密码错误！";
+                base.ClientScript.RegisterStartupScript(base.GetType(), "", "document.getElementById('" + divNotice.ClientID + "').style.display='';", true);
             }
         }
 

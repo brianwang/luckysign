@@ -49,7 +49,7 @@ namespace AppBll.Research
             return dal.GetModel(SysNo);
         }
         #endregion  成员方法
-        public DataTable GetList(int pagesize, int pageindex, string name, ref int total)
+        public DataTable GetList(int pagesize, int pageindex, string name, int except, ref int total)
         {
             DataTable m_dt = new DataTable();
             string columns = "";
@@ -61,7 +61,7 @@ namespace AppBll.Research
             columns = @"SysNo, [Name], [Description], Logic, Type, DR";
             tables = "RSH_BaziLogic";
             order = "SysNo desc";
-            where = "1=1";
+            where = "dr=0";
             if (name != "")
             {
                 where += " and (";
@@ -71,6 +71,10 @@ namespace AppBll.Research
                     where += " [Name] like '%" + SQLData.SQLFilter(tmpstr[i]) + "%' and ";
                 }
                 where += " 1=1)";
+            }
+            if (except != 0 && except != AppConst.IntNull)
+            {
+                where += " and SysNo <>" + except;
             }
             
             #endregion

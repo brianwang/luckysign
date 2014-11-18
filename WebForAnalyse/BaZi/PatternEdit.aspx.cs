@@ -10,6 +10,8 @@ using PPLive.BaZi;
 using System.Data;
 using AppMod.Research;
 using AppBll.Research;
+using System.Transactions;
+using System.Web.UI.HtmlControls;
 
 namespace WebForAnalyse.BaZi
 {
@@ -26,8 +28,26 @@ namespace WebForAnalyse.BaZi
             m_master.PageName = "八字组合设置";
             m_master.SetCate(WebForAnalyse.Master.AdminMaster.CateType.BaZi3);
             #endregion
+            if (Request.QueryString["id"] != null && Request.QueryString["id"] != "")
+            {
+                sysno = int.Parse(Request.QueryString["id"]);
+            }
             if (!IsPostBack)
             {
+                drpType.DataSource = AppEnum.GetBaZiLogicType();
+                drpType.DataTextField = "value";
+                drpType.DataValueField = "key";
+                drpType.DataBind();
+                drpType.Items.Insert(0, new ListItem("请选择", "-1"));
+
+                if (Request.QueryString["id"] != null && Request.QueryString["id"] != "")
+                {
+                    PrepareForm();
+                }
+
+                int total = 0;
+                LogicList = RSH_BaziLogicBll.GetInstance().GetList(1000, 1, "", sysno, ref total);
+
                 DataTable m_dt = new DataTable();
                 m_dt.Columns.Add("id");
                 for (int i = 0; i < 50; i++)
@@ -39,24 +59,10 @@ namespace WebForAnalyse.BaZi
                 Repeater1.DataSource = m_dt;
                 Repeater1.DataBind();
 
-                if (Request.QueryString["id"] != null && Request.QueryString["id"] != "")
-                {
-                    sysno = int.Parse(Request.QueryString["id"]);
-                    PrepareForm();
-                }
-
-                drpType.DataSource = AppEnum.GetBaZiLogicType();
-                drpType.DataTextField = "value";
-                drpType.DataValueField = "key";
-                drpType.DataBind();
-                drpType.Items.Insert(0, new ListItem("请选择", "-1"));
-
-                int total = 0;
-                LogicList = RSH_BaziLogicBll.GetInstance().GetList(0, 1000, "", ref total);
                 //this.ClientScript.RegisterStartupScript(this.GetType(), "", "show(0);", true);
             }
             string jsstr = "";
-            for (int i = 0; i < int.Parse(HiddenField1.Value); i++)
+            for (int i = 0; i <= int.Parse(HiddenField1.Value); i++)
             {
                 jsstr += "show(" + i + ");";
             }
@@ -73,21 +79,29 @@ namespace WebForAnalyse.BaZi
             RSH_BaziLogicMod m_logic = RSH_BaziLogicBll.GetInstance().GetModel(sysno);
             txtTitle.Text = m_logic.Name;
             txtDesc.Text = m_logic.Description;
+            drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue(m_logic.Type.ToString()));
+
             string[] logic = m_logic.Logic.Split(new char[] { '_' });
             ConditionList = RSH_BaziConditionBll.GetInstance().GetListByLogic(sysno);
             ConditionList.Columns.Add("sign1");
             ConditionList.Columns.Add("sign2");
             ConditionList.Columns.Add("sign");
             ConditionList.Columns.Add("logic");
-            for (int i = 0; i < ConditionList.Rows.Count; i++)
+            for (int i = 0; i < logic.Length/4; i++)
             {
+                if (logic[4 * i + 1].Contains("#"))
+                {
+                    DataRow m_dr = ConditionList.NewRow();
+                    ConditionList.Rows.InsertAt(m_dr, i);
+                    ConditionList.Rows[i]["logic"] = logic[4 * i + 1].Replace("#","");
+                }
+                else
+                {
+                    ConditionList.Rows[i]["logic"] = "";
+                }
                 ConditionList.Rows[i]["sign1"] = logic[4 * i];
                 ConditionList.Rows[i]["sign2"] = logic[4 * i + 2];
                 ConditionList.Rows[i]["sign"] = logic[4 * i + 3];
-                if (logic[4 * i + 1].Contains("#"))
-                    ConditionList.Rows[i]["logic"] = logic[4 * i + 1];
-                else
-                    ConditionList.Rows[i]["logic"] = "";
             }
         }
 
@@ -183,11 +197,16 @@ namespace WebForAnalyse.BaZi
 
             if (sysno != AppConst.IntNull)
             {
-                string jsstr = "";
+                if (e.Item.ItemIndex >= ConditionList.Rows.Count)
+                {
+                    return;
+                }
+                HiddenField2.Value = "|";
                 if (ConditionList.Rows[e.Item.ItemIndex]["logic"].ToString() == "")
                 {
                     drpItem.SelectedIndex = drpItem.Items.IndexOf(drpItem.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["item"].ToString()));
                     drpType.SelectedIndex = drpType.Items.IndexOf(drpType.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["type"].ToString()));
+                    drpType_SelectedIndexChanged(drpType, e);
                     drpTarget.SelectedIndex = drpTarget.Items.IndexOf(drpTarget.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["target"].ToString()));
                     DropDownList drpCondition = (DropDownList)e.Item.FindControl("drpCondition");
                     drpCondition.SelectedIndex = drpCondition.Items.IndexOf(drpCondition.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["Condition"].ToString()));
@@ -196,9 +215,8 @@ namespace WebForAnalyse.BaZi
                 }
                 else
                 {
-                    DropDownList drplogic = (DropDownList)e.Item.FindControl("drplogic");
-                    drplogic.SelectedIndex = drplogic.Items.IndexOf(drplogic.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["logic"].ToString()));
-                    jsstr += "convert(" + e.Item.ItemIndex + ");";
+                    drpLogic.SelectedIndex = drpLogic.Items.IndexOf(drpLogic.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["logic"].ToString()));
+                    HiddenField2.Value += e.Item.ItemIndex + "|";
                 }
                 DropDownList drpSign = (DropDownList)e.Item.FindControl("drpSign");
                 drpSign.SelectedIndex = drpSign.Items.IndexOf(drpSign.Items.FindByValue(ConditionList.Rows[e.Item.ItemIndex]["sign"].ToString()));
@@ -206,61 +224,25 @@ namespace WebForAnalyse.BaZi
                 sign1.Text = ConditionList.Rows[e.Item.ItemIndex]["sign1"].ToString();
                 TextBox sign2 = (TextBox)e.Item.FindControl("txtSign2");
                 sign2.Text = ConditionList.Rows[e.Item.ItemIndex]["sign2"].ToString();
-
-                this.ClientScript.RegisterStartupScript(this.GetType(), "convert", jsstr, true);
+                HiddenField1.Value = e.Item.ItemIndex.ToString();
+                //this.ClientScript.RegisterStartupScript(this.GetType(), "convert", jsstr, true);
             }
         }
-
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Button1_Click(object sender, EventArgs e)
-        {
-            Dictionary<int, RSH_BaziConditionMod> m_condition = new Dictionary<int, RSH_BaziConditionMod>();
-
-            for (int i = 0; i < 50; i++)
-            {
-                if (Repeater1.Items[i].FindControl("drpItem").Visible)
-                {
-                    RSH_BaziConditionMod m_tmp = new RSH_BaziConditionMod();
-
-                    m_tmp.Item = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpItem")).SelectedValue);
-                    m_tmp.Type = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpType")).SelectedValue);
-                    m_tmp.Condition = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpCondition")).SelectedValue);
-                    m_tmp.Target = int.Parse(((DropDownList)Repeater1.Items[i].FindControl("drpTarget")).SelectedValue);
-                    m_tmp.SysNo = RSH_BaziConditionBll.GetInstance().Add(m_tmp);
-                    m_condition.Add(i, m_tmp);
-                }
-            }
-
-        }
-
-        //protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
-        //{
-        //    DropDownList m_drp = (DropDownList)e.Item.FindControl("drpLogic");
-        //    if (m_drp.Visible)
-        //    {
-        //        ((Button)e.Item.FindControl("Button2")).Text = "添加已有逻辑";
-        //        m_drp.Visible = false;
-        //        ((DropDownList)e.Item.FindControl("drpItem")).Visible = true;
-        //        ((DropDownList)e.Item.FindControl("drpType")).Visible = true;
-        //        ((DropDownList)e.Item.FindControl("drpCondition")).Visible = true;
-        //        ((DropDownList)e.Item.FindControl("drpTarget")).Visible = true;
-        //    }
-        //    else
-        //    {
-        //        ((Button)e.Item.FindControl("Button2")).Text = "添加新条件";
-        //        m_drp.Visible = true;
-        //        ((DropDownList)e.Item.FindControl("drpItem")).Visible = false;
-        //        ((DropDownList)e.Item.FindControl("drpType")).Visible = false;
-        //        ((DropDownList)e.Item.FindControl("drpCondition")).Visible = false;
-        //        ((DropDownList)e.Item.FindControl("drpTarget")).Visible = false;
-        //    }
-        //}
-
-        protected void Button2_Click1(object sender, EventArgs e)
         {
             #region 输入检查
             int count = 0;
             foreach (RepeaterItem item in Repeater1.Items)
             {
+                if (item.ItemIndex > int.Parse(HiddenField1.Value))
+                {
+                    continue;
+                }
                 if (((TextBox)item.FindControl("txtSign1")).Text.Trim().Replace("(", "").Replace(")", "").Replace("（", "").Replace("）", "") != "")
                 {
                     ltrError.Text = "输入框只可输入括号";
@@ -273,13 +255,13 @@ namespace WebForAnalyse.BaZi
                     this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
                     return;
                 }
-                if (((DropDownList)item.FindControl("drpLogic")).Style["display"] != "none" && ((DropDownList)item.FindControl("drpLogic")).SelectedValue == "-1")
+                if (HiddenField2.Value.Contains("|" + item.ItemIndex + "|") && ((DropDownList)item.FindControl("drpLogic")).SelectedValue == "-1")
                 {
                     ltrError.Text = "有逻辑选择框未选择";
                     this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
                     return;
                 }
-                if (((DropDownList)item.FindControl("drpItem")).Style["display"] != "none" && ((DropDownList)item.FindControl("drpLogic")).SelectedValue == "-1")
+                if (!HiddenField2.Value.Contains("|" + item.ItemIndex + "|") && ((DropDownList)item.FindControl("drpItem")).SelectedValue == "-1")
                 {
                     ltrError.Text = "有主语选择框未选择";
                     this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('errordiv').style.display='';closeforseconds();", true);
@@ -325,6 +307,7 @@ namespace WebForAnalyse.BaZi
             }
             #endregion
 
+
             RSH_BaziLogicMod m_logic = new RSH_BaziLogicMod();
             if (sysno == AppConst.IntNull)
             {
@@ -345,12 +328,15 @@ namespace WebForAnalyse.BaZi
                 m_logic.Logic = "";
                 RSH_BaziConditionBll.GetInstance().DeleteConditionsByLogic(sysno);
             }
-
             //List<RSH_BaziConditionMod> m_condtions = new List<RSH_BaziConditionMod>();
             foreach (RepeaterItem item in Repeater1.Items)
             {
+                if (item.ItemIndex>int.Parse(HiddenField1.Value))
+                {
+                    continue;
+                }
                 m_logic.Logic += ((TextBox)item.FindControl("txtSign1")).Text + "_";
-                if (((DropDownList)item.FindControl("drpLogic")).Style["display"] != "none")
+                if (HiddenField2.Value.Contains("|" + item.ItemIndex+"|"))
                 {
                     m_logic.Logic += "#" + ((DropDownList)item.FindControl("drpLogic")).SelectedValue + "_";
                 }
@@ -370,16 +356,51 @@ namespace WebForAnalyse.BaZi
                 m_logic.Logic += ((TextBox)item.FindControl("txtSign2")).Text + "_";
                 m_logic.Logic += ((DropDownList)item.FindControl("drpSign")).SelectedValue + "_";
             }
+            m_logic.Logic = m_logic.Logic.Substring(0, m_logic.Logic.Length - 1);
             RSH_BaziLogicBll.GetInstance().Update(m_logic);
+
+
+        }
+
+        //protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        //{
+        //    DropDownList m_drp = (DropDownList)e.Item.FindControl("drpLogic");
+        //    if (m_drp.Visible)
+        //    {
+        //        ((Button)e.Item.FindControl("Button2")).Text = "添加已有逻辑";
+        //        m_drp.Visible = false;
+        //        ((DropDownList)e.Item.FindControl("drpItem")).Visible = true;
+        //        ((DropDownList)e.Item.FindControl("drpType")).Visible = true;
+        //        ((DropDownList)e.Item.FindControl("drpCondition")).Visible = true;
+        //        ((DropDownList)e.Item.FindControl("drpTarget")).Visible = true;
+        //    }
+        //    else
+        //    {
+        //        ((Button)e.Item.FindControl("Button2")).Text = "添加新条件";
+        //        m_drp.Visible = true;
+        //        ((DropDownList)e.Item.FindControl("drpItem")).Visible = false;
+        //        ((DropDownList)e.Item.FindControl("drpType")).Visible = false;
+        //        ((DropDownList)e.Item.FindControl("drpCondition")).Visible = false;
+        //        ((DropDownList)e.Item.FindControl("drpTarget")).Visible = false;
+        //    }
+        //}
+
+        /// <summary>
+        /// 生成解释
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Button2_Click1(object sender, EventArgs e)
+        {
 
         }
 
         protected void drpType_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList ddl = sender as DropDownList;
-            Repeater rpt = ddl.Parent.Parent.Parent as Repeater;
-            int n = ((RepeaterItem)ddl.Parent.Parent).ItemIndex;
-            DropDownList ddl2 = rpt.Items[n].FindControl("drpCondition") as DropDownList;
+            //Repeater rpt = ddl.Parent.Parent.Parent as Repeater;
+            //int n = ((RepeaterItem)ddl.Parent.Parent).ItemIndex;
+            DropDownList ddl2 = ddl.Parent.FindControl("drpCondition") as DropDownList;
             switch (ddl.SelectedIndex)
             {
                 case 1:
@@ -404,7 +425,7 @@ namespace WebForAnalyse.BaZi
                     ddl2.Items.Insert(0, new ListItem("请选择", "-1"));
                     break;
             }
-            
+
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)

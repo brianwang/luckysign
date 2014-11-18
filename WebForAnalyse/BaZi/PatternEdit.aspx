@@ -27,42 +27,41 @@
         });
 
         function convert(input) {
-            if(input<10)
-            {
-                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + input+ "_p";
+            if (input < 10) {
+                id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + input + "_p";
             }
-            else
-            {
+            else {
                 id = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + input + "_p";
             }
 
-            //var hidden = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField2").value;
+            var hidden = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField2").value;
             if ($(id).children("span").children("select").css("display") == "none") {
-                
+
                 $(id).children("select").css("display", "none");
                 $(id).children("span").children("select").css("display", "");
-                //hidden = hidden + input+"|";
+                $(id).children("span").children("select").css("display", "");
+                hidden = hidden.replace("|" + input + "|", "|");
+                hidden = hidden + input + "|";
             }
             else {
                 $(id).children("select").css("display", "");
                 $(id).children("span").children("select").css("display", "none");
-                //hidden = hidden.replace("|"+input+"|", "|");
+                hidden = hidden.replace("|" + input + "|", "|");
             }
-
+            document.getElementById("ctl00_ContentPlaceHolder1_HiddenField2").value = hidden;
         }
 
-        function show(input)
-        {
+        function show(input) {
             if (input < 9) {
-                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + (input + 1) + "_p";
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl0" + (input) + "_p";
             }
             else {
-                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + (input + 1) + "_p";
+                id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + (input) + "_p";
             }
-            
-                $(id1).css("display", "");
-                if (input > 0)
-                    $("#a" + input).html("-");
+
+            $(id1).css("display", "");
+            if (input > 0)
+                $("#a" + (input - 1)).html("-");
         }
 
         function plus(input) {
@@ -78,20 +77,18 @@
             else {
                 id1 = "#ctl00_ContentPlaceHolder1_Repeater1_ctl" + (input + 1) + "_p";
             }
-            if ($("#a" + input).html() == "+" || input == 0) {
+            max = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value;
+            if ($("#a" + input).html() == "+") {
                 $(id1).css("display", "");
-                if (input > 0)
-                    $("#a" + input).html("-");
+                $("#a" + input).html("-");
+                document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value = (parseInt(max) + 1);
             }
             else {
                 $(id1).css("display", "none");
                 $("#a" + input).html("+");
+                document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value = (parseInt(max) - 1);
             }
-            max = document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value;
-            if (input > max)
-            {
-                document.getElementById("ctl00_ContentPlaceHolder1_HiddenField1").value = input;
-            }
+
         }
     </script>
 
@@ -160,8 +157,8 @@
                 <ContentTemplate>
                     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
                         <ItemTemplate>
-                            <label id="p"  style="display: none;" runat="server">
-                                <%# Container.ItemIndex + 1%>
+                            <label id="p" style="display: none;" runat="server">
+
                                 <asp:TextBox ID="txtSign1" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
 
                                 <asp:DropDownList ID="drpItem" runat="server" CssClass="tiny-input">
@@ -169,7 +166,7 @@
 
                                 <asp:DropDownList ID="drpNegative" runat="server" CssClass="tinyest-input">
                                     <asp:ListItem Text="" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="非" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="非" Value="-1"></asp:ListItem>
                                 </asp:DropDownList>
 
                                 <asp:DropDownList ID="drpType" runat="server" CssClass="tiny-input" AutoPostBack="true" OnSelectedIndexChanged="drpType_SelectedIndexChanged">
@@ -181,22 +178,23 @@
                                 <asp:DropDownList ID="drpTarget" runat="server" CssClass="tiny-input">
                                 </asp:DropDownList>
 
-                                
+                                <span>
                                     <asp:DropDownList ID="drpLogic" runat="server" CssClass="tiny-input" Style="display: none;">
                                     </asp:DropDownList>
+                                </span>
 
                                 <a href="javascript:convert(<%# Container.ItemIndex%>);">模式</a>
-                                 <%--<asp:LinkButton runat="server" Text="模式" OnClick="Unnamed_Click"></asp:LinkButton>--%>
+                                <%--<asp:LinkButton runat="server" Text="模式" OnClick="Unnamed_Click"></asp:LinkButton>--%>
 
                                 <asp:TextBox ID="txtSign2" runat="server" CssClass="text-input tinyest-input"></asp:TextBox>
-
-                                <asp:DropDownList ID="drpSign" runat="server" CssClass="tinyest-input">
-                                    <asp:ListItem Text="" Value=""></asp:ListItem>
-                                    <asp:ListItem Text="且" Value="&&"></asp:ListItem>
-                                    <asp:ListItem Text="或" Value="||"></asp:ListItem>
-                                </asp:DropDownList>
+                                <b>
+                                    <asp:DropDownList ID="drpSign" runat="server" CssClass="tinyest-input">
+                                        <asp:ListItem Text="" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="且" Value="&&"></asp:ListItem>
+                                        <asp:ListItem Text="或" Value="||"></asp:ListItem>
+                                    </asp:DropDownList></b>
                                 <%--<asp:LinkButton ID="show" runat="server" Text="+" OnClick="Unnamed_Click1"></asp:LinkButton>--%>
-                                <a id="a<%# Container.ItemIndex + 1%>" href="javascript:plus(<%# Container.ItemIndex + 1%>);">+</a>
+                                <a id="a<%# Container.ItemIndex%>" href="javascript:plus(<%# Container.ItemIndex%>);">+</a>
                                 <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
                                 <!-- Classes for input-notification: success, error, information, attention -->
 
@@ -205,22 +203,32 @@
                     </asp:Repeater>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <asp:HiddenField ID="HiddenField1" Value="1" runat="server" />
+            <asp:HiddenField ID="HiddenField1" Value="0" runat="server" />
             <asp:HiddenField ID="HiddenField2" Value="|" runat="server" />
         </p>
+    </fieldset>
+    <div class="clear">
+    </div>
+    <fieldset class="column-left">
         <p>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:Button ID="Button2" runat="server" Text="生成解释" OnClick="Button2_Click1" />
-
-                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-                    <%--<span class="input-notification success png_bg" style="display:none;">Successful message</span>--%>
-                    <!-- Classes for input-notification: success, error, information, attention -->
-                    <br />
-                    <small></small>
+                    <%-- <asp:Button ID="Button2" runat="server" CssClass="button" Text="逻辑解释" OnClick="Button2_Click1" /><br />
+                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        <br />
+                        <small></small>--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </p>
+    </fieldset>
+    <fieldset class="column-right">
+        <p>
+            <asp:Button ID="Button1" CssClass="button" runat="server" Text="保存" OnClick="Button1_Click" />
+        </p>
+    </fieldset>
+    <div class="clear">
+    </div>
+    <fieldset class="column">
         <p>
             <label>
                 日期</label><asp:TextBox ID="txtDate" CssClass="text-input small-input" runat="server"></asp:TextBox>-<asp:TextBox
@@ -231,8 +239,7 @@
             <small></small>
         </p>
         <p>
-            <asp:Button CssClass="button" runat="server" Text="搜索案例" OnClick="Unnamed1_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button1" CssClass="button" runat="server" Text="保存" OnClick="Button1_Click" />
+            <asp:Button CssClass="button" runat="server" Text="搜索案例" OnClick="Unnamed1_Click" />
         </p>
     </fieldset>
     <!-- End .shortcut-buttons-set -->

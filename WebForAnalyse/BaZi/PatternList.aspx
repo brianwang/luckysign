@@ -89,7 +89,7 @@
                                         <%# Eval("Name")%>
                                     </td>
                                     <td>
-                                        <%# AppCmn.AppEnum.GetTimeUnknown(int.Parse(Eval("Type").ToString()))%>
+                                        <%# AppCmn.AppEnum.GetBaZiLogicType(int.Parse(Eval("Type").ToString()))%>
                                     </td>
                                     <td>
                                         <!-- Icons -->
