@@ -46,14 +46,14 @@ namespace WebServiceForApp
             }
         }
 
-        public ReturnValue<USR_CustomerMaintain> GetUserInfo(int uid)
+        public ReturnValue<USR_CustomerShow> GetUserInfo(int uid)
         {
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().GetModel(uid);
             if (m_user.SysNo != -999999)
             {
-                USR_CustomerMaintain ret = new USR_CustomerMaintain();
+                USR_CustomerShow ret = new USR_CustomerShow();
                 m_user.MemberwiseCopy(ret);
-                return ReturnValue<USR_CustomerMaintain>.Get200OK(ret);
+                return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
             {
@@ -111,12 +111,12 @@ namespace WebServiceForApp
             {
                 throw new BusinessException("性别错误");
             }
-            if (fatetype > 2 || gender < 0)
+            if (fatetype > 3 || fatetype < 1)
             {
                 throw new BusinessException("排盘类型错误");
             }
             USR_CustomerMod m_user = USR_CustomerBll.GetInstance().GetModel(uid);
-            if (m_user.SysNo == -999999)
+            if (m_user==null|| m_user.SysNo == -999999)
             {
                 throw new BusinessException("该用户不存在");
             }

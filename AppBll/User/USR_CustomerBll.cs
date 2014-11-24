@@ -191,6 +191,19 @@ namespace AppBll.User
             return model;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CustomerSysNo"></param>
+        /// <param name="TotalQuest">问答部分总提问数</param>
+        /// <param name="TotalAnswer">问答部分总回答数</param>
+        /// <param name="BestAnswer">被采纳回答数</param>
+        /// <param name="TotalReply">问答部分总反馈数（提问者在自己问题中发评论）</param>
+        /// <param name="TotalTalk">讨论部分总发帖数</param>
+        /// <param name="TotalTalkReply">讨论部分总回答数</param>
+        /// <param name="SetOrderCount">付费咨询发报价单数</param>
+        /// <param name="BuyOrderCount">付费咨询购买报价单数</param>
+        /// <param name="SellOrderCount">付费咨询发的报价单成交数</param>
         public void AddCount(int CustomerSysNo, int TotalQuest, int TotalAnswer, int BestAnswer, int TotalReply, int TotalTalk, int TotalTalkReply, int SetOrderCount, int BuyOrderCount, int SellOrderCount)
         {
             using (SQLData data = new SQLData())

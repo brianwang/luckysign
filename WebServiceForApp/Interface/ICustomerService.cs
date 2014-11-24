@@ -26,7 +26,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/GetUserInfo?uid={uid}")]
         [Description("获取用户信息,/GetUserInfo?uid={uid}")]
-        ReturnValue<USR_CustomerMaintain> GetUserInfo(int uid);
+        ReturnValue<USR_CustomerShow> GetUserInfo(int uid);
 
         [OperationContract, WebGet(UriTemplate = "/CheckUser?uname={username}")]
         [Description("验证用户名,/CheckUser?uname={username}")]

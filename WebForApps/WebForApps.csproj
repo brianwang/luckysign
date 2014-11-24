@@ -72,6 +72,7 @@
     <Content Include="AstroDice\astro dice 547 475.swf" />
     <Content Include="AstroDice\IndexForQQ.aspx" />
     <Content Include="AstroDice\IndexForQQt.aspx" />
+    <Content Include="AstroDice\IndexForWap.aspx" />
     <Content Include="AX\GetTopic.asmx" />
     <Content Include="AX\Index.aspx" />
     <Content Include="ControlLibrary\DatePicker.ascx" />
@@ -272,6 +273,13 @@
     </Compile>
     <Compile Include="AstroDice\IndexForQQt.aspx.designer.cs">
       <DependentUpon>IndexForQQt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AstroDice\IndexForWap.aspx.cs">
+      <DependentUpon>IndexForWap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AstroDice\IndexForWap.aspx.designer.cs">
+      <DependentUpon>IndexForWap.aspx</DependentUpon>
     </Compile>
     <Compile Include="AX\GetTopic.asmx.cs">
       <DependentUpon>GetTopic.asmx</DependentUpon>
