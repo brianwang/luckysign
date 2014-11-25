@@ -53,6 +53,11 @@ namespace WebServiceForApp
             {
                 USR_CustomerShow ret = new USR_CustomerShow();
                 m_user.MemberwiseCopy(ret);
+                DataTable m_dt = REL_Customer_MedalBll.GetInstance().GetMedalByCustomer(uid, 0);
+                ret.TotalMedal = m_dt.Rows.Count;
+                int total = 0;
+                DataTable m_dt1 = USR_MessageBll.GetInstance().GetMessageByCustomer(uid, 1, 1, 0, 1, ref total);
+                ret.NewMessage = total;
                 return ReturnValue<USR_CustomerShow>.Get200OK(ret);
             }
             else
@@ -687,10 +692,10 @@ namespace WebServiceForApp
             return ReturnValue<USR_CustomerMaintain>.Get200OK(rettt);
         }
 
-        public ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno,int isread,int type)
+        public ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno)
         {
             int total = 0;
-            DataTable m_dt = USR_MessageBll.GetInstance().GetMessageByCustomer(customersysno, pagesize, pageindex, isread, type, ref total);
+            DataTable m_dt = USR_MessageBll.GetInstance().GetMessageByCustomer(customersysno, pagesize, pageindex, AppConst.IntNull, 1, ref total);
             List<USR_MessageMod> ret = new List<USR_MessageMod>();
             PageInfo<USR_MessageMod> rett = new PageInfo<USR_MessageMod>();
             if (m_dt == null || m_dt.Rows.Count == 0)
@@ -797,6 +802,22 @@ namespace WebServiceForApp
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public  ReturnValue<List<USR_MedalMod>> GetCustomerMedal(int customersysno)
+        {
+            DataTable m_dt = REL_Customer_MedalBll.GetInstance().GetMedalByCustomer(customersysno,0);
+            List<USR_MedalMod> ret = new List<USR_MedalMod>();
+            if (m_dt == null || m_dt.Rows.Count == 0)
+            {
+                return ReturnValue<List<USR_MedalMod>>.Get200OK(ret);
+            }
+            for (int i = 0; i < m_dt.Rows.Count; i++)
+            {
+                USR_MedalMod tmp_medal = MapUSR_Medal(m_dt.Rows[i]);
+                ret.Add(tmp_medal);
+            }
+            return ReturnValue<List<USR_MedalMod>>.Get200OK(ret);
         }
 
         #region Map方法
@@ -998,6 +1019,34 @@ namespace WebServiceForApp
             if (input["ReplyCount"].ToString() != "")
             {
                 ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
+            }
+            if (input["DR"].ToString() != "")
+            {
+                ret.DR = int.Parse(input["DR"].ToString());
+            }
+            if (input["TS"].ToString() != "")
+            {
+                ret.TS = DateTime.Parse(input["TS"].ToString());
+            }
+            else
+            {
+                ret.TS = AppConst.DateTimeNull;
+            }
+            return ret;
+        }
+
+        public USR_MedalMod MapUSR_Medal(DataRow input)
+        {
+            USR_MedalMod ret = new USR_MedalMod();
+            ret.Detail = input["Detail"].ToString();
+            ret.MedalName = input["MedalName"].ToString();
+            if (input["SysNo"].ToString() != "")
+            {
+                ret.SysNo = int.Parse(input["SysNo"].ToString());
+            }
+            if (input["Type"].ToString() != "")
+            {
+                ret.Type = int.Parse(input["Type"].ToString());
             }
             if (input["DR"].ToString() != "")
             {

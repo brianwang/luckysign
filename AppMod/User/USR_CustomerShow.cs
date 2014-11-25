@@ -377,6 +377,22 @@ namespace AppMod.User
             set { }
         }
 
+        private int _newMessage;
+        [DataMember]
+        public int NewMessage
+        {
+            get { return _newMessage; }
+            set { _newMessage = value; }
+        }
+
+        private int _totalMedal;
+        [DataMember]
+        public int TotalMedal
+        {
+            get { return _totalMedal; }
+            set { _totalMedal = value; }
+        }
+
         #endregion
 
     }

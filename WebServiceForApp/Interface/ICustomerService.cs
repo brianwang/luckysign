@@ -76,9 +76,9 @@ namespace WebServiceForApp
         [Description("微博第三方登录,/WeiboLoginAlt?token={token}&expires={expires}")]
         ReturnValue<USR_CustomerMaintain> WeiboLoginAlt(string token, long expires);
 
-        [OperationContract, WebGet(UriTemplate = "/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&isread={isread}&type={type}")]
-        [Description("获取系统消息,/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&isread={isread}&type={type}")]
-        ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno, int isread, int type);
+        [OperationContract, WebGet(UriTemplate = "/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
+        [Description("获取系统消息,/GetMessageByCustomer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
+        ReturnValue<PageInfo<USR_MessageMod>> GetMessageByCustomer(int pagesize, int pageindex, int customersysno);
 
         [OperationContract, WebGet(UriTemplate = "/GetSMSTopicByUser?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
         [Description("获取私信列表,/GetSMSTopicByUser?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}")]
@@ -88,7 +88,9 @@ namespace WebServiceForApp
         [Description("获取单次私信对话,/GetSMSTalk?sysno={sysno}")]
         ReturnValue<List<USR_SMSShow>> GetSMSTalk(int sysno);
 
-
+        [OperationContract, WebGet(UriTemplate = "/GetCustomerMedal?customersysno={customersysno}")]
+        [Description("获取用户奖章,/GetCustomerMedal?customersysno={customersysno}")]
+        ReturnValue<List<USR_MedalMod>> GetCustomerMedal(int customersysno);
     }
 
 }
