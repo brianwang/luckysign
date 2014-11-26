@@ -42,7 +42,7 @@ namespace WebServiceForApp
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestionListByUserAnswer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
         [Description("获取用户所回复的问题列表,/GetQuestionListByUserAnswer?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
-        ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby);
+        ReturnValue<PageInfo<QA_AnswerShow>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby);
 
         [OperationContract, WebGet(UriTemplate = "/GetQuestionListByUserAsk?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]
         [Description("获取用户所发布的问题列表,/GetQuestionListByUserAsk?pagesize={pagesize}&pageindex={pageindex}&customersysno={customersysno}&cate={cate}&orderby={orderby}")]

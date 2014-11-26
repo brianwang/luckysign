@@ -183,22 +183,23 @@ namespace WebServiceForApp
             return ReturnValue<PageInfo<QA_QuestionShowMini<ZiWeiMod>>>.Get200OK(rett);
         }
 
-        public ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby)
+        public ReturnValue<PageInfo<QA_AnswerShow>> GetQuestionListByUserAnswer(int pagesize, int pageindex, int customersysno, int cate, string orderby)
         {
             int total = 0;
-            DataTable m_dt = QA_QuestionBll.GetInstance().GetListByUserAnswer(pagesize, pageindex, customersysno,"", cate,false, orderby, ref total);
-            List<QA_QuestionShowMini<AstroMod>> ret = new List<QA_QuestionShowMini<AstroMod>>();
-            PageInfo<QA_QuestionShowMini<AstroMod>> rett = new PageInfo<QA_QuestionShowMini<AstroMod>>();
+            DataTable m_dt = QA_AnswerBll.GetInstance().GetListByUser(pagesize, pageindex, customersysno, "", cate, false, orderby, ref total);
+            List<QA_AnswerShow> ret = new List<QA_AnswerShow>();
+            PageInfo<QA_AnswerShow> rett = new PageInfo<QA_AnswerShow>();
             if (m_dt == null || m_dt.Rows.Count == 0)
             {
                 rett.List = ret;
                 rett.Total = total;
                 rett.HasNextPage = false;
-                return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+                return ReturnValue<PageInfo<QA_AnswerShow>>.Get200OK(rett);
             }
             for (int i = 0; i < m_dt.Rows.Count; i++)
             {
-                QA_QuestionShowMini<AstroMod> tmp_quest = MapQA_QuestionShowMiniForAstro(m_dt.Rows[i]);
+                QA_AnswerShow tmp_quest = MapQA_AnswerShow(m_dt.Rows[i]);
+                tmp_quest.QuestionTitle = m_dt.Rows[i]["QuestTitle"].ToString();
                 ret.Add(tmp_quest);
             }
 
@@ -212,7 +213,7 @@ namespace WebServiceForApp
             {
                 rett.HasNextPage = true;
             }
-            return ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>>.Get200OK(rett);
+            return ReturnValue<PageInfo<QA_AnswerShow>>.Get200OK(rett);
         }
 
         public ReturnValue<PageInfo<QA_QuestionShowMini<AstroMod>>> GetQuestionListByUserAsk(int pagesize, int pageindex, int customersysno, int cate, string orderby)

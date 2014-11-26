@@ -144,8 +144,8 @@ namespace AppCmn
         public DataSet SPtoDataSet(string StoredProcedure)
         {
             DataSet ret = new DataSet();
-            try
-            {
+            //try
+            //{
 
                 SqlParameter retpara = m_cmd.Parameters.Add("@reValue", SqlDbType.Int);
                 retpara.Direction = ParameterDirection.ReturnValue;
@@ -156,15 +156,15 @@ namespace AppCmn
                 SqlDataAdapter m_adpt = new SqlDataAdapter(m_cmd);
                 m_adpt.Fill(ret);
                 ReturnValue = m_cmd.Parameters["@reValue"].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-                LogManagement.getInstance().WriteException(ex, "SQLData,相关SP：" + StoredProcedure, HttpContext.Current.Request.RawUrl + " | " + HttpContext.Current.Request.UserHostAddress);
-            }
-            finally
-            {
-                m_conn.Close();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogManagement.getInstance().WriteException(ex, "SQLData,相关SP：" + StoredProcedure, HttpContext.Current.Request.RawUrl + " | " + HttpContext.Current.Request.UserHostAddress);
+            //}
+            //finally
+            //{
+            //    m_conn.Close();
+            //}
             return ret;
         }
 

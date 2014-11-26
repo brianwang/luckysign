@@ -128,6 +128,13 @@ namespace AppMod.QA
             set { _ToalComment = value; }
         }
 
+        private string _QuestionTitle;
+        [DataMember]
+        public string QuestionTitle
+        {
+            get { return _QuestionTitle; }
+            set { _QuestionTitle = value; }
+        }
 
         #endregion
 

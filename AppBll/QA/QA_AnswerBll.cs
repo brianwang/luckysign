@@ -359,20 +359,11 @@ namespace AppBll.QA
             string order = "";
 
             #region  设置参数
-            columns = @"QA_Answer.[SysNo]
+            columns = @"QA_Answer.*
                       ,QA_Question.[SysNo] as QuestSysNo
                       ,[CateSysNo]
                       ,QA_Question.[CustomerSysNo] as QuestCustomer
-                      ,QA_Answer.[Title]
-                      ,QA_Answer.[Context]
-                      ,QA_Answer.[Award]
                       ,QA_Question.[Title] as QuestTitle
-                      ,[EndTime]
-                      ,[IsSecret]
-                      ,[LastReplyTime]
-                      ,[ReplyCount]
-                      ,QA_Answer.[DR]
-                      ,QA_Answer.[TS]
                       ,Photo
                       ,NickName";
             tables = " QA_Answer left join QA_Question on QA_Answer.QuestionSysNo = QA_Question.SysNo left join USR_Customer on QA_Question.CustomerSysNo=USR_Customer.SysNo";
@@ -418,6 +409,10 @@ namespace AppBll.QA
             else if (orderby == "pointup")
             {
                 order = "QA_Answer.Award asc";
+            }
+            else
+            {
+                order = "QA_Answer.TS desc";
             }
 
             #endregion
