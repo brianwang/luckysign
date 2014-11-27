@@ -28,6 +28,14 @@ namespace WebServiceForApp
         [OperationContract, WebInvoke(UriTemplate = "/TimeToAstro")]
         [Description("排占星命盘,/TimeToAstro")]
         ReturnValue<AstroMod> TimeToAstro(Stream openPageData);
+
+        [OperationContract, WebInvoke(UriTemplate = "/TimeToBaZi")]
+        [Description("排八字命盘,/TimeToBaZi")]
+        ReturnValue<BaZiMod> TimeToBaZi(Stream openPageData);
+
+        [OperationContract, WebInvoke(UriTemplate = "/TimeToZiWei")]
+        [Description("排紫薇命盘,/TimeToZiWei")]
+        ReturnValue<ZiWeiMod> TimeToZiWei(Stream openPageData);
     }
 
 }
