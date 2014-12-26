@@ -1,2 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PayPannel.ascx.cs" Inherits="WebForMain.ControlLibrary.PayPannel" %>
-<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="去支付" />
