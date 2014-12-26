@@ -70,11 +70,11 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
 
@@ -115,22 +115,22 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
             m_astro.birth1 = ((WebForMain.ControlLibrary.DatePicker)m_PlaceHolder.FindControl("DatePicker2")).SelectedTime;
             m_astro.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District2")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight2")).Checked)
             {
-                m_astro.IsDaylight1 = AppEnum.BOOL.True;
+                m_astro.IsDayLight1 = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight1 = AppEnum.BOOL.False;
+                m_astro.IsDayLight1 = AppEnum.BOOL.False;
             }
             m_astro.zone1 = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone2")).SelectedValue);
 
@@ -170,17 +170,17 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
 
             m_astro.transitTime = ((WebForMain.ControlLibrary.DatePicker)m_PlaceHolder.FindControl("DatePickert1")).SelectedTime;
             m_astro.transitPosition = m_astro.position;
-            //m_astro.IsDaylight1 = m_astro.IsDaylight;
+            //m_astro.IsDayLight1 = m_astro.IsDayLight;
             //m_astro.zone1 = m_astro.zone;
 
             //m_astro.houseSystem = int.Parse(drpSOH.SelectedValue);
@@ -219,11 +219,11 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
 
@@ -264,11 +264,11 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
 
@@ -310,11 +310,11 @@ namespace WebForMain.PPLive
             m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(((WebForMain.ControlLibrary.DistrictPicker)m_PlaceHolder.FindControl("District1")).Area3SysNo));
             if (((CheckBox)m_PlaceHolder.FindControl("chkDaylight1")).Checked)
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             m_astro.zone = int.Parse(((DropDownList)m_PlaceHolder.FindControl("drpTimeZone1")).SelectedValue);
 

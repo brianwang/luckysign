@@ -482,6 +482,7 @@ namespace PPLive.ZiWei
             ret.BirthTime = DateEntity;
             ret.TransitTime = Transit;
             ret.Gender = gender;
+            ret.Type = 1;
             ret.YueMa = flags[0];
             ret.MingShenZhu = flags[1];
             ret.ShiShang = flags[2];

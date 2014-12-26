@@ -37,13 +37,13 @@ namespace WebForApps.LoveRose
                 m_astro.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(1));
                 //if (chkDaylight1.Checked)
                 //{
-                //    m_astro.IsDaylight = AppEnum.BOOL.True;
+                //    m_astro.IsDayLight = AppEnum.BOOL.True;
                 //}
                 //else
                 //{
-                //    m_astro.IsDaylight = AppEnum.BOOL.False;
+                //    m_astro.IsDayLight = AppEnum.BOOL.False;
                 //}
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
                 m_astro.zone = -8;
 
                 for (int i = 1; i < 21; i++)

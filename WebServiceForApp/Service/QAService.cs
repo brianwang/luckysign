@@ -274,11 +274,11 @@ namespace WebServiceForApp
                     tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
                     if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight = AppEnum.BOOL.False;
                     }
                     tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
 
@@ -296,11 +296,11 @@ namespace WebServiceForApp
                     tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
                     if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight = AppEnum.BOOL.False;
                     }
                     tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
                     tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
@@ -308,11 +308,11 @@ namespace WebServiceForApp
                     tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
                     if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight1 = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight1 = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight1 = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight1 = AppEnum.BOOL.False;
                     }
                     tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
 
@@ -337,7 +337,7 @@ namespace WebServiceForApp
                     tmpinput.startsShow = tmpastro.startsShow;
                     tmpinput.birth = tmpastro.birth;
                     tmpinput.position = tmpastro.position;
-                    tmpinput.IsDaylight = tmpastro.IsDaylight;
+                    tmpinput.IsDayLight = tmpastro.IsDayLight;
                     tmpinput.zone = tmpastro.zone;
                     AstroBiz.GetInstance().GetParamters(ref tmpinput);
                     tmpastro.Stars = tmpinput.Stars;
@@ -347,7 +347,7 @@ namespace WebServiceForApp
                     tmpinput.startsShow = tmpastro.startsShow;
                     tmpinput.birth = tmpastro.birth1;
                     tmpinput.position = tmpastro.position1;
-                    tmpinput.IsDaylight = tmpastro.IsDaylight1;
+                    tmpinput.IsDayLight = tmpastro.IsDayLight1;
                     tmpinput.zone = tmpastro.zone1;
                     AstroBiz.GetInstance().GetParamters(ref tmpinput);
                     tmpastro.Stars1 = tmpinput.Stars;
@@ -668,11 +668,11 @@ namespace WebServiceForApp
                     tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
                     if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight = AppEnum.BOOL.False;
                     }
                     tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
 
@@ -690,11 +690,11 @@ namespace WebServiceForApp
                     tmpastro.position = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.FirstPoiName);
                     if (m_chart.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight = AppEnum.BOOL.False;
                     }
                     tmpastro.zone = int.Parse(m_chart.FirstTimeZone.ToString());
                     tmpastro.birth1 = DateTime.Parse(m_chart.SecondBirth.ToString());
@@ -702,11 +702,11 @@ namespace WebServiceForApp
                     tmpastro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], m_chart.SecondPoiName);
                     if (m_chart.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                     {
-                        tmpastro.IsDaylight1 = AppEnum.BOOL.True;
+                        tmpastro.IsDayLight1 = AppEnum.BOOL.True;
                     }
                     else
                     {
-                        tmpastro.IsDaylight1 = AppEnum.BOOL.False;
+                        tmpastro.IsDayLight1 = AppEnum.BOOL.False;
                     }
                     tmpastro.zone1 = int.Parse(m_chart.SecondTimeZone.ToString());
 
@@ -731,7 +731,7 @@ namespace WebServiceForApp
                     tmpinput.startsShow = tmpastro.startsShow;
                     tmpinput.birth = tmpastro.birth;
                     tmpinput.position = tmpastro.position;
-                    tmpinput.IsDaylight = tmpastro.IsDaylight;
+                    tmpinput.IsDayLight = tmpastro.IsDayLight;
                     tmpinput.zone = tmpastro.zone;
                     AstroBiz.GetInstance().GetParamters(ref tmpinput);
                     tmpastro.Stars = tmpinput.Stars;
@@ -741,7 +741,7 @@ namespace WebServiceForApp
                     tmpinput.startsShow = tmpastro.startsShow;
                     tmpinput.birth = tmpastro.birth1;
                     tmpinput.position = tmpastro.position1;
-                    tmpinput.IsDaylight = tmpastro.IsDaylight1;
+                    tmpinput.IsDayLight = tmpastro.IsDayLight1;
                     tmpinput.zone = tmpastro.zone1;
                     AstroBiz.GetInstance().GetParamters(ref tmpinput);
                     tmpastro.Stars1 = tmpinput.Stars;

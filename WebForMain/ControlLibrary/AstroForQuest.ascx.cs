@@ -144,7 +144,7 @@ namespace WebForMain.ControlLibrary
                     " + m_astro.birth1.ToString("yyyy年MM月dd日 HH:mm:ss") + @"
                     <br />
                     所属时区： " + (m_astro.zone1 > 0 ? "西" + m_astro.zone1.ToString() : "东" + m_astro.zone1.ToString()) + @"区<br />
-                    夏令时：" + (((int)m_astro.IsDaylight1) == 1 ? "是" : "否") + @"
+                    夏令时：" + (((int)m_astro.IsDayLight1) == 1 ? "是" : "否") + @"
                     <br />
                     性别： "+ AppEnum.GetGender(m_astro.Gender1)+@"
                     <br />
@@ -163,7 +163,7 @@ namespace WebForMain.ControlLibrary
                     " + m_astro.birth.ToString("yyyy年MM月dd日 HH:mm:ss") + @"
                     <br />
                     所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
-                    夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
+                    夏令时：" + (((int)m_astro.IsDayLight) == 1 ? "是" : "否") + @"
                     <br />
                     性别： " + AppEnum.GetGender(m_astro.Gender) + @"
                     <br />
@@ -174,7 +174,7 @@ namespace WebForMain.ControlLibrary
                     纬度" + m_astro.position.Lat + @")
                     <br />";
 
-                chartpara = m_astro.birth.ToString("yyyy_MM_dd_HH_mm") + "_" + (int)m_astro.IsDaylight + "_" + m_astro.position.Lat + "_" + m_astro.position.Lng + "_" + m_astro.zone;
+                chartpara = m_astro.birth.ToString("yyyy_MM_dd_HH_mm") + "_" + (int)m_astro.IsDayLight + "_" + m_astro.position.Lat + "_" + m_astro.position.Lng + "_" + m_astro.zone;
 
                 if (Parent.Page.ToString() == "ASP.pplive_astrochart_aspx" && IsPostBack)
                 {
@@ -212,11 +212,11 @@ namespace WebForMain.ControlLibrary
                 m_astro.position = new LatLng(tmplatlng[1],tmplatlng[0],_input.FirstPoiName);
                 if (_input.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
-                    m_astro.IsDaylight = AppEnum.BOOL.True;
+                    m_astro.IsDayLight = AppEnum.BOOL.True;
                 }
                 else
                 {
-                    m_astro.IsDaylight = AppEnum.BOOL.False;
+                    m_astro.IsDayLight = AppEnum.BOOL.False;
                 }
                 m_astro.zone = int.Parse(_input.FirstTimeZone.ToString());
 
@@ -238,11 +238,11 @@ namespace WebForMain.ControlLibrary
                 m_astro.position = new LatLng(tmplatlng[1], tmplatlng[0], _input.FirstPoiName);
                 if (_input.FirstDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
-                    m_astro.IsDaylight = AppEnum.BOOL.True;
+                    m_astro.IsDayLight = AppEnum.BOOL.True;
                 }
                 else
                 {
-                    m_astro.IsDaylight = AppEnum.BOOL.False;
+                    m_astro.IsDayLight = AppEnum.BOOL.False;
                 }
                 m_astro.zone = int.Parse(_input.FirstTimeZone.ToString());
                 m_astro.birth1 = DateTime.Parse(_input.SecondBirth.ToString());
@@ -250,11 +250,11 @@ namespace WebForMain.ControlLibrary
                 m_astro.position1 = new LatLng(tmplatlng[1], tmplatlng[0], _input.SecondPoiName);
                 if (_input.SecondDayLight.ToString() == ((int)AppEnum.BOOL.True).ToString())
                 {
-                    m_astro.IsDaylight1 = AppEnum.BOOL.True;
+                    m_astro.IsDayLight1 = AppEnum.BOOL.True;
                 }
                 else
                 {
-                    m_astro.IsDaylight1 = AppEnum.BOOL.False;
+                    m_astro.IsDayLight1 = AppEnum.BOOL.False;
                 }
                 m_astro.zone1 = int.Parse(_input.SecondTimeZone.ToString());
 
@@ -269,7 +269,7 @@ namespace WebForMain.ControlLibrary
                     pnlJiaoZheng.Style["display"] = "none";
                     hepaninfo.Style["display"] = "none";
                     DatePicker2.SelectedTime = m_astro.birth1;
-                    chkDaylight2.Checked = Convert.ToBoolean((int)m_astro.IsDaylight1);
+                    chkDaylight2.Checked = Convert.ToBoolean((int)m_astro.IsDayLight1);
                     District2.Area = m_astro.position1.Area;
                     drpTimeZone2.SelectedIndex = drpTimeZone2.Items.IndexOf(drpTimeZone2.Items.FindByValue(m_astro.zone1.ToString()));
                     LinkButton2.Style["display"] = "none";
@@ -298,7 +298,7 @@ namespace WebForMain.ControlLibrary
                     pnlJiaoZheng.Style["display"] = "none";
                     hepaninfo.Style["display"] = "none";
                     DatePicker2.SelectedTime = m_astro.birth1;
-                    chkDaylight2.Checked = Convert.ToBoolean((int)m_astro.IsDaylight1);
+                    chkDaylight2.Checked = Convert.ToBoolean((int)m_astro.IsDayLight1);
                     District2.Area = m_astro.position1.Area;
                     drpTimeZone2.SelectedIndex = drpTimeZone2.Items.IndexOf(drpTimeZone2.Items.FindByValue(m_astro.zone1.ToString()));
                     LinkButton2.Style["display"] = "none";
@@ -403,11 +403,11 @@ namespace WebForMain.ControlLibrary
             m_astro.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(District2.Area3SysNo));
             if (chkDaylight2.Checked)
             {
-                m_astro.IsDaylight1 = AppEnum.BOOL.True;
+                m_astro.IsDayLight1 = AppEnum.BOOL.True;
             }
             else
             {
-                m_astro.IsDaylight1 = AppEnum.BOOL.False;
+                m_astro.IsDayLight1 = AppEnum.BOOL.False;
             }
             m_astro.zone1 = int.Parse(drpTimeZone2.SelectedValue);
             SetPara();
@@ -547,8 +547,8 @@ namespace WebForMain.ControlLibrary
         {
             m_astro = (AstroMod)ViewState["NowChart"];
             string url = AppConfig.HomeUrl()+"Quest/Ask.aspx?";
-            url += "chart1=" + m_astro.birth.ToString("yyyy-MM-dd_HH:mm_") + Convert.ToInt16(m_astro.IsDaylight) + "_" + m_astro.position.Area.SysNo + "_" + (int)m_astro.Gender +
-                "&chart2=" + m_astro.birth1.ToString("yyyy-MM-dd_HH:mm_") + Convert.ToInt16(m_astro.IsDaylight1) + "_" + m_astro.position1.Area.SysNo + "_" + (int)m_astro.Gender +
+            url += "chart1=" + m_astro.birth.ToString("yyyy-MM-dd_HH:mm_") + Convert.ToInt16(m_astro.IsDayLight) + "_" + m_astro.position.Area.SysNo + "_" + (int)m_astro.Gender +
+                "&chart2=" + m_astro.birth1.ToString("yyyy-MM-dd_HH:mm_") + Convert.ToInt16(m_astro.IsDayLight1) + "_" + m_astro.position1.Area.SysNo + "_" + (int)m_astro.Gender +
                 "&type=" + (int)m_astro.type;
             Response.Redirect(url);
         }

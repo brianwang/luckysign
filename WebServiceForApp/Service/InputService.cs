@@ -163,31 +163,31 @@ namespace WebServiceForApp
                 input = new AstroMod();
                 input.birth = DateTime.Now;
                 input.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-                input.IsDaylight = AppEnum.BOOL.False;
+                input.IsDayLight = AppEnum.BOOL.False;
                 input.zone = -8;
 
                 input.birth1 = DateTime.Now.AddDays(-300);
                 input.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-                input.IsDaylight1 = AppEnum.BOOL.False;
+                input.IsDayLight1 = AppEnum.BOOL.False;
                 input.zone1 = -8;
                 input.type = PublicValue.AstroType.benming;
                 input.compose = PublicValue.AstroZuhe.bijiao;
             }
-                input.startsShow.Clear();
-                for (int i = 1; i <= 30; i++)
-                {
-                    input.startsShow.Add(i, PublicValue.GetAstroStar((PublicValue.AstroStar)i));
-                }
-                input.aspectsShow.Clear();
-                input.aspectsShow.Add(1, 0);
-                input.aspectsShow.Add(2, 180);
-                input.aspectsShow.Add(4, 120);
-                input.aspectsShow.Add(3, 90);
-                input.aspectsShow.Add(5, 60);
-            
+            input.startsShow.Clear();
+            for (int i = 1; i <= 30; i++)
+            {
+                input.startsShow.Add(i, PublicValue.GetAstroStar((PublicValue.AstroStar)i));
+            }
+            input.aspectsShow.Clear();
+            input.aspectsShow.Add(1, 0);
+            input.aspectsShow.Add(2, 180);
+            input.aspectsShow.Add(4, 120);
+            input.aspectsShow.Add(3, 90);
+            input.aspectsShow.Add(5, 60);
+
 
             //input.graphicID = AstroBiz.GetInstance().SetGraphicID(input);
-            
+
             if ((input.type == PublicValue.AstroType.hepan && input.compose == PublicValue.AstroZuhe.bijiao) || (input.type == PublicValue.AstroType.tuiyun && input.transit == PublicValue.AstroTuiyun.xingyun))
             {
                 AstroMod tmpinput = new AstroMod();
@@ -195,7 +195,7 @@ namespace WebServiceForApp
                 tmpinput.startsShow = input.startsShow;
                 tmpinput.birth = input.birth;
                 tmpinput.position = input.position;
-                tmpinput.IsDaylight = input.IsDaylight;
+                tmpinput.IsDayLight = input.IsDayLight;
                 tmpinput.zone = input.zone;
                 AstroBiz.GetInstance().GetParamters(ref tmpinput);
                 input.Stars = tmpinput.Stars;
@@ -205,7 +205,7 @@ namespace WebServiceForApp
                 tmpinput.startsShow = input.startsShow;
                 tmpinput.birth = input.birth1;
                 tmpinput.position = input.position1;
-                tmpinput.IsDaylight = input.IsDaylight1;
+                tmpinput.IsDayLight = input.IsDayLight1;
                 tmpinput.zone = input.zone1;
                 AstroBiz.GetInstance().GetParamters(ref tmpinput);
                 input.Stars1 = tmpinput.Stars;
@@ -232,16 +232,43 @@ namespace WebServiceForApp
             string textJson = System.Text.Encoding.Default.GetString(byteJson);
 
             input = (ZiWeiMod)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(ZiWeiMod));
-
+            int[] _paras = { 1, 1, 0, 1 };
             if (input == null)
             {
-            input.BirthTime = new PPLive.DateEntity(DateTime.Now);
-            input.Gender = AppEnum.Gender.male;
-            input.TransitTime = new DateEntity(new DateTime(2020, 1, 1));
+                input = new ZiWeiMod();
+                input.BirthTime = new PPLive.DateEntity(DateTime.Now);
+                input.Gender = AppEnum.Gender.male;
+                input.Type = 1;
+                input.TransitTime = new DateEntity(new DateTime(2020, 1, 1));
             }
-
-            int[] _paras = { 1, 1, 0, 1 };
-            input = ZiWeiBiz.GetInstance().TransitToZiWei(input.BirthTime, input.TransitTime, input.Gender, _paras);
+            else
+            {
+                _paras[0] = input.YueMa;
+                _paras[1] = input.MingShenZhu;
+                _paras[2] = input.ShiShang;
+                _paras[3] = input.HuanYun;
+                if (input.IsDayLight)
+                {
+                    input.BirthTime = new DateEntity(input.BirthTime.Date.AddHours(-1));
+                }
+                if (input.RealTime)
+                {
+                    input.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(input.BirthTime.Date, new LatLng("30.00", input.Longitude, input.AreaName)));
+                }
+                else
+                {
+                    input.BirthTime = new PPLive.DateEntity(input.BirthTime.Date);
+                }
+                
+            }
+            if (input.Type == 0)
+            {
+                input = ZiWeiBiz.GetInstance().TimeToZiWei(input.BirthTime, input.Gender, _paras);
+            }
+            else
+            {
+                input = ZiWeiBiz.GetInstance().TransitToZiWei(input.BirthTime, input.TransitTime, input.Gender, _paras);
+            }
             return ReturnValue<ZiWeiMod>.Get200OK(input);
         }
 
@@ -260,11 +287,29 @@ namespace WebServiceForApp
 
             input = (BaZiMod)XMS.Core.Json.JsonSerializer.Deserialize(textJson, typeof(BaZiMod));
 
+
+
             if (input == null)
             {
-            input.BirthTime = new PPLive.DateEntity(DateTime.Now);
-            input.Gender = AppEnum.Gender.male;
-            input.RealTime = false;
+                input = new BaZiMod();
+                input.BirthTime = new PPLive.DateEntity(DateTime.Now);
+                input.Gender = AppEnum.Gender.male;
+                input.RealTime = false;
+            }
+            else
+            {
+                if (input.IsDayLight)
+                {
+                    input.BirthTime = new DateEntity(input.BirthTime.Date.AddHours(-1));
+                }
+                if (input.RealTime)
+                {
+                    input.BirthTime = new DateEntity(PublicDeal.GetInstance().RealTime(input.BirthTime.Date, new LatLng("30.00",input.Longitude,input.AreaName)));
+                }
+                else
+                {
+                    input.BirthTime = new PPLive.DateEntity(input.BirthTime.Date);
+                }
             }
 
             BaZiBiz.GetInstance().TimeToBaZi(ref input);

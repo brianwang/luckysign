@@ -29,6 +29,11 @@ namespace PPLive.ZiWei
         private AppCmn.AppEnum.Gender gender = new AppCmn.AppEnum.Gender();
         private PublicValue.ShuXing shuxing = new PublicValue.ShuXing();
         private int age = 0;
+        private bool realtime = false;
+        private string areaname = "";
+        private string longitude = "";
+        private int type = 0;
+        private bool isdaylight = false;
 
         private int ming = 0; //命宫号
         private int shen = 0; //身宫号
@@ -74,6 +79,18 @@ namespace PPLive.ZiWei
         {
             get { return gender; }
             set { gender = value; }
+        }
+        [DataMember]
+        public int Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+        [DataMember]
+        public bool IsDayLight
+        {
+            get { return isdaylight; }
+            set { isdaylight = value; }
         }
         [DataMember]
         public PublicValue.ShuXing ShuXing
@@ -213,12 +230,32 @@ namespace PPLive.ZiWei
             get { return yunyao; }
             set { yunyao = value; }
         }
+        [DataMember]
+        public bool RealTime
+        {
+            get { return realtime; }
+            set { realtime = value; }
+        }
+        [DataMember]
+        public string AreaName
+        {
+            get { return areaname; }
+            set { areaname = value; }
+        }
+        [DataMember]
+        public string Longitude
+        {
+            get { return longitude; }
+            set { longitude = value; }
+        }
         #endregion
     }
     [Serializable]
     [DataContract]
     public class ZiWeiGong
     {
+        public ZiWeiGong()
+        { }
         public ZiWeiGong(int i)
         {
             gongname = (PublicValue.ZiWeiGong)Enum.Parse(typeof(PublicValue.ZiWeiGong), i.ToString());
@@ -310,6 +347,8 @@ namespace PPLive.ZiWei
     [DataContract]
     public class ZiWeiStar
     {
+        public ZiWeiStar()
+        { }
         public ZiWeiStar(int i)
         {
             starname = (PublicValue.ZiWeiStar)Enum.Parse(typeof(PublicValue.ZiWeiStar), i.ToString());

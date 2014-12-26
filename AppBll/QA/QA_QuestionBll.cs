@@ -331,7 +331,10 @@ namespace AppBll.QA
             {
                 order = "Award asc";
             }
-
+            else
+            {
+                order = "QA_Question.TS desc";
+            }
             #endregion
 
             using (SQLData m_data = new SQLData())
@@ -421,7 +424,10 @@ namespace AppBll.QA
             {
                 order = "Award asc";
             }
-
+            else
+            {
+                order = "QA_Question.TS desc";
+            }
             #endregion
 
             using (SQLData m_data = new SQLData())

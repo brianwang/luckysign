@@ -54,17 +54,17 @@ namespace PPLive.Astro
             if (mod.type == PublicValue.AstroType.benming)
             {
                 argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
             }
             else if (mod.type == PublicValue.AstroType.hepan)
             {
                 mod.composeFile1 = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\C" + CommonTools.GetRandomString(4);
                 mod.composeFile2 = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\C" + CommonTools.GetRandomString(4);
                 argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                            mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                            mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                 argument += " -o file1";
                 argument += "$-qb " + mod.birth1.Month + " " + mod.birth1.Day + " " + mod.birth1.Year + " " +
-                        mod.birth1.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight1 + " " + mod.zone1 + " " + mod.position1.Lng + " " + mod.position1.Lat;
+                        mod.birth1.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight1 + " " + mod.zone1 + " " + mod.position1.Lng + " " + mod.position1.Lat;
                 argument += " -o file2";
                 if (mod.compose == PublicValue.AstroZuhe.bijiao)
                 {
@@ -90,29 +90,29 @@ namespace PPLive.Astro
                     mod.composeFile1 = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\C" + CommonTools.GetRandomString(4);
                     mod.composeFile2 = AppDomain.CurrentDomain.BaseDirectory + AppConfig.AstroGraphicPath() + @"Tmp\C" + CommonTools.GetRandomString(4);
                     argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                            mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                            mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -o file1";
                     argument += "$-qb " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year + " " +
-                            mod.transitTime.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.transitPosition.Lng + " " + mod.transitPosition.Lat;
+                            mod.transitTime.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.transitPosition.Lng + " " + mod.transitPosition.Lat;
                     argument += " -o file2";
                     argument += "$-r0 file1 file2";
                 }
                 else if (mod.transit == PublicValue.AstroTuiyun.cixian)
                 {
                     argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -pd 365.25636 -p " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
                 }
                 else if (mod.transit == PublicValue.AstroTuiyun.sanxian)
                 {
                     argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                                   mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                                                   mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -pd 29.530588 -p " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
                 }
                 else if (mod.transit == PublicValue.AstroTuiyun.sanxian1)
                 {
                     argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                                   mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                                                   mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -pd 27.321582 -p " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
                 }
                 else if (mod.transit == PublicValue.AstroTuiyun.rifanzhao)
@@ -129,7 +129,7 @@ namespace PPLive.Astro
                     }
                     //DateTime tmpbirth = mod.birth.AddHours(-mod.zone);
                     string tmparg = "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " 0 " + mod.position.Lng + " " + mod.position.Lat;
+                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " 0 " + mod.position.Lng + " " + mod.position.Lat;
                     tmparg += " -tY " + lastbirth.AddYears(-1).Year + " 3 -R0 sun -RT0 sun > " + file;
                     RunAstrolog(tmparg);
 
@@ -179,7 +179,7 @@ namespace PPLive.Astro
                         lastbirth = lastbirth.AddYears(1);
                     }
                     string tmparg = "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " 0 " + mod.position.Lng + " " + mod.position.Lat;
+                                mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " 0 " + mod.position.Lng + " " + mod.position.Lat;
                     tmparg += " -tY " + lastbirth.AddYears(-1).Year + " 3 -R0 moon -RT0 moon > " + file;
                     RunAstrolog(tmparg);
 
@@ -218,7 +218,7 @@ namespace PPLive.Astro
                 else if (mod.transit == PublicValue.AstroTuiyun.taiyanghu)
                 {
                     argument += "-qb " + mod.birth.Month + " " + mod.birth.Day + " " + mod.birth.Year + " " +
-                                                                      mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDaylight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
+                                                                      mod.birth.ToString("HH:mm:ss") + " " + (int)mod.IsDayLight + " " + mod.zone + " " + mod.position.Lng + " " + mod.position.Lat;
                     argument += " -p0 " + mod.transitTime.Month + " " + mod.transitTime.Day + " " + mod.transitTime.Year;
                 }
             }

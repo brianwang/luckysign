@@ -88,6 +88,10 @@ namespace WebServiceForApp
         [Description("获取单次私信对话,/GetSMSTalk?sysno={sysno}")]
         ReturnValue<List<USR_SMSShow>> GetSMSTalk(int sysno);
 
+        [OperationContract, WebGet(UriTemplate = "/AddSMS?fromsysno={fromsysno}&tosysno={tosysno}&title={title}&context={context}&topicsysno={topicsysno}")]
+        [Description("发送私聊信息,/GAddSMS?fromsysno={fromsysno}&tosysno={tosysno}&title={title}&context={context}&topicsysno={topicsysno}")]
+        ReturnValue<bool> AddSMS(int FromSysNo, int ToSysNo, string title, string context, int TopicSysNo);
+
         [OperationContract, WebGet(UriTemplate = "/GetCustomerMedal?customersysno={customersysno}")]
         [Description("获取用户奖章,/GetCustomerMedal?customersysno={customersysno}")]
         ReturnValue<List<USR_MedalMod>> GetCustomerMedal(int customersysno);

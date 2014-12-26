@@ -1016,10 +1016,6 @@ namespace WebServiceForApp
             {
                 ret.IsRead = int.Parse(input["IsRead"].ToString());
             }
-            if (input["ReplyCount"].ToString() != "")
-            {
-                ret.ReplyCount = int.Parse(input["ReplyCount"].ToString());
-            }
             if (input["DR"].ToString() != "")
             {
                 ret.DR = int.Parse(input["DR"].ToString());

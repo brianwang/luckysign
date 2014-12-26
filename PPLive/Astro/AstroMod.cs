@@ -68,7 +68,7 @@ namespace PPLive.Astro
             set { _graphicID = value; }
         }
         [DataMember]
-        public AppCmn.AppEnum.BOOL IsDaylight
+        public AppCmn.AppEnum.BOOL IsDayLight
         {
             get { return _isDaylight; }
             set { _isDaylight = value; }
@@ -146,7 +146,7 @@ namespace PPLive.Astro
             set { _zone1 = value; }
         }
         [DataMember]
-        public AppCmn.AppEnum.BOOL IsDaylight1
+        public AppCmn.AppEnum.BOOL IsDayLight1
         {
             get { return _isDaylight1; }
             set { _isDaylight1 = value; }

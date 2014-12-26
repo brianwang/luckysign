@@ -55,11 +55,11 @@ namespace WebServiceForApp
                 input = new AstroMod();
                 input.birth = DateTime.Now;
                 input.position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-                input.IsDaylight = AppEnum.BOOL.False;
+                input.IsDayLight = AppEnum.BOOL.False;
                 input.zone = -8;
                 input.birth1 = DateTime.Now.AddDays(-300);
                 input.position1 = new LatLng(SYS_DistrictBll.GetInstance().GetModel(37));
-                input.IsDaylight1 = AppEnum.BOOL.False;
+                input.IsDayLight1 = AppEnum.BOOL.False;
                 input.zone1 = -8;
                 input.type = PublicValue.AstroType.hepan;
                 input.compose = PublicValue.AstroZuhe.bijiao;
@@ -85,7 +85,7 @@ namespace WebServiceForApp
                 tmpinput.startsShow = input.startsShow;
                 tmpinput.birth = input.birth;
                 tmpinput.position = input.position;
-                tmpinput.IsDaylight = input.IsDaylight;
+                tmpinput.IsDayLight = input.IsDayLight;
                 tmpinput.zone = input.zone;
                 AstroBiz.GetInstance().GetParamters(ref tmpinput);
                 input.Stars1 = tmpinput.Stars;

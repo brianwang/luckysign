@@ -32,7 +32,7 @@ namespace WebForApps.Venus
                 type = PublicValue.AstroType.benming,
                 birth = new DateTime(int.Parse(this.hfYear.Value), int.Parse(this.hfMonth.Value), int.Parse(this.hfDay.Value), int.Parse(this.hfHour.Value), 0, 0),
                 position = new LatLng(SYS_DistrictBll.GetInstance().GetModel(0x856)),
-                IsDaylight = AppEnum.BOOL.False,
+                IsDayLight = AppEnum.BOOL.False,
                 zone = -8
             };
             for (int i = 1; i < 0x15; i++)

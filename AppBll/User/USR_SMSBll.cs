@@ -164,7 +164,7 @@ namespace AppBll.User
             using (SQLData data = new SQLData())
             {
                 StringBuilder builder = new StringBuilder();
-                builder.Append(@"select USR_SMS.SysNo, FromSysNo, ToSysNo, Title, Context, IsRead, Parent, USR_SMS.DR, USR_SMS.TS,a.NickName as FromNickName,a.photo as FromPhoto,b.NickName as ToNickName,b.photo as ToPhoto
+                builder.Append(@"select USR_SMS.SysNo, FromSysNo, ToSysNo, Title, Context, IsRead, Parent, USR_SMS.DR, USR_SMS.TS,a.NickName as FromName,a.photo as FromPhoto,b.NickName as ToName,b.photo as ToPhoto
                                 from USR_SMS left join USR_Customer a on FromSysNo = a.sysno left join USR_Customer b on ToSysNo = b.sysno 
                                 where ([Parent]=" + Sysno + @" or (Parent=0 and USR_SMS.SysNo=" + Sysno + ")) and dr=").Append((int)AppEnum.State.normal)
                   .Append(" order by USR_SMS.TS asc");

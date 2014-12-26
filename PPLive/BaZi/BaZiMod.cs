@@ -35,10 +35,11 @@ namespace PPLive.BaZi
 
         private string name = "";
         private bool realtime = false;
-        private int areaSysno = 0;
+        //private int areaSysno = 0;
         private string areaname = "";
         private string longitude = "";
-        private TimeSpan realtimespan = new TimeSpan();
+        private bool isdaylight = false;
+        //private TimeSpan realtimespan = new TimeSpan();
 
         private BaZiDaYun[] dayun = new BaZiDaYun[10];
         private DateTime jiaoyun = new DateTime();//交运时间
@@ -173,7 +174,7 @@ namespace PPLive.BaZi
             get { return wangshuai; }
             set { wangshuai = value; }
         }
-        [DataMember]
+        
         public DateTime[] JieQi
         {
             get { return jieqi; }
@@ -192,11 +193,17 @@ namespace PPLive.BaZi
             set { realtime = value; }
         }
         [DataMember]
-        public int AreaSysNo
+        public bool IsDayLight
         {
-            get { return areaSysno; }
-            set { areaSysno = value; }
+            get { return isdaylight; }
+            set { isdaylight = value; }
         }
+        //[DataMember]
+        //public int AreaSysNo
+        //{
+        //    get { return areaSysno; }
+        //    set { areaSysno = value; }
+        //}
         [DataMember]
         public string AreaName
         {
@@ -210,11 +217,11 @@ namespace PPLive.BaZi
             set { longitude = value; }
         }
 
-        public TimeSpan RealTimeSpan
-        {
-            get { return realtimespan; }
-            set { realtimespan = value; }
-        }
+        //public TimeSpan RealTimeSpan
+        //{
+        //    get { return realtimespan; }
+        //    set { realtimespan = value; }
+        //}
         #endregion
 
         #region api扩展属性
@@ -259,33 +266,33 @@ namespace PPLive.BaZi
             }
         }
 
-        //[DataMember]
-        //public long[] JieQiShow
-        //{
-
-        //    get
-        //    {
-        //        long[] ret = new long[jieqi.Length];
-        //        for (int i = 0; i < jieqi.Length; i++)
-        //        {
-        //            ret[i] = jieqi[i].ToMilliSecondsFrom1970L();
-        //        }
-        //        return ret;
-        //    }
-        //    set
-        //    {
-        //        for (int i = 0; i < jieqi.Length; i++)
-        //        {
-        //            jieqi[i] = value[i].MilliSecondsFrom1970ToDateTime();
-        //        }
-        //    }
-        //}
         [DataMember]
-        public long RealTimeSpanShow
+        public long[] JieQiShow
         {
-            get { return Convert.ToInt32(realtimespan.TotalSeconds); }
-            set { realtimespan = new TimeSpan(value * 1000000); }
+
+            get
+            {
+                long[] ret = new long[jieqi.Length];
+                for (int i = 0; i < jieqi.Length; i++)
+                {
+                    ret[i] = jieqi[i].ToMilliSecondsFrom1970L()/1000;
+                }
+                return ret;
+            }
+            set
+            {
+                for (int i = 0; i < jieqi.Length; i++)
+                {
+                    jieqi[i] = (value[i]*1000).MilliSecondsFrom1970ToDateTime();
+                }
+            }
         }
+        //[DataMember]
+        //public long RealTimeSpanShow
+        //{
+        //    get { return Convert.ToInt32(realtimespan.TotalSeconds); }
+        //    set { realtimespan = new TimeSpan(value * 1000000); }
+        //}
 
         #endregion
     }

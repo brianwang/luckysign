@@ -11,7 +11,7 @@ namespace WebForApps.AstroDice
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "init", "initdraw();", true);
         }
     }
 }

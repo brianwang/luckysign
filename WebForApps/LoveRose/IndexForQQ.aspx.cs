@@ -48,15 +48,15 @@ namespace WebForApps.LoveRose
             m_astro.position = new LatLng(dis);
             if (HiddenField1.Value == "1")
             {
-                m_astro.IsDaylight = AppEnum.BOOL.True;
+                m_astro.IsDayLight = AppEnum.BOOL.True;
             }
             else if (HiddenField1.Value == "0")
             {
-                m_astro.IsDaylight = AppEnum.BOOL.False;
+                m_astro.IsDayLight = AppEnum.BOOL.False;
             }
             else
             {
-                m_astro.IsDaylight = (AppEnum.BOOL)Convert.ToInt16(PublicDeal.GetInstance().IsDayLight(m_astro.birth, 0));
+                m_astro.IsDayLight = (AppEnum.BOOL)Convert.ToInt16(PublicDeal.GetInstance().IsDayLight(m_astro.birth, 0));
             }
             if (HiddenField6.Value == "g1")
             {
@@ -626,7 +626,7 @@ namespace WebForApps.LoveRose
                     <br />
                     性别："+AppEnum.GetGender(m_astro.Gender)+@"<br />
                     所属时区： " + (m_astro.zone > 0 ? "西" + m_astro.zone.ToString() : "东" + m_astro.zone.ToString()) + @"区<br />
-                    夏令时：" + (((int)m_astro.IsDaylight) == 1 ? "是" : "否") + @"
+                    夏令时：" + (((int)m_astro.IsDayLight) == 1 ? "是" : "否") + @"
                     <br />
                     出生地： " + m_astro.position.name.Remove(m_astro.position.name.LastIndexOf("-")) + @"
                     <br />
