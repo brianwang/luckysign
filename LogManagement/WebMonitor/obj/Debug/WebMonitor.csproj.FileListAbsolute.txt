@@ -1,0 +1,9 @@
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\WebMonitor.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\WebMonitor.pdb
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\log4net.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\log4net.xml
+F:\WebSite\luckysign\LogManagement\WebMonitor\obj\Debug\WebMonitor.dll
+F:\WebSite\luckysign\LogManagement\WebMonitor\obj\Debug\WebMonitor.pdb

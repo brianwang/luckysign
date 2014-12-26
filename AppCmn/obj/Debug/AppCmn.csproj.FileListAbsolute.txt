@@ -1,0 +1,12 @@
+F:\WebSite\luckysign\AppCmn\bin\Debug\AppCmn.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\AppCmn.pdb
+F:\WebSite\luckysign\AppCmn\bin\Debug\WebMonitor.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\log4net.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+F:\WebSite\luckysign\AppCmn\bin\Debug\WebMonitor.pdb
+F:\WebSite\luckysign\AppCmn\bin\Debug\log4net.xml
+F:\WebSite\luckysign\AppCmn\obj\Debug\AppCmn.csprojResolveAssemblyReference.cache
+F:\WebSite\luckysign\AppCmn\obj\Debug\AppCmn.dll
+F:\WebSite\luckysign\AppCmn\obj\Debug\AppCmn.pdb

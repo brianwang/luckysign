@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="WebForMain.Master.Main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/new.css" rel="stylesheet" type="text/css" />
+    <link href="<%=AppCmn.AppConfig.WebResourcesPath() %>CSS/page.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?72cef88fe2d96fc52b022f9fa3702f10";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="wrap">
+            <div class="head">
+                <div class="logo">
+                    <a href="/" title="上上签"></a>
+                </div>
+                <div class="toplink">
+                    <div class="links"  style="position:relative">
+                        <asp:Literal runat="server" ID="ltrLinks"
+                            Text="<a href='/Passport/Login.aspx' title='登录'>登录</a> ｜ <a href='/Passport/Register.aspx' title='免费注册'>免费注册</a>"></asp:Literal>
+                    </div>
+                    <div class="tip">
+                        <asp:Literal runat="server" Text="您好，欢迎来到上上签" ID="ltrTips"></asp:Literal>
+                    </div>
+                </div>
+                <div class="menu">
+                    <a href="/" title="首页" class='<%=tab[0] %>'>首页</a><span></span> <a href="/Quest" title="煮酒论命" class='<%=tab[1] %>'>煮酒论命</a><span></span>
+                    <a href="/Article" title="象牙塔" class='<%=tab[2] %>'>象牙塔</a><span></span> <%--<a href="#" title="群组" class='<%=tab[3] %>'>群组</a><span></span>--%>
+                    <a href="/PPLive/Astro.aspx" title="在线排盘" class='<%=tab[4] %>'>在线排盘</a><span></span> <a href="/Celebrity" title="名人库" class='<%=tab[5] %>'>名人库</a>
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <div class="foot">
+                <div class="footer ft1">
+                    <a href="/" title="上上签"></a>
+                </div>
+                <div class="footer ft2">
+                    <ul>
+                        <li><a href="#" title="关于上上签">关于上上签</a></li>
+                        <li><a href="#" title="加入我们">加入我们</a></li>
+                        <li><a href="#" title="联系方式">联系方式</a></li>
+                        <li><a href="#" title="免责声明">免责声明</a></li>
+                        <li><a href="#" title="帮助中心">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer ft3">
+                    <ul>
+                        <li><a href="#" title="煮酒论命">煮酒论命</a></li>
+                        <li><a href="#" title="象牙塔">象牙塔</a></li>
+                        <%--<li><a href="#" title="群组">群组</a></li>--%>
+                        <li><a href="#" title="在线测算">在线测算</a></li>
+                        <li><a href="#" title="名人案例">名人案例</a></li>
+                        <li><a href="#" title="我的上上签">我的上上签</a></li>
+                    </ul>
+                </div>
+                <div class="footer ft4">
+                    <ul>
+                        <li><a href="#" title="官方微博">官方微博</a></li>
+                        <li><a href="#" title="官方QQ群">官方QQ群</a></li>
+                        <%--<li><a href="#" title="手机上上签">手机上上签</a></li>
+                    <li><a href="#" title="API"></a></li>--%>
+                    </ul>
+                </div>
+                <div class="footer ft5">
+                    <ul>
+                        <li><a href="/Passport/Login.aspx" title="登录">登录</a></li>
+                        <li><a href="/Passport/Login.aspx?type=logout" title="注销">注销</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <p class="copyright">
+                Copyright 2012-2013 上上签 All right reserved.
+            </p>
+        </div>
+
+
+        <script src="<%=AppCmn.AppConfig.WebResourcesPath() %>JS/jquery/jquery-1.8.3.js" type="text/javascript"></script>
+        <asp:ContentPlaceHolder ID="bottom" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
