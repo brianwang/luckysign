@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="D:\WorkSpace\上上签\WebSite" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="配置文件1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="App_Data/astrolog.exe" publishTime="03/06/2012 10:02:07" />
+    <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="12/09/2011 21:55:19" />
+    <file relUrl="bin/log4net.dll" publishTime="08/04/2011 09:05:14" />
+    <file relUrl="bin/WebMonitor.pdb" publishTime="03/26/2012 19:42:26" />
+    <file relUrl="PPLive/AstroChart.aspx" publishTime="12/13/2011 21:58:21" />
+    <file relUrl="bin/AppMod.dll" publishTime="03/26/2012 19:43:01" />
+    <file relUrl="bin/WebMonitor.dll" publishTime="03/26/2012 19:42:27" />
+    <file relUrl="bin/AppBll.dll" publishTime="03/26/2012 19:43:38" />
+    <file relUrl="bin/AppMod.pdb" publishTime="03/26/2012 19:43:00" />
+    <file relUrl="PPLive/ZiWei.aspx" publishTime="01/06/2012 23:54:55" />
+    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="12/09/2011 21:55:19" />
+    <file relUrl="bin/AppBll.pdb" publishTime="03/26/2012 19:43:37" />
+    <file relUrl="bin/PPLive.pdb" publishTime="03/27/2012 23:21:02" />
+    <file relUrl="Default.aspx" publishTime="12/09/2011 21:55:20" />
+    <file relUrl="bin/AppDal.dll" publishTime="03/26/2012 19:43:21" />
+    <file relUrl="bin/AppCmn.dll" publishTime="03/26/2012 19:42:42" />
+    <file relUrl="WebResources/Images/watermark.png" publishTime="12/18/2011 23:22:43" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder.dll" publishTime="08/04/2011 09:05:13" />
+    <file relUrl="PPLive/Astro.aspx" publishTime="02/18/2012 18:26:16" />
+    <file relUrl="bin/AppCmn.pdb" publishTime="03/26/2012 19:42:41" />
+    <file relUrl="bin/WebForPPLive.pdb" publishTime="03/27/2012 23:27:23" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="08/04/2011 09:05:13" />
+    <file relUrl="bin/PPLive.dll" publishTime="03/27/2012 23:21:03" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="12/09/2011 21:55:19" />
+    <file relUrl="bin/AppDal.pdb" publishTime="03/26/2012 19:43:19" />
+    <file relUrl="bin/WebForPPLive.dll" publishTime="03/27/2012 23:27:24" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="08/04/2011 09:05:14" />
+    <file relUrl="Web.config" publishTime="03/26/2012 19:44:32" />
+  </publishProfile>
+</publishData>

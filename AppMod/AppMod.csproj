@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CB96D13-2217-42E5-8159-8561A863A8CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppMod</RootNamespace>
+    <AssemblyName>AppMod</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XMS.Core">
+      <HintPath>..\BaseAssemblies\XMS.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\AdvTopicContentMod.cs" />
+    <Compile Include="Apps\AdvTopicMod.cs" />
+    <Compile Include="Apps\AdvUserMod.cs" />
+    <Compile Include="Apps\AstroDiceMod.cs" />
+    <Compile Include="Apps\LoveRoseMod.cs" />
+    <Compile Include="Apps\QQWeiBoUserMod.cs" />
+    <Compile Include="Apps\TopicSendRecordMod.cs" />
+    <Compile Include="Apps\VenusLoveMod.cs" />
+    <Compile Include="BLG\BLG_ArticleMod.cs" />
+    <Compile Include="BLG\BLG_AttentionMod.cs" />
+    <Compile Include="BLG\BLG_CollectionMod.cs" />
+    <Compile Include="BLG\BLG_CommentMod.cs" />
+    <Compile Include="BLG\BLG_ReplyMod.cs" />
+    <Compile Include="CMS\CMS_ArticleMod.cs" />
+    <Compile Include="CMS\REL_Article_ChartMod.cs" />
+    <Compile Include="CMS\SYS_ArticleContentMod.cs" />
+    <Compile Include="CMS\SYS_ArticleMod.cs" />
+    <Compile Include="CMS\CMS_CategoryMod.cs" />
+    <Compile Include="Course\COZ_CourseMod.cs" />
+    <Compile Include="Fate\FATE_AstroMod.cs" />
+    <Compile Include="Order\ORD_CashMod.cs" />
+    <Compile Include="Order\ORD_PointMod.cs" />
+    <Compile Include="Order\ORD_ReturnCashMod.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Fate\FATE_ChartMod.cs" />
+    <Compile Include="QA\QA_AnswerMod.cs" />
+    <Compile Include="QA\QA_CategoryMod.cs" />
+    <Compile Include="QA\QA_CommentMod.cs" />
+    <Compile Include="QA\QA_OrderMod.cs" />
+    <Compile Include="QA\QA_QuestionMod.cs" />
+    <Compile Include="QA\REL_Question_ChartMod.cs" />
+    <Compile Include="QA\QA_QuestionShow.cs" />
+    <Compile Include="QA\QA_CommentShow.cs" />
+    <Compile Include="QA\QA_AnswerShow.cs" />
+    <Compile Include="QA\QA_QuestionShowMini.cs" />
+    <Compile Include="QA\QA_CategoryShow.cs" />
+    <Compile Include="QA\QA_QuestionInput.cs" />
+    <Compile Include="RSH\RSH_BaziConditionMod.cs" />
+    <Compile Include="RSH\RSH_BaziLogicMod.cs" />
+    <Compile Include="Spider\SPD_FamousMod.cs" />
+    <Compile Include="QA\QA_StarMod.cs" />
+    <Compile Include="User\REL_Customer_CategoryMod.cs" />
+    <Compile Include="User\REL_Customer_MedalMod.cs" />
+    <Compile Include="User\USR_ActionMod.cs" />
+    <Compile Include="User\USR_MedalMod.cs" />
+    <Compile Include="User\USR_MessageMod.cs" />
+    <Compile Include="User\USR_NoticeMod.cs" />
+    <Compile Include="User\USR_RecordMod.cs" />
+    <Compile Include="User\USR_SMSMod.cs" />
+    <Compile Include="User\USR_ThirdLoginMod.cs" />
+    <Compile Include="User\USR_CustomerShow.cs" />
+    <Compile Include="User\USR_CustomerMaintain.cs" />
+    <Compile Include="User\USR_SMSShow.cs" />
+    <Compile Include="WebSys\REL_Admin_PrivilegeMod.cs" />
+    <Compile Include="WebSys\REL_Famous_KeyWordMod.cs" />
+    <Compile Include="WebSys\SYS_AdminMod.cs" />
+    <Compile Include="WebSys\SYS_DistrictMod.cs" />
+    <Compile Include="WebSys\SYS_FamousMod.cs" />
+    <Compile Include="WebSys\SYS_Famous_AstroStarMod.cs" />
+    <Compile Include="WebSys\SYS_Famous_CategoryMod.cs" />
+    <Compile Include="WebSys\SYS_Famous_CommentMod.cs" />
+    <Compile Include="WebSys\SYS_Famous_KeyWordsMod.cs" />
+    <Compile Include="WebSys\SYS_PrivilegeMod.cs" />
+    <Compile Include="User\USR_CustomerMod.cs" />
+    <Compile Include="User\USR_GradeMod.cs" />
+    <Compile Include="WebSys\PageInfo.cs" />
+    <Compile Include="WebSys\SYS_SMSMod.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppCmn\AppCmn.csproj">
+      <Project>{ED3A34E2-E4CE-4849-A555-1186D3536F97}</Project>
+      <Name>AppCmn</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

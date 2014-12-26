@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using AppMod.User;
+using AppDal.User;
+using AppCmn;
+using System.Data;
+using System.Web;
+
+namespace AppBll.User
+{
+    public class USR_MedalBll
+    {
+        private readonly USR_MedalDal dal = new USR_MedalDal();
+        private USR_MedalBll()
+        {
+        }
+        private static USR_MedalBll _instance;
+        public static USR_MedalBll GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new USR_MedalBll();
+            }
+            return _instance;
+        }
+        #region  基础成员方法
+        /// <summary>
+        /// 增加一条数据
+        /// </summary>
+
+        public int Add(USR_MedalMod model)
+        {
+            return dal.Add(model);
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+
+        public void Update(USR_MedalMod model)
+        {
+            dal.Update(model);
+        }
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+
+        public void Delete(int SysNo)
+        {
+            dal.Delete(SysNo);
+        }
+        /// <summary>
+        ///  得到一个对象实体
+        /// </summary>
+
+        public USR_MedalMod GetModel(int SysNo)
+        {
+            return dal.GetModel(SysNo);
+        }
+        #endregion  成员方法
+
+        #region 扩展成员方法
+
+        public DataTable GetList()
+        {
+            string cachyname = "UserMedal";
+            if (HttpRuntime.Cache[cachyname] == null)
+            {
+                DataTable tables = new DataTable();
+                using (SQLData data = new SQLData())
+                {
+                    StringBuilder builder = new StringBuilder();
+                    builder.Append(@"SELECT *
+                          FROM [USR_Medal] where dr=").Append((int)AppEnum.State.normal);
+                    try
+                    {
+                        tables = data.CmdtoDataTable(builder.ToString());
+                        HttpRuntime.Cache.Insert(cachyname, tables, null, DateTime.Now.AddHours(10), TimeSpan.Zero,
+                        System.Web.Caching.CacheItemPriority.High, null);
+                    }
+                    catch (Exception exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
+            return (HttpRuntime.Cache[cachyname] as DataTable).Copy();
+        }
+
+        #endregion
+    }
+
+}

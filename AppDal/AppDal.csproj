@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B63D474-DDD3-4B1F-9114-AE7D6FFD55C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppDal</RootNamespace>
+    <AssemblyName>AppDal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\AdvTopicContentDal.cs" />
+    <Compile Include="Apps\AdvTopicDal.cs" />
+    <Compile Include="Apps\AdvUserDal.cs" />
+    <Compile Include="Apps\AstroDiceDal.cs" />
+    <Compile Include="Apps\LoveRoseDal.cs" />
+    <Compile Include="Apps\QQWeiBoUserDal.cs" />
+    <Compile Include="Apps\TopicSendRecordDal.cs" />
+    <Compile Include="Apps\VenusLoveDal.cs" />
+    <Compile Include="BLG\BLG_ArticleDal.cs" />
+    <Compile Include="BLG\BLG_AttentionDal.cs" />
+    <Compile Include="BLG\BLG_CollectionDal.cs" />
+    <Compile Include="BLG\BLG_CommentDal.cs" />
+    <Compile Include="BLG\BLG_ReplyDal.cs" />
+    <Compile Include="CMS\CMS_ArticleDal.cs" />
+    <Compile Include="CMS\REL_Article_ChartDal.cs" />
+    <Compile Include="CMS\SYS_ArticleContentDal.cs" />
+    <Compile Include="CMS\SYS_ArticleDal.cs" />
+    <Compile Include="CMS\CMS_CategoryDal.cs" />
+    <Compile Include="Course\COZ_CourseDal.cs" />
+    <Compile Include="Fate\FATE_AstroDal.cs" />
+    <Compile Include="Fate\FATE_ChartDal.cs" />
+    <Compile Include="Order\ORD_CashDal.cs" />
+    <Compile Include="Order\ORD_PointDal.cs" />
+    <Compile Include="Order\ORD_ReturnCashDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QA\QA_AnswerDal.cs" />
+    <Compile Include="QA\QA_CategoryDal.cs" />
+    <Compile Include="QA\QA_CommentDal.cs" />
+    <Compile Include="QA\QA_OrderDal.cs" />
+    <Compile Include="QA\QA_QuestionDal.cs" />
+    <Compile Include="QA\REL_Question_ChartDal.cs" />
+    <Compile Include="RSH\RSH_BaziConditionDal.cs" />
+    <Compile Include="RSH\RSH_BaziLogicDal.cs" />
+    <Compile Include="Spider\SPD_FamousDal.cs" />
+    <Compile Include="QA\QA_StarDal.cs" />
+    <Compile Include="User\REL_Customer_CategoryDal.cs" />
+    <Compile Include="User\REL_Customer_MedalDal.cs" />
+    <Compile Include="User\USR_ActionDal.cs" />
+    <Compile Include="User\USR_MedalDal.cs" />
+    <Compile Include="User\USR_MessageDal.cs" />
+    <Compile Include="User\USR_RecordDal.cs" />
+    <Compile Include="User\USR_SMSDal.cs" />
+    <Compile Include="User\USR_ThirdLoginDal.cs" />
+    <Compile Include="User\USR_NoticeDal.cs" />
+    <Compile Include="WebSys\REL_Admin_PrivilegeDal.cs" />
+    <Compile Include="WebSys\REL_Famous_KeyWordDal.cs" />
+    <Compile Include="WebSys\SYS_AdminDal.cs" />
+    <Compile Include="WebSys\SYS_DistrictDal.cs" />
+    <Compile Include="WebSys\SYS_FamousDal.cs" />
+    <Compile Include="WebSys\SYS_Famous_AstroStarDal.cs" />
+    <Compile Include="WebSys\SYS_Famous_CategoryDal.cs" />
+    <Compile Include="WebSys\SYS_Famous_CommentDal.cs" />
+    <Compile Include="WebSys\SYS_Famous_KeyWordsDal.cs" />
+    <Compile Include="WebSys\SYS_PrivilegeDal.cs" />
+    <Compile Include="User\USR_CustomerDal.cs" />
+    <Compile Include="User\USR_GradeDal.cs" />
+    <Compile Include="WebSys\SYS_SMSDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppCmn\AppCmn.csproj">
+      <Project>{ED3A34E2-E4CE-4849-A555-1186D3536F97}</Project>
+      <Name>AppCmn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppMod\AppMod.csproj">
+      <Project>{1CB96D13-2217-42E5-8159-8561A863A8CE}</Project>
+      <Name>AppMod</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
