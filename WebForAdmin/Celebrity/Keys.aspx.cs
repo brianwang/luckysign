@@ -122,7 +122,7 @@ namespace WebForAdmin.Celebrity
             {
                  SYS_Famous_KeyWordsMod m_kyes = SYS_Famous_KeyWordsBll.GetInstance().GetModel(int.Parse(Request.QueryString["delete"]));
                  m_kyes.DR = (int)AppEnum.State.deleted;
-                 SYS_Famous_KeyWordsBll.GetInstance().UpDate(m_kyes);
+                 SYS_Famous_KeyWordsBll.GetInstance().Update(m_kyes);
 
                 ltrNotice.Text = "该记录已删除！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
@@ -160,7 +160,7 @@ namespace WebForAdmin.Celebrity
                 {
                     m_kyes.IsTop = (int)AppEnum.BOOL.False;
                 }
-                SYS_Famous_KeyWordsBll.GetInstance().UpDate(m_kyes);
+                SYS_Famous_KeyWordsBll.GetInstance().Update(m_kyes);
 
                 ltrNotice.Text = "该记录已置顶！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);

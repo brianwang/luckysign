@@ -1,6 +1,5 @@
 F:\WebSite\luckysign\WebForApps\bin\WebForApps.dll
 F:\WebSite\luckysign\WebForApps\bin\WebForApps.pdb
-F:\WebSite\luckysign\WebForApps\bin\AjaxControlToolkit.dll
 F:\WebSite\luckysign\WebForApps\bin\AppBll.dll
 F:\WebSite\luckysign\WebForApps\bin\AppCmn.dll
 F:\WebSite\luckysign\WebForApps\bin\AppMod.dll

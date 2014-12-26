@@ -74,7 +74,7 @@ namespace WebForAdmin.Apps
             {
                 AdvTopicContentMod m_content = AdvTopicContentBll.GetInstance().GetModel(int.Parse(Request.QueryString["delete"]));
                 m_content.DR = (int)AppEnum.State.deleted;
-                AdvTopicContentBll.GetInstance().UpDate(m_content);
+                AdvTopicContentBll.GetInstance().Update(m_content);
 
                 ltrNotice.Text = "该记录已删除！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);

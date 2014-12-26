@@ -7,3 +7,4 @@ F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\Microsoft.Practices.Obje
 F:\WebSite\luckysign\LogManagement\WebMonitor\bin\Debug\log4net.xml
 F:\WebSite\luckysign\LogManagement\WebMonitor\obj\Debug\WebMonitor.dll
 F:\WebSite\luckysign\LogManagement\WebMonitor\obj\Debug\WebMonitor.pdb
+F:\WebSite\luckysign\LogManagement\WebMonitor\obj\Debug\WebMonitor.csprojResolveAssemblyReference.cache

@@ -178,7 +178,7 @@ namespace WebForAdmin.Quest
             {
                 QA_AnswerMod m_famous = QA_AnswerBll.GetInstance().GetModel(int.Parse(Request.QueryString["delete"]));
                 m_famous.DR = (int)AppEnum.State.deleted;
-                QA_AnswerBll.GetInstance().UpDate(m_famous);
+                QA_AnswerBll.GetInstance().Update(m_famous);
 
                 ltrNotice.Text = "该记录已删除！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);

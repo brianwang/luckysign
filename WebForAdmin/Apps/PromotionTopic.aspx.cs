@@ -97,7 +97,7 @@ namespace WebForAdmin.Apps
                     m_topic.Title = txtName.Text.Trim();
                     m_topic.Group = int.Parse(drpGroup.SelectedValue);
                     m_topic.DR = int.Parse(drpStatus.SelectedValue);
-                    AdvTopicBll.GetInstance().UpDate(m_topic);
+                    AdvTopicBll.GetInstance().Update(m_topic);
                     LogManagement.getInstance().WriteTrace(m_topic.SysNo, "APP.AdvTopic.Update", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
 
                     ltrNotice.Text = "该记录已保存成功！";

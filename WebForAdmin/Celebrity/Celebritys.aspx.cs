@@ -149,7 +149,7 @@ namespace WebForAdmin.Celebrity
             {
                 SYS_FamousMod m_famous = SYS_FamousBll.GetInstance().GetModel(int.Parse(Request.QueryString["delete"]));
                 m_famous.DR = (int)AppEnum.State.deleted;
-                SYS_FamousBll.GetInstance().UpDate(m_famous);
+                SYS_FamousBll.GetInstance().Update(m_famous);
                 if (m_famous.Source != "")
                 {
                     SPD_FamousBll.GetInstance().InputReturn(m_famous.SysNo);
@@ -192,7 +192,7 @@ namespace WebForAdmin.Celebrity
                 {
                     m_famous.IsTop = (int)AppEnum.BOOL.False;
                 }
-                SYS_FamousBll.GetInstance().UpDate(m_famous);
+                SYS_FamousBll.GetInstance().Update(m_famous);
 
                 ltrNotice.Text = "该记录已置顶！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);

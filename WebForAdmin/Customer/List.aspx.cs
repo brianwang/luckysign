@@ -79,7 +79,7 @@ namespace WebForAdmin.Customer
         {
             USR_CustomerMod m_customer = USR_CustomerBll.GetInstance().GetModel(int.Parse(base.Request.QueryString["delete"]));
             m_customer.Status = 3;
-            USR_CustomerBll.GetInstance().UpDate(m_customer);
+            USR_CustomerBll.GetInstance().Update(m_customer);
             this.ltrNotice.Text = "该记录已冻结！";
             base.ClientScript.RegisterStartupScript(base.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
         }
@@ -168,7 +168,7 @@ namespace WebForAdmin.Customer
             {
                 m_customer.IsStar = 0;
             }
-            USR_CustomerBll.GetInstance().UpDate(m_customer);
+            USR_CustomerBll.GetInstance().Update(m_customer);
             if (input)
             {
                 this.ltrNotice.Text = "已设置该用户为明星！";

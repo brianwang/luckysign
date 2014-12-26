@@ -157,7 +157,7 @@ namespace WebForAdmin.Privilege
                     {
                         m_supplier.Password = txtPass.Text;
                     }
-                    SYS_AdminBll.GetInstance().UpDate(m_supplier);
+                    SYS_AdminBll.GetInstance().Update(m_supplier);
                     SetPrivilege(m_supplier.SysNo);
                     LogManagement.getInstance().WriteTrace(m_supplier.SysNo, "Article.Edit", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
                 }

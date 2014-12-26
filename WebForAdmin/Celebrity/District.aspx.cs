@@ -110,7 +110,7 @@ namespace WebForAdmin.Celebrity
                 m_area.Name = txtName.Text.Trim();
                 m_area.EnglishName = txtEnglishName.Text.Trim();
                 m_area.DR = int.Parse(drpStatus.SelectedValue);
-                SYS_DistrictBll.GetInstance().UpDate(m_area);
+                SYS_DistrictBll.GetInstance().Update(m_area);
                 LogManagement.getInstance().WriteTrace(m_area.SysNo, "District.Update", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
 
                 ltrNotice.Text = "该记录已保存成功！";

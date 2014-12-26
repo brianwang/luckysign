@@ -49,7 +49,7 @@ namespace WebForAdmin.Privilege
             {
                 SYS_AdminMod m_customer = SYS_AdminBll.GetInstance().GetModel(int.Parse(base.Request.QueryString["delete"]));
                 m_customer.DR = 1;
-                SYS_AdminBll.GetInstance().UpDate(m_customer);
+                SYS_AdminBll.GetInstance().Update(m_customer);
                 this.ltrNotice.Text = "该记录已删除！";
                 base.ClientScript.RegisterStartupScript(base.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
             }

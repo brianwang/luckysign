@@ -110,7 +110,7 @@ namespace WebForAdmin.CMS
                     m_cate.Name = txtName.Text.Trim();
                     m_cate.IsHide = int.Parse(drpHide.SelectedValue);
                     m_cate.DR = int.Parse(drpStatus.SelectedValue);
-                    CMS_CategoryBll.GetInstance().UpDate(m_cate);
+                    CMS_CategoryBll.GetInstance().Update(m_cate);
                     LogManagement.getInstance().WriteTrace(m_cate.SysNo, "CMS.Category.Update", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
 
                     ltrNotice.Text = "该记录已保存成功！";

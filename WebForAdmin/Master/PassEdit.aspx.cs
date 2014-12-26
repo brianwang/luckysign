@@ -26,7 +26,7 @@ namespace WebForAdmin.Master
                     if (txtNewPsd.Text.Trim() == txtNewAgain.Text.Trim())
                     {
                         m_admin.Password = txtNewPsd.Text.Trim();
-                        SYS_AdminBll.GetInstance().UpDate(m_admin);
+                        SYS_AdminBll.GetInstance().Update(m_admin);
 
                         ltrNotice.Text = "密码修改成功！";
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('masternoticediv').style.display='';document.getElementById('masternoticediv').style.display;", true);

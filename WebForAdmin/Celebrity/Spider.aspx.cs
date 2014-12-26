@@ -169,7 +169,7 @@ namespace WebForAdmin.Celebrity
                     {
                         m_famous = SYS_FamousBll.GetInstance().GetModel(int.Parse(m_dr["FamousSysNo"].ToString()));
                         m_famous.Photo = m_dr["photo"].ToString();
-                        SYS_FamousBll.GetInstance().UpDate(m_famous);
+                        SYS_FamousBll.GetInstance().Update(m_famous);
                         //Console.WriteLine(m_dr["sysno"] + " update ");
                         continue;
                     }
@@ -264,7 +264,7 @@ namespace WebForAdmin.Celebrity
                     m_famous.SysNo = SYS_FamousBll.GetInstance().Add(m_famous);
                     SPD_FamousMod m_spider = SPD_FamousBll.GetInstance().GetModel(i);
                     m_spider.FamousSysNo = m_famous.SysNo;
-                    SPD_FamousBll.GetInstance().UpDate(m_spider);
+                    SPD_FamousBll.GetInstance().Update(m_spider);
                     //Console.WriteLine(m_dr["sysno"] + " add ");
                 }
             }

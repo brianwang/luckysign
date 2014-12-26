@@ -205,9 +205,9 @@ namespace WebForAdmin.CMS
                 }
                 else if (type == "EDIT")
                 {
-                    CMS_ArticleBll.GetInstance().UpDate(m_cms);
-                    SYS_ArticleBll.GetInstance().UpDate(m_article);
-                    SYS_ArticleContentBll.GetInstance().UpDate(m_content[1]);
+                    CMS_ArticleBll.GetInstance().Update(m_cms);
+                    SYS_ArticleBll.GetInstance().Update(m_article);
+                    SYS_ArticleContentBll.GetInstance().Update(m_content[1]);
                     
                     LogManagement.getInstance().WriteTrace(m_cms.SysNo, "Article.Edit", "IP:" + Request.UserHostAddress + "|AdminID:" + GetSession().AdminEntity.Username);
                 }

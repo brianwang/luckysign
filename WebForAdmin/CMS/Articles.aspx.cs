@@ -111,7 +111,7 @@ namespace WebForAdmin.CMS
             {
                 CMS_ArticleMod m_famous = CMS_ArticleBll.GetInstance().GetModel(int.Parse(Request.QueryString["delete"]));
                 m_famous.DR = (int)AppEnum.State.deleted;
-                CMS_ArticleBll.GetInstance().UpDate(m_famous);
+                CMS_ArticleBll.GetInstance().Update(m_famous);
 
                 ltrNotice.Text = "该记录已删除！";
                 this.ClientScript.RegisterStartupScript(this.GetType(), "", "document.getElementById('noticediv').style.display='';", true);
